@@ -174,6 +174,6 @@ class RegistrasiSampleMasuk extends BaseController
 
     $data['list_data'] = $this->crud_model->lihatdata('tbl_bahan_sample');
 
-    $this->loadViews("RegistrasiSampleMasuk/laporan", $this->global, $data, NULL);
+    $this->loadViews("registrasiSampleMasuk/laporan", $this->global, $data, NULL);
   }
 }
