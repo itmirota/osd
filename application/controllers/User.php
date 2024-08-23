@@ -57,7 +57,11 @@ class User extends BaseController
             'barang' => $this->master_model->getDataBarangLimit($this->divisi_id)
         );
         
-        $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
+        if ($role = ROLE_STAFF){
+            $this->dashboardUser;
+        }else{
+            $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
+        }
     }
 
     public function dashboardUser(){
