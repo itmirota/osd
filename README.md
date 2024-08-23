@@ -1,4 +1,6 @@
 SISTEM OSD MIROTA KSM
 (Online Single Data)
 
-V.01.0
+sistem ini dibuat atas kebutuhan dari PT Mirota KSM
+
+V.01.0.0
