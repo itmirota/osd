@@ -25,15 +25,6 @@ class RegistrasiSampleMasuk extends BaseController
       }
   }
 
-  public function index(){
-    $this->global['pageTitle'] = 'Absensi Manual Mirota KSM';
-    $this->global['pageHeader'] = 'Absensi Manual Karyawan ';
-
-    $data['datenow']= DATE('d M Y');
-
-    $this->loadViewsUser("RegistrasiSampleMasuk/kehadiran", $this->global, $data, NULL);
-  }
-
   public function listdata(){
     $this->global['pageTitle'] = 'Registrasi Sample Masuk';
 
@@ -41,7 +32,7 @@ class RegistrasiSampleMasuk extends BaseController
       'list_data' => $this->crud_model->lihatdata('tbl_bahan_sample'),
     );
 
-    $this->loadViews("RegistrasiSampleMasuk/data", $this->global, $data, NULL);
+    $this->loadViews("registrasiSampleMasuk/data", $this->global, $data, NULL);
   }
 
   public function getDokumenSample($id){
