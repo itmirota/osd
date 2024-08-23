@@ -58,7 +58,7 @@ class User extends BaseController
         );
         
         if ($role = ROLE_STAFF){
-            $this->dashboardUser;
+            redirect('dashboardUser');
         }else{
             $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
         }
