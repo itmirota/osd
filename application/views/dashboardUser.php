@@ -72,6 +72,20 @@
     </a>
   </div>
 
+  <?php if($divisi_id == 17 | $divisi_id == 18){ ?>
+  <div class="col-3 m-4">
+    <a href="<?= base_url('Absensi-visit') ?>">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center mb-2">
+          <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+        </div>
+        <div class="d-flex justify-content-center text-header">
+          Absensi Visit
+        </div>
+      </div>
+    </a>
+  </div>
+  <?php }else{?>
   <div class="col-3 m-4">
     <a href="<?= base_url('absensi') ?>">
       <div class="d-flex flex-column">
@@ -84,6 +98,7 @@
       </div>
     </a>
   </div>
+  <?php } ?>
   
 </div>
 <!-- Menu -->

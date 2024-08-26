@@ -42,6 +42,17 @@ class Absensi extends BaseController
     $this->loadViewsUser("absensi/data", $this->global, $data, NULL);
   }
 
+  public function absensi_visit(){
+    $this->global['pageTitle'] = 'Absensi Manual Mirota KSM';
+    $this->global['pageHeader'] = 'Absensi Manual Karyawan ';
+    $pegawai_id = $this->global ['pegawai_id'];
+
+    $data['list_data']= $this->absensi_model->showData($pegawai_id);
+    $data['datenow']= DATE('d M Y');
+
+    $this->loadViewsUser("absensi/data_visit", $this->global, $data, NULL);
+  }
+
   function distance($latitude1, $longitude1, $latitude2, $longitude2) {
     $theta = $longitude1 - $longitude2; 
     $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
@@ -148,9 +159,21 @@ class Absensi extends BaseController
       'jenis_absen' => $this->uri->segment(2)
     );
 
-
-		// $this->load->view('webcam');
     $this->loadViewsUser("absensi/webcam", $this->global, $data, NULL);
+	}
+
+  public function Webcam_visit()
+	{
+    $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
+    $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
+
+    $data = array(
+      'id_pegawai' => $this->pegawai_id,
+      'nama_pegawai' => $this->name,
+      'jenis_absen' => $this->uri->segment(2)
+    );
+
+    $this->loadViewsUser("absensi/webcam_visit", $this->global, $data, NULL);
 	}
 
   public function saveWebcam(){
@@ -177,7 +200,9 @@ class Absensi extends BaseController
   
       $res = $this->crud_model->input($data,'tbl_absensi');
     }else{
+      $id = $this->absensi_model->getDataAbsenById($id_pegawai)->id_absensi;
       $where = array(
+        'id_absensi' => $id,
         'pegawai_id' => $id_pegawai,
         'DATE(date)' => DATE('Y-m-d'),
       );

@@ -78,6 +78,9 @@ $route['Datakendaraan'] = 'kendaraan';
 
 // ABSENSI
 $route['Absensi'] = 'absensi';
+$route['Absensi-visit'] = 'absensi/absensi_visit';
+$route['Absensi-visit/(:any)'] = 'absensi/Webcam_visit/$1';
+
 $route['kehadiran/(:any)'] = 'absensi/Webcam/$1';
 $route['laporanAbsensi'] = 'absensi/laporan';
 $route['cekkoordinat/(:any)/(:any)'] = 'absensi/cekkoordinat/$1/$2';

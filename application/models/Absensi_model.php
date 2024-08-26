@@ -21,6 +21,7 @@ public function getDataAbsenById($id)
   $this->db->from('tbl_absensi a');
   $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
   $this->db->where('pegawai_id',$id);
+  $this->db->order_by('id_absensi','DESC');
   $query = $this->db->get();
 	return $query->row();
 }
