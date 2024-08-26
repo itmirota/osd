@@ -80,10 +80,15 @@ if(isset($name)){ ?>
 				width: 'resolve' // need to override the changed default
 			});
 
+			$('#kadiv_select2, #manager_select2').select2({
+				theme: 'bootstrap-5',
+        		dropdownParent: $('#addDepartement')
+ 		  	});
+
 			$('#penugasan_id').select2({
 				theme: 'bootstrap-5',
-        dropdownParent: $('#addTugas')
- 		  });
+        	dropdownParent: $('#addTugas')
+ 		  	});
 
 			$('#pemberi_izin').select2({
 				theme: 'bootstrap-5',

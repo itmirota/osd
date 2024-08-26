@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="d-flex justify-content-end mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Tambah Data</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartement"><i class="fa fa-plus"></i> Tambah Data</button>
   </div>
 
   <div class="col-md-12">
@@ -46,7 +46,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addDepartement" tabindex="-1" aria-labelledby="addDepartementLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="<?=base_url('divisi/save')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
@@ -63,7 +63,7 @@
             </div> 
             <div class="col-md-12">
               <label for="kadiv_id" class="form-label">Kepala Departement</label>
-              <select class="form-select select2" name="kadiv_id" aria-label="Small select example">
+              <select class="form-select" name="kadiv_id" id="kadiv_select2" style="width:100%">
                 <option readonly>-- kepala departement --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
@@ -72,7 +72,7 @@
             </div>  
             <div class="col-md-12">
               <label for="manager_id" class="form-label">Manager</label>
-              <select class="form-select select2" name="manager_id" aria-label="Small select example">
+              <select class="form-select" name="manager_id" id="manager_select2"  style="width:100%">
                 <option readonly>-- manager departement --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
