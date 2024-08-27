@@ -34,7 +34,7 @@
               </div>
             </div> 
             <div class="col-md-12">
-              <label for="divisi" class="form-label">Divisi</label>
+              <label for="divisi" class="form-label">Lokasi Barang</label>
               <select id="divisi" class="form-select" onchange="getBarangByDivisi()" required>
                 <option>--- pilih divisi ---</option>
                 <?php foreach($divisi as $data){?>
