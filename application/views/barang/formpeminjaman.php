@@ -7,6 +7,10 @@
       </div>
       <div class="card-body">
         <div class="form-group">
+          <div class="col-md-12">
+            <label for="tgl_mulai" class="form-label">Tanggal Peminjaman</label>
+            <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
+          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="d-flex flex-wrap">
@@ -57,10 +61,6 @@
               <label for="jumlah_barang" class="form-label">Jumlah pinjam</label>
               <input type="text" name="jumlah_barang" placeholder="masukkan jumlah disini" class="form-control tabel-PR" required />
             </div>        
-          </div>
-          <div class="col-md-12">
-            <label for="tgl_mulai" class="form-label">Tanggal Pinjam</label>
-            <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
           </div>
         </div>
       </div>
