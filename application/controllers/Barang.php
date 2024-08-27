@@ -244,7 +244,8 @@ class Barang extends BaseController
     $jumlah_barang = $this->input->post('jumlah_barang');
     $nama_peminjam = $this->input->post('nama_peminjam');
     $divisi_id = $this->input->post('divisi_id');
-    $tgl_mulai = DATE('Y-m-d H:i:s');
+    $tgl_mulai = $this->input->post('tgl_mulai');
+
 
     if(is_null($nama_peminjam)){
       $nama_peminjam = $this->global['name'];

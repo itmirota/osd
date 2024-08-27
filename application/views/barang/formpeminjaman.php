@@ -58,6 +58,10 @@
               <input type="text" name="jumlah_barang" placeholder="masukkan jumlah disini" class="form-control tabel-PR" required />
             </div>        
           </div>
+          <div class="col-md-12">
+            <label for="tgl_mulai" class="form-label">Tanggal Pinjam</label>
+            <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
+          </div>
         </div>
       </div>
       <div class="card-footer d-flex justify-content-end">
