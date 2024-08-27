@@ -8,6 +8,7 @@
 					<?php if($jenis_absen == "masuk"){?>
 					<div class="mb-3">
 						<label for="nama" class="form-label">Nama Pegawai</label>
+						<input type="hidden" class="form-control" name="id_absensi" id="id_absensi" value="0">
 						<input type="text" class="form-control" name="nama" id="nama" placeholder="tuliskan nama anda disini" required>
 					</div>
 					<div class="mb-3">
@@ -19,7 +20,8 @@
 						<div class="mb-3">
 						<label for="id_absensi" class="form-label">Nama Pegawai</label>
 						<input type="hidden" class="form-control" name="jenis_absen" id="jenis_absen" value="<?= $jenis_absen ?>">
-						<input type="hidden" class="form-control" name="nama" id="nama">
+						<input type="hidden" class="form-control" name="bagian" id="bagian" value="0">
+						<input type="hidden" class="form-control" name="nama" id="nama" value="0">
 						<select class="form-select" class="form-control" name="id_absensi" id="id_absensi" aria-label="Default select example">
 							<option selected>Pilih pegawai</option>
 							<?php foreach($pegawai as $p){?>
@@ -85,13 +87,14 @@
 			function save(data_uri,lat,lon){
 				let jenis_absen = document.getElementById("jenis_absen").value;
 				let nama = document.getElementById("nama").value;
+				let bagian = document.getElementById("bagian").value;
 				let id_absensi = document.getElementById("id_absensi").value;
 
 				$.ajax({
 					url: '<?php echo site_url("absensiPegawaiHarian/saveWebcam");?>',
 					type: 'POST',
 					dataType: 'json',
-					data: {id_absensi:id_absensi,nama:nama,jenis_absen:jenis_absen,imagecam:data_uri,lat:lat,lon:lon},
+					data: {id_absensi:id_absensi,nama:nama,bagian:bagian,jenis_absen:jenis_absen,imagecam:data_uri,lat:lat,lon:lon},
 				})
 				.done(function(data) {
 					if (data > 0) {
@@ -103,7 +106,8 @@
 				.fail(function() {
 					console.log("error");
 				})
-				.always(function() {
+				.always(function(data) {
+					console.log(data);
 					window.location.href="<?php echo base_url(); ?>PHL/Absensi";
 				});
 			}
