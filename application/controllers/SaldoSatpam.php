@@ -33,7 +33,7 @@ class SaldoSatpam extends BaseController
     $data = array(
       'datecreated' => $datecreated,
       'saldo' => $saldo,
-
+      'sisa_saldo' => $saldo,
     );
 
     $this->crud_model->input($data, 'tbl_satpam_saldo');
