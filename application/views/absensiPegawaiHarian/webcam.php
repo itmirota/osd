@@ -97,14 +97,14 @@
 					if (data > 0) {
 						alert('insert data sukses');
 						console.log(data);
-						window.location.href="<?php echo base_url(); ?>PLH/Absensi";
+						window.location.href="<?php echo base_url(); ?>PHL/Absensi";
 					}
 				})
 				.fail(function() {
 					console.log("error");
 				})
 				.always(function() {
-					window.location.href="<?php echo base_url(); ?>PLH/Absensi";
+					window.location.href="<?php echo base_url(); ?>PHL/Absensi";
 				});
 			}
 			

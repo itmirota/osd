@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between mt-4">
       <div class="p-2">
         <a href="<?= base_url('satpam')?>" class="btn btn-md btn-secondary"><i class="fas fa-arrow-left"></i> kembali</a>
-        <a href="<?= base_url('satpam/laporanAbsensiPLH')?>" class="btn btn-md btn-warning"><i class="fa-solid fa-arrows-rotate"></i> refresh</a>
+        <a href="<?= base_url('satpam/laporanAbsensiPHL')?>" class="btn btn-md btn-warning"><i class="fa-solid fa-arrows-rotate"></i> refresh</a>
       </div>
       <div class="p-2 d-flex justify-align-items-center">
         <strong><?= longdate_indo(DATE("Y-m-d"))?></strong>

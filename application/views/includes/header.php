@@ -73,7 +73,7 @@
   </div>
   <?php } ?>
   
-  <?php if($this->uri->segment(1) == 'satpam' | $this->uri->segment(1) == 'kebersihan' | $this->uri->segment(1) == 'PLH'){?>
+  <?php if($this->uri->segment(1) == 'satpam' | $this->uri->segment(1) == 'kebersihan' | $this->uri->segment(1) == 'PHL'){?>
   <div class="header" style="padding:10vh 0 0 0">
     <div class="container">
       <div class="d-flex justify-content-center">

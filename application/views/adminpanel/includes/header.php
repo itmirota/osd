@@ -325,9 +325,9 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <li class="sidebar-item">
-          <a href="<?php echo base_url('laporanAbsensiPLH'); ?>" class="sidebar-link">
+          <a href="<?php echo base_url('laporanAbsensiPHL'); ?>" class="sidebar-link">
             <i class="fa fa-user"></i>
-            <span>Laporan Absensi PLH</span>
+            <span>Laporan Absensi PHL</span>
           </a>
         </li>
         <?php } ?>

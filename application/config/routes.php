@@ -86,11 +86,11 @@ $route['laporanAbsensi'] = 'absensi/laporan';
 $route['cekkoordinat/(:any)/(:any)'] = 'absensi/cekkoordinat/$1/$2';
 
 // ABSENSI PEGAWAI HARIAN
-$route['PLH/kehadiran'] = 'absensiPegawaiHarian';
-$route['PLH/Absensi'] = 'absensiPegawaiHarian/listdata';
-$route['PLH/kehadiran/(:any)'] = 'absensiPegawaiHarian/Webcam/$1';
-$route['laporanAbsensiPLH'] = 'absensiPegawaiHarian/laporan';
-$route['satpam/laporanAbsensiPLH'] = 'absensiPegawaiHarian/laporanSatpam';
+$route['PHL/kehadiran'] = 'absensiPegawaiHarian';
+$route['PHL/Absensi'] = 'absensiPegawaiHarian/listdata';
+$route['PHL/kehadiran/(:any)'] = 'absensiPegawaiHarian/Webcam/$1';
+$route['laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporan';
+$route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
 
 /*********** PERIZINAN DEFINED ROUTES *******************/
 

@@ -53,7 +53,7 @@
   </div>
 
   <div class="col-3 m-2">
-    <a href="<?= base_url('satpam/laporanAbsensiPLH')?>">
+    <a href="<?= base_url('satpam/laporanAbsensiPHL')?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
           <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
