@@ -7,7 +7,7 @@ if(isset($name)){ ?>
 </div>
 <?php 
 } ?>
-<footer class="footer" style="background-color:#1c88e3;">
+<!-- <footer class="footer" style="background-color:#1c88e3;">
 	<div class="container-fluid">
 		<div class="row text-muted">
 			<div class="col-6 text-start">
@@ -27,7 +27,7 @@ if(isset($name)){ ?>
 			</div>
 		</div>
 	</div>
-</footer>
+</footer> -->
 <div class="flash-data" data-icon="<?= $this->session->flashdata('swal_icon')?>"  data-title="<?= $this->session->flashdata('swal_title')?>"  data-text="<?= $this->session->flashdata('swal_text')?>"></div>
 </div>
 

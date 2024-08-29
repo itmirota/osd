@@ -78,7 +78,7 @@
     </div>
 
     <div id="cuti" class="tabcontent table-responsive">
-      <table id="dataTable" class="table table-hover">
+      <table class="table table-hover">
         <thead>
         <tr>
           <th>No.</th>
@@ -196,7 +196,7 @@
     </div>
 
     <div id="izin-harian" class="tabcontent table-responsive">
-      <table id="dataTable2" class="table table-hover">
+      <table class="table table-hover">
         <thead>
         <tr>
           <th>No.</th>
