@@ -18,6 +18,14 @@ class Crud_model extends CI_Model
 		return $this->db->insert_batch($table, $data);
 	}
 
+    function getdataRow($table){
+        $this->db->select('*');
+        $this->db->from($table);
+        $query = $this->db->get();
+
+        return $query->row();
+	}
+
     function getdataRowbyWhere($ParamSelect, $where, $table){
         $this->db->select($ParamSelect);
         $this->db->from($table);

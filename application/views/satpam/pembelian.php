@@ -53,6 +53,10 @@
             <th>Tanggal Pembelian</th>
             <th>Jumlah</th>
             <th>Harga</th>
+            <?php if ($role == ROLE_SUPERADMIN){?>
+            <th>Aksi</th>
+            <?php } ?>
+
           </tr>
           </thead>
           <tbody>
@@ -67,6 +71,11 @@
             <td><?= mediumdate_indo($data->tgl_pembelian) ?></td>
             <td><?= $data->jumlah ?></td>
             <td><?= $data->harga ?></td>
+            <?php if ($role == ROLE_SUPERADMIN){?>
+            <td>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#editPembelian"  onclick="editData(<?= $data->id_pembelian?>)" class="btn btn-sm btn-info"><i class="fas fa-pencil"></i></button>
+            </td>
+            <?php } ?>
           </tr>
           <?php
             endforeach;
@@ -112,3 +121,51 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="editPembelian" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-3" id="staticBackdropLabel">Formulir Pembelian</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="<?=base_url('transaksiSatpam/updatePembelian')?>" role="form" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <input type="hidden" readonly class="form-control-plaintext" name="id_pembelian" id="id_pembelian">
+          <div class="mb-3">
+            <label for="tgl_pembelian" class="form-label">Tanggal Pembelian</label>
+            <input type="date" class="form-control" name="tgl_pembelian" id="tgl_pembelian" required>
+          </div>
+          <div class="mb-3">
+            <label for="jumlah" class="form-label">Jumlah Pembelian</label>
+            <input type="text" class="form-control"  name="jumlah" id="jumlah" required>
+          </div>
+          <div class="mb-3">
+            <label for="harga" class="form-label">Biaya</label>
+            <input type="text" name="harga" id="harga" placeholder="contoh: 10000" class="form-control tabel-PR" required />
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+function editData($id){
+    $.ajax({
+      url:"<?php echo site_url("transaksiSatpam/detailPembelian")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        document.getElementById("id_pembelian").value = hasil.id_pembelian;
+        document.getElementById("jumlah").value = hasil.jumlah;
+        document.getElementById("harga").value = hasil.harga;
+        document.getElementById("tgl_pembelian").value = hasil.tgl_pembelian;
+      }
+    });
+  }
+</script>

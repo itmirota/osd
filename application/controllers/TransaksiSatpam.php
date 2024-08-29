@@ -82,6 +82,31 @@ class TransaksiSatpam extends BaseController
 
     $this->loadViews("satpam/pembelian", $this->global, $data, NULL);
   }
+
+  public function updatePembelian(){
+    $id = $this->input->post('id');
+    $jenis = 'GALON';
+    $jumlah = $this->input->post('jumlah');
+    $harga = $this->input->post('harga');
+    $tgl_pembelian = $this->input->post('tgl_pembelian');
+
+    $data = array(
+      'jenis' => $jenis,
+      'jumlah' => $jumlah,
+      'harga' => $harga,
+      'tgl_pembelian' => $tgl_pembelian,
+    );
+
+    $this->crud_model->update(array('id_pembelian' => $id),$data, 'tbl_satpam_pembelian');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    redirect('TransaksiSatpam');
+  }
+
+  public function detailPembelian(){
+    $data = $this->crud_model->getdataRow('tbl_satpam_pembelian');
+
+    echo json_encode($data);
+  }
 // END ADMIN PANEL
 
 }
