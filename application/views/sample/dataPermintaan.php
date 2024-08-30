@@ -42,9 +42,7 @@
                 <?php } ?>
               </td>
               <td class="text-center">
-                <?php if ($ld->status_permintaan == 0){?>
-                  <a href="<?= base_url('uji-sample/'.$ld->id_sample_permintaan)?>" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
-                <?php }?>
+                <a href="<?= base_url('uji-sample/'.$ld->id_sample_permintaan)?>" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
               </td>
             </tr>
             <?php

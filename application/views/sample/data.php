@@ -5,10 +5,36 @@
         <div class="row">
           <div class="d-flex justify-content-between">
               <div class="p-2">
-                <a href="<?=base_url('permintaan-sample')?>" class="btn btn-secondary me-2"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="<?=base_url('permintaan-sample')?>" class="btn btn-sm btn-secondary me-2"><i class="fa fa-arrow-left"></i> Kembali</a>
               </div>
               <div class="p-2">
-                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addVendor"><i class="fa fa-plus"></i> Tambah Data</button>  
+                <div class="d-flex">
+                  <div class="btn-group">
+                    <button class="btn btn-md btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addVendor"><i class="fa fa-plus"></i> Tambah Data</button> 
+                  </div>
+                  <div class="btn-group">
+                  <?php switch ($data_sample->status_permintaan) {
+                    case (0):?>
+                      <a class="btn btn-md btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Open
+                      </a>
+                    <?php break; ?>
+                    
+                    <?php default: ?>
+                      <a class="btn btn-md btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Close
+                      </a>
+                    <?php break; ?>
+                  <?php } ?>
+
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="<?= base_url('update-status-permintaan/'.$data_sample->id_sample_permintaan.'/0')?>">Open</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url('update-status-permintaan/'.$data_sample->id_sample_permintaan.'/1')?>">Close</a></li>
+                  </ul>
+                </div>
+                </div>
+                 
+
               </div>
           </div>
         </div>
@@ -73,12 +99,13 @@
                 <a href="#" data-bs-toggle="modal" data-bs-target="#dokumenSample" onclick="showDokumenSample(<?= $ld->id_sample_vendor?>)"><i class="fa fa-eye"></i></a>
               </td>
               <td class="text-center">
-                <?php if( $divisi_id == 5){?>
-                <div class="dropdown">
+                <?php 
+                if( $divisi_id == 5){?>
+                <div class="btn-group">
                   <?php switch ($ld->status) {
                     case (1):?>
                       <a class="btn btn-sm btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Uji Stabilitas
+                        Uji Stabilitas 
                       </a>
                     <?php break; ?>
 

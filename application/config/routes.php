@@ -133,8 +133,7 @@ $route['sample-masuk/(:any)/(:any)'] = 'sample/updateStatus/$1/$2';
 $route['permintaan-sample'] = 'sample/dataPermintaan';
 $route['uji-sample/(:any)'] = 'sample/dataUji/$1';
 
-
-
+$route['update-status-permintaan/(:any)/(:any)'] = 'sample/updateStatusPermintaan/$1/$2';
 
 /*********** USER DEFINED ROUTES *******************/
 $route['loginMe'] = 'login/loginMe';

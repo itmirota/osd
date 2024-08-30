@@ -59,6 +59,25 @@ class Sample extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     redirect('permintaan-sample');
   }
+
+  public function updateStatusPermintaan(){
+    $this->isLoggedIn();
+
+    $id = $this->uri->segment(2);
+    $status = $this->uri->segment(3);
+
+    $where = array(
+        'id_sample_permintaan' => $id
+    );
+
+    $data = array(
+        'status_permintaan' => $status
+    );
+
+    $res = $this->crud_model->update($where, $data,'tbl_sample_permintaan');
+    $this->set_notifikasi_swal('success','Berhasil','Status Berhasil Diubah');
+    redirect('permintaan-sample');
+  }
 // Permintaan Sample
 
 // Pengujian Sample
