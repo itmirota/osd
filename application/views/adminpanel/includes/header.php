@@ -217,9 +217,15 @@ if($role != ROLE_STAFF){ ?>
         {
         ?>
         <li class="sidebar-item">
+          <a href="<?php echo base_url('permintaan-sample'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-cubes"></i>
+            <span>Permintaan Sample</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
           <a href="<?php echo base_url('sample-masuk'); ?>" class="sidebar-link">
             <i class="fa-solid fa-cubes"></i>
-            <span>Sample Masuk</span>
+            <span>Pengujian Sample</span>
           </a>
         </li>
         <?php } ?>

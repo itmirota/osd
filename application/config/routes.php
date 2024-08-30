@@ -126,9 +126,12 @@ $route['kategori-soal'] = 'evaluasiKerja/kategori';
 $route['list-soal/(:any)'] = 'evaluasiKerja/listSoal/$1';
 $route['hapusKategori/(:any)/(:any)'] = 'evaluasiKerja/hapusKategori/$1/$2';
 
-// REGISTRASI SAMPLE MASUK
-$route['sample-masuk'] = 'registrasiSampleMasuk/listdata';
-$route['sample-masuk/(:any)/(:any)'] = 'registrasiSampleMasuk/updateStatus/$1/$2';
+//SAMPLE
+$route['sample-masuk'] = 'sample/listdata';
+$route['sample-masuk/(:any)/(:any)'] = 'sample/updateStatus/$1/$2';
+
+$route['permintaan-sample'] = 'sample/dataPermintaan';
+$route['uji-sample/(:any)'] = 'sample/dataUji/$1';
 
 
 

@@ -1,5 +1,6 @@
 <div class="row mt-4">
   <div class="card card-primary">
+    <?php if(empty($name)){?>
     <div class="d-flex justify-content-between mt-4">
       <div class="p-2">
         <a href="<?= base_url('satpam')?>" class="btn btn-md btn-secondary"><i class="fas fa-arrow-left"></i> kembali</a>
@@ -9,6 +10,7 @@
         <strong><?= longdate_indo(DATE("Y-m-d"))?></strong>
       </div>
     </div>
+    <?php }?>
     <div class="card-body table-responsive no-padding">
       <table id="dataTable" class="table table-hover">
         <thead>

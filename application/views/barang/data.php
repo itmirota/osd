@@ -82,7 +82,7 @@
               if($role == ROLE_SUPERADMIN)
               {
               ?>
-              <a href="<?= base_url('detelebarang/'.$data->id_barang) ?>" class="btn btn-sm btn-danger" ><i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"></i></a>
+              <a href="<?= base_url('deletebarang/'.$data->id_barang) ?>" class="btn btn-sm btn-danger" ><i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"></i></a>
               <?php } ?>
 
             </td>
