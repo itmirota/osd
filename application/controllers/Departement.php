@@ -67,6 +67,7 @@ class Departement extends BaseController
   }
 
   public function update(){
+    $id_departement = $this->input->post('id_departement');
     $nama_departement = $this->input->post('nama_departement');
 
     $where = array(
