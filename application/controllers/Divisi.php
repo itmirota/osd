@@ -29,6 +29,7 @@ class Divisi extends BaseController
 
     $data['list_data']= $this->divisi_model->GetDivisi();
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
+    $data['departement']= $this->crud_model->lihatdata('tbl_departement');
 
 
     $this->loadViews("divisi/data", $this->global, $data, NULL);
@@ -41,18 +42,20 @@ class Divisi extends BaseController
 
     $data['list_data']= $this->divisi_model->GetDivisiByDeptWithCountEmployee($id);
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
-
+    $data['departement']= $this->crud_model->lihatdata('tbl_departement');
 
     $this->loadViews("divisi/data", $this->global, $data, NULL);
   }
 
   public function save(){
     $nama_divisi = $this->input->post('nama_divisi');
+    $departement_id = $this->input->post('departement_id');
     $kadiv_id = $this->input->post('kadiv_id');
     $manager_id = $this->input->post('manager_id');
 
     $data = array(
       'nama_divisi' => $nama_divisi,
+      'departement_id' => $departement_id,
       'kadiv_id' => $kadiv_id,
       'manager_id' => $manager_id,
     );
@@ -85,6 +88,7 @@ class Divisi extends BaseController
 
   public function update(){
     $id_divisi = $this->input->post('id_divisi');
+    $departement_id = $this->input->post('departement_id');
     $nama_divisi = $this->input->post('nama_divisi');
     $kadiv_id = $this->input->post('kadiv_id');
     $manager_id = $this->input->post('manager_id');
@@ -95,6 +99,7 @@ class Divisi extends BaseController
 
     $data = array(
       'nama_divisi' => $nama_divisi,
+      'departement_id' => $departement_id,
       'kadiv_id' => $kadiv_id,
       'manager_id' => $manager_id,
     );

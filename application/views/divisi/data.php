@@ -16,7 +16,8 @@
       <div class="card-header">
           <h3 class="card-title">Data Divisi</h3>
       </div><!-- /.box-header -->
-      <div class="card-body table-responsive no-padding">
+      <div class="card-body">
+        <div class="table-responsive no-padding">
         <table id="dataTable" class="table table-hover">
           <thead>
           <tr>
@@ -26,6 +27,7 @@
             <th class="text-center">Actions</th>
           </tr>
           </thead>
+          <tbody>
           <?php
           $no = 1;
           $totpegawai = 0;
@@ -34,27 +36,29 @@
               foreach($list_data as $data)
               {
           ?>
-          <tbody>
           <tr>
             <td><?= $no++ ?></td>
             <td><?= $data->nama_divisi ?></td>
             <td class="text-center"><?= $data->jml_pegawai ?> pegawai</td>
             <td class="text-center">
               <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_divisi?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <a href="<?= base_url('deteledivisi/'.$data->id_divisi) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a></td>
+              <a href="<?= base_url('deteledivisi/'.$data->id_divisi) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a>
+            </td>
           </tr>
-          </tbody>
           <?php
             $totpegawai=$totpegawai+$data->jml_pegawai;
               }
           }
           ?>
+          </tbody>
+
           <tfoot>
             <td colspan="1"></td>
             <td class="text-end"><strong>Total</strong></td>
             <td class="text-center"><strong><?= $totpegawai ?> pegawai</strong></td>
           </tfoot>
         </table>
+        </div>
         
       </div><!-- /.box-body -->
     </div><!-- /.box -->
@@ -74,13 +78,22 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-12">
-              <label for="nama_divisi" class="form-label">Nama Departement</label>
+              <label for="nama_divisi" class="form-label">Nama Divisi</label>
               <input type="text" name="nama_divisi" placeholder="Nama divisi" class="form-control tabel-PR" required />
             </div> 
             <div class="col-md-12">
-              <label for="kadiv_id" class="form-label">Kepala Departement</label>
+              <label for="kadiv_id" class="form-label">Departement</label>
+              <select class="form-select" name="departement_id">
+                <option readonly>-- departement --</option>
+                <?php foreach ($departement as $d){ ?>
+                <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label for="kadiv_id" class="form-label">Kepala Divisi</label>
               <select class="form-select" name="kadiv_id" id="kadiv_select2" style="width:100%">
-                <option readonly>-- kepala departement --</option>
+                <option readonly>-- kepala divisi --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
                 <?php } ?>
@@ -89,7 +102,7 @@
             <div class="col-md-12">
               <label for="manager_id" class="form-label">Manager</label>
               <select class="form-select" name="manager_id" id="manager_select2"  style="width:100%">
-                <option readonly>-- manager departement --</option>
+                <option readonly>-- manager divisi --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
                 <?php } ?>
@@ -119,14 +132,23 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-12">
-              <label for="nama_divisi" class="form-label">Nama Departement</label>
+              <label for="nama_divisi" class="form-label">Nama Divisi</label>
               <input type="hidden" name="id_divisi" id="id_divisi" placeholder="Nama divisi" class="form-control tabel-PR" required />
               <input type="text" name="nama_divisi" id="nama_divisi" placeholder="Nama divisi" class="form-control tabel-PR" required />
             </div>
             <div class="col-md-12">
-              <label for="kadiv_id" class="form-label">Kepala Departement</label>
+              <label for="departement_id" class="form-label">Departement</label>
+              <select class="form-select" name="departement_id" id="departement_id">
+                <option readonly>-- departement --</option>
+                <?php foreach ($departement as $d){ ?>
+                <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label for="kadiv_id" class="form-label">Kepala Divisi</label>
               <select class="form-select js-example-basic-single js-states" name="kadiv_id" id="kadiv_id" aria-label="Small select example" style="width: 100%">
-                <option>-- Kepala departement --</option>
+                <option>-- Kepala divisi --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
                 <?php } ?>
@@ -135,7 +157,7 @@
             <div class="col-md-12">
               <label for="manager_id" class="form-label">Manager</label>
               <select class="form-select" name="manager_id" id="manager_id" aria-label="Small select example" style="width: 100%">
-                <option>-- Manager departement --</option>
+                <option>-- Manager divisi --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
                 <?php } ?>
@@ -163,6 +185,7 @@
       success:function(hasil){
         const divisi = hasil.divisi;
         document.getElementById("id_divisi").value = divisi.id_divisi;
+        document.getElementById("departement_id").value = divisi.departement_id;
         document.getElementById("nama_divisi").value = divisi.nama_divisi;
         document.getElementById("kadiv_id").value = divisi.kadiv_id;
         document.getElementById("manager_id").value = divisi.manager_id;
