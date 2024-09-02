@@ -120,7 +120,7 @@ class Sample extends BaseController
 
     $data = array(
       'data_sample' => $this->crud_model->getdataRowbyWhere('*', array('id_sample_permintaan' => $id), 'tbl_sample_permintaan'),
-      'list_data' => $this->sample_model->getDatabyWhere(array('permintaan_sample_id ='.$id)),
+      'list_data' => $this->sample_model->getDatabyWhere('permintaan_sample_id ='.$id),
     );
 
     $this->loadViews("sample/data", $this->global, $data, NULL);
