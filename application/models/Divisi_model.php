@@ -3,11 +3,24 @@
 class Divisi_model extends CI_Model
 {
   public function GetDivisi(){
-    $this->db->select('a.id_divisi, a.nama_divisi, b.nama_pegawai as kadiv, c.nama_pegawai as manager');
+    $this->db->select('a.id_divisi, a.nama_divisi, COUNT(b.id_pegawai) as jml_pegawai');
     $this->db->from('tbl_divisi a');
-    $this->db->join('tbl_pegawai b','b.id_pegawai = a.kadiv_id');
-    $this->db->join('tbl_pegawai c','c.id_pegawai = a.manager_id');
-    $this->db->where('id_divisi != 1');
+    $this->db->join('tbl_pegawai b','b.divisi_id = a.id_divisi');
+    $this->db->group_by('id_divisi');
+    $this->db->where('b.status','aktif');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function GetDivisiByDeptWithCountEmployee($id){
+    $this->db->select('a.id_divisi, a.nama_divisi, COUNT(b.id_pegawai) as jml_pegawai');
+    $this->db->from('tbl_divisi a');
+    $this->db->join('tbl_pegawai b','b.divisi_id = a.id_divisi');
+    $this->db->join('tbl_departement e','e.id_departement = a.departement_id');
+    $this->db->group_by('id_divisi');
+    $this->db->where('a.departement_id',$id);
+    $this->db->where('b.status','aktif');
     $query = $this->db->get();
 
     return $query->result();

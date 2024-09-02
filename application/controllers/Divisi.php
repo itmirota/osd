@@ -26,8 +26,20 @@ class Divisi extends BaseController
 
   public function index(){
     $this->global['pageTitle'] = 'Admin Panel : Dashboard';
-      
-    $data['list_data']= $this->crud_model->lihatdata('tbl_divisi');
+
+    $data['list_data']= $this->divisi_model->GetDivisi();
+    $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
+
+
+    $this->loadViews("divisi/data", $this->global, $data, NULL);
+  }
+
+  public function listdata(){
+    $this->global['pageTitle'] = 'Admin Panel : Dashboard';
+
+    $id = $this->uri->segment(2);
+
+    $data['list_data']= $this->divisi_model->GetDivisiByDeptWithCountEmployee($id);
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
 
 

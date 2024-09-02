@@ -1,25 +1,34 @@
 
 <div class="row">
+  <?php if(empty($this->uri->segment(2))){?>
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartement"><i class="fa fa-plus"></i> Tambah Data</button>
   </div>
+  <?php }else{ ?> 
+    <div class="d-flex justify-content-between mb-4">
+      <a href="<?= base_url('Datadepartement')?>" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartement"><i class="fa fa-plus"></i> Tambah Data</button>
+    </div>
+  <?php } ?>
 
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-          <h3 class="card-title">Data Departement</h3>
+          <h3 class="card-title">Data Divisi</h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
         <table id="dataTable" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
-            <th>Nama Departement</th>
+            <th>Nama Divisi</th>  
+            <th class="text-center">Jumlah Pegawai</th>
             <th class="text-center">Actions</th>
           </tr>
           </thead>
           <?php
           $no = 1;
+          $totpegawai = 0;
           if(!empty($list_data))
           {
               foreach($list_data as $data)
@@ -29,15 +38,22 @@
           <tr>
             <td><?= $no++ ?></td>
             <td><?= $data->nama_divisi ?></td>
+            <td class="text-center"><?= $data->jml_pegawai ?> pegawai</td>
             <td class="text-center">
               <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_divisi?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
               <a href="<?= base_url('deteledivisi/'.$data->id_divisi) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a></td>
           </tr>
           </tbody>
           <?php
+            $totpegawai=$totpegawai+$data->jml_pegawai;
               }
           }
           ?>
+          <tfoot>
+            <td colspan="1"></td>
+            <td class="text-end"><strong>Total</strong></td>
+            <td class="text-center"><strong><?= $totpegawai ?> pegawai</strong></td>
+          </tfoot>
         </table>
         
       </div><!-- /.box-body -->

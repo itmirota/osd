@@ -53,9 +53,10 @@
             <th>Tanggal Pembelian</th>
             <th>Jumlah</th>
             <th>Harga</th>
-            <?php if ($role == ROLE_SUPERADMIN){?>
+            <?php if(isset($role)){
+            if ($role == ROLE_SUPERADMIN){?>
             <th>Aksi</th>
-            <?php } ?>
+            <?php }} ?>
 
           </tr>
           </thead>
@@ -71,11 +72,13 @@
             <td><?= mediumdate_indo($data->tgl_pembelian) ?></td>
             <td><?= $data->jumlah ?></td>
             <td><?= $data->harga ?></td>
-            <?php if ($role == ROLE_SUPERADMIN){?>
+            <?php 
+              if(isset($role)){
+              if ($role == ROLE_SUPERADMIN){?>
             <td>
               <button type="button" data-bs-toggle="modal" data-bs-target="#editPembelian"  onclick="editData(<?= $data->id_pembelian?>)" class="btn btn-sm btn-info"><i class="fas fa-pencil"></i></button>
             </td>
-            <?php } ?>
+            <?php }} ?>
           </tr>
           <?php
             endforeach;

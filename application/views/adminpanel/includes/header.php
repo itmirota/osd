@@ -77,9 +77,15 @@ if($role != ROLE_STAFF){ ?>
         ?>
         <!-- MENU DEPARTEMENT -->
         <li class="sidebar-item">
-          <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
+          <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
             <i class="fa fa-user"></i>
             <span>Data Departement</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
+            <i class="fa fa-user"></i>
+            <span>Data Divisi</span>
           </a>
         </li>
 
