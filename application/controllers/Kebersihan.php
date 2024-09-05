@@ -117,8 +117,8 @@ class Kebersihan extends BaseController
     $akhir = strftime('%d/%b/%Y', strtotime($tgl_akhir));
 
     $where = array(
-      'date >=' => $tgl_mulai,
-      'date <=' => $tgl_akhir
+      'DATE(tgl_perawatan) >=' => $tgl_mulai,
+      'DATE(tgl_perawatan) <=' => $tgl_akhir
     );
 
     if(empty($tgl_mulai)){
