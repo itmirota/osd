@@ -1,12 +1,17 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
  * @author : Tri Cahya Wibawa
  * @version : 1.0
  * @since : 11 Februari 2024
  */
+
 
 class Kebersihan extends BaseController
 {
@@ -103,5 +108,124 @@ class Kebersihan extends BaseController
     );
 
     $this->loadViews("kebersihan/report", $this->global, $data, NULL);
+  }
+
+  public function exportExcel(){
+    $tgl_mulai = $this->input->post('tgl_mulai');
+    $tgl_akhir = $this->input->post('tgl_akhir');
+    $awal = strftime('%d/%b/%Y', strtotime($tgl_mulai));
+    $akhir = strftime('%d/%b/%Y', strtotime($tgl_akhir));
+
+    $where = array(
+      'date >=' => $tgl_mulai,
+      'date <=' => $tgl_akhir
+    );
+
+    if(empty($tgl_mulai)){
+      $list_data = $this->master_model->getPerawatanRuangan();
+    }else{
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere($where);
+    }
+
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="format input data pegawai.xlsx"');
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $style_col = [
+      'font' => ['bold' => true], // Set font nya jadi bold
+      'alignment' => [
+      'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+          'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+          'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+          'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+          'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $styleRight = [
+      'font' => [
+        'bold' => true,
+      ],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+      ],
+      'borders' => [
+        'top' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+    ];
+        
+
+    // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+    $style_row = [
+      'alignment' => [
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+      'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+      'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+      'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+      'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $sheet->setCellValue('B2', 'Laporan Kebersihan Ruangan PT. Mirota KSM'); // Set kolom A1 Sebagai Header
+    // $sheet->mergeCells('B2:E2'); // Set Merge Cell pada kolom A1 sampai E1
+    
+    $sheet->setCellValue('B3', 'No');
+    $sheet->setCellValue('C3', 'Nama');
+    $sheet->setCellValue('D3', 'Tanggal');
+    $sheet->setCellValue('E3', 'Waktu');
+    $sheet->setCellValue('F3', 'Detail Perawatan');
+
+    $sheet->getStyle('B3')->applyFromArray($style_col);
+    $sheet->getStyle('C3')->applyFromArray($style_col);
+    $sheet->getStyle('D3')->applyFromArray($style_col);
+    $sheet->getStyle('E3')->applyFromArray($style_col);
+    $sheet->getStyle('F3')->applyFromArray($style_col);
+
+    $no = 1;
+    $numrow = 4;
+    foreach ($list_data as $ld) {
+      $sheet->setCellValue('B'.$numrow, $no);
+      $sheet->setCellValue('C'.$numrow, $ld->nama_pegawai);
+      $sheet->setCellValue('D'.$numrow, $ld->date);
+      $sheet->setCellValue('E'.$numrow, $ld->time.' WIB');
+      $sheet->setCellValue('F'.$numrow, $ld->detail_perawatan);
+
+      $sheet->getColumnDimension('C')->setAutoSize(true);
+      $sheet->getColumnDimension('D')->setAutoSize(true);
+      $sheet->getColumnDimension('E')->setAutoSize(true);
+      $sheet->getColumnDimension('F')->setAutoSize(true);
+  
+      $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+
+      $no++;
+      $numrow++;
+    }
+
+
+    $writer = new Xlsx($spreadsheet);
+    header('Content-Type: application/vnd.ms-excel');
+
+    if (!empty($tgl_mulai) && !empty($tgl_akhir)){
+        header('Content-Disposition: attactchment;filename="Laporan Kebersihan" '.$awal.' - '.$akhir.'.xlsx');
+    }else{
+        header('Content-Disposition: attactchment;filename="Laporan Kebersihan".xlsx');
+    }
+
+    header('Cache-Control: max-age=0');
+    $writer->save("php://output");
+    exit();
   }
 }

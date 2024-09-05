@@ -41,7 +41,9 @@
             <th>No</th>
             <th>Nomor Induk</th>
             <th>Nama pegawai</th>
-            <th>Divisi</th>
+            <th width="100px">Usia</th>
+            <th width="100px">Masa Kerja</th>
+            <th>Dept. | Divisi</th>
             <th class="text-center">Detail</th>
             <th>Status</th>
             <!-- <th>Tanggal Bergabung</th>
@@ -68,6 +70,18 @@
             <td><?= $no++ ?></td>
             <td><?= $data->nip ?></td>
             <td><?= $data->nama_pegawai ?></td>
+            <td><?php
+              $date1=date_create($data->tgl_lahir);
+              $date2=date_create(DATE('Y-m-d'));
+              $diff=date_diff($date1,$date2);
+              echo $diff->format("%y th");
+            ?></td>
+            <td><?php
+              $date1=date_create($data->tgl_masuk);
+              $date2=date_create(DATE('Y-m-d'));
+              $diff=date_diff($date1,$date2);
+              echo $diff->format("%y th, %m bln");
+            ?></td>
             <td><?= $data->nama_divisi ?></td>
             <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><i class="fa fa-eye"></a></td>
             <td><span class="badge <?= ($data->status_pegawai == "tetap" ? 'bg-primary':'bg-info')?>"><?=  ($data->status_pegawai == "tetap" ? 'PKWTT':'PKWT') ?></span></td>
