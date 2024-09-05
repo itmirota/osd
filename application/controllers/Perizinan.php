@@ -10,7 +10,6 @@ require APPPATH . '/libraries/BaseController.php';
 
 class Perizinan extends BaseController
 {
-
   public function __construct()
   {
       parent::__construct();
@@ -110,20 +109,31 @@ class Perizinan extends BaseController
       $durasi++;
     }
 
-    if($kuota != 0){
-      if($durasi <= 7){
-        $query = $this->crud_model->input($data, 'tbl_perizinan_cuti');
+    switch ($jenis_cuti) {
+      case 'tahunan':
+        if($kuota != 0){
+          if($durasi <= 7){
+            $query = $this->crud_model->input($data, 'tbl_perizinan_cuti');
+            $this->kurangikuota($id_pegawai, $durasi);
 
-        if ($jenis_cuti == 'tahunan'){
-        $this->kurangikuota($id_pegawai, $durasi);
+            $this->set_notifikasi_swal('success','Berhasil','Data Cuti Berhasil Diajukan');
+          }else{
+            $this->set_notifikasi_swal('error','Gagal','Pengajuan cuti tidak boleh lebih dari 7 hari');
+          }
+        }else{
+          $this->set_notifikasi_swal('error','Kuota Cuti Habis','anda tidak bisa mengajukan cuti karena kuota cuti anda sudah habis');
         }
+      break;
+      
+      default:
+      $query = $this->crud_model->input($data, 'tbl_perizinan_cuti');
 
-        $this->set_notifikasi_swal('success','Berhasil','Data Cuti Berhasil Diajukan');
+      if($query){
+      $this->set_notifikasi_swal('success','Berhasil','Data Cuti Berhasil Diajukan');
       }else{
-        $this->set_notifikasi_swal('error','Gagal','Pengajuan cuti tidak boleh lebih dari 7 hari');
+      $this->set_notifikasi_swal('danger','Gagal','Data Cuti Gagal Diajukan');
       }
-    }else{
-      $this->set_notifikasi_swal('error','Kuota Cuti Habis','anda tidak bisa mengajukan cuti karena kuota cuti anda sudah habis');
+      break;
     }
 
     if($role == ROLE_STAFF){
@@ -261,7 +271,7 @@ class Perizinan extends BaseController
 
     echo json_encode($list_approval);
   }
-/*********** ADMIN PANEL *******************/
+  /*********** ADMIN PANEL *******************/
 
   public function listcuti(){
     $this->global['pageTitle'] = 'SMART OSD | Data Cuti Tahunan/Khusus';
