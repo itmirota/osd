@@ -382,8 +382,10 @@ class Pegawai extends BaseController
   public function format_excel(){
     header('Content-Type: application/vnd.ms-excel');
     header('Content-Disposition: attachment;filename="format input data pegawai.xlsx"');
+
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
+    
     $sheet->setCellValue('A1', 'NIK');
     $sheet->setCellValue('B1', 'Nama Karyawan');
     $sheet->setCellValue('C1', 'Jabatan');

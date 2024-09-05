@@ -94,6 +94,7 @@ $route['cekkoordinat/(:any)/(:any)'] = 'absensi/cekkoordinat/$1/$2';
 $route['PHL/kehadiran'] = 'absensiPegawaiHarian';
 $route['PHL/Absensi'] = 'absensiPegawaiHarian/listdata';
 $route['PHL/kehadiran/(:any)'] = 'absensiPegawaiHarian/Webcam/$1';
+$route['PHL/exportExcel'] = 'absensiPegawaiHarian/exportExcel';
 $route['laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporan';
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
 

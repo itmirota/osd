@@ -43,6 +43,15 @@ class Absensi_model extends CI_Model
     $query = $this->db->get();
     return $query->result();
   }
+
+  public function reportbyWhere($where){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi_pegawaiHarian');
+    $this->db->where($where);
+    $this->db->order_by('id_absensi_pegawaiHarian','DESC');
+    $query = $this->db->get();
+    return $query->result();
+  }
 // END ABSENSI PEGAWAI HARIAN/MAGANG
 
 }
