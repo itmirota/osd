@@ -19,6 +19,7 @@ class absensiPegawaiHarian extends BaseController
       $name = $this->session->userdata ( 'name' );
 
       $this->load->model('crud_model');
+      $this->load->model('absensi_model');
     
       if(isset($name)){
       $this->isLoggedIn();
@@ -47,7 +48,7 @@ class absensiPegawaiHarian extends BaseController
     $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
 
-    $data['list_data'] = $this->crud_model->lihatdata('tbl_absensi_pegawaiHarian');
+    $data['list_data'] = $this->absensi_model->report();
 
     $this->loadViews("absensiPegawaiHarian/laporan", $this->global, $data, NULL);
   }
