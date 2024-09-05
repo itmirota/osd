@@ -102,13 +102,28 @@ if(isset($name)){ ?>
 	}
 
 	function buktiCuti(){
-    $("#jenis_cuti").change(function(){
-			var getjenis_cuti = $("#jenis_cuti").val(); 
+		$("#jenis_cuti").change(function(){
+		var getjenis_cuti = $("#jenis_cuti").val(); 
 
-			if( getjenis_cuti == "tahunan"){
-				document.getElementById("bukti_cuti").required = false;
-			}
+		if( getjenis_cuti == "tahunan"){
+			document.getElementById("bukti_cuti").required = false;
+			document.getElementById("kuota_cuti").style.display = "block";
+			document.getElementById("bukti_cuti").style.display = "none";
+			document.getElementById("detail_cuti_khusus").style.display = "none";
+		}
 
+		if( getjenis_cuti == "khusus"){
+			document.getElementById("detail_cuti_khusus").style.display = "block";
+			document.getElementById("kuota_cuti").style.display = "none";
+			document.getElementById("bukti_cuti").style.display = "block";
+		}
+
+		if( getjenis_cuti == "pengganti"){
+			document.getElementById("detail_cuti_khusus").style.display = "none";
+			document.getElementById("kuota_cuti").style.display = "none";
+			document.getElementById("bukti_cuti").style.display = "block";
+		}
+			
     });
   } 
 

@@ -1,3 +1,8 @@
+<style>
+  #detail_cuti_khusus, #kuota_cuti, #bukti_cuti{
+    display:none;
+  }
+</style>
 <div class="text-judul mt-2 mb-2" style="padding-top:5vh">
   <h3 class="m-0"><i class="fa fa-list"></i> Menu Perizinan</h3>
   <p class="m-0">ajukan perizinanmu disini</p>
@@ -381,49 +386,70 @@
       </div>
       <form action="<?=base_url('perizinan/simpancuti')?>" role="form" method="post" enctype="multipart/form-data">
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-            <div class="col-md-12">
-              <select id="jenis_cuti" name="jenis_cuti" class="form-select tabel-PR" required>
-                <option readonly>----- pilih Jenis Cuti ---</option>
-                <option value="tahunan">Cuti Tahunan</option>
-                <option value="khusus">Cuti Khusus</option>
-                <option value="pengganti">Cuti Pengganti Hari</option>
-              </select>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
+                <select id="jenis_cuti" name="jenis_cuti" class="form-select tabel-PR" required>
+                  <option>----- pilih Jenis Cuti ---</option>
+                  <option value="tahunan">Cuti Tahunan</option>
+                  <option value="khusus">Cuti Khusus</option>
+                  <option value="pengganti">Cuti Pengganti Hari</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3" id="kuota_cuti">
+                <label for="kuota_cuti" class="form-label">Kuota Cuti</label>
+                <div class="col-md-12">
+                  <input type="text" class="form-control-plaintext" value="<?=$kuota_cuti?>" >
+                </div>
+              </div>
+              <div class="mb-3" id="detail_cuti_khusus">
+                <label for="detail_cuti" class="form-label">Detail Cuti Khusus</label>
+                <div class="col-md-12">
+                  <select name="detail_cuti" class="form-select tabel-PR" required>
+                    <option>----- pilih Detail Cuti Khusus ---</option>
+                    <option value="melahirkan">Cuti Melahirkan</option>
+                    <option value="duka">Cuti Keluarga Meninggal</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-sm-6">
               <div class="mb-3">
                 <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
-                <input type="date" class="form-control" name="tgl_mulai" placeholder="name@example.com">
+                <input type="date" class="form-control" name="tgl_mulai" required>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="mb-3">
                 <label for="tgl_akhir" class="form-label">Tanggal Akhir</label>
-                <input type="date" class="form-control" name="tgl_akhir" placeholder="name@example.com">
+                <input type="date" class="form-control" name="tgl_akhir" required>
               </div>
             </div>
           </div>
           <div class="mb-3">
             <label for="keperluan" class="form-label">Keperluan</label>
-            <textarea class="form-control" name="keperluan" rows="3"></textarea>
+            <textarea class="form-control" name="keperluan" rows="3" required></textarea>
           </div>
           <div class="mb-3">
             <label for="pengganti" class="form-label">tugas dan tanggung jawab diserahkan kepada</label>
             <div class="col-md-12">
               <select name="pengganti" class="form-select tabel-PR" required>
-                <option readonly>----- pilih Pengganti ---</option>
+                <option>----- pilih Penggati ---</option>
                 <?php foreach($pengganti as $p): ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
                 <?php endforeach; ?>
               </select>
             </div>
           </div>
-          <div class="mb-3">
+          <div class="mb-3"  id="bukti_cuti">
             <label for="bukti_cuti" class="form-label">Bukti Cuti</label>
-            <input type="file" name="bukti_cuti" id="bukti_cuti" class="form-control" required>
+            <input type="file" name="bukti_cuti" class="form-control" required>
           </div>
         </div>
         <div class="modal-footer">

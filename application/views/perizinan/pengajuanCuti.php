@@ -1,3 +1,9 @@
+<style>
+  #detail_cuti_khusus, #kuota_cuti, #bukti_cuti{
+    display:none;
+  }
+</style>
+
 <div class="row">
   <div class="d-flex justify-content-between mb-4">
     <a href="<?= base_url('approvalPengganti')?>" class="btn btn-info me-2"><i class="fa fa-check"></i> Approval Pengganti</a>
@@ -71,17 +77,38 @@
       </div>
       <form action="<?=base_url('perizinan/simpancuti')?>" role="form" method="post" enctype="multipart/form-data">
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-            <div class="col-md-12">
-              <select id="jenis_cuti" name="jenis_cuti" class="form-select tabel-PR" required>
-                <option>----- pilih Jenis Cuti ---</option>
-                <option value="tahunan">Cuti Tahunan</option>
-                <option value="khusus">Cuti Khusus</option>
-                <option value="pengganti">Cuti Pengganti Hari</option>
-              </select>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
+                <select id="jenis_cuti" name="jenis_cuti" class="form-select tabel-PR" required>
+                  <option>----- pilih Jenis Cuti ---</option>
+                  <option value="tahunan">Cuti Tahunan</option>
+                  <option value="khusus">Cuti Khusus</option>
+                  <option value="pengganti">Cuti Pengganti Hari</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3" id="kuota_cuti">
+                <label for="kuota_cuti" class="form-label">Kuota Cuti</label>
+                <div class="col-md-12">
+                  <input type="text" class="form-control-plaintext" value="<?=$kuota_cuti?>" >
+                </div>
+              </div>
+              <div class="mb-3" id="detail_cuti_khusus">
+                <label for="detail_cuti" class="form-label">Detail Cuti Khusus</label>
+                <div class="col-md-12">
+                  <select name="detail_cuti" class="form-select tabel-PR" required>
+                    <option>----- pilih Detail Cuti Khusus ---</option>
+                    <option value="melahirkan">Cuti Melahirkan</option>
+                    <option value="duka">Cuti Keluarga Meninggal</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-sm-6">
               <div class="mb-3">
@@ -111,9 +138,9 @@
               </select>
             </div>
           </div>
-          <div class="mb-3">
+          <div class="mb-3"  id="bukti_cuti">
             <label for="bukti_cuti" class="form-label">Bukti Cuti</label>
-            <input type="file" name="bukti_cuti" id="bukti_cuti" class="form-control" required>
+            <input type="file" name="bukti_cuti" class="form-control" required>
           </div>
         </div>
         <div class="modal-footer">

@@ -39,7 +39,8 @@ class Perizinan extends BaseController
       'list_izinHarian' => $this->izinHarian_model->getDatabyPegawai($id_pegawai),
       'list_izin' => $this->izin_model->getDatabyPegawai($id_pegawai),
       'pengganti' => $this->pegawai_model->getPegawaibyDivisi($divisi_id, $id_pegawai),
-      'approval_pengganti' => $this->perizinan_model->getDatabyPengganti($id_pegawai)
+      'approval_pengganti' => $this->perizinan_model->getDatabyPengganti($id_pegawai),
+      'kuota_cuti' => $this->perizinan_model->cekKuotaCuti($id_pegawai)->kuota_cuti
     );
 
     $this->loadViewsUser("perizinan/menu", $this->global, $data, NULL);
@@ -53,7 +54,7 @@ class Perizinan extends BaseController
     $kuota = $cekKuotaCuti->kuota_cuti;
 
     $config['upload_path']          = FCPATH.'assets/bukti_cuti/';
-    $config['allowed_types']        = 'gif|jpg|png|webp';
+    $config['allowed_types']        = 'gif|jpg|png|webp|pdf';
   
     $this->load->library('upload', $config);
   
@@ -80,6 +81,7 @@ class Perizinan extends BaseController
       $file = $this->upload->data();
       $bukti_cuti = $file['file_name'];
       $jenis_cuti = $this->input->post('jenis_cuti');
+      $detail_cuti = $this->input->post('detail_cuti');
       $tgl_mulai = $this->input->post('tgl_mulai');
       $tgl_akhir = $this->input->post('tgl_akhir');
       $keperluan = $this->input->post('keperluan');
@@ -89,6 +91,7 @@ class Perizinan extends BaseController
       $data = array(
         'pegawai_id' => $id_pegawai,
         'jenis_cuti' => $jenis_cuti,
+        'detail_cuti' => $detail_cuti,
         'tgl_mulai' => $tgl_mulai,
         'tgl_akhir' => $tgl_akhir,
         'keperluan' => $keperluan,
@@ -107,12 +110,14 @@ class Perizinan extends BaseController
       $durasi++;
     }
 
-    var_dump($role);
-
     if($kuota != 0){
       if($durasi <= 7){
         $query = $this->crud_model->input($data, 'tbl_perizinan_cuti');
+
+        if ($jenis_cuti == 'tahunan'){
         $this->kurangikuota($id_pegawai, $durasi);
+        }
+
         $this->set_notifikasi_swal('success','Berhasil','Data Cuti Berhasil Diajukan');
       }else{
         $this->set_notifikasi_swal('error','Gagal','Pengajuan cuti tidak boleh lebih dari 7 hari');
@@ -290,7 +295,8 @@ class Perizinan extends BaseController
 
     $data = array(
       'pengganti' => $this->pegawai_model->getPegawaibyDivisi($divisi_id, $id),
-      'list_cuti' => $this->perizinan_model->getDatabyPegawai($id)
+      'list_cuti' => $this->perizinan_model->getDatabyPegawai($id),
+      'kuota_cuti' => $this->perizinan_model->cekKuotaCuti($id)->kuota_cuti
     );
 
     $this->loadViews("perizinan/pengajuanCuti", $this->global, $data, NULL);
