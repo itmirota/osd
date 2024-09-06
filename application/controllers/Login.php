@@ -45,7 +45,6 @@ class Login extends BaseController
         {
 
             $loginType = $this->session->userdata('loginType');
-            var_dump($loginType);
             if($loginType == 'user'){
                 redirect('dashboardUser');
             }else{
