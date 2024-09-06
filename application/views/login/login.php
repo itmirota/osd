@@ -5,12 +5,9 @@
         <div class="d-table-cell align-middle">
 
           <div class="text-center mt-4">
-            <h1 class="h2 text-white mb-4">Anda Mengakses <strong>Admin Panel</strong> !</h1>
-            <p class="lead text-white m-0">
-            halaman khusus untuk admin,
-            </p>
-            <p class="lead text-white m-0">
-            jika anda bukan admin silahkan kembali ke halaman <a href="<?= base_url(); ?>">User</a>
+            <h1 class="h2 text-white">Selamat Datang!</h1>
+            <p class="lead text-white">
+            Apa kabar di hari <b><?= hari_indo(DATE('l')) ?></b> ini? sehat selalu, semangat terus yaa..
             </p>
           </div>
 
@@ -45,7 +42,7 @@
                 <img src="<?= base_url('assets/images/osd.png')?>" style="max-width:300px; width:100%">
               </div>
               <div class="m-sm-3">
-                <form action="<?= base_url('admin-login'); ?>" method="post">
+                <form action="<?php echo base_url(); ?>loginMe" method="post">
                   <div class="mb-3">
                     <label class="form-label">Username</label>
                     <input class="form-control form-control-lg" type="text" name="username" placeholder="Masukkan Username disini" />
@@ -62,8 +59,9 @@
             </div>
           </div>
           <div class="text-center mb-3 text-white">
-            Login sebagai <a href="<?= base_url(); ?>">User</a>
+            Login sebagai <a href="<?php base_url(); ?>login/admin">Admin</a>
           </div>
+
         </div>
       </div>
     </div>

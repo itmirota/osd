@@ -39,14 +39,13 @@ class Login extends BaseController
             $this->global['pageTitle'] = 'SMART OSD : login';
             $this->global['pageHeader'] = 'SMART OSD : login';
             
-            $this->loadViewsLogin("adminpanel/login/login", $this->global, NULL, NULL);
+            $this->loadViewsLogin("login/login", $this->global, NULL, NULL);
         }
         else
         {
             redirect('dashboard');
         }
     }
-    
     
     /**
      * This function used to logged in user
@@ -87,11 +86,7 @@ class Login extends BaseController
                                     
                     $this->session->set_userdata($sessionArray);
 
-                    if($res->roleId == ROLE_STAFF){
-                        redirect('dashboardUser');
-                    }else{
-                        redirect('dashboard');
-                    }
+                    redirect('dashboardUser');
                 }
             }
             else
@@ -99,6 +94,63 @@ class Login extends BaseController
                 $this->session->set_flashdata('error', 'username or password mismatch');
                 
                 redirect('login');
+            }
+        }
+    }
+
+    function admin()
+    {
+        $this->global['pageTitle'] = 'SMART OSD : Admin Login';
+        $this->global['pageHeader'] = 'SMART OSD : Admin Login';
+        
+        $this->loadViewsLogin("adminpanel/login/login", $this->global, NULL, NULL);
+    }
+
+    public function adminLogin()
+    {
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('username', 'username', 'required|max_length[128]|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|max_length[32]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->index();
+        }
+        else
+        {
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            
+            $result = $this->login_model->loginAdmin($username, $password);
+            
+            if(count($result) > 0)
+            {
+                foreach ($result as $res)
+                {
+                  $sessionArray = array(
+                    'userId'=>$res->userId,
+                    'pegawai_id'=>$res->pegawai_id,                    
+                    'role'=>$res->roleId,
+                    'roleText'=>$res->role,
+                    'name'=>$res->name,
+                    'divisi_id'=>$res->divisi_id,
+                    'jabatan_id'=>$res->jabatan_id,
+                    'divisi'=>$res->nama_divisi,
+                    'isLoggedIn' => TRUE
+                  );
+                                    
+                    $this->session->set_userdata($sessionArray);
+
+                    redirect('dashboard');
+
+                }
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'username or password mismatch');
+                
+                redirect('login/admin');
             }
         }
     }
@@ -158,7 +210,7 @@ class Login extends BaseController
             }
         }
 
-        $this->load->view('adminpanel/login/forgotPassword');		
+        $this->load->view('login/forgotPassword');		
         
     }
 
@@ -232,12 +284,12 @@ class Login extends BaseController
                         else
                         {
                            $this->session->set_flashdata('error','Current Password is wrong');
-                           $this->load->view('adminpanel/login/resetPassword',$this->data);	
+                           $this->load->view('login/resetPassword',$this->data);	
                         }
                     }
                     else
                     {
-                        $this->load->view('adminpanel/login/resetPassword',$this->data);
+                        $this->load->view('login/resetPassword',$this->data);
                     }
                 }
                 else

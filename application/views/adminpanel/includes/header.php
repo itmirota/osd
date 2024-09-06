@@ -247,7 +247,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU RUANGAN -->
 
         <!-- MENU PENGAJUAN PERIZINAN -->
-        <?php
+        <!-- <?php
         if($role == ROLE_SUPERADMIN | $role == ROLE_KABAG || $role == ROLE_MANAGER || $role == ROLE_HRGA  || $role == ROLE_HRBP)
         {
         ?>
@@ -276,7 +276,7 @@ if($role != ROLE_STAFF){ ?>
             </li>
           </ul>
         </li>
-        <?php } ?>
+        <?php } ?> -->
         <!-- /MENU PENGAJUAN PERIZINAN -->
 
         <!-- MENU APPROVAL PERIZINAN -->
@@ -285,7 +285,7 @@ if($role != ROLE_STAFF){ ?>
         {
         ?>
         <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Approval <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Approval Izin<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
             <li class="sidebar-item">
               <a href="<?php echo base_url(); ?>izin" class="sidebar-link">
