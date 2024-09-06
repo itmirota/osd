@@ -43,7 +43,16 @@ class Login extends BaseController
         }
         else
         {
-            redirect('dashboard');
+
+            $loginType = $this->session->userdata('loginType');
+            var_dump($loginType);
+            if($loginType == 'user'){
+                var_dump('halaman user');
+                redirect('dashboardUser');
+            }else{
+                var_dump('halaman admin');
+                redirect('dashboard');
+            }
         }
     }
     
@@ -81,6 +90,8 @@ class Login extends BaseController
                     'divisi_id'=>$res->divisi_id,
                     'jabatan_id'=>$res->jabatan_id,
                     'divisi'=>$res->nama_divisi,
+                    'divisi'=>$res->nama_divisi,
+                    'loginType'=>'user',
                     'isLoggedIn' => TRUE
                   );
                                     
@@ -137,6 +148,7 @@ class Login extends BaseController
                     'divisi_id'=>$res->divisi_id,
                     'jabatan_id'=>$res->jabatan_id,
                     'divisi'=>$res->nama_divisi,
+                    'loginType'=>'admin',
                     'isLoggedIn' => TRUE
                   );
                                     

@@ -35,6 +35,7 @@ class User extends BaseController
 
         $id = $this->global ['pegawai_id'];
         $role = $this->global ['role'];
+        $loginType = $this->global ['loginType'];
 
         if ($role == ROLE_HRGA || $role == ROLE_POOL){
           $CountCuti = COUNT($this->perizinan_model->getData());
@@ -48,25 +49,21 @@ class User extends BaseController
           $CountTugas = COUNT($this->perizinan_model->getTugasbyApproval($id));
         }    
 
-        if($role == ROLE_STAFF){
-            $data['pegawai'] = $this->pegawai_model->getPegawaibyId($id);
-            $this->loadViewsUser("dashboardUser", $this->global, $data, NULL);
-        }else{
-            $data = array(
-                'CountCuti' => $CountCuti,
-                'CountIzin' => $CountIzin,
-                'CountIzinHarian' => $CountIzinHarian,
-                'CountTugas' => $CountTugas,
-                'ruangan' => $this->master_model->getDataRuanganLimit(),
-                'barang' => $this->master_model->getDataBarangLimit($this->divisi_id)
-            );
-            $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
-        }
+        $data = array(
+            'CountCuti' => $CountCuti,
+            'CountIzin' => $CountIzin,
+            'CountIzinHarian' => $CountIzinHarian,
+            'CountTugas' => $CountTugas,
+            'ruangan' => $this->master_model->getDataRuanganLimit(),
+            'barang' => $this->master_model->getDataBarangLimit($this->divisi_id)
+        );
+        $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
     }
 
     public function dashboardUser(){
         $this->global['pageTitle'] = 'Employee Panel';
         $this->global['pageHeader'] = 'Employee Panel';
+        $loginType = $this->global ['loginType'];
 
         $pegawai_id = $this->pegawai_id;
         $data['pegawai'] = $this->pegawai_model->getPegawaibyId($pegawai_id);
