@@ -149,13 +149,22 @@
               <input type="date" name="tgl_pembelian" class="form-control tabel-PR" />
             </div> 
             <div class="col-md-12">
-              <label for="lokasi_barang" class="form-label">Lokasi barang</label>
-              <select name="lokasi_barang" placeholder="lokasi barang" class="form-select tabel-PR">
-                <option>pilih divisi</option>
-                <?php foreach($divisi as $d){?>
-                <option value=<?= $d->id_divisi ?>><?= $d->nama_divisi ?></option>
-                <?php } ?>
-              </select>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="departement_id" class="form-label">Departement</label>
+                  <select id="departement_id" onchange="getDivisiByDept()" class="form-select tabel-PR" required>
+                    <option>--pilih departement--</option>
+                    <?php foreach($departement as $data){?>
+                    <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="lokasi_barang" class="form-label">Divisi</label>
+                  <select name="lokasi_barang" id="divisiByDept" placeholder="lokasi barang" class="form-select tabel-PR" required>
+                  </select>
+                </div>
+              </div>
             </div> 
             <div class="col-md-12">
               <label for="stok_barang" class="form-label">Stok barang</label>
@@ -320,6 +329,29 @@
         const urlgambar = "<?= site_url("assets/images/qrcode/barang/")?>"+hasil.qrcode_barang;
 
         $("#barcode_barang").attr('src',urlgambar);
+      }
+    });
+  }
+
+  function getDivisiByDept(){
+    let departement = $("#departement_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("divisi/getDivisiByDept")?>/"+departement,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih divisi---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
+        }
+
+        $("#divisiByDept").html(html);
       }
     });
   }

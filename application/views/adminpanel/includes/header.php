@@ -178,7 +178,7 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU KENDARAAN -->
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_POOL | $role == ROLE_HRGA)
         {
         ?>
         <li class="sidebar-item has-submenu">

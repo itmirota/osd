@@ -44,7 +44,7 @@ if(isset($name)){ ?>
         <tr>
           <td><?php echo $no++ ?></td>
           <td><?php echo $data->nama_barang ?></td>
-          <td><?php echo $data->nama_pinjam_barang ?></td>
+          <td><?php echo $data->nama_pegawai ?></td>
           <td><?php echo $data->jumlah_pinjam ?> pcs</td>
           <td><?php echo mediumdate_indo($data->tanggal_mulai).' '.$data->waktu_mulai ?></td>
             <?php if(is_null($data->tanggal_kembali)){?>

@@ -108,10 +108,10 @@ class Master_model extends CI_Model
   }
 
   function getDataBarangLimit($id_divisi){
-    $this->db->select('id_pinjam_barang, id_barang, nama_pinjam_barang, jumlah_pinjam, nama_barang, nama_divisi, userId, DATE(tgl_mulai) as tanggal_mulai,DATE(tgl_kembali) as tanggal_kembali, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_kembali) as waktu_kembali');
+    $this->db->select('id_pinjam_barang, id_barang, d.nama_pegawai as nama_pinjam_barang, jumlah_pinjam, nama_barang, userId, DATE(tgl_mulai) as tanggal_mulai,DATE(tgl_kembali) as tanggal_kembali, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_kembali) as waktu_kembali');
     $this->db->from('tbl_pinjam_barang a');
     $this->db->join('tbl_barang b', 'b.id_barang = a.barang_id');
-    $this->db->join('tbl_divisi c', 'c.id_divisi = a.divisi_id');
+    $this->db->join('tbl_pegawai d', 'd.id_pegawai = a.pegawai_id');
 
     if($id_divisi > 0){
     $this->db->where('b.divisi_id',$id_divisi);
@@ -156,15 +156,16 @@ class Master_model extends CI_Model
   }
 
   function getjadwalbarang($divisi){
-    $this->db->select('*, DATE(tgl_mulai) as tanggal_mulai, DATE(tgl_kembali) as tanggal_kembali, b.divisi_id, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_kembali) as waktu_kembali');
+    $this->db->select('*, DATE(tgl_mulai) as tanggal_mulai, DATE(tgl_kembali) as tanggal_kembali, b.divisi_id, c.nama_pegawai, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_kembali) as waktu_kembali');
     $this->db->from('tbl_pinjam_barang a');
     $this->db->join('tbl_barang b', 'b.id_barang = a.barang_id');
+    $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_divisi d', 'd.id_divisi = c.divisi_id');
 
     if($divisi > 0){
     $this->db->where('b.divisi_id', $divisi);
     }
     
-    $this->db->join('tbl_divisi c', 'c.id_divisi = a.divisi_id');
     $query = $this->db->get();
 
     return $query;
@@ -184,7 +185,7 @@ class Master_model extends CI_Model
     $this->db->select('id_pinjam_barang, id_barang, jumlah_pinjam, nama_barang, nama_divisi, userId, DATE(tgl_mulai) as tanggal_mulaiDATE(tgl_kembali) as tanggal_kembali, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_kembali) as waktu_kembali');
     $this->db->from('tbl_pinjam_barang a');
     $this->db->join('tbl_barang b', 'b.id_barang = a.barang_id');
-    $this->db->join('tbl_divisi c', 'c.id_divisi = a.divisi_id');
+    $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
     $this->db->where('a.id_pinjam_barang', $id);
     $query = $this->db->get();
 

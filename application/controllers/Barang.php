@@ -54,6 +54,7 @@ class Barang extends BaseController
     $divisi = $this->divisi_id;
 
     $data['list_data']= $this->master_model->getDataBarang($divisi);
+    $data['departement']= $this->crud_model->lihatdata('tbl_departement');
     $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
     $data['id_divisi']= $divisi;
 
@@ -176,7 +177,7 @@ class Barang extends BaseController
 
         $data[] = array(
             'id' => $row['id_pinjam_barang'],
-            'title' => $row['nama_barang'].' | '.$row['nama_pinjam_barang'].' '.$row['nama_divisi'].' | '.$row['jumlah_pinjam'].' pcs',
+            'title' => $row['nama_barang'].' | '.$row['nama_pegawai'].' '.$row['nama_divisi'].' | '.$row['jumlah_pinjam'].' pcs',
             'start' => $row['tgl_mulai'],
             'end' => $row['tgl_kembali']
         );
