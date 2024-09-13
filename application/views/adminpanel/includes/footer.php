@@ -72,9 +72,11 @@ if(isset($name)){ ?>
 			statuspegawai();
 			swal();
 			dataTable();
+			dataTableScrollX();
 			indicator();
 			dataTableDashboard();
 			checklist();
+
 			$('.select2, .selectDivisi, .selectApproval, .selectApprovalEdit').select2({
 				theme: 'bootstrap-5',
 				width: 'resolve' // need to override the changed default
@@ -105,33 +107,33 @@ if(isset($name)){ ?>
 	});
 
 	function loadkendaraan(){
-    $("#jenis_kendaraan").change(function(){
-        var getjenis_kendaraan = $("#jenis_kendaraan").val(); 
+		$("#jenis_kendaraan").change(function(){
+			var getjenis_kendaraan = $("#jenis_kendaraan").val(); 
 
-				if( getjenis_kendaraan != 0){
-        $.ajax({
-            type : "POST",
-            dataType : "JSON",
-            url :  "<?= base_url(); ?>kendaraan/getKendaraan",
-            data : {jenis_kendaraan : getjenis_kendaraan},
-            success : function(data){
-                console.log(data);
+					if( getjenis_kendaraan != 0){
+			$.ajax({
+				type : "POST",
+				dataType : "JSON",
+				url :  "<?= base_url(); ?>kendaraan/getKendaraan",
+				data : {jenis_kendaraan : getjenis_kendaraan},
+				success : function(data){
+					console.log(data);
 
-                var html = ' ';
-                var i;
-                for ( i=0; i < data.length ; i++){
-                      
-                    html += 
-                    '<option value="'+ data[i].id_kendaraan +'">'+ data[i].merek_kendaraan + ' | '+ data[i].nomor_polisi +'</option>';
-                }
-                $("#kendaraan_id").html(html);
-                $("#kendaraan_id").show();
-            }
-        });
+					var html = ' ';
+					var i;
+					for ( i=0; i < data.length ; i++){
+						
+						html += 
+						'<option value="'+ data[i].id_kendaraan +'">'+ data[i].merek_kendaraan + ' | '+ data[i].nomor_polisi +'</option>';
+					}
+					$("#kendaraan_id").html(html);
+					$("#kendaraan_id").show();
 				}
+			});
+					}
 
-    });
-  } 
+		});
+	} 
 
 	function buktiCuti(){
     $("#jenis_cuti").change(function(){
@@ -236,10 +238,22 @@ if(isset($name)){ ?>
 		Object.assign(DataTable.defaults, {
 		searching: true,
 		responsive: true,
-		ordering: true
+		ordering: true,
+		// scrollX: true
 		});
 		
 		new DataTable('#dataTable, #DataMontor');
+	}
+
+	function dataTableScrollX(){
+		Object.assign(DataTable.defaults, {
+		searching: true,
+		responsive: true,
+		ordering: true,
+		scrollX: true
+		});
+		
+		new DataTable('#dataTableScrollX');
 	}
 
 	function dataTableDashboard(){

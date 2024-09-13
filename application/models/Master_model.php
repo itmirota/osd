@@ -181,7 +181,7 @@ class Master_model extends CI_Model
   }
 
   function getPinjamBarangById($id){
-    $this->db->select('id_pinjam_barang, id_barang, jumlah_pinjam, nama_barang, nama_divisi, userId, DATE(tgl_mulai) as tanggal_mulai, DATE(tgl_selesai) as tanggal_selesai,DATE(tgl_kembali) as tanggal_kembali, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_selesai) as waktu_selesai, TIME(tgl_kembali) as waktu_kembali');
+    $this->db->select('id_pinjam_barang, id_barang, jumlah_pinjam, nama_barang, nama_divisi, userId, DATE(tgl_mulai) as tanggal_mulaiDATE(tgl_kembali) as tanggal_kembali, TIME(tgl_mulai) as waktu_mulai, TIME(tgl_kembali) as waktu_kembali');
     $this->db->from('tbl_pinjam_barang a');
     $this->db->join('tbl_barang b', 'b.id_barang = a.barang_id');
     $this->db->join('tbl_divisi c', 'c.id_divisi = a.divisi_id');

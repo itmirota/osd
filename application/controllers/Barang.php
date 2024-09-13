@@ -192,8 +192,9 @@ class Barang extends BaseController
     $divisi = $this->divisi_id;
 
     $data['list_data'] = $this->master_model->getjadwalbarang($divisi)->result();
-    $data['barang']= $this->crud_model->lihatdata('tbl_barang');
+    $data['barang']= $this->crud_model->GetDataById(['divisi_id' => $divisi],'tbl_barang');
     $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
+    $data['departement']= $this->crud_model->lihatdata('tbl_departement');
 
     $this->global['pageHeader'] = 'Peminjaman Barang PT. Mirota KSM';
 
@@ -242,14 +243,12 @@ class Barang extends BaseController
 
     $barang_id = $this->input->post('barang_id');
     $jumlah_barang = $this->input->post('jumlah_barang');
-    $nama_peminjam = $this->input->post('nama_peminjam');
-    $divisi_id = $this->input->post('divisi_id');
+    $pegawai_id = $this->input->post('pegawai_id');
     $tgl_mulai = $this->input->post('tgl_mulai');
 
 
     if(is_null($nama_peminjam)){
-      $nama_peminjam = $this->global['name'];
-      $divisi_id = $this->global['divisi_id'];
+      $pegawai_id = $this->global['pegawai_id'];
     }
 
     $cek_stok = $this->master_model->cekStokBarang($barang_id)->stok_barang_normal;
@@ -257,8 +256,7 @@ class Barang extends BaseController
     $data = array(
       'barang_id' => $barang_id,
       'jumlah_pinjam' => $jumlah_barang,
-      'nama_pinjam_barang' => $nama_peminjam,
-      'divisi_id' => $divisi_id,
+      'pegawai_id' => $pegawai_id,
       'tgl_mulai' => $tgl_mulai,
     );
 
@@ -367,7 +365,7 @@ class Barang extends BaseController
 
     $this->global['pageTitle'] = 'EPortal | PT Mirota KSM';
 
-    $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
+    $data['departement']= $this->crud_model->lihatdata('tbl_departement');
     $this->global['pageHeader'] = 'Peminjaman Barang PT. Mirota KSM';
 
 

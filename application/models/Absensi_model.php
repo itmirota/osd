@@ -33,6 +33,28 @@ class Absensi_model extends CI_Model
     $query = $this->db->get();
     return $query->result();
   }
+
+  public function showReportByDate(){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi a');
+    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    // $this->db->order_by('id_absensi','ASC');
+    $this->db->group_by('a.date','a.pegawai_id');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function showReportById($id){
+    $this->db->select('id_absensi, pegawai_id, date, time_in, time_out, nama_pegawai, nama_divisi');
+    $this->db->from('tbl_absensi a');
+    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->where('pegawai_id',$id);
+    $this->db->order_by('id_absensi','ASC');
+    $query = $this->db->get();
+    return $query->result();
+  }
 // END ABSENSI ONLINE
 
 // ABSENSI PEGAWAI HARIAN/MAGANG

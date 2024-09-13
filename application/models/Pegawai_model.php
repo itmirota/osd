@@ -90,4 +90,27 @@ class Pegawai_model extends CI_Model
     $query = $this->db->get();
     return $query->result();
   }
+
+  public function getPegawaiBaru($where)
+  {
+    $this->db->select('tgl_masuk as x,COUNT(id_pegawai) as y');
+    $this->db->from('tbl_pegawai');
+    $this->db->where($where);
+    $this->db->group_by('MONTH(tgl_masuk)');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function getPegawainonAktif()
+  {
+    $this->db->select('tgl_keluar as x, COUNT(id_pegawai) as y');
+    $this->db->from('tbl_pegawai');
+    $this->db->where('status','tidak');
+    $this->db->group_by('MONTH(tgl_keluar)');
+    $this->db->order_by('tgl_keluar','ASC');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
 }

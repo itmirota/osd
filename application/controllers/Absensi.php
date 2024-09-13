@@ -118,8 +118,22 @@ class Absensi extends BaseController
     $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
 
     $data['list_data']= $this->absensi_model->showReport();
+    // $data['list_data']= $this->absensi_model->showReportByDate();
 
     $this->loadViews("absensi/laporan", $this->global, $data, NULL);
+  }
+
+  public function laporanDetail(){
+    $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
+    $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
+
+    $id = $this->uri->segment(3);
+
+    // $data['list_data']= $this->absensi_model->showReportByDate();
+
+    $data['list_data'] = $this->absensi_model->showReportById($id);
+
+    $this->loadViews("absensi/detail_laporan", $this->global, $data, NULL);
   }
 
   public function cekkoordinat(){

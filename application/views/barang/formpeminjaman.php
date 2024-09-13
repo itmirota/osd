@@ -7,55 +7,50 @@
       </div>
       <div class="card-body">
         <div class="form-group">
-          <div class="col-md-12">
-            <label for="tgl_mulai" class="form-label">Tanggal Peminjaman</label>
-            <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="d-flex flex-wrap">
-                <div class="p-2 flex-fill">
-                  <label for="nama_peminjam" class="form-label">Nama peminjam</label>
-                  <input type="text" name="nama_peminjam" value="<?= ($role == ROLE_STAFF) ? $name :'' ?>" class="form-control tabel-PR" <?= ($role == ROLE_STAFF) ? 'disabled' : '' ?> />
-                </div>
-                <div class="p-2 flex-fill">
-                  <label for="divisi_id" class="form-label">Divisi peminjam</label>
-                  <select name="divisi_id" class="form-select tabel-PR" <?= ($role == ROLE_STAFF) ? 'disabled' :'' ?>>
-                    <?php if ($role == ROLE_STAFF){?>
-                      <option value=<?= $divisi_id ?>><?= $divisiName ?></option>
-                    <?php } else { ?>
-                      <option>--pilih divisi--</option>
-                      <?php foreach($divisi as $data){?>
-                      <option value=<?= $data->id_divisi ?>><?= $data->nama_divisi ?></option>
-                      <?php } ?>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
+          <h4><strong>informasi peminjam</strong></h4>
+          <div class="row mb-4">
+            <div class="col-6">
+              <label for="nama_peminjam" class="form-label">Nama peminjam</label>
+              <input type="text" name="nama_peminjam" value="<?=$name?>" class="form-control tabel-PR" disabled />
             </div> 
-            <div class="col-md-12">
-              <label for="divisi" class="form-label">Lokasi Barang</label>
-              <select id="divisi" class="form-select" onchange="getBarangByDivisi()" required>
-                <option>--- pilih divisi ---</option>
-                <?php foreach($divisi as $data){?>
-                <option value=<?= $data->id_divisi ?>><?= $data->nama_divisi ?></option>
-                <?php } ?>
-              </select>
+            <div class="col-6">
+              <label for="tgl_mulai" class="form-label">Tanggal Peminjaman</label>
+              <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
             </div>
-            <div class="col-md-12">
-              <div class="d-flex flex-wrap">
-                <div class="p-2 flex-fill">
-                  <label for="barang_id" class="form-label">Barang</label>
-                  <select name="barang_id" id="barang_id" class="form-select tabel-PR" onchange="CekBarangTersedia()">
-                  </select>
-                </div>
-                <div class="p-2 flex-fill">
-                  <label for="jml_barang_tersedia" class="form-label">Stok tersedia</label>
-                  <input type="text" id="jml_barang_tersedia" class="form-control tabel-PR" disabled />
-                </div>
-              </div>
-            </div> 
           </div>
+          <hr>
+          <h4><strong>informasi barang</strong></h4>
+          <div class="col-md-12">
+            <div class="d-flex flex-wrap">
+              <div class="p-2 flex-fill">
+                <label for="divisi" class="form-label">Departement</label>
+                <select class="form-select" id="departement_id" onchange="getDivisiByDept()" required>
+                  <option>--- pilih departement ---</option>
+                  <?php foreach($departement as $data){?>
+                  <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="p-2 flex-fill">
+                <label for="divisi" class="form-label">Divisi</label>
+                <select id="divisi" class="form-select" onchange="getBarangByDivisi()" required>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="d-flex flex-wrap">
+              <div class="p-2 flex-fill">
+                <label for="barang_id" class="form-label">Barang</label>
+                <select name="barang_id" id="barang_id" class="form-select tabel-PR" onchange="CekBarangTersedia()">
+                </select>
+              </div>
+              <div class="p-2 flex-fill">
+                <label for="jml_barang_tersedia" class="form-label">Stok tersedia</label>
+                <input type="text" id="jml_barang_tersedia" class="form-control tabel-PR" disabled />
+              </div>
+            </div>
+          </div> 
           <div class="row">
             <div class="col-md-12">
               <label for="jumlah_barang" class="form-label">Jumlah pinjam</label>
@@ -75,6 +70,28 @@
 
 
 <script>
+function getDivisiByDept(){
+  let departement = $("#departement_id").val();
+  $.ajax({
+    type : "POST",
+    dataType : "JSON",
+    url:"<?php echo site_url("divisi/getDivisiByDept")?>/"+departement,
+    success : function(data){
+
+      let html = ' ';
+      let i;
+
+      html += 
+          '<option>---pilih divisi---</option>';
+      for ( i=0; i < data.length ; i++){
+          html += 
+          '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
+      }
+
+      $("#divisi").html(html);
+    }
+  });
+}
 function getBarangByDivisi(){
   let divisi = $("#divisi").val();
   $.ajax({

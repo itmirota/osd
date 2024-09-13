@@ -47,9 +47,15 @@ class User extends BaseController
           $CountIzin = COUNT($this->Izin_model->getDatabyApproval($id));
           $CountIzinHarian = COUNT($this->izinHarian_model->getDatabyApproval($id));
           $CountTugas = COUNT($this->perizinan_model->getTugasbyApproval($id));
-        }    
+        }
 
         $data = array(
+            'CountDepartement' => COUNT($this->crud_model->lihatdata('tbl_departement')),
+            'CountDivisi' => COUNT($this->crud_model->GetDataById(['id_divisi !=' => '1'],'tbl_divisi')),
+            'CountPegawaiAktif' => COUNT($this->crud_model->GetDataById(['status' => 'aktif'],'tbl_pegawai')),
+            'CountPegawaiNonAktif' => COUNT($this->crud_model->GetDataById(['status' => 'tidak'],'tbl_pegawai')),
+            'penambahanKaryawan' => COUNT($this->crud_model->GetDataById(['year(tgl_masuk)' => DATE('Y')],'tbl_pegawai')),
+            'penguranganKaryawan'  => COUNT($this->crud_model->GetDataById(['year(tgl_keluar)' => DATE('Y')],'tbl_pegawai')),
             'CountCuti' => $CountCuti,
             'CountIzin' => $CountIzin,
             'CountIzinHarian' => $CountIzinHarian,
@@ -58,6 +64,19 @@ class User extends BaseController
             'barang' => $this->master_model->getDataBarangLimit($this->divisi_id)
         );
         $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
+    }
+
+    public function getChart(){
+        $penambahanKaryawan  = $this->pegawai_model->getPegawaiBaru(['year(tgl_masuk)' => DATE('Y')],'tbl_pegawai');
+        $penguranganKaryawan  = $this->pegawai_model->getPegawainonAktif();
+
+
+        $data = array(
+            'penambahanKaryawan' => $penambahanKaryawan,
+            'penguranganKaryawan' => $penguranganKaryawan
+        );
+    
+        echo json_encode($data);
     }
 
     public function dashboardUser(){
@@ -76,13 +95,6 @@ class User extends BaseController
         $this->global['pageHeader'] = 'Peminjaman';
 
         $this->loadViewsUser("peminjaman", $this->global, NULL);
-    }
-
-
-    function getChart(){
-        $list_data  = $this->master_model->getPengunjungWeb();
-        
-        echo json_encode($list_data);
     }
     
     /**

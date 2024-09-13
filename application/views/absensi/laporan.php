@@ -23,7 +23,7 @@
           ?>
             <tr>
               <td><?= $no++?></td>
-              <td><?= $ld->nama_pegawai?></td>
+              <td><a href="<?= base_url('absensi/laporanDetail/'.$ld->id_pegawai)?>"><?= $ld->nama_pegawai?></td>
               <td class="text-center"><?= $ld->nama_divisi?></td>
               <td class="text-center"><?= mediumdate_indo($ld->date)?></td>
               <td class="text-center"><?= $ld->time_in?>

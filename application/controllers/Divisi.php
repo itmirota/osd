@@ -122,4 +122,11 @@ class Divisi extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
     redirect('divisi');
   }
+
+  public function getDivisiByDept($id_departement){
+
+    $divisi = $this->crud_model->GetDataById(['departement_id' => $id_departement],'tbl_divisi');
+
+    echo json_encode($divisi);
+  }
 }

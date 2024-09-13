@@ -35,27 +35,25 @@
           </div>
         </div>
         <hr>
-        <table id="dataTable" class="table table-hover">
+        <table id="dataTableScrollX" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
-            <th>Nomor Induk</th>
-            <th>Nama pegawai</th>
-            <th width="100px">Usia</th>
-            <th width="100px">Masa Kerja</th>
-            <th>Dept. | Divisi</th>
-            <th class="text-center">Detail</th>
+            <th width="15vh">Nama pegawai</th>
+            <th width="40px">Usia</th>
+            <th width="15vh">Masa Kerja</th>
+            <th width="15vh">Dept. | Divisi</th>
             <th>Status</th>
             <!-- <th>Tanggal Bergabung</th>
             <th>Tanggal Selesai</th> -->
-            <th class="text-center">Durasi Kontrak</th>
-            <th>Kuota Cuti</th>
-            <th class="text-center" width="100px">Sisa Cuti Tahun Lalu</th>
+            <th class="text-end" width="10px">Durasi Kontrak</th>
+            <th class="text-end" width="10px">Kuota Cuti</th>
+            <th class="text-end" width="80px">Sisa Cuti Tahun Lalu</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
-            <th class="text-center" width="100px">Actions</th>
+            <th class="text-center" width="10px"></th>
             <?php } ?>
           </tr>
           </thead>
@@ -68,8 +66,8 @@
           ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= $data->nip ?></td>
-            <td><?= $data->nama_pegawai ?></td>
+            <td><a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><?= $data->nama_pegawai ?></a><hr class="m-0">
+            <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span></td>
             <td><?php
               $date1=date_create($data->tgl_lahir);
               $date2=date_create(DATE('Y-m-d'));
@@ -83,24 +81,38 @@
               echo $diff->format("%y th, %m bln");
             ?></td>
             <td><?= $data->nama_divisi ?></td>
-            <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><i class="fa fa-eye"></a></td>
             <td><span class="badge <?= ($data->status_pegawai == "tetap" ? 'bg-primary':'bg-info')?>"><?=  ($data->status_pegawai == "tetap" ? 'PKWTT':'PKWT') ?></span></td>
             <!-- <td><?= mediumdate_indo($data->tgl_masuk) ?></td>
             <td><?= isset($data->tgl_selesai) ? mediumdate_indo($data->tgl_selesai) : '-' ?></td> -->
             <td class="text-center"><?= $data->status_pegawai == "tetap" ? '-': $data->durasi_kontrak.' bulan' ?></td>
-            <td><?= $data->kuota_cuti ?></td>
+            <td  class="text-center"><?= $data->kuota_cuti ?></td>
             <td  class="text-center"><?= $data->sisa_cuti ?></td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
             <td class="text-center">
+            <div class="btn-group">
+              <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+              </a>
+
+              <ul class="dropdown-menu">
+                <?php if($data->status_pegawai == "kontrak"){?>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)">Perpanjang Kontrak</a></li>
+                <?php } ?>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
+                <li><a class="dropdown-item" href="#"  onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
+              </ul>
+            </div>
+            </td>
+            <!-- <td class="text-center">
               <?php
               if($data->status_pegawai == "kontrak"){?>
               <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)"><i class="fa fa-plus" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="perpanjang"></i></button>
               <?php } ?>
               <button class="btn btn-sm btn-success " data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <button class="btn btn-sm btn-danger" onclick="deletePegawai(<?= $data->id_pegawai?>)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></button></td>
+              <button class="btn btn-sm btn-danger" onclick="deletePegawai(<?= $data->id_pegawai?>)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></button></td> -->
             <?php } ?>
           </tr>
           <?php

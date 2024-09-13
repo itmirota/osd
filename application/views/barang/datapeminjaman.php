@@ -103,7 +103,7 @@ if(isset($name)){ ?>
 
 <!-- Modal -->
 <div class="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <form action="<?=base_url('barang/booking')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
       <div class="modal-header">
@@ -113,32 +113,56 @@ if(isset($name)){ ?>
       <div class="modal-body">
         <div class="form-group">
           <div class="row">
-            <div class="col-md-12">
-              <label for="barang_id" class="form-label">Barang</label>
-              <select name="barang_id" placeholder="barang" class="form-select tabel-PR">
-                <option>--pilih barang--</option>
-                <?php foreach($barang as $data){?>
-                <option value=<?= $data->id_barang ?>><?= $data->nama_barang ?></option>
-                <?php } ?>
-              </select>
+            <span>data peminjam</span>
+            <div class="col-md-12 mb-4">
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="departement_id" class="form-label">Departement</label>
+                  <select id="departement_id" onchange="getDivisiByDept()" class="form-select tabel-PR">
+                    <option>--pilih departement--</option>
+                    <?php foreach($departement as $data){?>
+                    <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="divisi_id" class="form-label">Divisi</label>
+                  <select name="divisiByDept" id="divisiByDept"  onchange="getPegawaiByDivisi()" class="form-select tabel-PR">
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="pegawai_id" class="form-label">Nama Karyawan</label>
+                  <select name="pegawai_id" id="pegawai_id" class="form-select tabel-PR">
+                  </select>
+                </div> 
+              </div>
             </div> 
-            <div class="col-md-12">
-              <label for="jumlah_barang" class="form-label">Jumlah pinjam</label>
-              <input type="text" name="jumlah_barang" placeholder="masukkan jumlah disini" class="form-control tabel-PR" required />
+            <span class="mb-4" >data barang yang dipinjam</span>
+            <div class="col-md-12" id="scannerbarcode">
+              <div style="width:100%;" id="reader"></div>
             </div>
-            <div class="col-md-12">
-              <label for="nama_peminjam" class="form-label">Nama peminjam</label>
-              <input type="text" name="nama_peminjam" placeholder="masukkan nama disini" class="form-control tabel-PR" required />
+            <div class="col-md-12" id="inputbarang" style="display:none">
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="barang_id" class="form-label">Barang</label>
+                  <select id="barang_id" name="barang_id" placeholder="barang"  onchange="CekBarangTersedia()" class="form-select tabel-PR">
+                    <option>--pilih barang--</option>
+                    <?php foreach($barang as $data){?>
+                    <option value=<?= $data->id_barang ?>><?= $data->nama_barang ?></option>
+                    <?php } ?>
+                  </select>
+                </div> 
+                <div class="col-md-4">
+                  <label for="jumlah_barang_tersedia" class="form-label">Stok Barang Tersedia</label>
+                  <input type="text" id="jml_barang_tersedia" class="form-control-plaintext tabel-PR" readonly />
+                </div>
+                <div class="col-md-4">
+                  <label for="jumlah_barang" class="form-label">Jumlah pinjam</label>
+                  <input type="text" name="jumlah_barang" placeholder="masukkan jumlah disini" class="form-control tabel-PR" required />
+                </div>
+              </div>
             </div>
-            <div class="col-md-12">
-              <label for="divisi_id" class="form-label">Divisi</label>
-              <select name="divisi_id" class="form-select tabel-PR">
-                <option>--pilih divisi--</option>
-                <?php foreach($divisi as $data){?>
-                <option value=<?= $data->id_divisi ?>><?= $data->nama_divisi ?></option>
-                <?php } ?>
-              </select>
-            </div>  
+
             <div class="col-md-12">
               <label for="tgl_mulai" class="form-label">Tanggal Pinjam</label>
               <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
@@ -223,7 +247,10 @@ if(isset($name)){ ?>
   </div>
 </div>
 
+<script src="<?php echo base_url(); ?>assets/dist/js/html5-qrcode.min.js"></script>
+
 <script>
+
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
 
@@ -266,5 +293,88 @@ function detailPenerima($id){
       document.getElementById("name").value = hasil.name;
     }
   });
+}
+
+function getDivisiByDept(){
+  let departement = $("#departement_id").val();
+  $.ajax({
+    type : "POST",
+    dataType : "JSON",
+    url:"<?php echo site_url("divisi/getDivisiByDept")?>/"+departement,
+    success : function(data){
+
+      let html = ' ';
+      let i;
+
+      html += 
+          '<option>---pilih divisi---</option>';
+      for ( i=0; i < data.length ; i++){
+          html += 
+          '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
+      }
+
+      $("#divisiByDept").html(html);
+    }
+  });
+}
+
+function getPegawaiByDivisi(){
+  let divisi = $("#divisiByDept").val();
+  $.ajax({
+    type : "POST",
+    dataType : "JSON",
+    url:"<?php echo site_url("pegawai/getPegawaiByDivisi")?>/"+divisi,
+    success : function(data){
+      console.log(data);
+      let html = ' ';
+      let i;
+
+      html += 
+          '<option>---pilih pegawai---</option>';
+      for ( i=0; i < data.length ; i++){
+          html += 
+          '<option value="'+ data[i].id_pegawai +'">'+ data[i].nama_pegawai +'</option>';
+      }
+
+      $("#pegawai_id").html(html);
+    }
+  });
+}
+
+function CekBarangTersedia(){
+  let id_barang = document.getElementById("barang_id").value;
+  
+  $.ajax({
+    url:"<?php echo site_url("barang/cekStokBarang")?>/" + id_barang,
+    dataType:"JSON",
+    type: "GET",
+    success:function(hasil){
+      document.getElementById("jml_barang_tersedia").value = hasil;
+    }
+  });
+}
+
+let html5QrcodeScanner = new Html5QrcodeScanner(
+	"reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+function onScanSuccess(qrCodeMessage) {
+  $("#infobarang").show();
+  $("#scancekbarang").hide();
+  $.ajax({
+    url:"<?php echo site_url("barang/detailbarang")?>/" + qrCodeMessage,
+    dataType:"JSON",
+    type: "get",
+    success:function(hasil){
+      document.getElementById("inputbarang").style.display = "block";
+      document.getElementById("scannerbarcode").style.display = "none";
+
+      document.getElementById("barang_id").value = hasil.id_barang;
+      document.getElementById("jml_barang_tersedia").value = hasil.stok_barang_normal+" item";
+    }
+  });
+}
+
+function onScanError(qrCodeMessage) {
 }
 </script>

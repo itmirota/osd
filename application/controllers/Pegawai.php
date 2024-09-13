@@ -41,6 +41,17 @@ class Pegawai extends BaseController
     $this->loadViews("pegawai/data", $this->global, $data, NULL);
   }
 
+  public function getPegawaiByDivisi($id){
+
+    $where = array(
+      'divisi_id' => $id
+    );
+
+    $pegawai = $this->crud_model->GetDataById($where,'tbl_pegawai');
+
+    echo json_encode($pegawai);
+  }
+
   public function listDataNonAktif(){
     $this->global['pageTitle'] = 'SMART OSD | Perizinan Mirota KSM';
     $this->global['pageHeader'] = 'Perizinan Manual Karyawan ';
