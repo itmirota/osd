@@ -154,7 +154,7 @@
         <div class="form-group mb-3">
           <label for="floatingEmptyPlaintextInput">Bukti Cuti</label>
           <div class="col-md-12">
-          <img id="bukti_cuti" width="400">
+          <img id="gambar_bukti_cuti" width="400">
           </div>
         </div>
       </div>
@@ -251,7 +251,7 @@
         document.getElementById("pengganti").value = hasil.pengganti;
         document.getElementById("keperluan").value = hasil.keperluan;
 
-        $("#bukti_cuti").attr('src',urlgambar);
+        $("#gambar_bukti_cuti").attr('src',urlgambar);
       }
     });
   }

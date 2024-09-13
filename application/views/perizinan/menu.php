@@ -449,7 +449,7 @@
           </div>
           <div class="mb-3"  id="bukti_cuti">
             <label for="bukti_cuti" class="form-label">Bukti Cuti</label>
-            <input type="file" name="bukti_cuti" class="form-control" required>
+            <input type="file" name="bukti_cuti" class="form-control">
           </div>
         </div>
         <div class="modal-footer">
