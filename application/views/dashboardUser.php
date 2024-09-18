@@ -72,7 +72,7 @@
     </a>
   </div>
 
-  <?php if($divisi_id >= 17){ ?>
+  <?php if($divisi_id >= 16){ ?>
   <div class="col-3 m-4">
     <a href="<?= base_url('Absensi-visit') ?>">
       <div class="d-flex flex-column">
