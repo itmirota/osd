@@ -27,8 +27,7 @@
       </div>
     </a>
   </div>
-</div>
-<div class="d-flex flex-row justify-content-center">
+
   <div class="col-3 m-4">
     <a href="<?= base_url('ruangan/laporankerusakan')?>">
       <div class="d-flex flex-column">
@@ -41,16 +40,18 @@
       </div>
     </a>
   </div>
+
   <div class="col-3 m-4">
-    <a href="<?= base_url('barang/laporankerusakan')?>">
+    <a href="<?= base_url('Formpeminjaman')?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
           <img class="img-menu" src="<?= base_url('assets/images/document.png')?>">
         </div>
         <div class="d-flex justify-content-center text-header text-center">
-          Laporan Kerusakan Barang
+          Peminjaman Barang
         </div>
       </div>
     </a>
   </div>
 </div>
+<!-- Menu -->

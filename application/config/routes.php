@@ -98,6 +98,12 @@ $route['PHL/Absensi'] = 'absensiPegawaiHarian/listdata';
 $route['PHL/kehadiran/(:any)'] = 'absensiPegawaiHarian/Webcam/$1';
 $route['PHL/exportExcel'] = 'absensiPegawaiHarian/exportExcel';
 $route['laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporan';
+
+// ABSEN TOKO
+$route['absen-toko'] = 'AbsensiTokoManual';
+$route['laporan-absen-toko'] = 'AbsensiTokoManual/laporan';
+
+
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
 
 /*********** PERIZINAN DEFINED ROUTES *******************/

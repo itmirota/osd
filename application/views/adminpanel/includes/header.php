@@ -330,6 +330,11 @@ if($role != ROLE_STAFF){ ?>
                 <span>Absensi Pegawai Harian/Magang</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('laporan-absen-toko'); ?>" class="sidebar-link">
+                <span>Absensi Toko Manual</span>
+              </a>
+            </li>
           </ul>
         </li>
         <?php } ?>
