@@ -87,7 +87,7 @@
   </div>
 
   <div class="col-3 m-4">
-    <a href="<?= base_url('Absensi-visit') ?>">
+    <a href="<?= base_url('absen-toko') ?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
           <img class="img-menu" src="<?= base_url('assets/images/take-picture.png')?>">
@@ -107,19 +107,6 @@
         </div>
         <div class="d-flex justify-content-center text-header">
           Absensi
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-3 m-4">
-    <a href="<?= base_url('absen-toko') ?>">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header">
-          Absen Manual Toko
         </div>
       </div>
     </a>
