@@ -99,12 +99,13 @@ public function showDataAbsenTokoByWhere($where){
   return $query->result();
 }
 
-public function showDataAbsenTokoOrderby($orderby){
+public function ReportAbsenToko($where){
   $this->db->select('*');
   $this->db->from('tbl_absen_toko a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
   $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-  $this->db->order_by($orderby);
+  $this->db->where($where);
+  $this->db->order_by('id_absen_toko','DESC');
 
   $query = $this->db->get();
   return $query->result();
