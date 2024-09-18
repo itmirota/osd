@@ -133,6 +133,15 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-12">
+              <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
+              <select name="jenis_kendaraan" class="form-select tabel-PR" required>
+                <option readonly>pilih jenis kendaraan</option>
+                <option value="Motor">Motor</option>
+                <option value="Mobil">Mobil</option>
+              </select>
+            </div> 
+
+            <div class="col-md-12">
               <label for="nomor_polisi" class="form-label">Nomor Polisi</label>
               <input type="text" name="nomor_polisi" placeholder="Nomor Polisi" class="form-control tabel-PR" required />
             </div>
@@ -143,23 +152,30 @@
             </div>
 
             <div class="col-md-12">
-              <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
-              <select name="jenis_kendaraan" class="form-select tabel-PR" required>
-                <option readonly>pilih jenis kendaraan</option>
-                <option value="Motor">Motor</option>
-                <option value="Mobil">Mobil</option>
+              <label for="jenis_penggunaan" class="form-label">Jenis kendaraan</label>
+              <select name="jenis_penggunaan" class="form-select tabel-PR" required>
+                <option readonly>pilih jenis Penggunaan</option>
+                <option value="angkutan">Kendaraan Angkutan</option>
+                <option value="operasional">Kendaraan Operasional</option>
               </select>
             </div> 
+
+            <div class="col-md-12">
+              <label for="warna_kendaraan" class="form-label">Warna Kendaraan</label>
+              <input type="text" name="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR" required />
+            </div>
+
+            <div class="col-md-12">
+              <label for="tahun" class="form-label">Tahun Perakitan</label>
+              <input type="text" name="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
+            </div>
  
             <div class="col-md-12">
               <label for="tgl_stnk" class="form-label">STNK</label>
               <input type="date" name="tgl_stnk" class="form-control tabel-PR" required />
             </div> 
 
-            <div class="col-md-12">
-              <label for="tahun" class="form-label">Tahun</label>
-              <input type="text" name="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
-            </div>          
+          
           </div>
         </div>
       </div>
