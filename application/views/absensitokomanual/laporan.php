@@ -17,7 +17,11 @@
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $ld->nama_pegawai ?></td>
-                            <td class="text-center"><img id="myImg" src="<?= base_url('assets/dokumen_absen_toko/'.$ld->bukti_absensi_toko)?>" width="200px" style="border-radius:15px"></td>
+                            <td class="text-center">
+                                <a href="#" class="pop">
+                                <img src="<?= base_url('assets/dokumen_absen_toko/'.$ld->bukti_absensi_toko)?>" width="200px" style="border-radius:15px">
+                                </a>
+                            </td>
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -25,10 +29,25 @@
             </div>
         </div>
     </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modalImage">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="img01">
-    <div id="caption"></div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">              
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="" class="imagepreview" style="width: 100%;" >
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+$(function() {
+    $('.pop').on('click', function() {
+        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+        $('#imagemodal').modal('show');   
+    });		
+});
+</script>
