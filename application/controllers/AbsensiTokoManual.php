@@ -42,17 +42,17 @@ class AbsensiTokoManual extends BaseController
     $this->global['pageTitle'] = 'Laporan Absen Manual Toko';
 
     if (isset($periode)){
-      $periodeAwal = $periode.'-21';
+      $periodeAkhir = $periode.'-20';
       $date = date_create($periode);
     }else{
-      $periodeAwal = $datenow.'-21';
+      $periodeAkhir = $datenow.'-20';
       $date = date_create($datenow);
     }
 
-    $bulan = date_format($date,'m')+1;
+    $bulan = date_format($date,'m')-1;
     $tahun = date_format($date,'Y');
 
-    $periodeAkhir = $tahun.'-'.$bulan.'-20';
+    $periodeAwal = $tahun.'-'.$bulan.'-21';
 
     $where = array(
       'DATE(datecreated) >=' => $periodeAwal,
