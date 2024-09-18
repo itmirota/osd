@@ -37,11 +37,14 @@ class AbsensiTokoManual extends BaseController
   }
 
   public function laporan(){
-    $periode = $this->input->post('periode');
-    $datenow = DATE('Y-m');
     $this->global['pageTitle'] = 'Laporan Absen Manual Toko';
 
-    if (isset($periode)){
+    $id = $this->input->post('id_pegawai');
+    $periode = $this->input->post('periode');
+    $datenow = DATE('Y-m');
+
+
+    if (!empty($periode)){
       $periodeAkhir = $periode.'-20';
       $date = date_create($periode);
     }else{
@@ -62,7 +65,8 @@ class AbsensiTokoManual extends BaseController
     $data = array(
       'periodeAwal' => $periodeAwal,
       'periodeAkhir' => $periodeAkhir,
-      'list_data' => $this->absensi_model->ReportAbsenToko($where),
+      'list_data' => $this->absensi_model->ReportAbsenToko($id, $where),
+      'pegawai' => $this->crud_model->GetDataById(array('divisi_id' >= 16),'tbl_pegawai'),
     );
 
     $this->loadViews("absensitokomanual/laporan", $this->global, $data, NULL);

@@ -87,6 +87,11 @@ if(isset($name)){ ?>
         		dropdownParent: $('#addDepartement')
  		  	});
 
+			$('#pegawai_id').select2({
+				theme: 'bootstrap-5',
+				dropdownParent: $('#filterAbsenToko')
+			});
+
 			$('#penugasan_id').select2({
 				theme: 'bootstrap-5',
         	dropdownParent: $('#addTugas')
