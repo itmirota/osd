@@ -161,32 +161,6 @@ class Perizinan extends BaseController
     $query = $this->crud_model->update($where, $data, 'tbl_pegawai');
   }
 
-  public function simpanapproval($id_pegawai, $id_cuti, $status){
-    $data = array(
-      'cuti_id' => $id_cuti,
-      'pegawai_id' => $id_pegawai,
-      'status' => $status,
-      'datecreated' => DATE('Y-m-d H:i:s')
-    );
-    
-    $approval = $this->perizinan_model->cekApprovalbyPegawai($id_pegawai, $id_cuti);
-
-    if(is_null($approval->id_approval)){
-      $query = $this->crud_model->input($data, 'tbl_approval_cuti');
-    }else{
-
-      $where = array(
-        'id_approval' => $approval->id_approval
-      );
-
-      $data = array(
-        'status' => $status
-      );
-
-      $query = $this->crud_model->update($where, $data, 'tbl_approval_cuti');
-    }
-  }
-
   public function approvalCuti(){
     $role = $this->global ['role'];
     $id_pegawai = $this->global ['pegawai_id'];
@@ -238,6 +212,32 @@ class Perizinan extends BaseController
       redirect('perizinan');
     }else{
       redirect('cuti');
+    }
+  }
+
+  public function simpanapproval($id_pegawai, $id_cuti, $status){
+    $data = array(
+      'cuti_id' => $id_cuti,
+      'pegawai_id' => $id_pegawai,
+      'status' => $status,
+      'datecreated' => DATE('Y-m-d H:i:s')
+    );
+    
+    $approval = $this->perizinan_model->cekApprovalbyPegawai($id_pegawai, $id_cuti);
+
+    if(is_null($approval->id_approval)){
+      $query = $this->crud_model->input($data, 'tbl_approval_cuti');
+    }else{
+
+      $where = array(
+        'id_approval' => $approval->id_approval
+      );
+
+      $data = array(
+        'status' => $status
+      );
+
+      $query = $this->crud_model->update($where, $data, 'tbl_approval_cuti');
     }
   }
 
