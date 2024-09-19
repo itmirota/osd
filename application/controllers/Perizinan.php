@@ -171,12 +171,12 @@ class Perizinan extends BaseController
     
     $approval = $this->perizinan_model->cekApprovalbyPegawai($id_pegawai, $id_cuti);
 
-    if(is_null($id_approval->id_approval)){
+    if(is_null($approval->id_approval)){
       $query = $this->crud_model->input($data, 'tbl_approval_cuti');
     }else{
 
       $where = array(
-        'id_approval' => $id_approval
+        'id_approval' => $approval->id_approval
       );
 
       $data = array(
