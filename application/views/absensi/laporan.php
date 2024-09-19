@@ -1,5 +1,52 @@
 <div class="row">
   <div class="col-md-12">
+    <div class="card card-primary">
+      <div class="card-body">
+      <table  id="dataTableScrollX" class="table table-hover">
+          <thead>
+          <tr>
+            <th>Nama</th>
+            <th class="text-center">Divisi</th>
+              <?php 
+              $tanggal = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+              for ($i=1; $i < $tanggal+1; $i++) { ?>
+                <th width="100px" class="text-center">
+                  <?php echo $i . " "; ?>
+                </th>
+              <?php } ?>
+          </tr>
+          </thead>
+          <tbody>
+            <?php foreach($detail_data as $data): ?>
+            <tr>
+              <td><?= $data->nama_pegawai?></td>
+              <td class="text-center"><?= $data->nama_divisi?></td>
+              <?php 
+              $tanggal = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+              ?>
+              <?php for ($i=1; $i < $tanggal+1; $i++) {?>
+              <td style="vertical-align: text-top">
+                <?php $detail = $this->absensi_model->showReportById($data->pegawai_id);
+                foreach($detail as $detail):?>
+                <?php
+                $date=date_create($detail->date);
+                $date=date_format($date,"d"); 
+                if($date == $i){
+                ?>
+                <hr>
+                <p style="color:green">masuk <?= $detail->time_in?></p>
+                <p style="color:red">keluar <?=(empty($detail->time_out) ? ' - ': $detail->time_out)?></p>
+                <hr>
+                <?php } ?>
+                <?php endforeach;?>
+              </td>
+              <?php } ?>
+            </tr>
+            <?php endforeach;?>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">

@@ -178,6 +178,16 @@ class absensiPegawaiHarian extends BaseController
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
 
+    $sheet->setTitle('Laporan');
+
+    $spreadsheet->createSheet();
+
+    // Add some data
+    $spreadsheet->setActiveSheetIndex(1)
+            ->setCellValue('A1', 'world!');
+    
+    $spreadsheet->getActiveSheet()->setTitle('Detail Laporan');
+
     $style_col = [
       'font' => ['bold' => true], // Set font nya jadi bold
       'alignment' => [

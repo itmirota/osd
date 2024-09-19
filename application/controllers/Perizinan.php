@@ -136,11 +136,7 @@ class Perizinan extends BaseController
       break;
     }
 
-    if($role == ROLE_STAFF){
-      redirect('perizinan');
-    }else{
-      redirect('pengajuanCuti');
-    }
+    redirect('perizinan');
   }
 
   public function kurangikuota($id, $cuti){
@@ -241,11 +237,7 @@ class Perizinan extends BaseController
     if($page == 'approvalPengganti'){
       redirect('approvalPengganti');
     }else{
-      if($role == ROLE_STAFF){
-        redirect('perizinan');
-      }else{
-        redirect('cuti');
-      }
+      redirect('perizinan');
     }
   }
 
