@@ -90,7 +90,7 @@
     <a href="<?= base_url('absen-toko') ?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/take-picture.png')?>">
+          <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
         </div>
         <div class="d-flex justify-content-center text-header">
           Absen Manual Toko
