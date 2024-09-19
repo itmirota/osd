@@ -204,15 +204,15 @@ class Perizinan extends BaseController
     }
 
     $this->simpanapproval($id_pegawai, $id_cuti, $status);
-    // $this->crud_model->update($where, $data, 'tbl_perizinan_cuti');
-    // $this->set_notifikasi_swal('success','Berhasil','Data Cuti Berhasil Disetujui');
+    $this->crud_model->update($where, $data, 'tbl_perizinan_cuti');
+    $this->set_notifikasi_swal('success','Berhasil','Data Cuti Berhasil Disetujui');
     
 
-    // if($page == 'approvalPengganti'){
-    //   redirect('perizinan');
-    // }else{
-    //   redirect('cuti');
-    // }
+    if($page == 'approvalPengganti'){
+      redirect('perizinan');
+    }else{
+      redirect('cuti');
+    }
   }
 
   public function simpanapproval($id_pegawai, $id_cuti, $status){
