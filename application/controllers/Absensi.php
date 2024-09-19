@@ -117,34 +117,34 @@ class Absensi extends BaseController
     $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
 
-    // $id = $this->input->post('id_pegawai');
-    // $periode = $this->input->post('periode');
-    // $datenow = DATE('Y-m');
+    $id = $this->input->post('id_pegawai');
+    $periode = $this->input->post('periode');
+    $datenow = DATE('Y-m');
 
 
-    // if (!empty($periode)){
-    //   $periodeAkhir = $periode.'-20';
-    //   $date = date_create($periode);
-    // }else{
-    //   $periodeAkhir = $datenow.'-20';
-    //   $date = date_create($datenow);
-    // }
+    if (!empty($periode)){
+      $periodeAkhir = $periode.'-20';
+      $date = date_create($periode);
+    }else{
+      $periodeAkhir = $datenow.'-20';
+      $date = date_create($datenow);
+    }
 
-    // $bulan = date_format($date,'m')-1;
-    // $tahun = date_format($date,'Y');
+    $bulan = date_format($date,'m')-1;
+    $tahun = date_format($date,'Y');
 
-    // $periodeAwal = $tahun.'-'.$bulan.'-21';
+    $periodeAwal = $tahun.'-'.$bulan.'-21';
 
-    // $where = array(
-    //   'DATE(datecreated) >=' => $periodeAwal,
-    //   'DATE(datecreated) <=' => $periodeAkhir,
-    // );
+    $where = array(
+      'DATE(datecreated) >=' => $periodeAwal,
+      'DATE(datecreated) <=' => $periodeAkhir,
+    );
 
     $data['list_data']= $this->absensi_model->showReport();
-    // $data['detail_data']= $this->absensi_model->showReportByDate();
-    // $data['periode']= mediumdate_indo($periodeAwal).' - '.mediumdate_indo($periodeAkhir);
+    $data['detail_data']= $this->absensi_model->showReportByDate();
+    $data['periode']= mediumdate_indo($periodeAwal).' - '.mediumdate_indo($periodeAkhir);
 
-    // $data['list_data']= $this->absensi_model->showReportByDate();
+    $data['list_data']= $this->absensi_model->showReportByDate();
 
     $this->loadViews("absensi/laporan", $this->global, $data, NULL);
   }

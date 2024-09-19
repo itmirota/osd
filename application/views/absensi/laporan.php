@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <!-- <div class="card card-primary">
+    <div class="card card-primary">
       <div class="card-body">
         <span><strong>periode: <?=$periode?></strong></span>
       <table  id="dataTableScrollX" class="table table-hover">
@@ -47,7 +47,7 @@
           </tbody>
         </table>
       </div>
-    </div> -->
+    </div>
 
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">
