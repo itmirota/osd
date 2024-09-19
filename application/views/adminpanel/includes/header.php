@@ -281,7 +281,7 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU APPROVAL PERIZINAN -->
         <?php
-        if($jabatan_id <= 4 )
+        if($jabatan_id <= 4  | $role == ROLE_HRGA)
         {
         ?>
         <li class="sidebar-item has-submenu">

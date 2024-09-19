@@ -331,8 +331,8 @@
           <td><?= $ap->nama_pegawai ?></td>
           <td class="text-center">
           <?php if($ap->approval === "N,N,N"){?>
-          <a href="<?= base_url('approvalCuti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> approve</a>  
-          <a href="<?= base_url('approvalCuti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i> tolak</a></td>
+          <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> approve</a>  
+          <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i> tolak</a></td>
           <?php }else{?>
           <span class="badge text-bg-success"> <i class="fa fa-check"></i></span>
           <?php } ?>

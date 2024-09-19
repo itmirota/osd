@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="card card-primary">
+    <!-- <div class="card card-primary">
       <div class="card-body">
+        <span><strong>periode: <?=$periode?></strong></span>
       <table  id="dataTableScrollX" class="table table-hover">
           <thead>
           <tr>
@@ -11,7 +12,7 @@
               $tanggal = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
               for ($i=1; $i < $tanggal+1; $i++) { ?>
                 <th width="100px" class="text-center">
-                  <?php echo $i . " "; ?>
+                  <?= $i.' '.medium_bulan(date('m')).' '. date('Y')?>
                 </th>
               <?php } ?>
           </tr>
@@ -46,7 +47,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
 
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">
