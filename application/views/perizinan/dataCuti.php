@@ -12,7 +12,9 @@
             <th class="text-center">Durasi</th>
             <th class="text-center">Detail</th>
             <th class="text-center">Approval</th>
+            <?php if ($jabatan_id = 3 | $jabatan_id = 4){?>
             <th class="text-center">Aksi</th>
+            <?php }?>
           </tr>
           </thead>
           <tbody>
@@ -51,12 +53,14 @@
               <?php }?>  
               <a href="" onclick="listApproval(<?= $lc->id_cuti?>)" data-bs-toggle="modal" data-bs-target="#listApproval"><i class="fas fa-eye ms-2"></i></a> 
             </td>
+            <?php if ($jabatan_id = 3 | $jabatan_id = 4){?>
             <td>
               <?php if($lc->approval == "Y,N,N" || $lc->approval == "Y,Y,N"){?>
               <a href="<?= base_url('approvalCuti/'.$lc->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fas fa-check"></i> approve</a> 
               <a href="<?= base_url('approvalCuti/'.$lc->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fas fa-xmark"></i> tidak</a>
               <?php } ?>
             </td>
+            <?php }?>
           </tr>
             <?php endforeach; } ?>
           </tbody>

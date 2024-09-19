@@ -80,7 +80,7 @@ class AbsensiTokoManual extends BaseController
 
     if (!$this->upload->do_upload('dokumen')) {
       $this->set_notifikasi_swal('error','Gagal','Dokumen tidak boleh kosong / melebihi 2mb');
-      redirect('absensi-toko');
+      redirect('absen-toko');
     } else {
       $file = $this->upload->data();
 
@@ -97,6 +97,6 @@ class AbsensiTokoManual extends BaseController
 
     $res = $this->crud_model->input($data,'tbl_absen_toko');
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('absensi-toko');
+    redirect('absen-toko');
   }
 }

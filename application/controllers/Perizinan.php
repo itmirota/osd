@@ -169,9 +169,9 @@ class Perizinan extends BaseController
       'datecreated' => DATE('Y-m-d H:i:s')
     );
     
-    $id_approval = $this->perizinan_model->cekApprovalbyPegawai($id_pegawai, $id_cuti)->id_approval;
+    $approval = $this->perizinan_model->cekApprovalbyPegawai($id_pegawai, $id_cuti);
 
-    if(is_null($id_approval)){
+    if(is_null($id_approval->id_approval)){
       $query = $this->crud_model->input($data, 'tbl_approval_cuti');
     }else{
 
