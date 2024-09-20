@@ -99,4 +99,10 @@ class AbsensiTokoManual extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     redirect('absen-toko');
   }
+
+  public function getDokumen($id){
+    $dokumen = $this->crud_model->getdataRowbyWhere('bukti_absensi_toko', 'id_absen_toko ='.$id ,'tbl_absen_toko');
+
+    echo json_encode($dokumen);
+  }
 }

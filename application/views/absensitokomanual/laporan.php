@@ -66,10 +66,13 @@
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $ld->nama_pegawai ?></td>
-                            <td class="text-center">
+                            <!-- <td class="text-center">
                                 <a href="#" class="pop">
                                 <img src="<?= base_url('assets/dokumen_absen_toko/'.$ld->bukti_absensi_toko)?>" width="100px" style="border-radius:5px">
                                 </a>
+                            </td> -->
+                            <td  class="text-center">
+                              <a href="#" data-bs-toggle="modal" data-bs-target="#absenToko" onclick= "showDokumen(<?= $ld->id_absen_toko ?>)"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
                         <?php } ?>
@@ -91,6 +94,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Detail Hasil Cek-->
+    <div class="modal fade" id="absenToko" tabindex="-1" aria-labelledby="absenTokoLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="titleAddPegawai">Absen Toko Manual</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+            <div class="col-md-12">
+                <div id="dokumen">
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -101,4 +124,21 @@ $(function() {
         $('#imagemodal').modal('show');   
     });		
 });
+
+function showDokumen($id){
+    $.ajax({
+      url:"<?php echo site_url("AbsensiTokoManual/getDokumen")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        console.log(hasil)
+        const file = "<?= site_url("assets/dokumen_absen_toko")?>/" + hasil.bukti_absensi_toko;
+        document.getElementById("dokumen").innerHTML = '<iframe src="'+ file + '" frameborder="0" style="width:100%; height:400px;" "></iframe>';
+      }
+    });
+  };
+
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
 </script>

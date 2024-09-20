@@ -49,7 +49,7 @@
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
-            <th class="text-center" width="100px">Actions</th>
+            <th class="text-center" width="100px">#</th>
             <?php } ?>
           </tr>
           </thead>
@@ -73,8 +73,17 @@
             {
             ?>
             <td class="text-center">
-              <button class="btn btn-sm btn-success " data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <button class="btn btn-sm btn-danger" onclick="deletePegawai(<?= $data->id_pegawai?>)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></button></td>
+              <div class="btn-group">
+                <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
+                </ul>
+              </div>
+            </td>
             <?php } ?>
           </tr>
           <?php

@@ -1,7 +1,6 @@
 <?php
 
 $userId = '';
-$name = '';
 $username = '';
 $roleId = '';
 
@@ -10,7 +9,6 @@ if(!empty($userInfo))
     foreach ($userInfo as $uf)
     {
         $userId = $uf->userId;
-        $name = $uf->name;
         $username = $uf->username;
         $roleId = $uf->roleId;
     }
@@ -43,20 +41,13 @@ if(!empty($userInfo))
                     </div><!-- /.card-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form">
+                    <form role="form" action="<?= base_url() ?>editUser" method="post" id="editUser" role="form">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">                                
-                                    <div class="form-group">
-                                        <label for="fname">Full Name</label>
-                                        <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $name; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $userId; ?>" name="userId" id="userId" />    
-                                    </div>
-                                    
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="username">Username</label>
+                                        <input type="hidden" value="<?php echo $userId; ?>" name="userId" id="userId" />    
                                         <input type="username" class="form-control" id="username" name="username" value="<?php echo $username; ?>" maxlength="128">
                                     </div>
                                 </div>

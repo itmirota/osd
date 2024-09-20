@@ -242,8 +242,8 @@
 
 <!-- Modal Detail Hasil Cek-->
 <div class="modal fade" id="dokumenSample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
+  <div class="modal-dialog">
+    <div class="modal-content modal-lg">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="titleAddPegawai">Detail Pengecekan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -280,9 +280,6 @@ class Pegawai extends BaseController
     );
 
     $sql = $this->crud_model->update($where, $data,'tbl_pegawai');
-
-    $this->updateUser($nip, $role_id);
-
     if (is_null($sql)){
       $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     }else{

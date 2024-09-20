@@ -24,7 +24,7 @@
             <th>No</th>
             <th>Nama Divisi</th>  
             <th class="text-center">Jumlah Pegawai</th>
-            <th class="text-center">Actions</th>
+            <th class="text-center">#</th>
           </tr>
           </thead>
           <tbody>
@@ -41,8 +41,16 @@
             <td><?= $data->nama_divisi ?></td>
             <td class="text-center"><?= $data->jml_pegawai ?> pegawai</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_divisi?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <a href="<?= base_url('deteledivisi/'.$data->id_divisi) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a>
+            <div class="btn-group">
+              <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_divisi?>)">Edit Data</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('deteledivisi/'.$data->id_divisi) ?>">Hapus Data</a></li>
+              </ul>
+            </div>
             </td>
           </tr>
           <?php

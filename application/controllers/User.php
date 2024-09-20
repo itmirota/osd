@@ -256,24 +256,26 @@ class User extends BaseController
             $this->load->library('form_validation');
             
             $userId = $this->input->post('userId');
+            $page = $this->uri->segment(1);
+
+            var_dump($page);
             
-            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]|xss_clean');
             $this->form_validation->set_rules('username','username','trim|required|xss_clean|max_length[128]');
             $this->form_validation->set_rules('password','Password','max_length[20]');
-            $this->form_validation->set_rules('divisi_id','Divisi','trim|required|numeric');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');     
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($userId);
+                if($page == 'editUser'){
+                    redirect('userListing');
+                }else{
+                    redirect('Datapegawai'); 
+                }
             }
             else
             {
-                $name = ucwords(strtolower($this->input->post('fname')));
                 $username = $this->input->post('username');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $divisi_id = $this->input->post('divisi_id');
-                $email = $this->input->post('email');
                 
                 $userInfo = array();
                 
@@ -282,10 +284,7 @@ class User extends BaseController
                     $userInfo = array(
                         'username'=>$username,
                         'roleId'=>$roleId,
-                        'divisi_id'=>$divisi_id, 
-                        'name'=>$name, 
                         'updatedBy'=>$this->vendorId, 
-                        'email'=>$email, 
                         'updatedDtm'=>date('Y-m-d H:i:s'));
                 }
                 else
@@ -294,9 +293,6 @@ class User extends BaseController
                         'username'=>$username, 
                         'password'=>getHashedPassword($password), 
                         'roleId'=>$roleId,
-                        'divisi_id'=>$divisi_id, 
-                        'name'=>ucwords($name), 
-                        'email'=>$email,
                         'updatedBy'=>$this->vendorId, 
                         'updatedDtm'=>date('Y-m-d H:i:s'));
                 }
@@ -311,8 +307,12 @@ class User extends BaseController
                 {
                     $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
                 }
-                
-                redirect('userListing');
+
+                if($page == 'editUser'){
+                    redirect('userListing');
+                }else{
+                    redirect('Datapegawai'); 
+                }
             }
         }
     }

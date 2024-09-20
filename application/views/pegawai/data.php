@@ -53,7 +53,7 @@
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
-            <th class="text-center" width="10px"></th>
+            <th class="text-center" width="10px">#</th>
             <?php } ?>
           </tr>
           </thead>
@@ -102,6 +102,7 @@
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)">Perpanjang Kontrak</a></li>
                 <?php } ?>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAkun" onclick="editAkun(<?= $data->id_pegawai?>)">Edit Akun</a></li>
                 <li><a class="dropdown-item" href="#"  onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
               </ul>
             </div>
@@ -578,20 +579,44 @@
                 <label for="nama_anak" class="form-label">Nama Anak</label>
                 <textarea name="nama_anak" id="nama_anak" placeholder="tulis nama anak disini" class="form-control tabel-PR"></textarea>
               </div>
+            </div>
+          </div>    
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-              <hr>
+<!-- Modal Edit-->
+<div class="modal fade" id="editAkun" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form action="<?=base_url('User/editUser')?>" role="form" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Edit Akun</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
               <h1 class="modal-title fs-5" id="titleAddPegawai">Informasi akun</h1>
               <div class="col-md-10">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" placeholder="tulis username disini" class="form-control-plaintext tabel-PR"/>
+                <input type="hidden" name="userId" id="userId"  class="form-control tabel-PR"/>
+                <input type="text" name="username" id="username" placeholder="tulis username disini" class="form-control tabel-PR"/>
               </div>
-              <!-- <div class="col-md-10">
-                <label for="password" class="form-label">Password</label>
-                <input type="text" name="password" placeholder="tulis password disini" class="form-control tabel-PR" required/>
-              </div> -->
               <div class="col-md-10">
-                <label for="role_id" class="form-label">Role</label>
-                <select name="role_id" id="role_id" class="form-select tabel-PR">
+                <label for="password" class="form-label">Ganti Password</label>
+                <input type="text" name="password" placeholder="Ganti Password" class="form-control tabel-PR"/>
+              </div>
+              <div class="col-md-10">
+                <label for="role" class="form-label">Role</label>
+                <select name="role" id="role_id" class="form-select tabel-PR">
                   <?php foreach($list_role as $r): ?>
                   <option value="<?= $r->roleId?>"><?=$r->role?></option>
                   <?php endforeach; ?>
@@ -847,7 +872,6 @@
       success:function(hasil){
 
         const pegawai = hasil.pegawai;
-        const user = hasil.user;
 
         document.getElementById("nip").value = pegawai.nip;
         document.getElementById("nama_pegawai").value = pegawai.nama_pegawai;
@@ -882,8 +906,19 @@
         document.getElementById("nama_ayah").value = pegawai.nama_ayah;
         document.getElementById("nama_pasangan").value = pegawai.nama_pasangan;
         document.getElementById("nama_anak").value = pegawai.nama_anak;
+      }
+    });
+  }
 
+  function editAkun($id){
+    $.ajax({
+      url:"<?php echo site_url("pegawai/detailpegawai")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        const user = hasil.user;
 
+        document.getElementById("userId").value = user.userId;
         document.getElementById("username").value = user.username;
         document.getElementById("role_id").value = user.roleId;
       }
