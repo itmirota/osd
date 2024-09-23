@@ -195,28 +195,28 @@
 
                 <div class="col-md-12">
                   <label for="kapasitas_kendaraan" class="form-label">Kapasitas Kendaraan</label>
-                  <input type="text" name="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR" required />
+                  <input type="text" name="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR" />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="col-md-12">
                   <label for="warna_kendaraan" class="form-label">Warna Kendaraan</label>
-                  <input type="text" name="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR" required />
+                  <input type="text" name="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR"/>
                 </div>
 
                 <div class="col-md-12">
                   <label for="tahun" class="form-label">Tahun Perakitan</label>
-                  <input type="text" name="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
+                  <input type="text" name="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR"/>
                 </div>
 
                 <div class="col-md-12">
                   <label for="no_rangka" class="form-label">No Rangka</label>
-                  <input type="text" name="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR" required />
+                  <input type="text" name="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR"/>
                 </div>
 
                 <div class="col-md-12">
                   <label for="no_mesin" class="form-label">No Mesin</label>
-                  <input type="text" name="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR" required />
+                  <input type="text" name="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR"/>
                 </div>
     
                 <div class="col-md-12">
@@ -279,28 +279,28 @@
 
               <div class="col-md-12">
                 <label for="kapasitas_kendaraan" class="form-label">Kapasitas Kendaraan</label>
-                <input type="text" name="kapasitas_kendaraan" id="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR" required />
+                <input type="text" name="kapasitas_kendaraan" id="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR"/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="col-md-12">
                 <label for="warna_kendaraan" class="form-label">Warna Kendaraan</label>
-                <input type="text" name="warna_kendaraan" id="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR" required />
+                <input type="text" name="warna_kendaraan" id="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR"/>
               </div>
 
               <div class="col-md-12">
                 <label for="tahun" class="form-label">Tahun Perakitan</label>
-                <input type="text" name="tahun" id="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
+                <input type="text" name="tahun" id="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR"/>
               </div>
 
               <div class="col-md-12">
                 <label for="no_rangka" class="form-label">No Rangka</label>
-                <input type="text" name="no_rangka" id="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR" required />
+                <input type="text" name="no_rangka" id="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR"/>
               </div>
 
               <div class="col-md-12">
                 <label for="no_mesin" class="form-label">No Mesin</label>
-                <input type="text" name="no_mesin" id="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR" required />
+                <input type="text" name="no_mesin" id="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR"/>
               </div>
   
               <div class="col-md-12">
