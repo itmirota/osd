@@ -88,7 +88,7 @@
             {
             ?>
             <td class="text-center">
-              <a href="<?= base_url('detelebarang/'.$data->id_kerusakan_barang) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a></td>
+              <a href="<?= base_url('deletebarang/'.$data->id_kerusakan_barang) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a></td>
             <?php } ?>
           </tr>
           <?php

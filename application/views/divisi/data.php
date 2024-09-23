@@ -48,7 +48,7 @@
 
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_divisi?>)">Edit Data</a></li>
-                <li><a class="dropdown-item" href="<?= base_url('deteledivisi/'.$data->id_divisi) ?>">Hapus Data</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('deletedivisi/'.$data->id_divisi) ?>">Hapus Data</a></li>
               </ul>
             </div>
             </td>

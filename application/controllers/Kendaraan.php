@@ -53,6 +53,11 @@ class Kendaraan extends BaseController
     $no_mesin = $this->input->post('no_mesin');
     $kepemilikan = $this->input->post('kepemilikan');
 
+    $cekMaxId = $this->crud_model->cekMaxId('id_kendaraan', 'tbl_kendaraan');
+    $id = $cekMaxId+1;
+
+    $image_name = $this->generateBarcode('kendaraan', $id);
+
     $data = array(
       'jenis_kendaraan' => $jenis_kendaraan,
       'nomor_polisi' => $nomor_polisi,
@@ -64,6 +69,7 @@ class Kendaraan extends BaseController
       'no_rangka' => $no_rangka,
       'no_mesin' => $no_mesin,
       'kepemilikan' => $kepemilikan,
+      'qrcode_kendaraan' => $image_name,
     );
 
     $sql = $this->crud_model->input($data,'tbl_kendaraan');
@@ -131,12 +137,14 @@ class Kendaraan extends BaseController
 
   public function delete(){
     $id_kendaraan = $this->uri->segment(2);
-
+    
     $where = array(
       'id_kendaraan' => $id_kendaraan
     );
+    $kendaraan = $this->crud_model->getdataRowbyWhere('qrcode_kendaraan', $where, 'tbl_kendaraan');
 
     $this->crud_model->delete($where, 'tbl_kendaraan');
+    unlink( FCPATH.'assets/images/qrcode/kendaraan/' . $kendaraan->qrcode_kendaraan);
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
     redirect('kendaraan');
   }

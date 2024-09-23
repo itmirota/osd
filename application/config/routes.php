@@ -57,7 +57,7 @@ $route['pembelian-galon'] = 'transaksiSatpam/report';
 
 // RUANGAN
 $route['Dataruangan'] = 'ruangan';
-$route['deteleRuangan/(:num)'] = "ruangan/delete/$1";
+$route['deleteRuangan/(:num)'] = "ruangan/delete/$1";
 $route['Pinjamruangan'] = 'ruangan/pinjamruangan';
 $route['kerusakanRuangan'] = 'ruangan/listkerusakan';
 
@@ -68,11 +68,11 @@ $route['divisi/(:any)'] = 'divisi/listdata/$1';
 
 // DIVISI
 $route['Datadivisi'] = 'divisi';
-$route['deteledivisi/(:num)'] = "divisi/delete/$1";
+$route['deletedivisi/(:num)'] = "divisi/delete/$1";
 
 // BARANG
 $route['Databarang'] = 'barang';
-$route['detelebarang/(:num)'] = "barang/delete/$1";
+$route['deletebarang/(:num)'] = "barang/delete/$1";
 $route['Pinjambarang'] = 'barang/pinjambarang';
 $route['kerusakanBarang'] = 'barang/listkerusakan';
 $route['Peminjamanbarang'] = 'barang/peminjamanbarang';
@@ -82,6 +82,7 @@ $route['SimpanPeminjaman'] = 'barang/booking';
 
 // KENDARAAN
 $route['Datakendaraan'] = 'kendaraan';
+$route['deletekendaraan/(:num)'] = "kendaraan/delete/$1";
 
 // ABSENSI
 $route['Absensi'] = 'absensi';

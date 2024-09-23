@@ -59,7 +59,7 @@
             ?>
             <td class="text-center">
               <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_ruangan?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <a href="<?= base_url('deteleRuangan/'.$data->id_ruangan) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a></td>
+              <a href="<?= base_url('deleteRuangan/'.$data->id_ruangan) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"><i class="fa fa-trash"></i></a></td>
             <?php } ?>
           </tr>
           <?php

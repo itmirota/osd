@@ -7,28 +7,25 @@
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-          <h3 class="card-title">Data kendaraan Mobil</h3>
+          <h3 class="card-title">Data kendaraan roda 4</h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
-        <table id="DataTable" class="table table-hover">
+        <table id="dataTable" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
             <th>No. Polisi</th>
             <th>Merek</th>
             <th>Jenis</th>
-            <th>Kapasitas</th>
             <th>Warna</th>
             <th>Tahun</th>
-            <th>No. Rangka</th>
-            <th>No_mesin</th>
             <th>Kepemilikan</th>
-            <th class="text-center">Perawatan</th>
+            <th>barcode</th>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
             {
             ?>
-            <th class="text-center">Actions</th>
+            <th class="text-center">#</th>
             <?php } ?>
           </tr>
           </thead>
@@ -44,21 +41,33 @@
             <td><?php echo $data->nomor_polisi ?></td>
             <td><?php echo $data->merek_kendaraan ?></td>
             <td><?php echo $data->jenis_penggunaan ?></td>
-            <td><?php echo $data->kapasitas_kendaraan ?></td>
             <td><?php echo $data->warna_kendaraan ?></td>
             <td><?php echo $data->tahun ?></td>
-            <td><?php echo $data->no_rangka ?></td>
-            <td><?php echo $data->no_mesin ?></td>
             <td><?php echo $data->kepemilikan ?></td>
-            <td class="text-center"><a href="<?= base_url('kendaraan/perawatan/'.$data->id_kendaraan) ?>" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="detail perawatan"><i class="fa fa-solid fa-eye"></i></a></td>
+            <td>
+              <a href="#" class="pop">
+                <img src="<?= base_url('assets/images/qrcode/kendaraan/'.$data->qrcode_kendaraan)?>" width="50px" style="border-radius:10px">
+              </a>
+            </td>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
             {
             ?>
             <td class="text-center">
-              <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_kendaraan?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <a href="<?= base_url('detelekendaraan/'.$data->id_kendaraan) ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus" ><i class="fa fa-trash"></i></a></td>
-              <?php } ?>
+            <div class="btn-group">
+              <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#detailData" onclick="detailData(<?= $data->id_kendaraan?>)">Detail Kendaraan</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('kendaraan/perawatan/'.$data->id_kendaraan) ?>">Detail Perawatan</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_kendaraan?>)">Edit Data</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('deletekendaraan/'.$data->id_kendaraan) ?>" >Hapus Data</a></li>
+              </ul>
+            </div>
+            </td>
+            <?php } ?>
           </tr>
           <?php
             endforeach;
@@ -74,7 +83,7 @@
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-          <h3 class="card-title">Data kendaraan Montor</h3>
+          <h3 class="card-title">Data kendaraan roda 2</h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
         <table id="DataMontor" class="table table-hover">
@@ -84,18 +93,14 @@
             <th>No. Polisi</th>
             <th>Merek</th>
             <th>Jenis</th>
-            <th>Kapasitas</th>
             <th>Warna</th>
             <th>Tahun</th>
-            <th>No. Rangka</th>
-            <th>No_mesin</th>
             <th>Kepemilikan</th>
-            <th class="text-center">Perawatan</th>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
             {
             ?>
-            <th class="text-center">Actions</th>
+            <th class="text-center">#</th>
             <?php } ?>
           </tr>
           </thead>
@@ -111,20 +116,26 @@
             <td><?php echo $data->nomor_polisi ?></td>
             <td><?php echo $data->merek_kendaraan ?></td>
             <td><?php echo $data->jenis_penggunaan ?></td>
-            <td><?php echo $data->kapasitas_kendaraan ?></td>
             <td><?php echo $data->warna_kendaraan ?></td>
             <td><?php echo $data->tahun ?></td>
-            <td><?php echo $data->no_rangka ?></td>
-            <td><?php echo $data->no_mesin ?></td>
             <td><?php echo $data->kepemilikan ?></td>
-            <td class="text-center"><a href="<?= base_url('kendaraan/perawatan/'.$data->id_kendaraan) ?>" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="detail perawatan"><i class="fa fa-solid fa-eye"></i></a></td>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
             {
             ?>
             <td class="text-center">
-              <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_kendaraan?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></button>
-              <a href="<?= base_url('detelekendaraan/'.$data->id_kendaraan) ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
+            <div class="btn-group">
+              <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#detailData" onclick="detailData(<?= $data->id_kendaraan?>)">Detail Kendaraan</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('kendaraan/perawatan/'.$data->id_kendaraan) ?>">Detail Perawatan</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_kendaraan?>)">Edit Data</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('deletekendaraan/'.$data->id_kendaraan) ?>" >Hapus Data</a></li>
+              </ul>
+            </div>
             </td>
             <?php } ?>
           </tr>
@@ -158,8 +169,8 @@
                   <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
                   <select name="jenis_kendaraan" class="form-select tabel-PR" required>
                     <option readonly>pilih jenis kendaraan</option>
-                    <option value="Motor">Kendaraan Roda 2</option>
-                    <option value="Mobil">Kendaraan Roda 4</option>
+                    <option value="montor">Kendaraan Roda 2</option>
+                    <option value="mobil">Kendaraan Roda 4</option>
                   </select>
                 </div> 
 
@@ -242,9 +253,8 @@
                 <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
                 <input type="hidden" name="id_kendaraan" id="id_kendaraan" class="form-control tabel-PR" required />
                 <select name="jenis_kendaraan" id="jenis_kendaraan" class="form-select tabel-PR" required>
-                  <option readonly>pilih jenis kendaraan</option>
-                  <option value="Motor">Kendaraan Roda 2</option>
-                  <option value="Mobil">Kendaraan Roda 4</option>
+                  <option value="montor">Kendaraan Roda 2</option>
+                  <option value="mobil">Kendaraan Roda 4</option>
                 </select>
               </div> 
 
@@ -309,8 +319,123 @@
   </div>
 </div>
 
+<!-- Modal Detail-->
+<div class="modal fade" id="detailData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Kendaraan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="col-md-12">
+                <label for="info_jenis_kendaraan" class="form-label">Jenis kendaraan</label>
+                <select id="info_jenis_kendaraan" class="form-select select-plaintext tabel-PR" disabled >
+                  <option value="montor">Kendaraan Roda 2</option>
+                  <option value="mobil">Kendaraan Roda 4</option>
+                </select>
+              </div> 
 
+              <div class="col-md-12">
+                <label for="info_nomor_polisi" class="form-label">Nomor Polisi</label>
+                <input type="text" id="info_nomor_polisi" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+
+              <div class="col-md-12">
+                <label for="info_merek_kendaraan" class="form-label">Merek Kendaraan</label>
+                <input type="text" id="info_merek_kendaraan" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+
+              <div class="col-md-12">
+                <label for="info_jenis_penggunaan" class="form-label">Jenis kendaraan</label>
+                <select id="info_jenis_penggunaan" class="form-select select-plaintext tabel-PR" disabled>
+                  <option value="angkutan">Kendaraan Angkutan</option>
+                  <option value="operasional">Kendaraan Operasional</option>
+                </select>
+              </div> 
+
+              <div class="col-md-12">
+                <label for="info_kapasitas_kendaraan" class="form-label">Kapasitas Kendaraan</label>
+                <input type="text" id="info_kapasitas_kendaraan" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md-12">
+                <label for="info_warna_kendaraan" class="form-label">Warna Kendaraan</label>
+                <input type="text" id="info_warna_kendaraan" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+
+              <div class="col-md-12">
+                <label for="info_tahun" class="form-label">Tahun Perakitan</label>
+                <input type="text" id="info_tahun" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+
+              <div class="col-md-12">
+                <label for="info_no_rangka" class="form-label">No Rangka</label>
+                <input type="text" id="info_no_rangka" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+
+              <div class="col-md-12">
+                <label for="info_no_mesin" class="form-label">No Mesin</label>
+                <input type="text" id="info_no_mesin" class="form-control-plaintext tabel-PR" readonly />
+              </div>
+  
+              <div class="col-md-12">
+                <label for="info_kepemilikan" class="form-label">Kepemilikan</label>
+                <input type="text" id="info_kepemilikan" class="form-control-plaintext tabel-PR" readonly />
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">              
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="imagepreview" style="width: 100%;" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
+  $(function() {
+    $('.pop').on('click', function() {
+        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+        $('#imagemodal').modal('show');   
+    });		
+  });
+
+  function detailData($id){
+    $.ajax({
+      url:"<?php echo site_url("kendaraan/detailkendaraan")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        document.getElementById("info_jenis_kendaraan").value = hasil.jenis_kendaraan;
+        document.getElementById("info_nomor_polisi").value = hasil.nomor_polisi;
+        document.getElementById("info_merek_kendaraan").value = hasil.merek_kendaraan;
+        document.getElementById("info_jenis_penggunaan").value = hasil.jenis_penggunaan;
+        document.getElementById("info_kapasitas_kendaraan").value = hasil.kapasitas_kendaraan;
+        document.getElementById("info_warna_kendaraan").value = hasil.warna_kendaraan;
+        document.getElementById("info_tahun").value = hasil.tahun;
+        document.getElementById("info_no_rangka").value = hasil.no_rangka;
+        document.getElementById("info_no_mesin").value = hasil.no_mesin;
+        document.getElementById("info_kepemilikan").value = hasil.kepemilikan;
+      }
+    });
+  }
 
   function editData($id){
     $.ajax({
