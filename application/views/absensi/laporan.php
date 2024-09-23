@@ -9,8 +9,8 @@
             <th>Nama</th>
             <th class="text-center">Divisi</th>
             <th class="text-center">Tanggal</th>
-            <th class="text-center">Waktu Masuk</th>
-            <th class="text-center">Waktu Keluar</th>
+            <th class="text-center">Kehadiran</th>
+            <th class="text-center">Pulang</th>
           </tr>
           </thead>
           <tbody>
@@ -25,13 +25,20 @@
               <td><a href="<?= base_url('absensi/laporanDetail/'.$ld->id_pegawai)?>"><?= $ld->nama_pegawai?></td>
               <td class="text-center"><?= $ld->nama_divisi?></td>
               <td class="text-center"><?= mediumdate_indo($ld->date)?></td>
-              <td class="text-center"><?= $ld->time_in?>
-              <a href="<?= base_url('cekkoordinat/masuk/'.$ld->pegawai_id)?>"><i class="fa fa-eye"></i></a>
+              <td>
+                <a href="#" class="pop">
+                <img src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_in)?>" width="100px" style="border-radius:10px">
+                </a><br>
+                <i class="fa fa-clock"></i> <?= $ld->time_in?><br>
+                <a href="<?= base_url('cekkoordinat/masuk/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= $ld->wilayah_in?>, <?= $ld->kota_in?></a>
               </td>
-              <td class="text-center">
+              <td>
                 <?php if (isset($ld->time_out)){ ?>
-                <?= $ld->time_out?>
-                <a href="<?= base_url('cekkoordinat/pulang/'.$ld->pegawai_id)?>"><i class="fa fa-eye"></i></a>
+                <a href="#" class="pop">
+                <img src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_out)?>" width="100px" style="border-radius:10px">
+                </a><br>
+                <i class="fa fa-clock"></i> <?= $ld->time_out?><br>
+                <a href="<?= base_url('cekkoordinat/pulang/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= $ld->wilayah_in?>, <?= $ld->kota_in?></a>
                 <?php }else{ ?>
                 <span class="badge text-bg-secondary">belum absen</span> 
                 <?php } ?>
@@ -47,4 +54,27 @@
     </div><!-- /.box -->
   </div>
 </div>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">              
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="imagepreview" style="width: 100%;" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+$(function() {
+    $('.pop').on('click', function() {
+        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+        $('#imagemodal').modal('show');   
+    });		
+});
+</script>
 

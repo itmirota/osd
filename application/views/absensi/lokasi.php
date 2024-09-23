@@ -6,11 +6,8 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
-            <img src="<?= base_url('assets/images/absensi/'.$bukti_absen)?>">
-          </div>
-          <div class="col-md-6">
-            <div id="map" style="width: 80vh; height: 50vh;"></div>
+          <div class="col-md-12">
+            <div id="map" style="width: 100%; height: 50vh;"></div>
           </div>
         </div>
       </div><!-- /.box-body -->

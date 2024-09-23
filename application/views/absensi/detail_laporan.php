@@ -11,8 +11,8 @@
           <tr>
             <th>No</th>
             <th class="text-center">Tanggal</th>
-            <th class="text-center">Waktu Masuk</th>
-            <th class="text-center">Waktu Keluar</th>
+            <th class="text-center">Kehadiran</th>
+            <th class="text-center">Pulang</th>
           </tr>
           </thead>
           <tbody>

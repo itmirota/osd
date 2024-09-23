@@ -42,21 +42,28 @@ class Kendaraan extends BaseController
   }
 
   public function save(){
-    $merek_kendaraan = $this->input->post('merek_kendaraan');
     $jenis_kendaraan = $this->input->post('jenis_kendaraan');
-    $merek_kendaraan = $this->input->post('merek_kendaraan');
     $nomor_polisi = $this->input->post('nomor_polisi');
-    $tgl_stnk = $this->input->post('tgl_stnk');
+    $merek_kendaraan = $this->input->post('merek_kendaraan');
+    $jenis_penggunaan = $this->input->post('jenis_penggunaan');
+    $kapasitas_kendaraan = $this->input->post('kapasitas_kendaraan');
+    $warna_kendaraan = $this->input->post('warna_kendaraan');
     $tahun = $this->input->post('tahun');
-
+    $no_rangka = $this->input->post('no_rangka');
+    $no_mesin = $this->input->post('no_mesin');
+    $kepemilikan = $this->input->post('kepemilikan');
 
     $data = array(
-      'merek_kendaraan' => $merek_kendaraan,
       'jenis_kendaraan' => $jenis_kendaraan,
-      'merek_kendaraan' => $merek_kendaraan,
       'nomor_polisi' => $nomor_polisi,
-      'tgl_stnk' => $tgl_stnk,
+      'merek_kendaraan' => $merek_kendaraan,
+      'jenis_penggunaan' => $jenis_penggunaan,
+      'kapasitas_kendaraan' => $kapasitas_kendaraan,
+      'warna_kendaraan' => $warna_kendaraan,
       'tahun' => $tahun,
+      'no_rangka' => $no_rangka,
+      'no_mesin' => $no_mesin,
+      'kepemilikan' => $kepemilikan,
     );
 
     $sql = $this->crud_model->input($data,'tbl_kendaraan');
@@ -89,21 +96,32 @@ class Kendaraan extends BaseController
 
   public function update(){
     $id_kendaraan = $this->input->post('id_kendaraan');
-    $merek_kendaraan = $this->input->post('merek_kendaraan');
+    $jenis_kendaraan = $this->input->post('jenis_kendaraan');
     $nomor_polisi = $this->input->post('nomor_polisi');
-    $tgl_stnk = $this->input->post('tgl_stnk');
+    $merek_kendaraan = $this->input->post('merek_kendaraan');
+    $jenis_penggunaan = $this->input->post('jenis_penggunaan');
+    $kapasitas_kendaraan = $this->input->post('kapasitas_kendaraan');
+    $warna_kendaraan = $this->input->post('warna_kendaraan');
     $tahun = $this->input->post('tahun');
+    $no_rangka = $this->input->post('no_rangka');
+    $no_mesin = $this->input->post('no_mesin');
+    $kepemilikan = $this->input->post('kepemilikan');
 
     $where = array(
       'id_kendaraan' => $id_kendaraan
     );
 
     $data = array(
-      'merek_kendaraan' => $merek_kendaraan,
-      'merek_kendaraan' => $merek_kendaraan,
+      'jenis_kendaraan' => $jenis_kendaraan,
       'nomor_polisi' => $nomor_polisi,
-      'tgl_stnk' => $tgl_stnk,
+      'merek_kendaraan' => $merek_kendaraan,
+      'jenis_penggunaan' => $jenis_penggunaan,
+      'kapasitas_kendaraan' => $kapasitas_kendaraan,
+      'warna_kendaraan' => $warna_kendaraan,
       'tahun' => $tahun,
+      'no_rangka' => $no_rangka,
+      'no_mesin' => $no_mesin,
+      'kepemilikan' => $kepemilikan,
     );
 
     $sql = $this->crud_model->update($where, $data,'tbl_kendaraan');

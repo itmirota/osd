@@ -16,8 +16,13 @@
             <th>No</th>
             <th>No. Polisi</th>
             <th>Merek</th>
-            <th>Tanggal STNK</th>
+            <th>Jenis</th>
+            <th>Kapasitas</th>
+            <th>Warna</th>
             <th>Tahun</th>
+            <th>No. Rangka</th>
+            <th>No_mesin</th>
+            <th>Kepemilikan</th>
             <th class="text-center">Perawatan</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
@@ -38,8 +43,13 @@
             <td><?php echo $no++ ?></td>
             <td><?php echo $data->nomor_polisi ?></td>
             <td><?php echo $data->merek_kendaraan ?></td>
-            <td><?php echo mediumdate_indo($data->tgl_stnk) ?></td>
+            <td><?php echo $data->jenis_penggunaan ?></td>
+            <td><?php echo $data->kapasitas_kendaraan ?></td>
+            <td><?php echo $data->warna_kendaraan ?></td>
             <td><?php echo $data->tahun ?></td>
+            <td><?php echo $data->no_rangka ?></td>
+            <td><?php echo $data->no_mesin ?></td>
+            <td><?php echo $data->kepemilikan ?></td>
             <td class="text-center"><a href="<?= base_url('kendaraan/perawatan/'.$data->id_kendaraan) ?>" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="detail perawatan"><i class="fa fa-solid fa-eye"></i></a></td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
@@ -73,8 +83,13 @@
             <th>No</th>
             <th>No. Polisi</th>
             <th>Merek</th>
-            <th>Tanggal STNK</th>
+            <th>Jenis</th>
+            <th>Kapasitas</th>
+            <th>Warna</th>
             <th>Tahun</th>
+            <th>No. Rangka</th>
+            <th>No_mesin</th>
+            <th>Kepemilikan</th>
             <th class="text-center">Perawatan</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
@@ -95,8 +110,13 @@
             <td><?php echo $no++ ?></td>
             <td><?php echo $data->nomor_polisi ?></td>
             <td><?php echo $data->merek_kendaraan ?></td>
-            <td><?php echo mediumdate_indo($data->tgl_stnk) ?></td>
+            <td><?php echo $data->jenis_penggunaan ?></td>
+            <td><?php echo $data->kapasitas_kendaraan ?></td>
+            <td><?php echo $data->warna_kendaraan ?></td>
             <td><?php echo $data->tahun ?></td>
+            <td><?php echo $data->no_rangka ?></td>
+            <td><?php echo $data->no_mesin ?></td>
+            <td><?php echo $data->kepemilikan ?></td>
             <td class="text-center"><a href="<?= base_url('kendaraan/perawatan/'.$data->id_kendaraan) ?>" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="detail perawatan"><i class="fa fa-solid fa-eye"></i></a></td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN)
@@ -133,67 +153,66 @@
         <div class="form-group">
           <div class="col-md-12">
             <div class="row">
-            <div class="col-md-6">
-              <div class="col-md-12">
-                <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
-                <select name="jenis_kendaraan" class="form-select tabel-PR" required>
-                  <option readonly>pilih jenis kendaraan</option>
-                  <option value="Motor">Kendaraan Roda 2</option>
-                  <option value="Mobil">Kendaraan Roda 4</option>
-                </select>
-              </div> 
+              <div class="col-md-6">
+                <div class="col-md-12">
+                  <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
+                  <select name="jenis_kendaraan" class="form-select tabel-PR" required>
+                    <option readonly>pilih jenis kendaraan</option>
+                    <option value="Motor">Kendaraan Roda 2</option>
+                    <option value="Mobil">Kendaraan Roda 4</option>
+                  </select>
+                </div> 
 
-              <div class="col-md-12">
-                <label for="nomor_polisi" class="form-label">Nomor Polisi</label>
-                <input type="text" name="nomor_polisi" placeholder="Nomor Polisi" class="form-control tabel-PR" required />
+                <div class="col-md-12">
+                  <label for="nomor_polisi" class="form-label">Nomor Polisi</label>
+                  <input type="text" name="nomor_polisi" placeholder="Nomor Polisi" class="form-control tabel-PR" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="merek_kendaraan" class="form-label">Merek Kendaraan</label>
+                  <input type="text" name="merek_kendaraan" placeholder="Merek Kendaraan" class="form-control tabel-PR" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="jenis_penggunaan" class="form-label">Jenis kendaraan</label>
+                  <select name="jenis_penggunaan" class="form-select tabel-PR" required>
+                    <option readonly>pilih jenis Penggunaan</option>
+                    <option value="angkutan">Kendaraan Angkutan</option>
+                    <option value="operasional">Kendaraan Operasional</option>
+                  </select>
+                </div> 
+
+                <div class="col-md-12">
+                  <label for="kapasitas_kendaraan" class="form-label">Kapasitas Kendaraan</label>
+                  <input type="text" name="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR" required />
+                </div>
               </div>
+              <div class="col-md-6">
+                <div class="col-md-12">
+                  <label for="warna_kendaraan" class="form-label">Warna Kendaraan</label>
+                  <input type="text" name="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR" required />
+                </div>
 
-              <div class="col-md-12">
-                <label for="merek_kendaraan" class="form-label">Merek Kendaraan</label>
-                <input type="text" name="merek_kendaraan" placeholder="Merek Kendaraan" class="form-control tabel-PR" required />
+                <div class="col-md-12">
+                  <label for="tahun" class="form-label">Tahun Perakitan</label>
+                  <input type="text" name="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="no_rangka" class="form-label">No Rangka</label>
+                  <input type="text" name="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="no_mesin" class="form-label">No Mesin</label>
+                  <input type="text" name="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR" required />
+                </div>
+    
+                <div class="col-md-12">
+                  <label for="kepemilikan" class="form-label">Kepemilikan</label>
+                  <input type="text" name="kepemilikan" class="form-control tabel-PR" placeholder="contoh: PT. Mirota KSM" required />
+                </div> 
               </div>
-
-              <div class="col-md-12">
-                <label for="jenis_penggunaan" class="form-label">Jenis kendaraan</label>
-                <select name="jenis_penggunaan" class="form-select tabel-PR" required>
-                  <option readonly>pilih jenis Penggunaan</option>
-                  <option value="angkutan">Kendaraan Angkutan</option>
-                  <option value="operasional">Kendaraan Operasional</option>
-                </select>
-              </div> 
-
-              <div class="col-md-12">
-                <label for="kapasitas_kendaraan" class="form-label">Kapasitas Kendaraan</label>
-                <input type="text" name="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR" required />
-              </div>
-            </div>
-            <div class="col-md-6">
-
-              <div class="col-md-12">
-                <label for="warna_kendaraan" class="form-label">Warna Kendaraan</label>
-                <input type="text" name="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR" required />
-              </div>
-
-              <div class="col-md-12">
-                <label for="tahun" class="form-label">Tahun Perakitan</label>
-                <input type="text" name="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
-              </div>
-
-              <div class="col-md-12">
-                <label for="no_rangka" class="form-label">No Rangka</label>
-                <input type="text" name="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR" required />
-              </div>
-
-              <div class="col-md-12">
-                <label for="no_mesin" class="form-label">No Mesin</label>
-                <input type="text" name="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR" required />
-              </div>
-  
-              <div class="col-md-12">
-                <label for="kepemilikan" class="form-label">Kepemilikan</label>
-                <input type="date" name="kepemilikan" class="form-control tabel-PR" placeholder="contoh: PT. Mirota KSM" required />
-              </div> 
-            </div>
             </div>
           </div>
         </div>
@@ -218,26 +237,67 @@
       <div class="modal-body">
         <div class="form-group">
           <div class="row">
-            <div class="col-md-12">
-              <label for="nomor_polisi" class="form-label">Nomor Polisi</label>
-              <input type="hidden" name="id_kendaraan" id="id_kendaraan" placeholder="Nomor Polisi" class="form-control tabel-PR" required />
-              <input type="text" name="nomor_polisi" id="nomor_polisi" placeholder="Nomor Polisi" class="form-control tabel-PR" required />
-            </div>
+            <div class="col-md-6">
+              <div class="col-md-12">
+                <label for="jenis_kendaraan" class="form-label">Jenis kendaraan</label>
+                <input type="hidden" name="id_kendaraan" id="id_kendaraan" class="form-control tabel-PR" required />
+                <select name="jenis_kendaraan" id="jenis_kendaraan" class="form-select tabel-PR" required>
+                  <option readonly>pilih jenis kendaraan</option>
+                  <option value="Motor">Kendaraan Roda 2</option>
+                  <option value="Mobil">Kendaraan Roda 4</option>
+                </select>
+              </div> 
 
-            <div class="col-md-12">
-              <label for="merek_kendaraan" class="form-label">Merek Kendaraan</label>
-              <input type="text" name="merek_kendaraan" id="merek_kendaraan" placeholder="Merek Kendaraan" class="form-control tabel-PR" required />
-            </div>
- 
-            <div class="col-md-12">
-              <label for="tgl_stnk" class="form-label">STNK</label>
-              <input type="date" name="tgl_stnk" id="tgl_stnk" class="form-control tabel-PR" required />
-            </div> 
+              <div class="col-md-12">
+                <label for="nomor_polisi" class="form-label">Nomor Polisi</label>
+                <input type="text" name="nomor_polisi" id="nomor_polisi" placeholder="Nomor Polisi" class="form-control tabel-PR" required />
+              </div>
 
-            <div class="col-md-12">
-              <label for="tahun" class="form-label">Tahun</label>
-              <input type="text" name="tahun" id="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
-            </div>       
+              <div class="col-md-12">
+                <label for="merek_kendaraan" class="form-label">Merek Kendaraan</label>
+                <input type="text" name="merek_kendaraan" id="merek_kendaraan" placeholder="Merek Kendaraan" class="form-control tabel-PR" required />
+              </div>
+
+              <div class="col-md-12">
+                <label for="jenis_penggunaan" class="form-label">Jenis kendaraan</label>
+                <select name="jenis_penggunaan" id="jenis_penggunaan" class="form-select tabel-PR" required>
+                  <option readonly>pilih jenis Penggunaan</option>
+                  <option value="angkutan">Kendaraan Angkutan</option>
+                  <option value="operasional">Kendaraan Operasional</option>
+                </select>
+              </div> 
+
+              <div class="col-md-12">
+                <label for="kapasitas_kendaraan" class="form-label">Kapasitas Kendaraan</label>
+                <input type="text" name="kapasitas_kendaraan" id="kapasitas_kendaraan" placeholder="contoh: 1000CC" class="form-control tabel-PR" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md-12">
+                <label for="warna_kendaraan" class="form-label">Warna Kendaraan</label>
+                <input type="text" name="warna_kendaraan" id="warna_kendaraan" placeholder="Warna Kendaraan" class="form-control tabel-PR" required />
+              </div>
+
+              <div class="col-md-12">
+                <label for="tahun" class="form-label">Tahun Perakitan</label>
+                <input type="text" name="tahun" id="tahun" placeholder="Tahun pembelian" class="form-control tabel-PR" required />
+              </div>
+
+              <div class="col-md-12">
+                <label for="no_rangka" class="form-label">No Rangka</label>
+                <input type="text" name="no_rangka" id="no_rangka" placeholder="isikan nomor rangka disini" class="form-control tabel-PR" required />
+              </div>
+
+              <div class="col-md-12">
+                <label for="no_mesin" class="form-label">No Mesin</label>
+                <input type="text" name="no_mesin" id="no_mesin" placeholder="isikan nomor mesin disini" class="form-control tabel-PR" required />
+              </div>
+  
+              <div class="col-md-12">
+                <label for="kepemilikan" class="form-label">Kepemilikan</label>
+                <input type="text" name="kepemilikan" id="kepemilikan" class="form-control tabel-PR" placeholder="contoh: PT. Mirota KSM" required />
+              </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -259,10 +319,16 @@
       type: "get",
       success:function(hasil){
         document.getElementById("id_kendaraan").value = hasil.id_kendaraan;
+        document.getElementById("jenis_kendaraan").value = hasil.jenis_kendaraan;
         document.getElementById("nomor_polisi").value = hasil.nomor_polisi;
         document.getElementById("merek_kendaraan").value = hasil.merek_kendaraan;
-        document.getElementById("tgl_stnk").value = hasil.tgl_stnk;
+        document.getElementById("jenis_penggunaan").value = hasil.jenis_penggunaan;
+        document.getElementById("kapasitas_kendaraan").value = hasil.kapasitas_kendaraan;
+        document.getElementById("warna_kendaraan").value = hasil.warna_kendaraan;
         document.getElementById("tahun").value = hasil.tahun;
+        document.getElementById("no_rangka").value = hasil.no_rangka;
+        document.getElementById("no_mesin").value = hasil.no_mesin;
+        document.getElementById("kepemilikan").value = hasil.kepemilikan;
       }
     });
   }

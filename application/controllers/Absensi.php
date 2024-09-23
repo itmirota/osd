@@ -192,6 +192,8 @@ class Absensi extends BaseController
 		$image = $this->input->post('imagecam');
 		$lat = $this->input->post('lat');
 		$lon = $this->input->post('lon');
+		$wilayah = $this->input->post('wilayah');
+		$kota = $this->input->post('kota');
 
 		$image = str_replace('[removed]','', $image);
 		$image = base64_decode($image);
@@ -203,6 +205,8 @@ class Absensi extends BaseController
         'pegawai_id' => $id_pegawai,
         'latitude_in' => $lat,
         'longitude_in' => $lon,
+        'wilayah_in' => $wilayah,
+        'kota_in' => $kota,
         'bukti_absensi_in' => $filename,
         'date' => DATE('Y-m-d'),
         'time_in' => DATE('H:i:s')
@@ -221,6 +225,8 @@ class Absensi extends BaseController
         'time_out' => DATE('H:i:s'),
         'latitude_out' => $lat,
         'longitude_out' => $lon,
+        'wilayah_out' => $wilayah,
+        'kota_out' => $kota,
         'bukti_absensi_out' => $filename
       );
   

@@ -67,7 +67,10 @@
             <td><?php echo $data->time ?></td>
             <td><?php echo $data->detail_perawatan ?></td>
             <td>
-              <img src="<?= base_url('assets/images/kebersihan/'.$data->bukti_perawatan)?>" width="200px"></td>
+              <a href="#" class="pop">
+              <img src="<?= base_url('assets/images/kebersihan/'.$data->bukti_perawatan)?>" width="200px">
+              </a>
+            </td>
           </tr>
           <?php
             endforeach;
@@ -79,3 +82,25 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">              
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="imagepreview" style="width: 100%;" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+$(function() {
+    $('.pop').on('click', function() {
+        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+        $('#imagemodal').modal('show');   
+    });		
+});
+</script>

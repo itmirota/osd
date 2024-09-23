@@ -52,21 +52,40 @@
 				navigator.geolocation.getCurrentPosition(position => {
 				lat = position.coords.latitude;
 				lon = position.coords.longitude;
-				save(data_uri,lat,lon);
+				detailLocation(data_uri,lat,lon);
+				// save(data_uri,lat,lon);
+				console.log('geolocation available');
 				});
 				} else {
 					console.log('geolocation not available');
 				}
 			}
 
-			function save(data_uri,lat,lon){
+			function detailLocation(data_uri,lat,lon){
+				API_URL = "https://us1.locationiq.com/v1/reverse?key=pk.37bf22c2eeccf7da7a41e58485f2b6ea&lat=" + lat + "&lon=" + lon + "&format=json"
+				$.ajax({
+				type:'GET', //mostly here for readability; is default for ajax
+				url:API_URL,
+				}).done(function(result){
+					console.log(result.address);
+					wilayah = result.address.municipality;
+					kota = result.address.county;
+
+					save(data_uri,lat,lon,wilayah,kota);
+
+				}).always(function(result, status){
+					console.log(status);
+				});
+			}
+
+			function save(data_uri,lat,lon,wilayah,kota){
 				let id_pegawai = document.getElementById("id_pegawai").value;
 				let jenis_absen = document.getElementById("jenis_absen").value;
 				$.ajax({
 					url: '<?php echo site_url("absensi/saveWebcam");?>',
 					type: 'POST',
 					dataType: 'json',
-					data: {id:id_pegawai,jenis_absen:jenis_absen,imagecam:data_uri,lat:lat,lon:lon},
+					data: {id:id_pegawai,jenis_absen:jenis_absen,imagecam:data_uri,lat:lat,lon:lon,wilayah:wilayah,kota:kota},
 				})
 				.done(function(data) {
 					if (data > 0) {

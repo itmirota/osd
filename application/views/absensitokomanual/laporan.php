@@ -71,7 +71,7 @@
                             $file = substr($ld->bukti_absensi_toko,-3);
                             ?>
                             <?php if($file == 'pdf'){?>
-                              <a href="#" data-bs-toggle="modal" data-bs-target="#absenToko" onclick= "showDokumen(<?= $ld->id_absen_toko ?>)"><i class="fa fa-eye"></i></a>
+                              <a href="#" data-bs-toggle="modal" data-bs-target="#absenToko" onclick= "showDokumen(<?= $ld->id_absen_toko ?>)"><i class="fa-solid fa-file-pdf"></i></a>
                             <?php }else{ ?>
                                 <a href="#" class="pop">
                                 <img src="<?= base_url('assets/dokumen_absen_toko/'.$ld->bukti_absensi_toko)?>" width="100px" style="border-radius:5px">
