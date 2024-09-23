@@ -56,6 +56,7 @@
                     <tr>
                         <th width="40px">No</th>
                         <th>Nama Karyawan</th>
+                        <th class="text-center">Tanggal</th>
                         <th class="text-center">Bukti Absen</th>
                     </tr>
                     </thead>
@@ -66,6 +67,7 @@
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $ld->nama_pegawai ?></td>
+                            <td class="text-center"><?= is_null($ld->tgl_awal) ? ' - ' : mediumdate_indo($ld->tgl_awal).' - '.mediumdate_indo($ld->tgl_akhir) ?></td>
                             <td class="text-center">
                             <?php
                             $file = substr($ld->bukti_absensi_toko,-3);

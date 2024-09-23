@@ -85,11 +85,15 @@ class AbsensiTokoManual extends BaseController
       $file = $this->upload->data();
 
       $pegawai_id = $this->global ['pegawai_id'];
+      $tgl_awal = $this->input->post('tgl_awal');
+      $tgl_akhir = $this->input->post('tgl_akhir');
       $datecreated = DATE('Y-m-d H:i:s');
       $dokumen = $file['file_name'];
 
       $data = array(
         'pegawai_id' => $pegawai_id,
+        'tgl_awal' => $tgl_awal,
+        'tgl_akhir' => $tgl_akhir,
         'bukti_absensi_toko' => $dokumen,
         'datecreated' => $datecreated,
       );
