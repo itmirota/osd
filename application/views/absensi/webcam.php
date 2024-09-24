@@ -28,8 +28,8 @@
 	
 	<script language="JavaScript">
 		Webcam.set({
-			width: 320,
-			height: 240,
+			width: 240,
+			height: 320,
 			image_format: 'jpeg',
 			jpeg_quality: 50
 		});
