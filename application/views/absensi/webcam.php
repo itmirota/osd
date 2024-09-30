@@ -70,7 +70,7 @@
 					wilayah = result.address.city_district;
 					kota = result.address.city;
 
-					// save(data_uri,lat,lon,wilayah,kota);
+					save(data_uri,lat,lon,wilayah,kota);
 
 				}).always(function(result, status){
 					console.log(status);
