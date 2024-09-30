@@ -195,6 +195,11 @@ class Absensi extends BaseController
 		$wilayah = $this->input->post('wilayah');
 		$kota = $this->input->post('kota');
 
+    if (is_null($wilayah)) {
+      $wilayah = "";
+      $kota = "";
+    }
+
 		$image = str_replace('[removed]','', $image);
 		$image = base64_decode($image);
 		$filename = 'image_'.time().'.jpg';

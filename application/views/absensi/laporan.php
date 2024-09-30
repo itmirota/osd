@@ -30,7 +30,7 @@
                 <img src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_in)?>" width="100px" style="border-radius:10px">
                 </a><br>
                 <i class="fa fa-clock"></i> <?= $ld->time_in?><br>
-                <a href="<?= base_url('cekkoordinat/masuk/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= $ld->wilayah_in?>, <?= $ld->kota_in?></a>
+                <a href="<?= base_url('cekkoordinat/masuk/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= !empty($ld->wilayah_in) ? $ld->wilayah_in.','.$ld->kota_in : ' lokasi'?></a>
               </td>
               <td>
                 <?php if (isset($ld->time_out)){ ?>
@@ -38,7 +38,7 @@
                 <img src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_out)?>" width="100px" style="border-radius:10px">
                 </a><br>
                 <i class="fa fa-clock"></i> <?= $ld->time_out?><br>
-                <a href="<?= base_url('cekkoordinat/pulang/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= $ld->wilayah_in?>, <?= $ld->kota_in?></a>
+                <a href="<?= base_url('cekkoordinat/pulang/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= !empty($ld->wilayah_out) ? $ld->wilayah_out.','.$ld->kota_out : ' lokasi'?></a>
                 <?php }else{ ?>
                 <span class="badge text-bg-secondary">belum absen</span> 
                 <?php } ?>

@@ -48,7 +48,6 @@
 
 			function getLocation(data_uri){
 				if ('geolocation' in navigator) {
-				console.log('geolocation available');
 				navigator.geolocation.getCurrentPosition(position => {
 				lat = position.coords.latitude;
 				lon = position.coords.longitude;
@@ -71,7 +70,7 @@
 					wilayah = result.address.city_district;
 					kota = result.address.city;
 
-					save(data_uri,lat,lon,wilayah,kota);
+					// save(data_uri,lat,lon,wilayah,kota);
 
 				}).always(function(result, status){
 					console.log(status);
