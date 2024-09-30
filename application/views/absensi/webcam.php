@@ -68,8 +68,8 @@
 				url:API_URL,
 				}).done(function(result){
 					console.log(result.address);
-					wilayah = result.address.municipality;
-					kota = result.address.county;
+					wilayah = result.address.city_district;
+					kota = result.address.city;
 
 					save(data_uri,lat,lon,wilayah,kota);
 
@@ -89,16 +89,16 @@
 				})
 				.done(function(data) {
 					if (data > 0) {
-						alert('insert data sukses');
 						window.location.href="<?php echo base_url(); ?>Absensi";
+						alert('insert data sukses');
 					}
 				})
 				.fail(function() {
 					console.log("error");
 				})
 				.always(function() {
-					console.log("complete");
 					window.location.href="<?php echo base_url(); ?>Absensi";
+					console.log("complete");
 				});
 			}
 			
