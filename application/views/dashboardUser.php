@@ -46,62 +46,72 @@
   <h3 class="m-0"> Layanan OSD</h3>
   <p style="font-size:12px" class="m-0 mt-1">Layanan yang bisa kamu manfaatkan, seperti pengajuan izin, peminjaman, absensi</p>
 </div>
-<div class="d-flex flex-row justify-content-between">
-  <a href="<?= base_url('peminjaman') ?>">
-    <div class="d-flex flex-column">
-      <div class="d-flex justify-content-center mb-2">
-        <img class="img-menu" src="<?= base_url('assets/images/process.png')?>">
+<div class="d-flex flex-row justify-content-center p-4">
+  <div class="col-3 m-1">
+    <a href="<?= base_url('peminjaman') ?>">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center mb-2">
+          <img class="img-menu" src="<?= base_url('assets/images/process.png')?>">
+        </div>
+        <div class="d-flex justify-content-center text-header">
+          Peminjaman
+        </div>
       </div>
-      <div class="d-flex justify-content-center text-header">
-        Peminjaman
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
 
-  <a href="<?= base_url('perizinan') ?>">
-    <div class="d-flex flex-column">
-      <div class="d-flex justify-content-center mb-2">
-        <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
+  <div class="col-3 m-1">
+    <a href="<?= base_url('perizinan') ?>">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center mb-2">
+          <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
+        </div>
+        <div class="d-flex justify-content-center text-header">
+          Perizinan
+        </div>
       </div>
-      <div class="d-flex justify-content-center text-header">
-        Perizinan
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
 
   <?php if($divisi_id >= 16){ ?>
-  <a href="<?= base_url('Absensi-visit') ?>">
-    <div class="d-flex flex-column">
-      <div class="d-flex justify-content-center mb-2">
-        <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+  <div class="col-3 m-1">
+    <a href="<?= base_url('Absensi-visit') ?>">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center mb-2">
+          <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+        </div>
+        <div class="d-flex justify-content-center text-header">
+          Absensi Visit
+        </div>
       </div>
-      <div class="d-flex justify-content-center text-header">
-        Absensi Visit
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
 
-  <a href="<?= base_url('absen-toko') ?>">
-    <div class="d-flex flex-column">
-      <div class="d-flex justify-content-center mb-2">
-        <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
+  <div class="col-3 m-1">
+    <a href="<?= base_url('absen-toko') ?>">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center mb-2">
+          <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
+        </div>
+        <div class="d-flex justify-content-center text-header">
+          Absen Manual Toko
+        </div>
       </div>
-      <div class="d-flex justify-content-center text-header">
-        Absen Manual Toko
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
   <?php }else{?>
-  <a href="<?= base_url('absensi') ?>">
-    <div class="d-flex flex-column">
-      <div class="d-flex justify-content-center mb-2">
-        <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+  <div class="col-3 m-1">
+    <a href="<?= base_url('absensi') ?>">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center mb-2">
+          <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+        </div>
+        <div class="d-flex justify-content-center text-header">
+          Absensi
+        </div>
       </div>
-      <div class="d-flex justify-content-center text-header">
-        Absensi
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
   <?php } ?>
   
 </div>
