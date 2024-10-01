@@ -132,7 +132,8 @@ class Ruangan extends BaseController
 
     $this->global['pageHeader'] = 'Peminjaman Ruangan PT. Mirota KSM';
 
-    if($this->global['role'] == ROLE_STAFF){
+    $loginType = $this->session->userdata('loginType');
+    if($loginType == 'user'){
       $this->loadViewsUser("ruangan/datapeminjaman", $this->global, $data, NULL);
     }else{
       $this->loadViews("ruangan/datapeminjaman", $this->global, $data, NULL);
