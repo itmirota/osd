@@ -132,7 +132,7 @@ if(isset($name)){ ?>
                 </div>
                 <div class="col-md-4">
                   <label for="pegawai_id" class="form-label">Nama Karyawan</label>
-                  <select name="pegawai_id" id="pegawai_id" class="form-select tabel-PR">
+                  <select name="pegawai_id" id="pegawaiId" class="form-select tabel-PR">
                   </select>
                 </div> 
               </div>
@@ -333,10 +333,10 @@ function getPegawaiByDivisi(){
           '<option>---pilih pegawai---</option>';
       for ( i=0; i < data.length ; i++){
           html += 
-          '<option value="'+ data[i].id_pegawai +'">'+ data[i].nama_pegawai +'</option>';
+          '<option value="'+ data[i].id_pegawai +'">'+ data[i].id_pegawai +'|'+ data[i].nama_pegawai +'</option>';
       }
 
-      $("#pegawai_id").html(html);
+      $("#pegawaiId").html(html);
     }
   });
 }
