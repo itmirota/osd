@@ -117,7 +117,36 @@ class Absensi extends BaseController
     $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
 
-    $data['list_data']= $this->absensi_model->showReport();
+    $id = $this->input->post('id_pegawai');
+    $periode = $this->input->post('periode');
+    $bulanTahun = DATE('Y-m-d');
+    $bulanTahun = DATE('Y-m');
+
+
+    if (!empty($periode)){
+      $periodeAkhir = $periode.'-20';
+      $date = date_create($periode);
+    }else{
+      $periodeAkhir = $datenow.'-20';
+      $date = date_create($datenow);
+    }
+
+    $bulan = date_format($date,'m')-1;
+    $tahun = date_format($date,'Y');
+
+    $periodeAwal = $tahun.'-'.$bulan.'-21';
+
+    $where = array(
+      'date >=' => $periodeAwal,
+      'date <=' => $periodeAkhir,
+    );
+
+    $data = array(
+      'periodeAwal' => $periodeAwal,
+      'periodeAkhir' => $periodeAkhir,
+      'list_data' => $this->absensi_model->ReportAbsenOnline($id, $where),
+      'pegawai' => $this->crud_model->lihatdata('tbl_pegawai'),
+    );
 
     $this->loadViews("absensi/laporan", $this->global, $data, NULL);
   }

@@ -34,6 +34,21 @@ class Absensi_model extends CI_Model
     return $query->result();
   }
 
+  public function ReportAbsenOnline($id, $where){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi a');
+    $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
+    $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+    if ($id != 0){
+      $this->db->where('pegawai_id',$id);
+    }
+    $this->db->where($where);
+    $this->db->order_by('id_absensi','DESC');
+  
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function showReportByDate(){
     $this->db->select('*');
     $this->db->from('tbl_absensi a');

@@ -1,9 +1,10 @@
+<div class="container">
 <div class="text-judul mb-2" style="padding-top:5vh">
-  <h3 class="m-0"><i class="fa fa-list"></i> Peminjaman</h3>
-  <p class="m-0">Layanan peminjaman yang bisa kamu gunakan</p>
+  <h3 class="m-0">Peminjaman & Laporan Kerusakan</h3>
+  <p class="m-0" style="font-size:12px">Layanan peminjaman digunakan untuk mengajukan peminjaman dan pengajuan kerusakan</p>
 </div>
 <div class="d-flex flex-row justify-content-center">
-  <div class="col-3 m-4">
+  <div class="col-3 m-1">
     <a href="<?= base_url('Pinjamruangan')?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
@@ -15,7 +16,7 @@
       </div>
     </a>
   </div>
-  <div class="col-3 m-4">
+  <div class="col-3 m-1">
     <a href="<?= base_url('Formpeminjaman')?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
@@ -28,7 +29,7 @@
     </a>
   </div>
 
-  <div class="col-3 m-4">
+  <div class="col-3 m-1">
     <a href="<?= base_url('ruangan/laporankerusakan')?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
@@ -41,7 +42,7 @@
     </a>
   </div>
 
-  <div class="col-3 m-4">
+  <div class="col-3 m-1">
     <a href="<?= base_url('Formpeminjaman')?>">
       <div class="d-flex flex-column">
         <div class="d-flex justify-content-center mb-2">
@@ -53,5 +54,6 @@
       </div>
     </a>
   </div>
+</div>
 </div>
 <!-- Menu -->

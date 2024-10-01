@@ -1,3 +1,4 @@
+<div class="container">
 <div class="d-flex">
   <div class="col-md-12">
   <div class="card card-dashboard">
@@ -42,77 +43,68 @@
 
 <!-- Menu -->
 <div class="text-judul mt-2 mb-2">
-  <h3 class="m-0"><i class="fa fa-list"></i> Menu</h3>
-  <p class="m-0">Layanan osd yang bisa kamu gunakan</p>
+  <h3 class="m-0"> Layanan OSD</h3>
+  <p style="font-size:12px" class="m-0 mt-1">Layanan yang bisa kamu manfaatkan, seperti pengajuan izin, peminjaman, absensi</p>
 </div>
-<div class="d-flex flex-row justify-content-center">
-  <div class="col-3 m-4">
-    <a href="<?= base_url('peminjaman') ?>">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/process.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header">
-          Peminjaman
-        </div>
+<div class="d-flex flex-row justify-content-between">
+  <a href="<?= base_url('peminjaman') ?>">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center mb-2">
+        <img class="img-menu" src="<?= base_url('assets/images/process.png')?>">
       </div>
-    </a>
-  </div>
+      <div class="d-flex justify-content-center text-header">
+        Peminjaman
+      </div>
+    </div>
+  </a>
 
-  <div class="col-3 m-4">
-    <a href="<?= base_url('perizinan') ?>">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header">
-          Perizinan
-        </div>
+  <a href="<?= base_url('perizinan') ?>">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center mb-2">
+        <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
       </div>
-    </a>
-  </div>
+      <div class="d-flex justify-content-center text-header">
+        Perizinan
+      </div>
+    </div>
+  </a>
 
   <?php if($divisi_id >= 16){ ?>
-  <div class="col-3 m-4">
-    <a href="<?= base_url('Absensi-visit') ?>">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header">
-          Absensi Visit
-        </div>
+  <a href="<?= base_url('Absensi-visit') ?>">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center mb-2">
+        <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
       </div>
-    </a>
-  </div>
+      <div class="d-flex justify-content-center text-header">
+        Absensi Visit
+      </div>
+    </div>
+  </a>
 
-  <div class="col-3 m-4">
-    <a href="<?= base_url('absen-toko') ?>">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header">
-          Absen Manual Toko
-        </div>
+  <a href="<?= base_url('absen-toko') ?>">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center mb-2">
+        <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
       </div>
-    </a>
-  </div>
+      <div class="d-flex justify-content-center text-header">
+        Absen Manual Toko
+      </div>
+    </div>
+  </a>
   <?php }else{?>
-  <div class="col-3 m-4">
-    <a href="<?= base_url('absensi') ?>">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header">
-          Absensi
-        </div>
+  <a href="<?= base_url('absensi') ?>">
+    <div class="d-flex flex-column">
+      <div class="d-flex justify-content-center mb-2">
+        <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
       </div>
-    </a>
-  </div>
+      <div class="d-flex justify-content-center text-header">
+        Absensi
+      </div>
+    </div>
+  </a>
   <?php } ?>
   
 </div>
 <!-- Menu -->
+</div>
  
