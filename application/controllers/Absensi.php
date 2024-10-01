@@ -120,7 +120,7 @@ class Absensi extends BaseController
     $id = $this->input->post('id_pegawai');
     $periode = $this->input->post('periode');
     $bulanTahun = DATE('Y-m-d');
-    $bulanTahun = DATE('Y-m');
+    $datenow = DATE('Y-m');
 
 
     if (!empty($periode)){
