@@ -10,7 +10,7 @@
             halaman khusus untuk admin,
             </p>
             <p class="lead text-white m-0">
-            jika anda bukan admin silahkan kembali ke halaman <a href="<?= base_url(); ?>">User</a>
+            jika anda bukan admin silahkan kembali ke halaman <a href="<?= base_url(); ?>"><strong style="color:black">User</strong></a>
             </p>
           </div>
 
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="text-center mb-3 text-white">
-            Login sebagai <a href="<?= base_url(); ?>">User</a>
+            Login sebagai <a href="<?= base_url(); ?>"><strong style="color:black">User</strong></a>
           </div>
         </div>
       </div>

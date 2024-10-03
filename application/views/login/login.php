@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="text-center mb-3 text-white">
-            Login sebagai <a href="<?php base_url(); ?>login/admin">Admin</a>
+            Login sebagai <a href="<?php base_url(); ?>login/admin"><strong style="color:black">Admin</strong></a>
           </div>
 
         </div>
