@@ -96,6 +96,7 @@
             <th>Warna</th>
             <th>Tahun</th>
             <th>Kepemilikan</th>
+            <th>Barcode</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
             {
@@ -119,6 +120,11 @@
             <td><?php echo $data->warna_kendaraan ?></td>
             <td><?php echo $data->tahun ?></td>
             <td><?php echo $data->kepemilikan ?></td>
+            <td>
+              <a href="#" class="pop">
+                <img src="<?= base_url('assets/images/qrcode/kendaraan/'.$data->qrcode_kendaraan)?>" width="50px" style="border-radius:10px">
+              </a>
+            </td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_POOL)
             {
