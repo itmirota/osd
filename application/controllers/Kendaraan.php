@@ -128,7 +128,7 @@ class Kendaraan extends BaseController
       'no_rangka' => $no_rangka,
       'no_mesin' => $no_mesin,
       'kepemilikan' => $kepemilikan,
-      'qrcode_kendaraan' => $this->generateBarcode('kendaraan', $id),
+      'qrcode_kendaraan' => $this->generateBarcode('kendaraan', $id_kendaraan),
     );
 
     $sql = $this->crud_model->update($where, $data,'tbl_kendaraan');
