@@ -186,6 +186,18 @@ class Ruangan extends BaseController
   }
   }
 
+  public function deletePinjam(){
+    $id_pinjam_ruangan = $this->uri->segment(2);
+
+    $where = array(
+      'id_pinjam_ruangan' => $id_pinjam_ruangan
+    );
+
+    $this->crud_model->delete($where, 'tbl_pinjam_ruangan');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+    redirect('Pinjamruangan');
+  }
+
   public function laporankerusakan(){
     $this->global['pageTitle'] = 'SMART OSD | Asset Mirota';
       
