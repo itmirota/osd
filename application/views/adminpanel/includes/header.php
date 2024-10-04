@@ -313,13 +313,14 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU APPROVAL PERIZINAN -->
 
         <!-- MENU ABSENSI -->
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
-        {
-        ?>
+
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
+            <?php
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            {
+            ?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('laporanAbsensi'); ?>" class="sidebar-link">
                 <span>Absensi Online</span>
@@ -335,9 +336,14 @@ if($role != ROLE_STAFF){ ?>
                 <span>Absensi Toko Manual</span>
               </a>
             </li>
+            <?php } ?>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('laporan-istirahat'); ?>" class="sidebar-link">
+                <span>Absensi Istirahat</span>
+              </a>
+            </li>
           </ul>
         </li>
-        <?php } ?>
         <!-- /MENU ABSENSI -->
 
         <!-- MENU APPROVAL PERIZINAN -->

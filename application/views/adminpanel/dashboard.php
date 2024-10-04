@@ -1,5 +1,7 @@
 <div class="container-fluid p-0">
-  <?php
+
+<?php
+
   if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER){?>
     <h1 class="h3 mb-3"><strong>Info</strong> Perusahaan</h1>
     <div class="row">

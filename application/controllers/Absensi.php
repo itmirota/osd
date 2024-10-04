@@ -69,8 +69,8 @@ class Absensi extends BaseController
   }
 
   public function cekJarak(){
-    $latkantor = -7.779493249061303;
-    $logkantor = 110.43453643518103;
+    $latkantor = -7.779383571804818;
+    $logkantor = 110.43408080373274;
     $lat = $this->input->post('lat');
     $long = $this->input->post('long');
 
@@ -402,4 +402,117 @@ class Absensi extends BaseController
     }
 		echo json_encode($res);
 	}
+
+
+  // ABSENSI ISTIRAHAT
+
+  public function istirahat(){
+    $this->global['pageTitle'] = 'Absensi Istirahat Mirota KSM';
+    $this->global['pageHeader'] = 'Absensi Istirahat Karyawan ';
+
+    $pegawai_id = $this->global ['pegawai_id'];
+
+    $where = array(
+      'MONTH(date)' => DATE('m'),
+      'pegawai_id' => $pegawai_id 
+    );
+
+    $data['list_data']= $this->crud_model->GetDataById($where,'tbl_absensi_istirahat');
+    $data['datenow']= DATE('d M Y');
+
+    // Check if the "mobile" word exists in User-Agent 
+    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile")); 
+    
+    if($isMob){ 
+      $this->loadViewsUser("absensi/data_istirahat", $this->global, $data, NULL);
+    }else{ 
+      $this->set_notifikasi_swal('error','No no no !!!','Absensi hanya dapat diakses pada smartphone yaa..');
+      redirect('dashboardUser');
+    }
+  }
+
+  public function absensiIstirahat()
+	{
+    $this->global['pageTitle'] = 'Istirahat Karyawan Mirota KSM';
+    $this->global['pageHeader'] = 'Laporan Istirahat Karyawan Karyawan ';
+
+    $data = array(
+      'id_pegawai' => $this->pegawai_id,
+      'nama_pegawai' => $this->name,
+      'jenis_absen' => $this->uri->segment(2)
+    );
+
+    $this->loadViewsUser("absensi/webcam_istirahat", $this->global, $data, NULL);
+	}
+
+  public function simpanIstriahat(){
+		$id_pegawai = $this->input->post('id');
+		$jenis_absen = $this->input->post('jenis_absen');
+		$image = $this->input->post('imagecam');
+		$lat = $this->input->post('lat');
+		$lon = $this->input->post('lon');
+		$wilayah = $this->input->post('wilayah');
+		$kota = $this->input->post('kota');
+
+    if (is_null($wilayah)) {
+      $wilayah = "";
+      $kota = "";
+    }
+
+		$image = str_replace('[removed]','', $image);
+		$image = base64_decode($image);
+		$filename = 'image_'.time().'.jpg';
+		file_put_contents(FCPATH.'/assets/images/istirahat/'.$filename,$image);
+
+    if($jenis_absen == 'keluar'){
+      $data = array(
+        'pegawai_id' => $id_pegawai,
+        'latitude_out' => $lat,
+        'longitude_out' => $lon,
+        'bukti_out' => $filename,
+        'date' => DATE('Y-m-d'),
+        'time_out' => DATE('H:i')
+      );
+  
+      $res = $this->crud_model->input($data,'tbl_absensi_istirahat');
+    }else{
+      $id = $this->crud_model->getdataRowbyWhere('id_absensi_istirahat', 'pegawai_id ='.$id_pegawai, 'tbl_absensi_istirahat')->id_absensi_istirahat;
+      $where = array(
+        'id_absensi_istirahat' => $id,
+        'pegawai_id' => $id_pegawai,
+        'date' => DATE('Y-m-d'),
+      );
+
+      $data = array(
+        'time_in' => DATE('H:i:s'),
+        'latitude_in' => $lat,
+        'longitude_in' => $lon,
+        'bukti_in' => $filename
+      );
+  
+      $res = $this->crud_model->update($where,$data,'tbl_absensi_istirahat');
+    }
+		echo json_encode($res);
+	}
+
+  public function laporanIstirahat(){
+    $this->global['pageTitle'] = 'Laporan Istirahat Karyawan Mirota KSM';
+    $this->global['pageHeader'] = 'Laporan Istirahat Karyawan Karyawan ';
+
+    $divisi = $this->divisi_id;
+    $role = $this->global ['role'];
+
+    if ($role == ROLE_HRGA | $role == ROLE_SUPERADMIN){
+      $list_data = $this->absensi_model->getDataIstirahat();
+    }else{
+      $list_data = $this->absensi_model->getDataIstirahatByDivisi($divisi);
+    }
+
+    $data = array(
+      'list_data' => $list_data
+    );
+
+    $this->loadViews("absensi/laporan_istirahat", $this->global, $data, NULL);
+  }
+  // ABSENSI ISTIRAHAT
 }

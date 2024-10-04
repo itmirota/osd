@@ -106,6 +106,11 @@ $route['laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporan';
 $route['absen-toko'] = 'AbsensiTokoManual';
 $route['laporan-absen-toko'] = 'AbsensiTokoManual/laporan';
 
+// ABSEN Istirahat
+$route['istirahat'] = 'absensi/istirahat';
+$route['istirahat/(:any)'] = 'absensi/absensiIstirahat/$1';
+$route['laporan-istirahat'] = 'absensi/laporanIstirahat';
+
 
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
 

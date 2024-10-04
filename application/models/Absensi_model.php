@@ -131,6 +131,33 @@ public function ReportAbsenToko($id, $where){
   return $query->result();
 }
 
-// ENDABSENSI MANUAL TOKO
+// END ABSENSI MANUAL TOKO
 
+
+// ABSENSI ISTIRAHAT
+
+public function getDataIstirahat(){
+  $this->db->select('*');
+  $this->db->from('tbl_absensi_istirahat a');
+  $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
+  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+
+  $query = $this->db->get();
+  return $query->result();
+}
+
+public function getDataIstirahatByDivisi($divisi){
+  $this->db->select('*');
+  $this->db->from('tbl_absensi_istirahat a');
+  $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
+  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+  $this->db->where('b.divisi_id',$divisi);
+
+  $query = $this->db->get();
+  return $query->result();
+
+}
+// END ABSENSI ISTIRAHAT
 }
