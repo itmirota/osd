@@ -88,6 +88,7 @@ $route['deletekendaraan/(:num)'] = "kendaraan/delete/$1";
 $route['Absensi'] = 'absensi';
 $route['Absensi-visit'] = 'absensi/absensi_visit';
 $route['Absensi-visit/(:any)'] = 'absensi/Webcam_visit/$1';
+$route['export-excel-absensi/(:any)/(:any)/(:any)'] = 'absensi/exportExcel/$1/$2/$3';
 
 $route['kehadiran/(:any)'] = 'absensi/Webcam/$1';
 $route['laporanAbsensi'] = 'absensi/laporan';

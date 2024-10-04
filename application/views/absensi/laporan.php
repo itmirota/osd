@@ -12,10 +12,10 @@
                   <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#filterAbsenToko">
                   Filter
                   </button>
-                  <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#ExportExcel">
+                  <a href="<?= base_url('export-excel-absensi/'.$id.'/'.$periodeAwal.'/'.$periodeAkhir)?>" type="button" class="btn btn-success me-2">
                   Export Excel
-                  </button>
-                  <a href="<?= base_url('laporan-absen-toko')?>" type="button" class="btn btn-warning">
+                  </a>
+                  <a href="<?= base_url('laporanAbsensi')?>" type="button" class="btn btn-warning">
                   Refresh
                   </a>
               </div>

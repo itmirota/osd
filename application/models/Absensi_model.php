@@ -39,6 +39,8 @@ class Absensi_model extends CI_Model
     $this->db->from('tbl_absensi a');
     $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
     $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+    $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+    
     if ($id != 0){
       $this->db->where('pegawai_id',$id);
     }
