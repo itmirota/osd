@@ -121,7 +121,7 @@ function TapIn(lat, long){
     type: "POST",
     data:{lat : lat, long : long},
     success:function(hasil){
-      if(hasil > 65){
+      if(hasil > 650){
         Swal.fire({
           icon: "error",
           title: "DILUAR AREA !!",
@@ -156,7 +156,7 @@ function TapOut(lat, long){
     type: "POST",
     data:{lat : lat, long : long},
     success:function(hasil){
-      if(hasil > 65){
+      if(hasil > 650){
         Swal.fire({
           icon: "error",
           title: "DILUAR AREA !!",

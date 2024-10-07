@@ -147,6 +147,17 @@ public function getDataIstirahat(){
   return $query->result();
 }
 
+public function getDataRowIstirahat($id){
+  $this->db->select('id_absensi_istirahat');
+  $this->db->from('tbl_absensi_istirahat');
+  $this->db->where('pegawai_id',$id);
+  $this->db->where('date',DATE('Y-m-d'));
+  $this->db->order_by('id_absensi_istirahat','DESC');
+
+  $query = $this->db->get();
+  return $query->row();
+}
+
 public function getDataIstirahatByDivisi($divisi){
   $this->db->select('*');
   $this->db->from('tbl_absensi_istirahat a');

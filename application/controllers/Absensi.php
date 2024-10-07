@@ -421,7 +421,7 @@ class Absensi extends BaseController
     $data['datenow']= DATE('d M Y');
 
     // Check if the "mobile" word exists in User-Agent 
-    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile")); 
+    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "windows")); 
     
     if($isMob){ 
       $this->loadViewsUser("absensi/data_istirahat", $this->global, $data, NULL);
@@ -476,7 +476,8 @@ class Absensi extends BaseController
   
       $res = $this->crud_model->input($data,'tbl_absensi_istirahat');
     }else{
-      $id = $this->crud_model->getdataRowbyWhere('id_absensi_istirahat', 'pegawai_id ='.$id_pegawai, 'tbl_absensi_istirahat')->id_absensi_istirahat;
+      $id = $this->absensi_model->getDataRowIstirahat($id_pegawai)->id_absensi_istirahat;
+      
       $where = array(
         'id_absensi_istirahat' => $id,
         'pegawai_id' => $id_pegawai,
