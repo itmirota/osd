@@ -121,12 +121,11 @@ function TapIn(lat, long){
     type: "POST",
     data:{lat : lat, long : long},
     success:function(hasil){
-      alert(hasil);
       if(hasil > 60){
         Swal.fire({
           icon: "error",
           title: "DILUAR AREA !!",
-          text: "kamu berada di luar area PT. Mirota KSM",
+          text: "lokasi anda "+hasil+" di luar area PT. Mirota KSM",
           position: "center",
           showConfirmButton: false,
           timer: 3000
