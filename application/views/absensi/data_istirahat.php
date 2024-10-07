@@ -121,6 +121,7 @@ function TapIn(lat, long){
     type: "POST",
     data:{lat : lat, long : long},
     success:function(hasil){
+      alert(hasil);
       if(hasil > 60){
         Swal.fire({
           icon: "error",
