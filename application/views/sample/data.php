@@ -14,6 +14,11 @@
                     <button class="btn btn-md btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addVendor"><i class="fa fa-plus"></i> Tambah Data</button> 
                   </div>
                   <div class="btn-group">
+                    <a href="<?= base_url('export-excel-sample/'.$id)?>" type="button" class="btn btn-success me-2">
+                    Export Excel
+                    </a>
+                  </div>
+                  <div class="btn-group">
                   <?php switch ($data_sample->status_permintaan) {
                     case (0):?>
                       <a class="btn btn-md btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -67,7 +72,7 @@
           <div class="mb-1 row">
             <label for="inputPassword" class="col-sm-4 col-form-label">Deskripsi</label>
             <div class="col-sm-8">
-              <textarea readonly class="form-control-plaintext">: <?= $data_sample->nama_sample?></textarea>
+              <textarea readonly class="form-control-plaintext">: <?= $data_sample->deskripsi_sample?></textarea>
             </div>
           </div>
         </div>
@@ -242,8 +247,8 @@
 
 <!-- Modal Detail Hasil Cek-->
 <div class="modal fade" id="dokumenSample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modal-lg">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="titleAddPegawai">Detail Pengecekan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -2,7 +2,45 @@
 <div class="row">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button>
+    <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button> -->
+    <div class="form-group">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exportUser">
+        <i class="fa fa-user"></i> Export User
+        </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exportUser" tabindex="-1" aria-labelledby="filterAbsenTokoLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form action="<?=base_url('user/excel_user')?>" role="form" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="divisi" class="form-label">Departement</label>
+                      <select class="form-select" id="departement_id" onchange="getDivisiByDept()" required>
+                        <option>--- pilih departement ---</option>
+                        <?php foreach($departement as $data){?>
+                        <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="divisi" class="form-label">Divisi</label>
+                      <select id="divisi" name="divisi" class="form-select" required>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-success">Input</button>
+                  </div>
+                  </form>
+              </div>
+          </div>
+        </div>
+    </div>
   </div>
 
 
@@ -989,4 +1027,27 @@
       }
     });
 	}
+
+  function getDivisiByDept(){
+  let departement = $("#departement_id").val();
+  $.ajax({
+    type : "POST",
+    dataType : "JSON",
+    url:"<?php echo site_url("divisi/getDivisiByDept")?>/"+departement,
+    success : function(data){
+
+      let html = ' ';
+      let i;
+
+      html += 
+          '<option>---pilih divisi---</option>';
+      for ( i=0; i < data.length ; i++){
+          html += 
+          '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
+      }
+
+      $("#divisi").html(html);
+    }
+  });
+}
 </script>

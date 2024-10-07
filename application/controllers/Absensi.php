@@ -181,9 +181,6 @@ class Absensi extends BaseController
 
     $list_data = $this->absensi_model->ReportAbsenOnline($id, $where);
 
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="format input data pegawai.xlsx"');
-
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
 
@@ -421,7 +418,7 @@ class Absensi extends BaseController
     $data['datenow']= DATE('d M Y');
 
     // Check if the "mobile" word exists in User-Agent 
-    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile")); 
+    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "windows")); 
     
     if($isMob){ 
       $this->loadViewsUser("absensi/data_istirahat", $this->global, $data, NULL);
@@ -431,8 +428,7 @@ class Absensi extends BaseController
     }
   }
 
-  public function absensiIstirahat()
-	{
+  public function absensiIstirahat(){
     $this->global['pageTitle'] = 'Istirahat Karyawan Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Istirahat Karyawan Karyawan ';
 
@@ -502,8 +498,11 @@ class Absensi extends BaseController
 
     $divisi = $this->divisi_id;
     $role = $this->global ['role'];
+    $tgl_awal = $this->input->post('tgl_awal');
+    $tgl_akhir = $this->input->post('tgl_akhir');
+    $id_pegawai = $this->input->post('id_pegawai');
 
-    if ($role == ROLE_HRGA | $role == ROLE_SUPERADMIN){
+    if ($role == ROLE_HRGA | $role == ROLE_SUPERADMIN | $role == ROLE_MANAGER){
       $list_data = $this->absensi_model->getDataIstirahat();
     }else{
       $list_data = $this->absensi_model->getDataIstirahatByDivisi($divisi);
@@ -514,6 +513,131 @@ class Absensi extends BaseController
     );
 
     $this->loadViews("absensi/laporan_istirahat", $this->global, $data, NULL);
+  }
+  
+  public function exportExcelIstirahat(){
+    $id = $this->uri->segment(2);
+    $periodeAwal = $this->uri->segment(3);
+    $periodeAkhir = $this->uri->segment(4);
+    $awal = strftime('%d/%b/%Y', strtotime($periodeAwal));
+    $akhir = strftime('%d/%b/%Y', strtotime($periodeAkhir));
+
+    $where = array(
+      'date >=' => $periodeAwal,
+      'date <=' => $periodeAkhir,
+    );
+
+    $list_data = $this->absensi_model->ReportAbsenOnline($id, $where);
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $style_col = [
+      'font' => ['bold' => true], // Set font nya jadi bold
+      'alignment' => [
+      'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+          'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+          'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+          'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+          'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $styleRight = [
+      'font' => [
+        'bold' => true,
+      ],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+      ],
+      'borders' => [
+        'top' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+    ];
+        
+
+    // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+    $style_row = [
+      'alignment' => [
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+      'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+      'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+      'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+      'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $sheet->setCellValue('B2', 'Laporan Absensi PT. Mirota KSM'); // Set kolom A1 Sebagai Header
+    $sheet->setCellValue('B3', 'Periode: '.$awal.' - '.$akhir); //
+
+    // $sheet->mergeCells('B2:E2'); // Set Merge Cell pada kolom A1 sampai E1
+    
+    $sheet->setCellValue('B5', 'No');
+    $sheet->setCellValue('C5', 'Nama Karyawan');
+    $sheet->setCellValue('D5', 'Departement');
+    $sheet->setCellValue('E5', 'Divisi');
+    $sheet->setCellValue('F5', 'Tanggal');
+    $sheet->setCellValue('G5', 'Masuk');
+    $sheet->setCellValue('H5', 'Pulang');
+
+    $sheet->getStyle('B5')->applyFromArray($style_col);
+    $sheet->getStyle('C5')->applyFromArray($style_col);
+    $sheet->getStyle('D5')->applyFromArray($style_col);
+    $sheet->getStyle('E5')->applyFromArray($style_col);
+    $sheet->getStyle('F5')->applyFromArray($style_col);
+    $sheet->getStyle('G5')->applyFromArray($style_col);
+    $sheet->getStyle('H5')->applyFromArray($style_col);
+
+    $no = 1;
+    $numrow = 6;
+    foreach ($list_data as $ld) {
+      $sheet->setCellValue('B'.$numrow, $no);
+      $sheet->setCellValue('C'.$numrow, $ld->nama_pegawai);
+      $sheet->setCellValue('D'.$numrow, $ld->nama_departement);
+      $sheet->setCellValue('E'.$numrow, $ld->nama_divisi);
+      $sheet->setCellValue('F'.$numrow, $ld->date);
+      $sheet->setCellValue('G'.$numrow, $ld->time_in);
+      $sheet->setCellValue('H'.$numrow, $ld->time_out);
+
+      $sheet->getColumnDimension('C')->setAutoSize(true);
+      $sheet->getColumnDimension('D')->setAutoSize(true);
+      $sheet->getColumnDimension('E')->setAutoSize(true);
+      $sheet->getColumnDimension('F')->setAutoSize(true);
+      $sheet->getColumnDimension('G')->setAutoSize(true);
+      $sheet->getColumnDimension('H')->setAutoSize(true);
+  
+      $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
+
+      $no++;
+      $numrow++;
+    }
+
+
+    $writer = new Xlsx($spreadsheet);
+    header('Content-Type: application/vnd.ms-excel');
+
+    if (!empty($periodeAwal) && !empty($periodeAkhir)){
+        header('Content-Disposition: attactchment;filename="Laporan Kebersihan" '.$awal.' - '.$akhir.'.xlsx');
+    }else{
+        header('Content-Disposition: attactchment;filename="Laporan Kebersihan".xlsx');
+    }
+
+    header('Cache-Control: max-age=0');
+    $writer->save("php://output");
+    exit();
   }
   // ABSENSI ISTIRAHAT
 }

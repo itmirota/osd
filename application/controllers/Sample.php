@@ -1,6 +1,10 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
  * @author : Tri Cahya Wibawa
@@ -119,8 +123,9 @@ class Sample extends BaseController
     $id = $this->uri->segment(2);
 
     $data = array(
-      'data_sample' => $this->crud_model->getdataRowbyWhere('*', array('id_sample_permintaan' => $id), 'tbl_sample_permintaan'),
+      'data_sample' => $this->crud_model->getdataRowbyWhere('*', 'id_sample_permintaan ='.$id, 'tbl_sample_permintaan'),
       'list_data' => $this->sample_model->getDatabyWhere('permintaan_sample_id ='.$id),
+      'id' => $id
     );
 
     $this->loadViews("sample/data", $this->global, $data, NULL);
@@ -219,6 +224,129 @@ class Sample extends BaseController
     $data['list_data'] = $this->crud_model->lihatdata('tbl_sample_vendor');
 
     $this->loadViews("sample/laporan", $this->global, $data, NULL);
+  }
+
+  public function exportExcel(){
+    $id = $this->uri->segment(2);
+
+    $list_data = $this->sample_model->getDatabyWhere('permintaan_sample_id ='.$id);
+    $data_sample = $this->crud_model->getdataRowbyWhere('*', 'id_sample_permintaan='.$id, 'tbl_sample_permintaan');
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $style_col = [
+      'font' => ['bold' => true], // Set font nya jadi bold
+      'alignment' => [
+      'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+          'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+          'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+          'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+          'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $styleRight = [
+      'font' => [
+        'bold' => true,
+      ],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+      ],
+      'borders' => [
+        'top' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+    ];
+        
+
+    // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+    $style_row = [
+      'alignment' => [
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+      'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+      'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+      'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+      'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $sheet->mergeCells('B2:D2'); // Set Merge Cell pada kolom A1 sampai E1
+    $sheet->setCellValue('B2', 'Laporan Uji Sampel PT. Mirota KSM'); // Set kolom A1 Sebagai Header
+    
+
+    $sheet->setCellValue('B4', 'Nama Sampel');
+    $sheet->setCellValue('B5', 'Kategori');
+    $sheet->setCellValue('B6', 'Kategori Bahan');
+    $sheet->setCellValue('B7', 'Jumlah');
+    $sheet->setCellValue('B8', 'Deskripsi');
+
+    $sheet->setCellValue('C4', $data_sample->nama_sample); // Set kolom A1 Sebagai Header
+    $sheet->setCellValue('C5', $data_sample->kategori_penggunaan); // Set kolom A1 Sebagai Header
+    $sheet->setCellValue('C6', $data_sample->kategori_bahan); // Set kolom A1 Sebagai Header
+    $sheet->setCellValue('C7', $data_sample->jumlah_sample.' '.$data_sample->satuan_sample); // Set kolom A1 Sebagai Header
+    $sheet->setCellValue('C8', $data_sample->deskripsi_sample); // Set kolom A1 Sebagai Header
+
+    
+    $sheet->setCellValue('B10', 'Tanggal Masuk');
+    $sheet->setCellValue('C10', 'Nama Supplier');
+    $sheet->setCellValue('D10', 'Harga');
+    $sheet->setCellValue('E10', 'Tanggal Cek');
+    $sheet->setCellValue('F10', 'Keterangan');
+    $sheet->setCellValue('G10', 'Tanggal Selesai Uji');
+    $sheet->setCellValue('H10', 'Kesimpulan');
+
+    $sheet->getStyle('B10')->applyFromArray($style_col);
+    $sheet->getStyle('C10')->applyFromArray($style_col);
+    $sheet->getStyle('D10')->applyFromArray($style_col);
+    $sheet->getStyle('E10')->applyFromArray($style_col);
+    $sheet->getStyle('F10')->applyFromArray($style_col);
+    $sheet->getStyle('G10')->applyFromArray($style_col);
+    $sheet->getStyle('H10')->applyFromArray($style_col);
+
+    $no = 1;
+    $numrow = 11;
+    foreach ($list_data as $ld) {
+      $sheet->setCellValue('B'.$numrow, $ld->tgl_masuk);
+      $sheet->setCellValue('C'.$numrow, $ld->nama_supplier);
+      $sheet->setCellValue('D'.$numrow, $ld->harga);
+      $sheet->setCellValue('E'.$numrow, $ld->tgl_cek);
+      $sheet->setCellValue('F'.$numrow, $ld->keterangan);
+      $sheet->setCellValue('G'.$numrow, $ld->tgl_selesai_uji);
+      $sheet->setCellValue('H'.$numrow, $ld->kesimpulan);
+
+      $sheet->getColumnDimension('B')->setAutoSize(true);
+      $sheet->getColumnDimension('C')->setAutoSize(true);
+      $sheet->getColumnDimension('D')->setAutoSize(true);
+      $sheet->getColumnDimension('E')->setAutoSize(true);
+      $sheet->getColumnDimension('F')->setAutoSize(true);
+      $sheet->getColumnDimension('G')->setAutoSize(true);
+      $sheet->getColumnDimension('H')->setAutoSize(true);
+
+      $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
+
+      $no++;
+      $numrow++;
+    }
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attactchment;filename=Laporan Sample '.$data_sample->nama_sample.'.xlsx');
+    header('Cache-Control: max-age=0');
+
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("php://output");
+    exit();
   }
 // Pengujian Sample
 }

@@ -127,9 +127,6 @@ class Kebersihan extends BaseController
       $list_data = $this->master_model->getPerawatanRuanganbyWhere($where);
     }
 
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="format input data pegawai.xlsx"');
-
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
 

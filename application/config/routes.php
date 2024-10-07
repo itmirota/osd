@@ -110,6 +110,7 @@ $route['laporan-absen-toko'] = 'AbsensiTokoManual/laporan';
 $route['istirahat'] = 'absensi/istirahat';
 $route['istirahat/(:any)'] = 'absensi/absensiIstirahat/$1';
 $route['laporan-istirahat'] = 'absensi/laporanIstirahat';
+$route['export-excel-istirahat'] = 'absensi/exportExcelIstirahat';
 
 
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
@@ -151,6 +152,7 @@ $route['hapusKategori/(:any)/(:any)'] = 'evaluasiKerja/hapusKategori/$1/$2';
 //SAMPLE
 $route['sample-masuk'] = 'sample/listdata';
 $route['sample-masuk/(:any)/(:any)'] = 'sample/updateStatus/$1/$2';
+$route['export-excel-sample/(:any)'] = 'sample/exportExcel/$1';
 
 $route['permintaan-sample'] = 'sample/dataPermintaan';
 $route['uji-sample/(:any)'] = 'sample/dataUji/$1';

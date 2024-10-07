@@ -21,6 +21,20 @@ class User_model extends CI_Model
         $result = $query->result();        
         return $result;
     }
+
+    function getUserByWhere($where)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.username, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.divisi_id, pegawai.id_pegawai as pegawai_id, divisi.nama_divisi');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
+        $this->db->join('tbl_pegawai as pegawai','pegawai.nip = BaseTbl.nip');
+        $this->db->join('tbl_divisi as divisi','divisi.id_divisi = pegawai.divisi_id');
+        $this->db->where($where);
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
     
     /**
      * This function is used to get the user roles information

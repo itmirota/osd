@@ -26,11 +26,12 @@ class Pegawai extends BaseController
 
   // ADMIN AREA
   public function listData(){
-    $this->global['pageTitle'] = 'SMART OSD | Perizinan Mirota KSM';
-    $this->global['pageHeader'] = 'Perizinan Manual Karyawan ';
+    $this->global['pageTitle'] = 'SMART OSD | Data Karyawan Mirota KSM';
+    $this->global['pageHeader'] = 'Data Karyawan';
 
     $data = array(
       'list_data' => $this->pegawai_model->showData(),
+      'departement' => $this->crud_model->lihatdata('tbl_departement'),
       'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai('status','aktif'),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
@@ -721,6 +722,5 @@ class Pegawai extends BaseController
       redirect('Datapegawai');
     }
   }
-
   // END ADMIN AREA
 }
