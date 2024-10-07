@@ -96,7 +96,7 @@ function showPosition(position) {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
-    radius: 60
+    radius: 65
   }).addTo(map);
 }
 
@@ -121,7 +121,7 @@ function TapIn(lat, long){
     type: "POST",
     data:{lat : lat, long : long},
     success:function(hasil){
-      if(hasil > 60){
+      if(hasil > 65){
         Swal.fire({
           icon: "error",
           title: "DILUAR AREA !!",
@@ -156,11 +156,11 @@ function TapOut(lat, long){
     type: "POST",
     data:{lat : lat, long : long},
     success:function(hasil){
-      if(hasil > 60){
+      if(hasil > 65){
         Swal.fire({
           icon: "error",
           title: "DILUAR AREA !!",
-          text: "kamu berada di luar area PT. Mirota KSM",
+          text: "lokasi anda "+hasil+" kamu berada di luar area PT. Mirota KSM",
           position: "center",
           showConfirmButton: false,
           timer: 3000
