@@ -421,7 +421,7 @@ class Absensi extends BaseController
     $data['datenow']= DATE('d M Y');
 
     // Check if the "mobile" word exists in User-Agent 
-    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "windows")); 
+    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile")); 
     
     if($isMob){ 
       $this->loadViewsUser("absensi/data_istirahat", $this->global, $data, NULL);
