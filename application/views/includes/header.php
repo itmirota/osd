@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#f45">
-	<meta name="description" content="Pencatatan Inventaris kepemilikan mirota ksm">
+  <meta name="theme-color" content="#0956AF">
 	<meta name="author" content="Tri Cahya">
 	<!-- <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"> -->
   <link rel="icon" type="image/x-icon" href="<?= base_url('assets/dist/img/favicon.png')?>">
