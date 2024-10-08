@@ -1,9 +1,9 @@
-const CACHE_NAME = 'SW-001';
+const CACHE_NAME = 'SW-OSD-001';
 const toCache = [
     '/',
-    'assets/js/web.webmanifest',
-    'assets/js/register.js',
-    'assets/img/icon.png',
+    'web.webmanifest',
+    'assets/dist/js/register.js',
+    'assets/dist/img/favicon.png',
 ];
 
 self.addEventListener('install', function(event) {
