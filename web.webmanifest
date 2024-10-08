@@ -1,0 +1,17 @@
+{
+    "name": "SMART OSD",
+    "short_name": "osd.mirota.id",
+    "description": "Progressive Web App OSD.",
+    "icons": [
+      {
+        "src": "assets/dist/img/favicon.png",
+        "sizes": "500x500",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "start_url": "https://osd.mirota.id",
+    "display": "fullscreen",
+    "theme_color": "#f45",
+    "background_color": "#fff"
+}
