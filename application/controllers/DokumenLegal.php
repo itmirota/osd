@@ -71,4 +71,17 @@ class DokumenLegal extends BaseController
 
     echo json_encode($dokumen);
   }
+
+  public function hapus($id){
+
+    $where = array(
+    'id_dokumen' => $id
+    );
+
+    $cek = $this->crud_model->getdataRowbyWhere('file_dokumen', 'id_dokumen ='.$id ,'tbl_dokumenLegal');
+    unlink( FCPATH.'assets/dokumen_legal/'.$cek->file_dokumen);
+    $this->crud_model->delete($where, 'tbl_dokumenLegal');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+    redirect('dokumen-legal');
+  }
 }

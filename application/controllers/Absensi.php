@@ -419,8 +419,9 @@ class Absensi extends BaseController
 
     // Check if the "mobile" word exists in User-Agent 
     $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile")); 
+    $isIPhone = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "iphone")); 
     
-    if($isMob){ 
+    if($isMob | $isIPhone){ 
       $this->loadViewsUser("absensi/data_istirahat", $this->global, $data, NULL);
     }else{ 
       $this->set_notifikasi_swal('error','No no no !!!','Absensi hanya dapat diakses pada smartphone yaa..');

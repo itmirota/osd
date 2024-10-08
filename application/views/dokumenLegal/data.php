@@ -46,6 +46,9 @@
               <th>Nama Dokumen</th>
               <th class="text-center">Tanggal</th>
               <th class="text-center">Dokumen</th>
+              <?php if($role == ROLE_SUPERADMIN){?>
+              <th class="text-center">#</th>
+              <?php } ?>
           </tr>
           </thead>
           <tbody>
@@ -59,6 +62,11 @@
               <td class="text-center">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#dokumenLegal" onclick= "showDokumen(<?= $ld->id_dokumen ?>)"><i class="fa-solid fa-file-pdf"></i></a>
               </td>
+              <?php if($role == ROLE_SUPERADMIN){?>
+              <td class="text-center">
+                <a href="<?= base_url('dokumenLegal/hapus/'.$ld->id_dokumen)?>"><i class="fa fa-trash"></i></a>
+              </td>
+              <?php } ?>
             </tr>
             <?php } ?>
           </tbody>
@@ -101,8 +109,4 @@
       }
     });
   };
-
-  function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-  }
 </script>
