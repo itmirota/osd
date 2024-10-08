@@ -234,7 +234,7 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU KEBERSIHAN -->
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
         {
         ?>
         <li class="sidebar-item">
@@ -244,7 +244,21 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php } ?>
-        <!-- /MENU RUANGAN -->
+        <!-- /MENU KEBERSIHAN -->
+
+        <!-- MENU KEBERSIHAN -->
+        <?php
+        if($role == ROLE_SUPERADMIN | $role == ROLE_MANAGER | $role == ROLE_HRGA)
+        {
+        ?>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('dokumen-legal'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-file"></i>
+            <span>Dokumen Legal</span>
+          </a>
+        </li>
+        <?php } ?>
+        <!-- /MENU KEBERSIHAN -->
 
         <!-- MENU PENGAJUAN PERIZINAN -->
         <!-- <?php

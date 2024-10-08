@@ -159,6 +159,9 @@ $route['uji-sample/(:any)'] = 'sample/dataUji/$1';
 
 $route['update-status-permintaan/(:any)/(:any)'] = 'sample/updateStatusPermintaan/$1/$2';
 
+// DOKUMEN LEGAL
+$route['dokumen-legal'] = 'dokumenLegal';
+
 /*********** USER DEFINED ROUTES *******************/
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';
