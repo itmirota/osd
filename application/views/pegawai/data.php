@@ -296,18 +296,6 @@
                 <input type="date" name="tgl_lahir" class="form-control tabel-PR" required />
               </div>
               <div class="col-md-10">
-                <label for="shio" class="form-label">SHIO</label>
-                <input type="text" name="shio" placeholder="tulis shio disini" class="form-control tabel-PR"/>
-              </div> 
-              <div class="col-md-10">
-                <label for="zodiak" class="form-label">ZODIAK</label>
-                <input type="text" name="zodiak" placeholder="tulis zodiak disini" class="form-control tabel-PR"/>
-              </div> 
-              <div class="col-md-10">
-                <label for="weton" class="form-label">WETON</label>
-                <input type="text" name="weton" placeholder="tulis weton disini" class="form-control tabel-PR"/>
-              </div> 
-              <div class="col-md-10">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                 <select name="jenis_kelamin" class="form-select tabel-PR" required>
                   <option>----- pilih jenis kelamin ---</option>
@@ -499,18 +487,6 @@
                 <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
                 <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control tabel-PR"/>
               </div>
-              <div class="col-md-10">
-                <label for="shio" class="form-label">SHIO</label>
-                <input type="text" name="shio" id="shio" placeholder="tulis shio disini" class="form-control tabel-PR"/>
-              </div> 
-              <div class="col-md-10">
-                <label for="zodiak" class="form-label">ZODIAK</label>
-                <input type="text" name="zodiak" id="zodiak" placeholder="tulis zodiak disini" class="form-control tabel-PR"/>
-              </div> 
-              <div class="col-md-10">
-                <label for="weton" class="form-label">WETON</label>
-                <input type="text" name="weton" id="weton" placeholder="tulis weton disini" class="form-control tabel-PR"/>
-              </div> 
               <div class="col-md-10">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                 <select name="jenis_kelamin" id="jenis_kelamin" class="form-select tabel-PR" required>
@@ -919,9 +895,6 @@
         document.getElementById("kuota_cuti").value = pegawai.kuota_cuti;
         document.getElementById("tempat_lahir").value = pegawai.tempat_lahir;
         document.getElementById("tgl_lahir").value = pegawai.tgl_lahir;
-        document.getElementById("shio").value = pegawai.shio;
-        document.getElementById("zodiak").value = pegawai.zodiak;
-        document.getElementById("weton").value = pegawai.weton;
         document.getElementById("jenis_kelamin").value = pegawai.jenis_kelamin;
         document.getElementById("pendidikan_terakhir").value = pegawai.pendidikan_terakhir;
         document.getElementById("jurusan").value = pegawai.jurusan;
