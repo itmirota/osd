@@ -59,5 +59,4 @@ class Cronjob extends BaseController
 
     $this->crud_model->update('sisa_cuti != 0', $data, 'tbl_pegawai');
   }
-
 }

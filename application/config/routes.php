@@ -50,6 +50,9 @@ $route['404_override'] = 'error';
 $route['Datapegawai'] = 'pegawai/listData';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 
+$route['api/karyawan'] = 'api/PegawaiController/index';
+$route['api/karyawan/store'] = 'api/PegawaiController/store';
+
 // SATPAM
 $route['report-saldo'] = 'saldoSatpam/dataSaldo';
 $route['satpam/pembelian-galon'] = 'transaksiSatpam';

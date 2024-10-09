@@ -191,14 +191,6 @@ class Pegawai extends BaseController
     return $zodiak;
   }
 
-  public function hasil($hasil){
-    $shio = $this->shio($hasil);
-    $zodiak = $this->zodiak($hasil);
-    $weton = $this->weton($hasil);
-
-    echo "shio: ".$shio." zodiak: ".$zodiak." weton: ".$weton;
-  }
-
   function intPart($floatNum) {
     return ($floatNum<-0.0000001 ? ceil($floatNum-0.0000001) : floor($floatNum+0.0000001));
   }
