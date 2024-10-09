@@ -255,9 +255,7 @@ class User extends BaseController
         $this->load->library('form_validation');
         
         $userId = $this->input->post('userId');
-        $page = $this->uri->segment(1);
-
-        var_dump($page);
+        $page = $this->uri->segment(2);
         
         $this->form_validation->set_rules('username','username','trim|required|xss_clean|max_length[128]');
         $this->form_validation->set_rules('password','Password','max_length[20]');
