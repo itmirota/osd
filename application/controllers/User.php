@@ -252,72 +252,65 @@ class User extends BaseController
      */
     function editUser()
     {
-        if($this->isAdmin() == TRUE)
+        $this->load->library('form_validation');
+        
+        $userId = $this->input->post('userId');
+        $page = $this->uri->segment(1);
+
+        var_dump($page);
+        
+        $this->form_validation->set_rules('username','username','trim|required|xss_clean|max_length[128]');
+        $this->form_validation->set_rules('password','Password','max_length[20]');
+        $this->form_validation->set_rules('role','Role','trim|required|numeric');     
+        if($this->form_validation->run() == FALSE)
         {
-            $this->loadThis();
+            if($page == 'editUser'){
+                redirect('userListing');
+            }else{
+                redirect('Datapegawai'); 
+            }
         }
         else
         {
-            $this->load->library('form_validation');
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $roleId = $this->input->post('role');
             
-            $userId = $this->input->post('userId');
-            $page = $this->uri->segment(1);
-
-            var_dump($page);
+            $userInfo = array();
             
-            $this->form_validation->set_rules('username','username','trim|required|xss_clean|max_length[128]');
-            $this->form_validation->set_rules('password','Password','max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');     
-            if($this->form_validation->run() == FALSE)
+            if(empty($password))
             {
-                if($page == 'editUser'){
-                    redirect('userListing');
-                }else{
-                    redirect('Datapegawai'); 
-                }
+                $userInfo = array(
+                    'username'=>$username,
+                    'roleId'=>$roleId,
+                    'updatedBy'=>$this->vendorId, 
+                    'updatedDtm'=>date('Y-m-d H:i:s'));
             }
             else
             {
-                $username = $this->input->post('username');
-                $password = $this->input->post('password');
-                $roleId = $this->input->post('role');
-                
-                $userInfo = array();
-                
-                if(empty($password))
-                {
-                    $userInfo = array(
-                        'username'=>$username,
-                        'roleId'=>$roleId,
-                        'updatedBy'=>$this->vendorId, 
-                        'updatedDtm'=>date('Y-m-d H:i:s'));
-                }
-                else
-                {
-                    $userInfo = array(
-                        'username'=>$username, 
-                        'password'=>getHashedPassword($password), 
-                        'roleId'=>$roleId,
-                        'updatedBy'=>$this->vendorId, 
-                        'updatedDtm'=>date('Y-m-d H:i:s'));
-                }
-                
-                $result = $this->user_model->editUser($userInfo, $userId);
-                
-                if($result == true)
-                {
-                    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-                }
-                else
-                {
-                    $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
-                }
+                $userInfo = array(
+                    'username'=>$username, 
+                    'password'=>getHashedPassword($password), 
+                    'roleId'=>$roleId,
+                    'updatedBy'=>$this->vendorId, 
+                    'updatedDtm'=>date('Y-m-d H:i:s'));
+            }
+            
+            $result = $this->user_model->editUser($userInfo, $userId);
+            
+            if($result == true)
+            {
+                $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+            }
+            else
+            {
+                $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
+            }
 
-                if($page == 'editUser'){
-                    redirect('userListing');
-                }else{
-                    redirect('Datapegawai'); 
-                }
+            if($page == 'editUser'){
+                redirect('userListing');
+            }else{
+                redirect('Datapegawai'); 
             }
         }
     }
