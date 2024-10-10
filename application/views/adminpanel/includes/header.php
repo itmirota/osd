@@ -248,7 +248,7 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU KEBERSIHAN -->
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_MANAGER | $role == ROLE_HRGA | $role == ROLE_KABAG)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id <= 4)
         {
         ?>
         <li class="sidebar-item">
