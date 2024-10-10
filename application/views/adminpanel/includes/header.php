@@ -248,7 +248,7 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU KEBERSIHAN -->
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_MANAGER | $role == ROLE_HRGA)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_MANAGER | $role == ROLE_HRGA | $role == ROLE_KABAG)
         {
         ?>
         <li class="sidebar-item">
@@ -362,7 +362,7 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU APPROVAL PERIZINAN -->
         <?php
-        if($role == ROLE_SUPERADMIN)
+        if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)
         {
         ?>
         <li class="sidebar-header">
