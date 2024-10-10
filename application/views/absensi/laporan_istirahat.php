@@ -54,7 +54,7 @@
               <td style="color:<?= ($selisihmasuk > 3600 | $selisihmasuk < -3600) ? 'red' : 'green' ?>">
                 <?php if (isset($ld->time_in)){ ?>
                 <a href="#" class="pop">
-                <img src="<?= base_url('assets/images/istirahat/'.$ld->bukti_out)?>" width="100px" style="border-radius:10px">
+                <img src="<?= base_url('assets/images/istirahat/'.$ld->bukti_in)?>" width="100px" style="border-radius:10px">
                 </a><br>  
                 <i class="fa fa-clock"></i> <?= $ld->time_in?>
                 <?php }else{ ?>
