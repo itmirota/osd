@@ -4,7 +4,7 @@
     <div class="card">
     <div class="card-body">
     <div class="d-flex justify-content-end mb-4">
-      <button class="btn btn-primary " type="button" data-bs-toggle="modal" data-bs-target="#ModalAdd"><i class="fa fa-add"></i> Booking barang</button>
+      <button class="btn btn-primary " type="button" data-bs-toggle="modal" data-bs-target="#AddPeminjamanBarang"><i class="fa-solid fa-plus"></i> Pinjam Barang</button>
     </div>
     <div class="calendar" id='calendar'></div>
     </div>
@@ -12,7 +12,7 @@
   </div>
 </div>
 <?php 
-if(isset($name)){ ?>
+if($page != 'Pinjambarang'){ ?>
 <div class="row" >
   <div class="card">
     <div class="card-body table-responsive no-padding">
@@ -102,10 +102,10 @@ if(isset($name)){ ?>
 <?php } ?>
 
 <!-- Modal -->
-<div class="modal fade" id="ModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddPeminjamanBarang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form action="<?=base_url('barang/booking')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('booking/'.$page)?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Booking barang</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -113,9 +113,12 @@ if(isset($name)){ ?>
       <div class="modal-body">
         <div class="form-group">
           <div class="row">
-            <span>data peminjam</span>
-            <div class="col-md-12 mb-4">
-              <div class="row">
+            <div id="input" style="display:none">
+              <div class="d-flex justify-content-end mb-4">
+                <button class="btn btn-primary me-2" type="button" onclick="scan()"><i class="fa-solid fa-qrcode"></i> Scan</button>
+              </div>
+              <div class="col-12">
+                <div class="row">
                 <div class="col-md-4">
                   <label for="departement_id" class="form-label">Departement</label>
                   <select id="departement_id" onchange="getDivisiByDept()" class="form-select tabel-PR">
@@ -127,43 +130,56 @@ if(isset($name)){ ?>
                 </div>
                 <div class="col-md-4">
                   <label for="divisi_id" class="form-label">Divisi</label>
-                  <select name="divisiByDept" id="divisiByDept"  onchange="getPegawaiByDivisi()" class="form-select tabel-PR">
+                  <select name="divisiByDept" id="divisiByDept" onchange="getBarangByDivisi()" class="form-select tabel-PR">
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <label for="pegawai_id" class="form-label">Nama Karyawan</label>
-                  <select name="pegawai_id" id="pegawaiId" class="form-select tabel-PR">
+                  <label for="barang_id" class="form-label">Nama Barang</label>
+                  <select name="barang_id" id="barang_input"  class="form-select tabel-PR">
                   </select>
                 </div> 
+                </div>
               </div>
-            </div> 
-            <span class="mb-4" >data barang yang dipinjam</span>
-            <div class="col-md-12" id="scannerbarcode">
+            </div>
+            <!-- SCAN BARCODE -->
+            <div class="col-md-12" id="scannerbarcode"  style="display:block">
+              <div class="d-flex justify-content-end mb-4">
+                <button class="btn btn-primary me-2" type="button" onclick="manual()"><i class="fa-solid fa-plus"></i> Manual</button>
+              </div>
               <div style="width:100%;" id="reader"></div>
             </div>
             <div class="col-md-12" id="inputbarang" style="display:none">
               <div class="row">
-                <div class="col-md-4">
-                  <label for="barang_id" class="form-label">Barang</label>
-                  <select id="barang_id" name="barang_id" placeholder="barang"  onchange="CekBarangTersedia()" class="form-select tabel-PR">
-                    <option>--pilih barang--</option>
-                    <?php foreach($barang as $data){?>
-                    <option value=<?= $data->id_barang ?>><?= $data->nama_barang ?></option>
-                    <?php } ?>
-                  </select>
-                </div> 
-                <div class="col-md-4">
+                <div class="col-md-6">
+                  <label for="jumlah_barang_tersedia" class="form-label">Nama Barang</label>
+                  <input type="hidden" name="barang_scan" id="barang_scan" class="form-control-plaintext tabel-PR" readonly />
+                  <input type="text" id="nama_barang" class="form-control-plaintext tabel-PR" readonly />
+                </div>
+                <div class="col-md-6">
                   <label for="jumlah_barang_tersedia" class="form-label">Stok Barang Tersedia</label>
                   <input type="text" id="jml_barang_tersedia" class="form-control-plaintext tabel-PR" readonly />
                 </div>
-                <div class="col-md-4">
-                  <label for="jumlah_barang" class="form-label">Jumlah pinjam</label>
-                  <input type="text" name="jumlah_barang" placeholder="masukkan jumlah disini" class="form-control tabel-PR" required />
-                </div>
               </div>
             </div>
+            <!-- SCAN BARCODE -->
+            <div class="col-md-4">
+              <label for="pegawai_id" class="form-label">Nama Karyawan</label>
+              <?php if($page == 'Pinjambarang'){?>
+              <input type="text" class="form-control-plaintext tabel-PR" value="<?= $name ?>" readonly />
+              <?php } else {?>
+              <select name="pegawai_id" id="id_pegawai" style="width:100%" class="form-select tabel-PR">
+                <?php foreach($pegawai as $p){?>
+                  <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
+                <?php } ?>
+              </select>
+              <?php } ?>
+            </div> 
+            <div class="col-md-4">
+              <label for="jumlah_barang" class="form-label">Jumlah pinjam</label>
+              <input type="text" name="jumlah_barang" placeholder="masukkan jumlah disini" class="form-control tabel-PR" required />
+            </div>
 
-            <div class="col-md-12">
+            <div class="col-md-4">
               <label for="tgl_mulai" class="form-label">Tanggal Pinjam</label>
               <input type="datetime-local" name="tgl_mulai" class="form-control tabel-PR" required />
             </div>         
@@ -250,7 +266,6 @@ if(isset($name)){ ?>
 <script src="<?php echo base_url(); ?>assets/dist/js/html5-qrcode.min.js"></script>
 
 <script>
-
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
 
@@ -269,6 +284,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 });
+
+function scan(){
+  document.getElementById("input").style.display = "none";
+  document.getElementById("scannerbarcode").style.display = "block";
+}
+
+function manual(){
+  document.getElementById("input").style.display = "block";
+  document.getElementById("scannerbarcode").style.display = "none";
+}
 
 function detailBarang($id){
   $.ajax({
@@ -318,38 +343,25 @@ function getDivisiByDept(){
   });
 }
 
-function getPegawaiByDivisi(){
+function getBarangByDivisi(){
   let divisi = $("#divisiByDept").val();
   $.ajax({
     type : "POST",
     dataType : "JSON",
-    url:"<?php echo site_url("pegawai/getPegawaiByDivisi")?>/"+divisi,
+    url:"<?php echo site_url("barang/getBarangByDivisi")?>/"+divisi,
     success : function(data){
       console.log(data);
       let html = ' ';
       let i;
 
       html += 
-          '<option>---pilih pegawai---</option>';
+          '<option>---pilih barang---</option>';
       for ( i=0; i < data.length ; i++){
           html += 
-          '<option value="'+ data[i].id_pegawai +'">'+ data[i].id_pegawai +'|'+ data[i].nama_pegawai +'</option>';
+          '<option value="'+ data[i].id_barang +'">'+ data[i].nama_barang +' tersedia: '+data[i].stok_barang_normal+' unit</option>';
       }
 
-      $("#pegawaiId").html(html);
-    }
-  });
-}
-
-function CekBarangTersedia(){
-  let id_barang = document.getElementById("barang_id").value;
-  
-  $.ajax({
-    url:"<?php echo site_url("barang/cekStokBarang")?>/" + id_barang,
-    dataType:"JSON",
-    type: "GET",
-    success:function(hasil){
-      document.getElementById("jml_barang_tersedia").value = hasil;
+      $("#barang_input").html(html);
     }
   });
 }
@@ -369,8 +381,9 @@ function onScanSuccess(qrCodeMessage) {
       document.getElementById("inputbarang").style.display = "block";
       document.getElementById("scannerbarcode").style.display = "none";
 
-      document.getElementById("barang_id").value = hasil.id_barang;
-      document.getElementById("jml_barang_tersedia").value = hasil.stok_barang_normal+" item";
+      document.getElementById("barang_scan").value = hasil.id_barang;
+      document.getElementById("nama_barang").value = hasil.nama_barang;
+      document.getElementById("jml_barang_tersedia").value = hasil.stok_barang_normal;
     }
   });
 }

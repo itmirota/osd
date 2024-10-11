@@ -43,6 +43,14 @@
     </div>
   </div>
 
+  <div class="col-md-12">
+    <div class="alert alert-warning" role="alert">
+    <?php foreach ($mendekati_habis_kontrak as $key) { ?>
+      <a>ada <strong><?= $key->pegawai ?></strong>  <?= bulan($key->bulan) ?> total:  </a><br>
+    <?php } ?>
+    </div>
+  </div>
+
 
   <div class="col-md-12">
     <div class="card card-primary">

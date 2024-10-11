@@ -54,9 +54,9 @@
 <body class="bg-pattern">
 <div>
   <?php if (isset($name)){?>
-  <div class="box">
+  <div class="box" style="margin-bottom:10vh">
     <div class="container">
-		<div class="d-flex justify-content-between">
+		  <div class="d-flex justify-content-between">
 				<div class="p-2">
 					<?php 
 					if ($this->uri->segment(1) != 'dashboardUser'){?>
@@ -70,6 +70,7 @@
 					<ul class="dropdown-menu dropdown-menu-lg-end">
 						<li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">User Info</a></li>
 						<!-- <li><a class="dropdown-item" href="#">Ganti Password</a></li> -->
+            <li><a class="dropdown-item" href="<?= base_url('Dashboard/downloadAPK')?>"><i class="fa-solid fa-download"></i> download APK</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?= base_url('logout')?>">Keluar</a></li>
 					</ul>

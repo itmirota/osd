@@ -189,6 +189,7 @@ class Barang extends BaseController
   public function pinjambarang(){
     $this->global['pageTitle'] = 'EPortal | PT Mirota KSM';
     
+    $page = $this->uri->segment(1);
     $name = $this->name;
     $divisi = $this->divisi_id;
 
@@ -196,13 +197,16 @@ class Barang extends BaseController
     $data['barang']= $this->crud_model->GetDataById(['divisi_id' => $divisi],'tbl_barang');
     $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
+    $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
+    $data['name']= $name;
+    $data['page']= $page;
 
     $this->global['pageHeader'] = 'Peminjaman Barang PT. Mirota KSM';
 
-    if($this->global['role'] == ROLE_STAFF){
-      $this->loadViewsUser("barang/datapeminjaman", $this->global, $data, NULL);
+    if($page == 'Pinjambarang'){
+    $this->loadViewsUser("barang/datapeminjaman", $this->global, $data, NULL);
     }else{
-      $this->loadViews("barang/datapeminjaman", $this->global, $data, NULL);
+    $this->loadViews("barang/datapeminjaman", $this->global, $data, NULL);
     }
   }
 
@@ -225,30 +229,21 @@ class Barang extends BaseController
   }
 
   public function booking(){
-    $cek = $this->uri->segment(1);
-
-    $this->load->library('form_validation');
-            
-    $this->form_validation->set_rules('barang_id','barang','trim|required|numeric');
-    if($this->form_validation->run() == FALSE)
-    {
-      $this->set_notifikasi_swal('error','GAGAL !!!','Data Divisi/barang Tidak Boleh Kosong');
-      if($cek != 'SimpanPeminjaman'){
-        redirect('Pinjambarang');
-      }else{
-        redirect('Formpeminjaman');
-      }
-    }
-    else
-    {
-
-    $barang_id = $this->input->post('barang_id');
+    $page = $this->uri->segment(2);
+    $barang_input = $this->input->post('barang_input');
+    $barang_scan = $this->input->post('barang_scan');
     $jumlah_barang = $this->input->post('jumlah_barang');
     $pegawai_id = $this->input->post('pegawai_id');
     $tgl_mulai = $this->input->post('tgl_mulai');
 
+    if(isset($barang_scan)){
+      $barang_id = $barang_scan;
+    }else{
+      $barang_id = $barang_input;
+    }
 
-    if(is_null($nama_peminjam)){
+
+    if(is_null($pegawai_id)){
       $pegawai_id = $this->global['pegawai_id'];
     }
 
@@ -271,14 +266,7 @@ class Barang extends BaseController
       $this->set_notifikasi_swal('error','STOK KOSONG!!!','Stok tidak cukup');
     }
 
-
-
-    if($cek != 'SimpanPeminjaman'){
-      redirect('Pinjambarang');
-    }else{
-      redirect('Formpeminjaman');
-    }
-  }
+    redirect($page);
   }
 
   public function detailpinjambarang($id) {
@@ -351,17 +339,6 @@ class Barang extends BaseController
     redirect('Pinjambarang');
   }
 
-  public function peminjamanbarang(){
-    $this->global['pageTitle'] = 'EPortal | PT Mirota KSM';
-
-    $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
-
-    $this->global['pageHeader'] = 'Peminjaman Barang PT. Mirota KSM';
-
-
-    $this->loadViews("barang/peminjamanbarang", $this->global, $data, NULL);
-  }
-
   public function formpeminjaman(){
 
     $this->global['pageTitle'] = 'EPortal | PT Mirota KSM';
@@ -373,8 +350,8 @@ class Barang extends BaseController
     $this->loadViewsUser("barang/formpeminjaman", $this->global, $data, NULL);
   }
 
-  public function getbarangByDivisi(){
-    $divisi = $this->input->post('id_divisi');
+  public function getBarangByDivisi($divisi){
+
     $barang = $this->master_model->getBarangByDivisi($divisi);
 
     echo json_encode($barang);

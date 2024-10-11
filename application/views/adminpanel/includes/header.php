@@ -111,7 +111,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
         <?php
-        if($role == ROLE_ADMIN | $role == ROLE_SUPERADMIN |  $role == ROLE_HRGA | $role == ROLE_HRBP)
+        if($role == ROLE_ADMIN | $role == ROLE_SUPERADMIN |  $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_KABAG)
         {
         ?>
         <li class="sidebar-header">
@@ -158,11 +158,11 @@ if($role != ROLE_STAFF){ ?>
               </a>
             </li>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id == ROLE_KABAG)
             {
             ?>
             <li class="sidebar-item">
-              <a href="<?php echo base_url('Pinjambarang'); ?>" class="sidebar-link">
+              <a href="<?php echo base_url('data-pinjam-barang'); ?>" class="sidebar-link">
                 <span>Peminjaman Barang</span>
               </a>
             </li>
@@ -203,18 +203,25 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <!-- MENU TRANSAKSI SATPAM -->
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
         {
         ?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-shield"></i>  Transaksi Satpam <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
+            <?php
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            {
+            ?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('report-saldo'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-coins"></i>
                 <span>Saldo</span>
               </a>
             </li>
+            <?php
+            }
+            ?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('pengirimanpaket'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-cubes"></i>

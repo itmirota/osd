@@ -50,5 +50,15 @@ class Dashboard extends BaseController
 
     echo json_encode($data);
   }
+
+  public function downloadAPK(){
+    $file_path = './assets/APK/osd.apk';
+    header('Content-Type: application/vnd.android.package-archive');
+    header("Content-length: " . filesize($file_path));
+    header('Content-Disposition: attachment; filename="OSD APK"');
+    ob_end_flush();
+    readfile($file_path);
+    return true;
+  }
   
 }

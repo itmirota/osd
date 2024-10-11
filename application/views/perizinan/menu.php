@@ -3,300 +3,281 @@
     display:none;
   }
 </style>
-<div class="text-judul mt-2 mb-2" style="padding-top:5vh">
-  <h3 class="m-0"><i class="fa fa-list"></i> Menu Perizinan</h3>
+<div class="container">
+<div class="text-judul mt-2 mb-2">
+  <h3 class="m-0">Menu Perizinan</h3>
   <p class="m-0">ajukan perizinanmu disini</p>
 </div>
-<div class="d-flex flex-row justify-content-center mb-4 p-4" style="padding-top:5vh">
-  <div class="col-3 m-1">
-    <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/document.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header text-center">
-          Izin Cuti
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-3 m-1">
-    <a href="" data-bs-toggle="modal" data-bs-target="#suratTugas">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/document.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header text-center">
-          Surat Tugas
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-3 m-1">
-    <a href="" data-bs-toggle="modal" data-bs-target="#izinHarian">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/document.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header text-center">
-          Izin Kurang dari 1 Hari
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-3 m-1">
-    <a href="" data-bs-toggle="modal" data-bs-target="#suratIzin">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-center mb-2">
-          <img class="img-menu" src="<?= base_url('assets/images/document.png')?>">
-        </div>
-        <div class="d-flex justify-content-center text-header text-center">
-          Izin
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
 
-<div class="text-judul mt-2 mb-2">
-  <h3 class="m-0"><i class="fa fa-list"></i> List Perizinan</h3>
-  <p class="m-0">menampilkan histori perizinanmu</p>
-</div>
-<div class="row m-2">
-  <div class="col-md-12 card p-0">
-    <div class="tab d-flex flex-wrap">
-      <div class="flex-fill d-flex justify-content-center">
-        <button class="tablinks active" onclick="openTabs(event, 'cuti')" id="defaultOpen">Cuti</button>
-      </div>
-      <div class="flex-fill d-flex justify-content-center">
-        <button class="tablinks" onclick="openTabs(event, 'surat-tugas')">Surat Tugas</button>
-      </div>
-      <div class="flex-fill d-flex justify-content-center">
-        <button class="tablinks" onclick="openTabs(event, 'izin-harian')">Izin kurang dari 1 hari</button>
-      </div>
-      <div class="flex-fill d-flex justify-content-center">
-        <button class="tablinks" onclick="openTabs(event, 'izin')">Izin</button>
-      </div>
-      <div class="flex-fill d-flex justify-content-center">
-        <button class="tablinks" onclick="openTabs(event, 'approval-cuti')">Approval Cuti</button>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="flex-shrink-0">
+            <img class="img-menu" src="<?= base_url('assets/images/leave.png')?>">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h3 class="m-0"><strong>Pengajuan Cuti</strong></h3>
+            <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan cuti</p>
+          </div>
+        </div>
       </div>
     </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="" data-bs-toggle="modal" data-bs-target="#suratTugas">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="flex-shrink-0">
+            <img class="img-menu" src="<?= base_url('assets/images/assignment.png')?>">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h3 class="m-0"><strong>Pengajuan Penugasan</strong></h3>
+            <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan penginputan surat penugasan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="" data-bs-toggle="modal" data-bs-target="#izinHarian">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="flex-shrink-0">
+            <img class="img-menu" src="<?= base_url('assets/images/izin-1.png')?>">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h3 class="m-0"><strong>Pengajuan Izin kuang dari 1 Hari</strong></h3>
+            <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan izin tidak lebih dari 1 hari</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="" data-bs-toggle="modal" data-bs-target="#suratIzin">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="flex-shrink-0">
+            <img class="img-menu" src="<?= base_url('assets/images/izin.png')?>">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h3 class="m-0"><strong>Pengajuan Izin</strong></h3>
+            <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan izin satu hai penuh atau lebih</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+</div>
 
-    <div id="cuti" class="tabcontent table-responsive">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>No.</th>
-          <th>Tanggal</th>
-          <th>Jenis Cuti</th>
-          <th>Durasi</th>
-          <th>Pengganti</th>
-          <th class="text-center">Status</th>
-        </tr>
-        </thead>
-        <tbody>
+<div class="row">
+  <div class="col-md-8">
+    <div class="text-judul mt-2 mb-4">
+      <h3 class="m-0">List Perizinan</h3>
+      <p class="m-0">menampilkan histori perizinan</p>
+    </div>
+    <div class="card">
+      <!-- <div class="tab d-flex">
+        <div class="flex-fill d-flex justify-content-center">
+          <button class="tablinks active" onclick="openTabs(event, 'cuti')" id="defaultOpen">Cuti</button>
+        </div>
+        <div class="flex-fill d-flex justify-content-center">
+          <button class="tablinks" onclick="openTabs(event, 'surat-tugas')">Surat Tugas</button>
+        </div>
+        <div class="flex-fill d-flex justify-content-center">
+          <button class="tablinks" onclick="openTabs(event, 'izin-harian')">Izin kurang dari 1 hari</button>
+        </div>
+        <div class="flex-fill d-flex justify-content-center">
+          <button class="tablinks" onclick="openTabs(event, 'izin')">Izin</button>
+        </div>
+        <div class="flex-fill d-flex justify-content-center">
+          <button class="tablinks" onclick="openTabs(event, 'approval-cuti')">Approval Cuti</button>
+        </div>
+      </div> -->
+
+      <div class="d-flex justify-content-end">
+        <div class="btn-group m-3">
+          <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Pilih Jenis Perizinan
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item tablinks active" onclick="openTabs(event, 'cuti')" id="defaultOpen">Cuti</button></li>
+            <li><button class="dropdown-item tablinks" onclick="openTabs(event, 'surat-tugas')">Surat Tugas</button></li>
+            <li><button class="dropdown-item tablinks" onclick="openTabs(event, 'izin')">Izin</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="cuti" class="tabcontent table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>No.</th>
+            <th>Tanggal</th>
+            <th>Jenis Cuti</th>
+            <th>Durasi</th>
+            <th>Pengganti</th>
+            <th class="text-center">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+            <?php
+            $no = 1;
+            if(!empty($list_cuti))
+            {
+              foreach($list_cuti as $lc):
+            ?>
+            <tr>
+              <td><?= $no++ ?></td>
+              <td><?= mediumdate_indo($lc->tgl_mulai)?></td>
+              <td><?= $lc->jenis_cuti ?></td>
+              <td><?= $lc->selisih+1?> hari</td>
+              <td><?= $lc->nama_pegawai?></td>
+              <td class="text-center">
+                <?php
+                switch ($lc->approval){
+                  case("N,N,N"):?>
+                    <span class="badge text-bg-warning"> Menunggu persetujuan pengganti</span>
+                  <?php break;?>
+                  <?php case("Y,N,N"):?>
+                    <span class="badge text-bg-warning"> Menunggu persetujuan Kabag</span>
+                  <?php break;?>
+                  <?php case("Y,Y,N"):?>
+                    <span class="badge text-bg-warning"> Menunggu persetujuan manager</span>
+                  <?php break;?>
+                  <?php case("Y,Y,Y"):?>
+                  <?php case("Y,N,Y"):?>
+                    <span class="badge text-bg-success"> approve</span>
+                  <?php break;?>
+                  <?php default:?>
+                    <span class="badge text-bg-danger"> tidak di approve</span>
+                  <?php break;?>
+                <?php }?>  
+                <a href="" onclick="listApproval(<?= $lc->id_cuti?>)" data-bs-toggle="modal" data-bs-target="#listApproval"><i class="fas fa-eye ms-2"></i></a> 
+              </td>
+            </tr>
+            <?php endforeach; }else{?>
+              <td colspan="6" class="text-center"> data cuti kosong </td>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="surat-tugas" class="tabcontent table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>No.</th>
+            <th>Tanggal Penugasan</th>
+            <th>Nama Pegawai</th>
+            <th>pemberi Tugas</th>
+            <th>Rincian</th>
+            <th class="text-center">Approval</th>
+          </tr>
+          </thead>
+          <tbody>
           <?php
           $no = 1;
-          if(!empty($list_cuti))
+          if(!empty($list_tugas))
           {
-            foreach($list_cuti as $lc):
+            foreach($list_tugas as $lt):
           ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= mediumdate_indo($lc->tgl_mulai)?></td>
-            <td><?= $lc->jenis_cuti ?></td>
-            <td><?= $lc->selisih+1?> hari</td>
-            <td><?= $lc->nama_pegawai?></td>
-            <td class="text-center">
-              <?php
-              switch ($lc->approval){
-                case("N,N,N"):?>
-                  <span class="badge text-bg-warning"> Menunggu persetujuan pengganti</span>
-                <?php break;?>
-                <?php case("Y,N,N"):?>
-                  <span class="badge text-bg-warning"> Menunggu persetujuan Kabag</span>
-                <?php break;?>
-                <?php case("Y,Y,N"):?>
-                  <span class="badge text-bg-warning"> Menunggu persetujuan manager</span>
-                <?php break;?>
-                <?php case("Y,Y,Y"):?>
-                <?php case("Y,N,Y"):?>
-                  <span class="badge text-bg-success"> approve</span>
-                <?php break;?>
-                <?php default:?>
-                  <span class="badge text-bg-danger"> tidak di approve</span>
-                <?php break;?>
-              <?php }?>  
-              <a href="" onclick="listApproval(<?= $lc->id_cuti?>)" data-bs-toggle="modal" data-bs-target="#listApproval"><i class="fas fa-eye ms-2"></i></a> 
+            <td><?= mediumdate_indo($lt->tgl_tugas)?></td>
+            <td><?= $lt->nama_pegawai ?></td>
+            <td><?= $lt->penugasan ?></td>
+            <td>
+              <a href="" class="btn btn-sm btn-info" onclick="rincianTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#rincianTugas">detail <i class="fas fa-eye ms-2"></i></a>
             </td>
-          </tr>
-          <?php endforeach; }else{?>
-            <td colspan="6" class="text-center"> data cuti kosong </td>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="surat-tugas" class="tabcontent table-responsive">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>No.</th>
-          <th>Tanggal Penugasan</th>
-          <th>Nama Pegawai</th>
-          <th>pemberi Tugas</th>
-          <th>Rincian</th>
-          <th class="text-center">Approval</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $no = 1;
-        if(!empty($list_tugas))
-        {
-          foreach($list_tugas as $lt):
-        ?>
-        <tr>
-          <td><?= $no++ ?></td>
-          <td><?= mediumdate_indo($lt->tgl_tugas)?></td>
-          <td><?= $lt->nama_pegawai ?></td>
-          <td><?= $lt->penugasan ?></td>
-          <td>
-            <a href="" class="btn btn-sm btn-info" onclick="rincianTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#rincianTugas">detail <i class="fas fa-eye ms-2"></i></a>
-          </td>
-          <td class="text-center">
-          <?php
-            switch ($lt->approval){
-              case("N,N,N"):?>
-                <span class="badge text-bg-warning"> Menunggu persetujuan</span>
-              <?php break;?>
-              <?php case("Y,N,N"):?>
-                <span class="badge text-bg-warning"> Menunggu persetujuan HRD</span>
-                <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a> 
-              <?php break;?>
-              <?php case("Y,Y,N"):?>
-                <?php if ($lt->kendaraan_id > 0){?>
-                <span class="badge text-bg-warning"> Menunggu persetujuan POOL</span>
-                <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a>
-                <?php }else{?>
-                  <span class="badge text-bg-success"> Approve</span>
-                  <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a>
-                <?php }?>
-              <?php break;?>
-              <?php case("Y,Y,Y"):?>
-                <span class="badge text-bg-success"> approve</span>
-                <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a>
-              <?php break;?>
-              <?php default:?>
-                <span class="badge text-bg-danger"> tidak di approve</span>
-              <?php break;?>
-            <?php }?>
-          </td>
-          </tr>
-          <?php endforeach; }else{?>
-            <td colspan="6" class="text-center"> data tugas kosong </td>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="izin-harian" class="tabcontent table-responsive">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>No.</th>
-          <th>Tanggal</th>
-          <th>Keperluan</th>
-          <th class="text-center">Durasi</th>
-          <th class="text-center">Status</th>
-        <tr>
-        </thead>
-        <tbody>
-        <?php
-        $no = 1;
-        if(!empty($list_izinHarian))
-        {
-          foreach($list_izinHarian as $lip):
-        ?>
-        <tr>
-          <td><?= $no++ ?></td>
-          <td><?= mediumdate_indo($lip->tgl_izin)?></td>
-          <td><?= $lip->keperluan?></td>
-          <td class="text-center"><?= $lip->waktu_mulai ?> - <?= $lip->waktu_akhir ?></td>
-          <td class="text-center">
+            <td class="text-center">
             <?php
-              switch ($lip->approval){
+              switch ($lt->approval){
                 case("N,N,N"):?>
-                  <span class="badge text-bg-warning"> Menunggu persetujuan atasan</span>
+                  <span class="badge text-bg-warning"> Menunggu persetujuan</span>
                 <?php break;?>
                 <?php case("Y,N,N"):?>
                   <span class="badge text-bg-warning"> Menunggu persetujuan HRD</span>
-                  <a href="" onclick="listApprovalIzinHarian(<?= $lip->id_perizinan_harian?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzinHarian"><i class="fas fa-eye ms-2"></i></a> 
+                  <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a> 
+                <?php break;?>
+                <?php case("Y,Y,N"):?>
+                  <?php if ($lt->kendaraan_id > 0){?>
+                  <span class="badge text-bg-warning"> Menunggu persetujuan POOL</span>
+                  <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a>
+                  <?php }else{?>
+                    <span class="badge text-bg-success"> Approve</span>
+                    <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a>
+                  <?php }?>
                 <?php break;?>
                 <?php case("Y,Y,Y"):?>
-                <?php case("Y,Y,N"):?>
-                <?php case("Y,N,Y"):?>
                   <span class="badge text-bg-success"> approve</span>
-                  <a href="" onclick="listApprovalIzinHarian(<?= $lip->id_perizinan_harian?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzinHarian"><i class="fas fa-eye ms-2"></i></a> 
+                  <a href="" onclick="listApprovalTugas(<?= $lt->id_tugas?>)" data-bs-toggle="modal" data-bs-target="#listApprovalTugas"><i class="fas fa-eye ms-2"></i></a>
                 <?php break;?>
                 <?php default:?>
                   <span class="badge text-bg-danger"> tidak di approve</span>
-                  <a href="" onclick="listApprovalIzinHarian(<?= $lip->id_perizinan_harian?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzinHarian"><i class="fas fa-eye ms-2"></i></a> 
                 <?php break;?>
-              <?php }?> 
-          </td>
-        </tr>
-        <?php endforeach; }else{?>
-          <td colspan="5" class="text-center"> data izin kosong </td>
-        <?php } ?>
-        </tbody>
-      </table>
-    </div>
+              <?php }?>
+            </td>
+            </tr>
+            <?php endforeach; }else{?>
+              <td colspan="6" class="text-center"> data tugas kosong </td>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
 
-    <div id="izin" class="tabcontent table-responsive">
-      <table class="table table-hover">
-        <thead>
+      <div id="izin-harian" class="tabcontent table-responsive">
+        <table class="table table-hover">
+          <thead>
           <tr>
             <th>No.</th>
-            <th>Tanggal Mulai</th>
-            <th>Tanggal Akhir</th>
-            <th class="text-center">Durasi</th>
+            <th>Tanggal</th>
             <th>Keperluan</th>
+            <th class="text-center">Durasi</th>
             <th class="text-center">Status</th>
           <tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           <?php
           $no = 1;
-          if(!empty($list_izin))
+          if(!empty($list_izinHarian))
           {
-            foreach($list_izin as $li):
+            foreach($list_izinHarian as $lip):
           ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= mediumdate_indo($li->tgl_mulai)?></td>
-            <td><?= mediumdate_indo($li->tgl_akhir)?></td>
-            <td class="text-center"><?= $li->selisih?> Hari</td>
-            <td><?= $li->keperluan?></td>
+            <td><?= mediumdate_indo($lip->tgl_izin)?></td>
+            <td><?= $lip->keperluan?></td>
+            <td class="text-center"><?= $lip->waktu_mulai ?> - <?= $lip->waktu_akhir ?></td>
             <td class="text-center">
               <?php
-                switch ($li->approval){
+                switch ($lip->approval){
                   case("N,N,N"):?>
                     <span class="badge text-bg-warning"> Menunggu persetujuan atasan</span>
                   <?php break;?>
                   <?php case("Y,N,N"):?>
-                  <?php case("N,Y,N"):?>
                     <span class="badge text-bg-warning"> Menunggu persetujuan HRD</span>
-                    <a href="" onclick="listApprovalIzin(<?= $li->id_izin?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzin"><i class="fas fa-eye ms-2"></i></a> 
+                    <a href="" onclick="listApprovalIzinHarian(<?= $lip->id_perizinan_harian?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzinHarian"><i class="fas fa-eye ms-2"></i></a> 
                   <?php break;?>
                   <?php case("Y,Y,Y"):?>
-                  <?php case("N,Y,Y"):?>
+                  <?php case("Y,Y,N"):?>
+                  <?php case("Y,N,Y"):?>
                     <span class="badge text-bg-success"> approve</span>
-                    <a href="" onclick="listApprovalIzin(<?= $li->id_izin?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzin"><i class="fas fa-eye ms-2"></i></a> 
+                    <a href="" onclick="listApprovalIzinHarian(<?= $lip->id_perizinan_harian?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzinHarian"><i class="fas fa-eye ms-2"></i></a> 
                   <?php break;?>
                   <?php default:?>
                     <span class="badge text-bg-danger"> tidak di approve</span>
-                    <a href="" onclick="listApprovalIzin(<?= $li->id_izin?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzin"><i class="fas fa-eye ms-2"></i></a> 
+                    <a href="" onclick="listApprovalIzinHarian(<?= $lip->id_perizinan_harian?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzinHarian"><i class="fas fa-eye ms-2"></i></a> 
                   <?php break;?>
                 <?php }?> 
             </td>
@@ -304,46 +285,112 @@
           <?php endforeach; }else{?>
             <td colspan="5" class="text-center"> data izin kosong </td>
           <?php } ?>
-        </tbody>
-      </table>
-    </div>
+          </tbody>
+        </table>
+      </div>
 
-    <div id="approval-cuti" class="tabcontent table-responsive">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>No.</th>
-          <th>Tanggal Pengajuan</th>
-          <th>Nama Karyawan</th>
-          <th class="text-center">Action</th>
-        <tr>
-        </thead>
-        <tbody>
-        <?php
-        $no = 1;
-        if(!empty($approval_pengganti))
-        {
-        foreach($approval_pengganti as $ap):
-        ?>
-        <tr>
-          <td><?= $no++?></td>
-          <td><?= mediumdate_indo($ap->tgl_mulai)?></td>
-          <td><?= $ap->nama_pegawai ?></td>
-          <td class="text-center">
-          <?php if($ap->approval === "N,N,N"){?>
-          <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> approve</a>  
-          <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i> tolak</a></td>
-          <?php }else{?>
-          <span class="badge text-bg-success"> <i class="fa fa-check"></i></span>
-          <?php } ?>
-        <tr>
-        <?php endforeach; }else{?>
-          <td colspan="5" class="text-center"> data izin kosong </td>
-        <?php } ?>
-        </tbody>
-      </table>
+      <div id="izin" class="tabcontent table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Tanggal Mulai</th>
+              <th>Tanggal Akhir</th>
+              <th class="text-center">Durasi</th>
+              <th>Keperluan</th>
+              <th class="text-center">Status</th>
+            <tr>
+          </thead>
+          <tbody>
+            <?php
+            $no = 1;
+            if(!empty($list_izin))
+            {
+              foreach($list_izin as $li):
+            ?>
+            <tr>
+              <td><?= $no++ ?></td>
+              <td><?= mediumdate_indo($li->tgl_mulai)?></td>
+              <td><?= mediumdate_indo($li->tgl_akhir)?></td>
+              <td class="text-center"><?= $li->selisih?> Hari</td>
+              <td><?= $li->keperluan?></td>
+              <td class="text-center">
+                <?php
+                  switch ($li->approval){
+                    case("N,N,N"):?>
+                      <span class="badge text-bg-warning"> Menunggu persetujuan atasan</span>
+                    <?php break;?>
+                    <?php case("Y,N,N"):?>
+                    <?php case("N,Y,N"):?>
+                      <span class="badge text-bg-warning"> Menunggu persetujuan HRD</span>
+                      <a href="" onclick="listApprovalIzin(<?= $li->id_izin?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzin"><i class="fas fa-eye ms-2"></i></a> 
+                    <?php break;?>
+                    <?php case("Y,Y,Y"):?>
+                    <?php case("N,Y,Y"):?>
+                      <span class="badge text-bg-success"> approve</span>
+                      <a href="" onclick="listApprovalIzin(<?= $li->id_izin?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzin"><i class="fas fa-eye ms-2"></i></a> 
+                    <?php break;?>
+                    <?php default:?>
+                      <span class="badge text-bg-danger"> tidak di approve</span>
+                      <a href="" onclick="listApprovalIzin(<?= $li->id_izin?>)" data-bs-toggle="modal" data-bs-target="#listApprovalIzin"><i class="fas fa-eye ms-2"></i></a> 
+                    <?php break;?>
+                  <?php }?> 
+              </td>
+            </tr>
+            <?php endforeach; }else{?>
+              <td colspan="5" class="text-center"> data izin kosong </td>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="text-judul mt-2 mb-4">
+      <h3 class="m-0">Approval Cuti</h3>
+      <p class="m-0">menampilkan list cuti yang membutuhkan persetujuanmu</p>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>No.</th>
+              <th>Tanggal Pengajuan</th>
+              <th>Nama Karyawan</th>
+              <th class="text-center">Action</th>
+            <tr>
+            </thead>
+            <tbody>
+            <?php
+            $no = 1;
+            if(!empty($approval_pengganti))
+            {
+            foreach($approval_pengganti as $ap):
+            ?>
+            <tr>
+              <td><?= $no++?></td>
+              <td><?= mediumdate_indo($ap->tgl_mulai)?></td>
+              <td><?= $ap->nama_pegawai ?></td>
+              <td class="text-center">
+              <?php if($ap->approval === "N,N,N"){?>
+              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> approve</a>  
+              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i> tolak</a></td>
+              <?php }else{?>
+              <span class="badge text-bg-success"> <i class="fa fa-check"></i></span>
+              <?php } ?>
+            <tr>
+            <?php endforeach; }else{?>
+              <td colspan="5" class="text-center"> data izin kosong </td>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- Modal list approval -->

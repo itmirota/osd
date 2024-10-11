@@ -13,6 +13,26 @@ class Pegawai_model extends CI_Model
     return $query->result();
   }
 
+  public function showDataWhere($params, $where, $orderparam, $orderby, $group)
+  {
+    $this->db->select($params);
+    $this->db->from('tbl_pegawai a');
+    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->where('a.status','aktif');
+    $this->db->where($where);
+
+    if(isset($orderby)){
+    $this->db->order_by($orderparam, $orderby);
+    }
+
+    if(isset($group)){
+    $this->db->group_by($group);
+    }
+
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function showDataNonAktif()
   {
     $this->db->select('*');

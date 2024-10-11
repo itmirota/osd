@@ -78,10 +78,13 @@ $route['deletedivisi/(:num)'] = "divisi/delete/$1";
 $route['Databarang'] = 'barang';
 $route['deletebarang/(:num)'] = "barang/delete/$1";
 $route['Pinjambarang'] = 'barang/pinjambarang';
+
+$route['data-pinjam-barang'] = 'barang/pinjambarang';
+$route['save-pinjam-barang'] = 'barang/pinjambarang';
+
 $route['kerusakanBarang'] = 'barang/listkerusakan';
-$route['Peminjamanbarang'] = 'barang/peminjamanbarang';
 $route['Formpeminjaman'] = 'barang/formpeminjaman';
-$route['Booking'] = 'barang/booking';
+$route['booking/(:any)'] = 'barang/booking/$1';
 $route['SimpanPeminjaman'] = 'barang/booking';
 
 // KENDARAAN

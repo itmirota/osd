@@ -29,8 +29,21 @@ class Pegawai extends BaseController
     $this->global['pageTitle'] = 'SMART OSD | Data Karyawan Mirota KSM';
     $this->global['pageHeader'] = 'Data Karyawan';
 
+    $where = array(
+      'status_pegawai' => 'kontrak',
+      'MONTH(tgl_selesai) >=' => DATE('m'),
+      'MONTH(tgl_selesai) <=' => DATE('m') + 3
+    );
+
+    $where = array(
+      'status_pegawai' => 'kontrak',
+      'MONTH(tgl_selesai) >=' => DATE('m'),
+      'MONTH(tgl_selesai) <=' => DATE('m') + 3
+    );
+
     $data = array(
       'list_data' => $this->pegawai_model->showData(),
+      'mendekati_habis_kontrak' => $this->pegawai_model->showDataWhere('COUNT(id_pegawai) as pegawai, MONTH(tgl_selesai) as bulan', $where,'tgl_selesai','ASC','MONTH(tgl_selesai)'),
       'departement' => $this->crud_model->lihatdata('tbl_departement'),
       'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai('status','aktif'),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
