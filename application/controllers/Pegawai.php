@@ -55,6 +55,23 @@ class Pegawai extends BaseController
     $this->loadViews("pegawai/data", $this->global, $data, NULL);
   }
 
+  public function listMasaKontrak($bulan){
+    $this->global['pageTitle'] = 'SMART OSD | Data Karyawan Mirota KSM';
+    $this->global['pageHeader'] = 'Data Karyawan';
+
+    $where = array(
+      'status_pegawai' => 'kontrak',
+      'MONTH(tgl_selesai)' => $bulan
+    );
+
+    $data = array(
+      'list_data' => $this->pegawai_model->showDataWhere('*', $where, 'tgl_selesai','ASC',NULL),
+      'bulan' => $bulan
+    );
+
+    $this->loadViews("pegawai/dataMasaKontrak", $this->global, $data, NULL);
+  }
+
   public function getPegawaiByDivisi($id){
 
     $where = array(

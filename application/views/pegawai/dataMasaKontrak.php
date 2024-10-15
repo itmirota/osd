@@ -1,101 +1,24 @@
 
 <div class="row">
-  <div class="d-flex justify-content-end mb-4">
-    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
-    <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button> -->
-    <div class="form-group">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exportUser">
-        <i class="fa fa-user"></i> Export User
-        </button>
-                <!-- Modal -->
-                <div class="modal fade" id="exportUser" tabindex="-1" aria-labelledby="filterAbsenTokoLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="<?=base_url('user/excel_user')?>" role="form" method="post" enctype="multipart/form-data">
-                  <div class="modal-body">
-                    <div class="mb-3">
-                      <label for="divisi" class="form-label">Departement</label>
-                      <select class="form-select" id="departement_id" onchange="getDivisiByDept()" required>
-                        <option>--- pilih departement ---</option>
-                        <?php foreach($departement as $data){?>
-                        <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="divisi" class="form-label">Divisi</label>
-                      <select id="divisi" name="divisi" class="form-select" required>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-success">Input</button>
-                  </div>
-                  </form>
-              </div>
-          </div>
-        </div>
-    </div>
+  <div class="d-flex justify-content-start mb-4">
+    <a href="<?= base_url('Datapegawai')?>" class="btn btn-warning me-2"><i class="fa fa-arrow-left"></i> Kembali</a>
   </div>
-
-  <div class="col-md-12">
-    <div class="alert alert-warning" role="alert">
-    <h3> Informasi !!!</h3>
-    <?php foreach ($mendekati_habis_kontrak as $key) { ?>
-      <a style="color:black" href="<?= base_url('pegawai/listMasaKontrak/'.$key->bulan) ?>"><strong><?= $key->pegawai ?> Karyawan</strong> akan habis kontrak pada bulan <strong><?= bulan($key->bulan) ?></strong></a><br>
-    <?php } ?>
-    </div>
-  </div>
-
 
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-          <h3 class="card-title">Data Pegawai</h3>
+          <h3 class="card-title">Data pegawai habis masa kontrak pada bulan <?= bulan($bulan) ?></h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
-        <div class="d-flex">
-          <div class="flex-fill pegawai-aktif">
-            <div class="mb-1 row">
-              <label for="no_polisi" class="col-sm-4 col-form-label">Pegawai aktif</label>
-              <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" value=": <?= $total_pegawai_aktif->total_pegawai?> Orang">
-              </div>
-            </div>
-            <div class="mb-1 row">
-              <label for="inputPassword" class="col-sm-4 col-form-label">Laki-Laki</label>
-              <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" value=": <?= $total_pegawai_aktif->laki?> Orang">
-              </div>
-            </div>
-            <div class="mb-1 row">
-              <label for="no_polisi" class="col-sm-4 col-form-label">Perempuan</label>
-              <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" value=": <?= $total_pegawai_aktif->perempuan?> Orang">
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <table id="dataTableScrollX" class="table table-hover">
+        <table id="dataTable" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
-            <th width="15vh">Nama pegawai</th>
-            <th width="40px">Usia</th>
-            <th width="15vh">Masa Kerja</th>
-            <th width="15vh">Dept. | Divisi</th>
-            <th>Status</th>
-            <!-- <th>Tanggal Bergabung</th>
-            <th>Tanggal Selesai</th> -->
-            <th class="text-end" width="10px">Durasi Kontrak</th>
-            <th class="text-end" width="10px">Kuota Cuti</th>
-            <th class="text-end" width="80px">Sisa Cuti Tahun Lalu</th>
+            <th>Nama pegawai</th>
+            <th>Usia</th>
+            <th>Masa Kerja</th>
+            <th>Dept. | Divisi</th>
+            <th class="text-center">Tanggal Selesai</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
@@ -128,12 +51,7 @@
               echo $diff->format("%y th, %m bln");
             ?></td>
             <td><?= $data->nama_divisi ?></td>
-            <td><span class="badge <?= ($data->status_pegawai == "tetap" ? 'bg-primary':'bg-info')?>"><?=  ($data->status_pegawai == "tetap" ? 'PKWTT':'PKWT') ?></span></td>
-            <!-- <td><?= mediumdate_indo($data->tgl_masuk) ?></td>
-            <td><?= isset($data->tgl_selesai) ? mediumdate_indo($data->tgl_selesai) : '-' ?></td> -->
-            <td class="text-center"><?= $data->status_pegawai == "tetap" ? '-': $data->durasi_kontrak.' bulan' ?></td>
-            <td  class="text-center"><?= $data->kuota_cuti ?></td>
-            <td  class="text-center"><?= $data->sisa_cuti ?></td>
+            <td class="text-center"><?= isset($data->tgl_selesai) ? mediumdate_indo($data->tgl_selesai) : '-' ?></td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
@@ -145,12 +63,7 @@
               </a>
 
               <ul class="dropdown-menu">
-                <?php if($data->status_pegawai == "kontrak"){?>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)">Perpanjang Kontrak</a></li>
-                <?php } ?>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAkun" onclick="editAkun(<?= $data->id_pegawai?>)">Edit Akun</a></li>
-                <li><a class="dropdown-item" href="#"  onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
               </ul>
             </div>
             </td>
@@ -215,226 +128,6 @@
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Import Excel-->
-<div class="modal fade" id="importCsv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form action="<?=base_url('pegawai/spreadsheet_import')?>" role="form" method="post" enctype="multipart/form-data">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="titleAddPegawai">Import CSV File</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12">
-          <label for="nip" class="form-label">File :</label>
-          <input type="file" name="upload_file" id="upload_file" class="form-control">
-        </div>
-        <div class="d-flex justify-content-between mt-4">
-          <div class="p-2">
-            <a href="<?=base_url('pegawai/format_excel')?>" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i> unduh template</a>
-          </div>
-          <div class="p-2">
-            <button type="submit" class="btn btn-primary">Simpan</button>
-          </div>
-        </div>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="addPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <form action="<?=base_url('pegawai/save')?>" role="form" method="post" enctype="multipart/form-data">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="titleAddPegawai">Formulir Tambah Data</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h1 class="modal-title fs-5" id="titleAddPegawai">Informasi Pegawai</h1>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="col-md-8">
-                <label for="nip" class="form-label">Nomor Induk Pegawai</label>
-                <input type="text" name="nip" value="<?= sprintf("%04s", $maxNIP+1) ?>" class="form-control-plaintext tabel-PR" readonly/>
-              </div>
-              <div class="col-md-10">
-                <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
-                <input type="text" name="nama_pegawai" placeholder="tulis nama pegawai disini" class="form-control tabel-PR" required/>
-              </div>
-              <div class="col-md-10">
-                <label for="jabatan_id" class="form-label">Jabatan</label>
-                <select name="jabatan_id" class="form-select tabel-PR" required>
-                  <option>----- pilih jabatan ---</option>
-                  <?php foreach($jabatan as $j): ?>
-                  <option value="<?= $j->id_jabatan?>"><?=$j->nama_jabatan?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div> 
-              <div class="col-md-10">
-                <label for="divisi_id" class="form-label">Departement</label>
-                <select name="divisi_id" class="form-select tabel-PR" required>
-                  <option>----- pilih departement ---</option>
-                  <?php foreach($divisi as $d): ?>
-                  <option value="<?= $d->id_divisi?>"><?=$d->nama_divisi?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>  
-              <div class="col-md-10">
-                <label for="status_pegawai" class="form-label">Status Kerja</label>
-                <select name="status_pegawai"  id="AddStatus" class="form-select tabel-PR" required>
-                  <option>----- pilih status ---</option>
-                  <option value="tetap"> PKWTT</option>
-                  <option value="kontrak"> PKWT</option>
-                </select>
-              </div>
-              <div class="col-md-10">
-                <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                <input type="text" name="tempat_lahir" placeholder="tulis tempat lahir disini" class="form-control tabel-PR" required />
-              </div> 
-              <div class="col-md-10">
-                <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
-                <input type="date" name="tgl_lahir" class="form-control tabel-PR" required />
-              </div>
-              <div class="col-md-10">
-                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                <select name="jenis_kelamin" class="form-select tabel-PR" required>
-                  <option>----- pilih jenis kelamin ---</option>
-                  <option value="L"> Laki - laki</option>
-                  <option value="P"> Perempuan</option>
-                </select>
-              </div>
-              <div class="col-md-10">
-                <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
-                <input type="text" name="pendidikan_terakhir" placeholder="tulis pendidikan terakhir disini" class="form-control tabel-PR" required />
-              </div>
-              <div class="col-md-10">
-                <label for="jurusan" class="form-label">Jurusan</label>
-                <input type="text" name="jurusan" placeholder="tulis jurusan disini" class="form-control tabel-PR" />
-              </div>
-              <div class="col-md-10">
-                <label for="golongan_darah" class="form-label">Golongan Darah</label>
-                <select name="golongan_darah" class="form-select tabel-PR" required>
-                  <option>----- pilih golongan darah ---</option>
-                  <option value="A"> A</option>
-                  <option value="B"> B</option>
-                  <option value="AB"> AB</option>
-                  <option value="O"> O</option>
-                </select>
-              </div>
-              <div class="col-md-10">
-                <label for="agama" class="form-label">Agama</label>
-                <input type="text" name="agama" placeholder="tulis agama disini" class="form-control tabel-PR" required />
-              </div>
-              <div class="col-md-10">
-                <label for="Alamat_ktp" class="form-label">Alamat KTP</label>
-                <textarea name="alamat_ktp" placeholder="tulis alamat sesuai ktp disini" class="form-control tabel-PR" required rows="3"></textarea>
-              </div>
-              <div class="col-md-10">
-                <label for="alamat_domisili" class="form-label">Alamat Domisili</label>
-                <textarea name="alamat_domisili" placeholder="tulis alamat domisili disini" class="form-control tabel-PR" required rows="3"></textarea>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="col-md-10">
-                <label for="kontak_pegawai" class="form-label">Kontak yang bisa dihibungi</label>
-                <input type="text" name="kontak_pegawai" placeholder="tulis kontak disini" class="form-control tabel-PR" required />
-              </div> 
-              <div class="col-md-10">
-                <label for="no_kk" class="form-label">Nomor KK</label>
-                <input type="text" name="no_kk" placeholder="tulis nomor KK disini" class="form-control tabel-PR" />
-              </div>
-              <div class="col-md-10">
-                <label for="no_ktp" class="form-label">Nomor KTP</label>
-                <input type="text" name="no_ktp" placeholder="tulis nomor KTP disini" class="form-control tabel-PR"/>
-              </div>
-              <div class="col-md-10">
-                <label for="no_jamsostek" class="form-label">Nomor Jamsostek</label>
-                <input type="text" name="no_jamsostek" placeholder="tulis nomor Jamsostek disini" class="form-control tabel-PR" />
-              </div>
-              <div class="col-md-10">
-                <label for="no_bpjsKesehatan" class="form-label">Nomor Bpjs Kesehatan</label>
-                <input type="text" name="no_bpjsKesehatan" placeholder="tulis nomor BPJS disini" class="form-control tabel-PR" />
-              </div>
-              <div class="col-md-10">
-                <label for="no_npwp" class="form-label">Nomor NPWP</label>
-                <input type="text" name="no_npwp" placeholder="tulis Nomor NPWP disini" class="form-control tabel-PR"/>
-              </div>
-              <div class="col-md-10">
-                <label for="tgl_masuk" class="form-label">Tanggal Masuk</label>
-                <input type="date" name="tgl_masuk" class="form-control tabel-PR" required/>
-              </div> 
-              <div class="col-md-10" id="durasi_kontrak">
-                <label for="durasi_kontrak" class="form-label">Durasi Kerja</label>
-                <select name="durasi_kontrak" class="form-select tabel-PR" required>
-                  <option>----- pilih durasi ---</option>
-                  <option value="3"> 3 Bulan</option>
-                  <option value="6"> 6 Bulan</option>
-                  <option value="12"> 12 Bulan</option>
-                </select>
-              </div>
-              <div class="col-md-10">
-                <label for="email_pegawai" class="form-label">Email</label>
-                <input type="email" name="email_pegawai" placeholder="tulis Email disini" class="form-control tabel-PR" required/>
-              </div>
-              <div class="col-md-10">
-                <label for="nama_ibu" class="form-label">Nama Ibu</label>
-                <input type="text" name="nama_ibu" placeholder="tulis nama ibu disini" class="form-control tabel-PR"/>
-              </div>
-              <div class="col-md-10">
-                <label for="nama_ayah" class="form-label">Nama Ayah</label>
-                <input type="text" name="nama_ayah" placeholder="tulis nama ayah disini" class="form-control tabel-PR"/>
-              </div>
-              <div class="col-md-10">
-                <label for="status_pernikahan" class="form-label">Status Pernikahan</label>
-                <select name="status_pernikahan" class="form-select tabel-PR" required>
-                  <option>----- pilih status ---</option>
-                  <option value="lajang"> Belum Menikah</option>
-                  <option value="menikah"> Menikah</option>
-                </select>
-              </div>
-              <div class="col-md-10">
-                <label for="nama_pasangan" class="form-label">Nama Pasangan</label>
-                <input type="text" name="nama_pasangan" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
-              </div>
-              <div class="col-md-10">
-                <label for="nama_anak" class="form-label">Nama Anak</label>
-                <textarea name="nama_anak" placeholder="tulis nama anak disini" class="form-control tabel-PR"></textarea>
-              </div>
-              <hr>
-              <h1 class="modal-title fs-5" id="titleAddPegawai">Informasi akun</h1>
-              <div class="col-md-10">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" placeholder="tulis username disini" class="form-control tabel-PR" required/>
-              </div>
-              <div class="col-md-10">
-                <label for="password" class="form-label">Password</label>
-                <input type="text" name="password" placeholder="tulis password disini" class="form-control tabel-PR" required/>
-              </div>
-              <div class="col-md-10">
-                <label for="role_id" class="form-label">Role</label>
-                <select name="role_id" class="form-select tabel-PR" required>
-                  <option>----- pilih Role ---</option>
-                  <?php foreach($list_role as $r): ?>
-                  <option value="<?= $r->roleId?>"><?=$r->role?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div> 
-            </div>
-          </div>    
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Simpan</button>
-      </div>
       </form>
     </div>
   </div>
