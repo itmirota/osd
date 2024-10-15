@@ -45,8 +45,9 @@
 
   <div class="col-md-12">
     <div class="alert alert-warning" role="alert">
+    <h3> Informasi !!!</h3>
     <?php foreach ($mendekati_habis_kontrak as $key) { ?>
-      <a>ada <strong><?= $key->pegawai ?></strong>  <?= bulan($key->bulan) ?> total:  </a><br>
+      <a><strong><?= $key->pegawai ?> Karyawan</strong> akan habis kontrak pada bulan <strong><?= bulan($key->bulan) ?></strong></a><br>
     <?php } ?>
     </div>
   </div>
