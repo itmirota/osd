@@ -495,7 +495,17 @@ class Absensi extends BaseController
 
   public function hapusIstirahat($id){
 
-    $this->crud_model->delete('id_absensi_istirahat ='.$id, 'tbl_absensi_istirahat');
+    $where = array(
+      'id_absensi_istirahat' => $id
+    )
+
+    $data = $this->crud_model->GetDataById($where,'tbl_absensi_istirahat');
+    foreach ($data as $d){
+      unlink( FCPATH.'/assets/images/istirahat/'.$d->bukti_out);
+      unlink( FCPATH.'/assets/images/istirahat/'.$d->bukti_in);
+    }
+
+    $this->crud_model->delete($where, 'tbl_absensi_istirahat');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
     redirect('laporan-istirahat');
