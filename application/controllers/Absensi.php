@@ -493,6 +493,14 @@ class Absensi extends BaseController
 		echo json_encode($res);
 	}
 
+  public function hapusIstirahat($id){
+
+    $this->crud_model->delete('id_absensi_istirahat ='.$id, 'tbl_absensi_istirahat');
+
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+    redirect('laporan-istirahat');
+  }
+
   public function laporanIstirahat(){
     $this->global['pageTitle'] = 'Laporan Istirahat Karyawan Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Istirahat Karyawan Karyawan ';

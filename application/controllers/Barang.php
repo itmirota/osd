@@ -187,7 +187,7 @@ class Barang extends BaseController
   }
 
   public function pinjambarang(){
-    $this->global['pageTitle'] = 'EPortal | PT Mirota KSM';
+    $this->global['pageTitle'] = 'OSD | PT Mirota KSM';
     
     $page = $this->uri->segment(1);
     $name = $this->name;
@@ -341,7 +341,7 @@ class Barang extends BaseController
 
   public function formpeminjaman(){
 
-    $this->global['pageTitle'] = 'EPortal | PT Mirota KSM';
+    $this->global['pageTitle'] = 'OSD | PT Mirota KSM';
 
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
     $this->global['pageHeader'] = 'Peminjaman Barang PT. Mirota KSM';
@@ -358,7 +358,7 @@ class Barang extends BaseController
   }
 
   public function laporankerusakan(){
-    $this->global['pageTitle'] = 'EPortal | Asset Mirota';
+    $this->global['pageTitle'] = 'OSD | Asset Mirota';
       
     $this->global['pageHeader'] = 'Laporan Kerusakan barang';
     
@@ -408,7 +408,7 @@ class Barang extends BaseController
   }
 
   public function listkerusakan(){
-    $this->global['pageTitle'] = 'EPortal | Asset Mirota';
+    $this->global['pageTitle'] = 'OSD | Asset Mirota';
     $this->global['pageHeader'] = 'Laporan Kerusakan barang';
     $id_divisi = $this->divisi_id;
 

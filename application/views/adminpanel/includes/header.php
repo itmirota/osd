@@ -49,12 +49,25 @@
 
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    #load{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      text-indent: 100%;
+      background: rgba(255,255,255) url('./assets/images/loader.gif') no-repeat center;
+      z-index: 1;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 
   <!-- <body class="sidebar-mini skin-black-light"> -->
 <?php 
 if($role != ROLE_STAFF){ ?>
 <body>
+<div id="load"></div>
 <div class="wrapper">
   <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
@@ -245,7 +258,7 @@ if($role != ROLE_STAFF){ ?>
         {
         ?>
         <li class="sidebar-item">
-          <a href="<?php echo base_url('kebersihan/report'); ?>" class="sidebar-link">
+          <a href="<?php echo base_url('laporan-kebersihan'); ?>" class="sidebar-link">
             <i class="fa-solid fa-broom"></i>
             <span>Kebersihan</span>
           </a>
@@ -528,6 +541,7 @@ if($role != ROLE_STAFF){ ?>
       <div class="container-fluid p-0">
 <?php }else{ ?>
 <body class="bg-pattern">
+<div id="load"></div>
 <div>
   <div class="container" style="min-height:400px; margin-top:-3%">
 <?php } ?>

@@ -110,6 +110,27 @@ class Kebersihan extends BaseController
     $this->loadViews("kebersihan/report", $this->global, $data, NULL);
   }
 
+  public function hapus(){
+    $tgl_mulai = $this->input->post('tgl_mulai');
+    $tgl_akhir = $this->input->post('tgl_akhir');
+
+    $where = array(
+      'DATE(tgl_perawatan) >=' => $tgl_mulai,
+      'DATE(tgl_perawatan) <=' => $tgl_akhir,
+    );
+
+    $data = $this->crud_model->GetDataById($where,'tbl_perawatan_ruangan');
+    foreach ($data as $d){
+      unlink( FCPATH.'assets/images/kebersihan/'.$d->bukti_perawatan);
+      $total++;
+    }
+
+    $this->crud_model->delete($where, 'tbl_perawatan_ruangan');
+
+    $this->set_notifikasi_swal('success','Berhasil',$total.' Data Berhasil Dihapus');
+    redirect('laporan-kebersihan');
+  }
+
   public function exportExcel(){
     $tgl_mulai = $this->input->post('tgl_mulai');
     $tgl_akhir = $this->input->post('tgl_akhir');

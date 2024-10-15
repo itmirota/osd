@@ -64,7 +64,8 @@ if(isset($name)){ ?>
 
 	<script>
 		$(document).ready(function() {
-      $("#durasi_kontrak").hide();
+			$("#load").fadeOut(2000);
+      		$("#durasi_kontrak").hide();
  		 	$("#infobarang").hide();
 			$("#kendaraan_id").hide();
 			loadkendaraan();

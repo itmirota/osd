@@ -65,6 +65,8 @@ $route['Pinjamruangan'] = 'ruangan/pinjamruangan';
 $route['kerusakanRuangan'] = 'ruangan/listkerusakan';
 $route['deletePinjamRuangan/(:num)'] = "ruangan/deletePinjam/$1";
 
+$route['laporan-kebersihan'] = "kebersihan/report";
+
 // DEPARTEMENT
 $route['Datadepartement'] = 'departement';
 $route['deletedepartement/(:num)'] = "departement/delete/$1";

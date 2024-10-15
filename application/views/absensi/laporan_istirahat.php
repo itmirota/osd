@@ -27,6 +27,9 @@
               <th class="text-center">Karyawan</th>
               <th class="text-center">Waktu Keluar</th>
               <th class="text-center">Waktu Masuk</th>
+              <?php if($role == ROLE_SUPERADMIN){?>
+              <th>#</th>
+              <?php } ?>
             </tr>
           </thead>
           <tbody>
@@ -61,6 +64,9 @@
                 <span class="badge text-bg-secondary">belum absen</span> 
                 <?php } ?>
               </td>
+              <?php if($role == ROLE_SUPERADMIN){?>
+              <td><a href="<?= base_url('absensi/hapusIstirahat/'.$ld->id_absensi_istirahat)?>"><i class="fa fa-trash"></i></a></td>
+              <?php }?>
             </tr>
             <?php }} ?>
           </tbody>
