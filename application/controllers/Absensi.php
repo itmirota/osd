@@ -497,7 +497,7 @@ class Absensi extends BaseController
 
     $where = array(
       'id_absensi_istirahat' => $id
-    )
+    );
 
     $data = $this->crud_model->GetDataById($where,'tbl_absensi_istirahat');
     foreach ($data as $d){
