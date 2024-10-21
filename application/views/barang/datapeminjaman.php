@@ -134,8 +134,8 @@ if($page != 'Pinjambarang'){ ?>
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <label for="barang_id" class="form-label">Nama Barang</label>
-                  <select name="barang_id" id="barang_input"  class="form-select tabel-PR">
+                  <label for="barang_input" class="form-label">Nama Barang</label>
+                  <select name="barang_input" id="barang_input"  class="form-select tabel-PR">
                   </select>
                 </div> 
                 </div>
