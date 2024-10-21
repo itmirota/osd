@@ -210,7 +210,7 @@ if($page != 'Pinjambarang'){ ?>
               <label for="nama_barang" class="form-label">Nama barang</label>
               <input type="hidden" name="id_pinjam_barang" id="id_pinjam_barang"/>
               <input type="hidden" name="id_barang" id="id_barang"/>
-              <input type="text" name="nama_barang" id="nama_barang" class="form-control tabel-PR" readonly />
+              <input type="text" name="nama_barang" id="detail_nama_barang" class="form-control tabel-PR" readonly />
             </div>
             <div class="col-md-12">
               <div class="row">
@@ -302,7 +302,7 @@ function detailBarang($id){
     type: "get",
     success:function(hasil){
       document.getElementById("id_pinjam_barang").value = hasil.id_pinjam_barang;
-      document.getElementById("nama_barang").value = hasil.nama_barang;
+      document.getElementById("detail_nama_barang").value = hasil.nama_barang;
       document.getElementById("jumlah_pinjam").value = hasil.jumlah_pinjam;
     }
   });

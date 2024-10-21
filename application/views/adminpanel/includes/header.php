@@ -541,7 +541,6 @@ if($role != ROLE_STAFF){ ?>
       <div class="container-fluid p-0">
 <?php }else{ ?>
 <body class="bg-pattern">
-<div id="load"></div>
 <div>
   <div class="container" style="min-height:400px; margin-top:-3%">
 <?php } ?>

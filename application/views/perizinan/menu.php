@@ -107,7 +107,7 @@
 
       <div class="d-flex justify-content-end">
         <div class="btn-group m-3">
-          <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-primary btn-md dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Pilih Jenis Perizinan
           </button>
           <ul class="dropdown-menu">

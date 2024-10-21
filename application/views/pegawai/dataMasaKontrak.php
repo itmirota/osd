@@ -1,7 +1,8 @@
 
 <div class="row">
-  <div class="d-flex justify-content-start mb-4">
+  <div class="d-flex justify-content-between mb-4">
     <a href="<?= base_url('Datapegawai')?>" class="btn btn-warning me-2"><i class="fa fa-arrow-left"></i> Kembali</a>
+    <a href="<?= base_url('Datapegawai')?>" class="btn btn-success me-2"><i class="fa fa-download"></i> export</a>
   </div>
 
   <div class="col-md-12">

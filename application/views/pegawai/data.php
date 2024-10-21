@@ -96,6 +96,7 @@
             <th class="text-end" width="10px">Durasi Kontrak</th>
             <th class="text-end" width="10px">Kuota Cuti</th>
             <th class="text-end" width="80px">Sisa Cuti Tahun Lalu</th>
+            <th class="text-end" width="80px">Surat Peringatan</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
@@ -134,6 +135,7 @@
             <td class="text-center"><?= $data->status_pegawai == "tetap" ? '-': $data->durasi_kontrak.' bulan' ?></td>
             <td  class="text-center"><?= $data->kuota_cuti ?></td>
             <td  class="text-center"><?= $data->sisa_cuti ?></td>
+            <td  class="text-center"><span class="badge bg-success">SP 1</span></td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
