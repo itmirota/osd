@@ -245,30 +245,30 @@ class Barang extends BaseController
     var_dump($barang_id);
 
 
-    // if(is_null($pegawai_id)){
-    //   $pegawai_id = $this->global['pegawai_id'];
-    // }
+    if(is_null($pegawai_id)){
+      $pegawai_id = $this->global['pegawai_id'];
+    }
 
-    // $cek_stok = $this->master_model->cekStokBarang($barang_id)->stok_barang_normal;
+    $cek_stok = $this->master_model->cekStokBarang($barang_id)->stok_barang_normal;
 
-    // $data = array(
-    //   'barang_id' => $barang_id,
-    //   'jumlah_pinjam' => $jumlah_barang,
-    //   'pegawai_id' => $pegawai_id,
-    //   'tgl_mulai' => $tgl_mulai,
-    // );
+    $data = array(
+      'barang_id' => $barang_id,
+      'jumlah_pinjam' => $jumlah_barang,
+      'pegawai_id' => $pegawai_id,
+      'tgl_mulai' => $tgl_mulai,
+    );
 
 
-    // if($cek_stok > 0){
-    //   $this->updateStokTersedia($barang_id, $cek_stok, $jumlah_barang);
+    if($cek_stok > 0){
+      $this->updateStokTersedia($barang_id, $cek_stok, $jumlah_barang);
 
-    //   $this->crud_model->input($data,'tbl_pinjam_barang');
-    //   $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    // }else{
-    //   $this->set_notifikasi_swal('error','STOK KOSONG!!!','Stok tidak cukup');
-    // }
+      $this->crud_model->input($data,'tbl_pinjam_barang');
+      $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    }else{
+      $this->set_notifikasi_swal('error','STOK KOSONG!!!','Stok tidak cukup');
+    }
 
-    // redirect($page);
+    redirect($page);
   }
 
   public function detailpinjambarang($id) {
