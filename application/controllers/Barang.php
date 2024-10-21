@@ -242,9 +242,6 @@ class Barang extends BaseController
       $barang_id = $barang_input;
     }
 
-    var_dump($barang_id);
-
-
     if(is_null($pegawai_id)){
       $pegawai_id = $this->global['pegawai_id'];
     }
