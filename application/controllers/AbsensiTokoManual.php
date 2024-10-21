@@ -58,8 +58,8 @@ class AbsensiTokoManual extends BaseController
     $periodeAwal = $tahun.'-'.$bulan.'-21';
 
     $where = array(
-      'DATE(datecreated) >=' => $periodeAwal,
-      'DATE(datecreated) <=' => $periodeAkhir,
+      'tgl_awal >=' => $periodeAwal,
+      'tgl_akhir <=' => $periodeAkhir,
     );
 
     $data = array(

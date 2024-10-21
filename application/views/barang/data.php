@@ -28,7 +28,6 @@
             <th>Stok Dipinjam</th>
             <th>Stok Rusak</th>
             <th>Status</th>
-            <th class="text-center">Cetak</th>
             <?php
             if($role != ROLE_MANAGER)
             {
@@ -57,34 +56,29 @@
             <td><?php echo $data->stok_barang_dipinjam ?></td>
             <td><?php echo $data->stok_barang_rusak ?></td>
             <td>
-              <?php 
-              switch ($data->keterangan_barang) {
-                case 1: ?>
-                  <span class="badge text-bg-warning">asset</span>
-                <?php break;
-                
-                default:?>
-                  <span class="badge text-bg-warning">dipinjamkan</span>
-                <?php  
-                break;}
-                ?>
-            </td>
-            <td class="text-center">
-              <a data-bs-toggle="modal" data-bs-target="#cetakBarcode" onclick="cetakBarcode(<?= $data->id_barang?>)" class="btn btn-sm btn-info"><i class="fa fa-print" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="cetak"></i></a>
+              <span class="badge text-bg-<?= ($data->stok_barang_normal == "0") ? "danger":"success" ?>"><?= ($data->stok_barang_normal == "0") ? "Dipinjam":"Tersedia" ?></span>
             </td>
             <?php
             if($role != ROLE_MANAGER)
             {
             ?>
             <td class="text-center">
-              <a class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_barang?>)"><i class="fa fa-pencil" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"></i></a>
-              <?php
-              if($role == ROLE_SUPERADMIN)
-              {
-              ?>
-              <a href="<?= base_url('deletebarang/'.$data->id_barang) ?>" class="btn btn-sm btn-danger" ><i class="fa fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="hapus"></i></a>
-              <?php } ?>
+              <div class="btn-group">
+                <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+                </a>
 
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cetakBarcode" onclick="cetakBarcode(<?= $data->id_barang?>)">Cetak Barcode</a></li>
+                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_barang?>)">Edit Data</a></li>
+                  <?php
+                  if($role == ROLE_SUPERADMIN)
+                  {
+                  ?>
+                  <li><a class="dropdown-item" href="<?= base_url('deletebarang/'.$data->id_barang) ?>">Hapus Data</a></li>
+                  <?php } ?>
+                </ul>
+              </div>
             </td>
             <?php } ?>
           </tr>
