@@ -61,7 +61,7 @@ class Sample extends BaseController
 
     $this->crud_model->input($data,'tbl_sample_permintaan');
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('permintaan-sample');
+    redirect('sample-masuk');
   }
 
   public function updateStatusPermintaan(){
@@ -80,7 +80,7 @@ class Sample extends BaseController
 
     $res = $this->crud_model->update($where, $data,'tbl_sample_permintaan');
     $this->set_notifikasi_swal('success','Berhasil','Status Berhasil Diubah');
-    redirect('permintaan-sample');
+    redirect('sample-masuk');
   }
 // Permintaan Sample
 

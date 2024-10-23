@@ -59,4 +59,22 @@ class Cronjob extends BaseController
 
     $this->crud_model->update('sisa_cuti != 0', $data, 'tbl_pegawai');
   }
+
+  function weton($tgl){
+    $result = weton($tgl);
+
+    echo $result;
+  }
+
+  function zodiak($tgl){
+    $result = zodiak($tgl);
+
+    echo $result;
+  }
+
+  function shio($tgl){
+    $result = shio($tgl);
+
+    echo $result;
+  }
 }

@@ -117,191 +117,6 @@ class Pegawai extends BaseController
     $this->crud_model->input($data,'tbl_users');
   }
 
-  public function shio($tanggal){
-    $tahun = date('Y', strtotime($tanggal));
-
-    $param1 = $tahun / 12;
-    $hasil = round($param1,3);
-
-    $pengurang = floor($param1);
-
-    $hitung = $hasil - $pengurang;
-
-    if ($hitung == 0){
-      $shio = 0;
-    }else{
-      $shio = $hitung * 12;
-      $shio = round($shio,0);
-    }
-
-    switch ($shio) {
-      case 0:
-        $shio = "Monyet";
-        break;
-      case 1:
-        $shio = "Ayam";
-        break;
-      case 2:
-        $shio = "Anjing";
-        break;
-      case 3:
-        $shio = "Babi";
-        break;
-      case 4:
-        $shio = "Tikus";
-        break;
-      case 5:
-        $shio = "Sapi";
-        break;
-      case 6:
-        $shio = "Harimau";
-        break;
-      case 7:
-        $shio = "Kelinci";
-        break;
-      case 8:
-        $shio = "Naga";
-        break;
-      case 9:
-        $shio = "Ular";
-        break;
-      case 10:
-        $shio = "Kuda";
-        break;
-      case 11:
-        $shio = "Kambing";
-        break;
-    }
-
-    return $shio;
-  }
-
-  public function zodiak($tgl_lahir){
-    $tgl_lahir = date('m-d', strtotime($tgl_lahir));
-
-    switch ($tgl_lahir) {
-      case $tgl_lahir > "03-21" && $tgl_lahir < "04-19":
-        $zodiak = "Aries";
-        break;
-      case $tgl_lahir > "04-20" && $tgl_lahir < "05-20":
-        $zodiak = "Taurus";
-        break;
-      case $tgl_lahir > "05-21" && $tgl_lahir < "06-20":
-        $zodiak = "Gemini";
-        break;
-      case $tgl_lahir > "06-21" && $tgl_lahir < "07-22":
-        $zodiak = "Cancer";
-        break;
-      case $tgl_lahir > "07-23" && $tgl_lahir < "08-22":
-        $zodiak = "Leo";
-        break;
-      case $tgl_lahir > "08-23" && $tgl_lahir < "09-22":
-        $zodiak = "Virgo";
-        break;
-      case $tgl_lahir > "09-23" && $tgl_lahir < "10-22":
-        $zodiak = "Libra";
-        break;
-      case $tgl_lahir > "10-23" && $tgl_lahir < "11-21":
-        $zodiak = "Scorpio";
-        break;
-      case $tgl_lahir > "11-22" && $tgl_lahir < "12-21":
-        $zodiak = "Sagitarius";
-        break;
-      case $tgl_lahir > "12-22" && $tgl_lahir < "01-19":
-        $zodiak = "Capricorn";
-        break;
-      case $tgl_lahir > "01-20" && $tgl_lahir < "02-18":
-        $zodiak = "Aquarius";
-        break;
-      case $tgl_lahir > "02-19" && $tgl_lahir < "03-20":
-        $zodiak = "Pisces";
-        break;
-    }
-
-    return $zodiak;
-  }
-
-  function intPart($floatNum) {
-    return ($floatNum<-0.0000001 ? ceil($floatNum-0.0000001) : floor($floatNum+0.0000001));
-  }
-
-  public function hdate($day,$month,$year) {
-    $julian = GregorianToJD($month, $day, $year);
-    if ($julian >= 1937808 && $julian <= 536838867) {
-      $date = cal_from_jd($julian, CAL_GREGORIAN);
-      $d = $date['day'];
-      $m = $date['month'] - 1;
-      $y = $date['year'];
-  
-      $mPart = ($m-13)/12;
-      $jd = $this->intPart((1461*($y+4800+$this->intPart($mPart)))/4)+
-      $this->intPart((367*($m-1-12*($this->intPart($mPart))))/12)-
-      $this->intPart((3*($this->intPart(($y+4900+$this->intPart($mPart))/100)))/4)+$d-32075;
-  
-      $l = $jd-1948440+10632;
-      $n = $this->intPart(($l-1)/10631);
-      $l = $l-10631*$n+354;
-      $j = ($this->intPart((10985-$l)/5316))*($this->intPart((50*$l)/17719))+($this->intPart($l/5670))*($this->intPart((43*$l)/15238));
-      $l = $l-($this->intPart((30-$j)/15))*($this->intPart((17719*$j)/50))-($this->intPart($j/16))*($this->intPart((15238*$j)/43))+29;
-  
-      $m = $this->intPart((24*$l)/709);
-      $d = $l-$this->intPart((709*$m)/24);
-      $y = 30*$n+$j-30;
-      $yj = $y+512;
-      $h = ($julian+3)%5;
-
-      if($julian<=1948439) $y–;
-  
-      return array(
-          'day' => $date['day'],
-          'month' => $date['month'],
-          'year' => $date['year'],
-          'dow' => $date['dow'],
-          'hijriday' => $d,
-          'hijrimonth' => $m, 
-          'hijriyear' => $y,
-          'javayear' => $yj,
-          'javadow' => $h
-      );
-    }
-  }
-
-  public function weton($date) {
-    $imonth = Array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
-    $amonth = Array('Muharram','Safar','Rabi\'ul Awal','Rabi\'ul Akhir','Jumadil Awal','Jumadil Akhir','Rajab','Sya\'ban','Ramadhan','Syawal','Dzul Qa\'dah','Dzul Hijjah');
-    $jmonth = Array('Suro','Sapar','Mulud','Ba\'da Mulud','Jumadil Awal','Jumadil Akhir','Rejeb','Ruwah','Poso','Syawal','Dulkaidah','Besar');
-    $aday = Array('Al-Ahad','Al-Itsnayna','Ats-Tsalatsa',"Al-Arba'a","Al-Hamis","Al-Jum'a","As-Sabt");
-    $iday = Array('Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu');
-    $jday = Array('Pon','Wage','Kliwon','Legi','Pahing');
-    $hari = ['Minggu' => 5,'Senin' => 4,'Selasa' => 3,'Rabu' => 7,'Kamis' => 8,'Jumat' => 6,'Sabtu' => 9];
-    $pasaran = ['Legi' => 5,'Pahing' => 9,'Pon' => 7,'Wage' => 4,'Kliwon' => 8];
-
-    $date = explode("-", $date);
-
-    $date = $this->hdate($date[2], $date[1], $date[0]);
-    
-    // var_dump($date);
-
-    $r['hari'] = $iday[$date['dow']];
-    $r['pasaran'] = $jday[$date['javadow']];
-
-    foreach ($hari as $key => $val) {
-        if ($r['hari'] == $key) {
-            $r['hari_val'] = $val;
-            break;
-        }
-    }
-
-    foreach ($pasaran as $key => $val) {
-        if ($r['pasaran'] == $key) {
-            $r['pasaran_val'] = $val;
-            break;
-        }
-    }
-
-    return $r['hari'].' '.$r['pasaran'];
-  }
-
   public function save(){
     $nama_pegawai = $this->input->post('nama_pegawai');
     $nip = $this->input->post('nip');
@@ -310,9 +125,9 @@ class Pegawai extends BaseController
     $status_pegawai = $this->input->post('status_pegawai'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
     $tgl_lahir = $this->input->post('tgl_lahir');    
-    $shio = $this->shio($tgl_lahir);    
-    $zodiak = $this->zodiak($tgl_lahir);    
-    $weton = $this->weton($tgl_lahir);    
+    $shio = shio($tgl_lahir);    
+    $zodiak = zodiak($tgl_lahir);    
+    $weton = weton($tgl_lahir);    
     $jenis_kelamin = $this->input->post('jenis_kelamin');    
     $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');    
     $jurusan = $this->input->post('jurusan');    
@@ -371,16 +186,18 @@ class Pegawai extends BaseController
       'nama_anak' => $nama_anak
     );
 
-    $sql = $this->crud_model->input($data,'tbl_pegawai');
+    var_dump($data);
 
-    $this->saveUser($nip, $nama_pegawai);
+    // $sql = $this->crud_model->input($data,'tbl_pegawai');
 
-    if (is_null($sql)){
-      $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    }else{
-      $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
-    }
-    redirect('Datapegawai');
+    // $this->saveUser($nip, $nama_pegawai);
+
+    // if (is_null($sql)){
+    //   $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    // }else{
+    //   $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
+    // }
+    // redirect('Datapegawai');
   }
 
 
