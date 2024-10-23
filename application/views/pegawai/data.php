@@ -1,12 +1,3 @@
-<style>
-    th, td { white-space: nowrap; }
-    div.dataTables_wrapper {
-        width: 800px;
-        margin: 0 auto;
-    }
-</style>
-
-
 <div class="row">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
