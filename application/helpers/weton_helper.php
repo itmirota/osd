@@ -5,7 +5,7 @@ function intPart($floatNum) {
 }
 
 function hdate($day,$month,$year) {
-  $julian = GregorianToJD($month, $day, $year);
+  $julian = gregoriantojd($month, $day, $year);
   if ($julian >= 1937808 && $julian <= 536838867) {
     $date = cal_from_jd($julian, CAL_GREGORIAN);
     $d = $date['day'];
