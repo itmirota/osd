@@ -281,9 +281,9 @@
                 </select>
               </div> 
               <div class="col-md-10">
-                <label for="divisi_id" class="form-label">Departement</label>
+                <label for="divisi_id" class="form-label">Divisi</label>
                 <select name="divisi_id" class="form-select tabel-PR" required>
-                  <option>----- pilih departement ---</option>
+                  <option>----- pilih Divisi ---</option>
                   <?php foreach($divisi as $d): ?>
                   <option value="<?= $d->id_divisi?>"><?=$d->nama_divisi?></option>
                   <?php endforeach; ?>

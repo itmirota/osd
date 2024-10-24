@@ -127,7 +127,8 @@ class Pegawai extends BaseController
     $tgl_lahir = $this->input->post('tgl_lahir');    
     $shio = shio($tgl_lahir);    
     $zodiak = zodiak($tgl_lahir);    
-    $weton = weton($tgl_lahir);    
+    $weton = " ";
+    // $weton = weton($tgl_lahir);    
     $jenis_kelamin = $this->input->post('jenis_kelamin');    
     $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');    
     $jurusan = $this->input->post('jurusan');    
