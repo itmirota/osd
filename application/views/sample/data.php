@@ -10,9 +10,11 @@
               </div>
               <div class="p-2">
                 <div class="d-flex">
+                  <?php if($data_sample->status_permintaan == '0'){?>
                   <div class="btn-group">
-                    <button class="btn btn-md btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addVendor"><i class="fa fa-plus"></i> Tambah Data</button> 
+                    <button class="btn btn-md btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addVendor"><i class="fa fa-plus"></i> Tambah Vendor</button> 
                   </div>
+                  <?php } ?>
                   <div class="btn-group">
                     <a href="<?= base_url('export-excel-sample/'.$id)?>" type="button" class="btn btn-success me-2">
                     Export Excel
