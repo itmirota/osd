@@ -1,7 +1,7 @@
 <div class="row">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
-    <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button> -->
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button>
     <div class="form-group">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exportUser">
