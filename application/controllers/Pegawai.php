@@ -187,18 +187,16 @@ class Pegawai extends BaseController
       'nama_anak' => $nama_anak
     );
 
-    var_dump($data);
+    $sql = $this->crud_model->input($data,'tbl_pegawai');
 
-    // $sql = $this->crud_model->input($data,'tbl_pegawai');
+    $this->saveUser($nip, $nama_pegawai);
 
-    // $this->saveUser($nip, $nama_pegawai);
-
-    // if (is_null($sql)){
-    //   $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    // }else{
-    //   $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
-    // }
-    // redirect('Datapegawai');
+    if (is_null($sql)){
+      $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    }else{
+      $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
+    }
+    redirect('Datapegawai');
   }
 
 
