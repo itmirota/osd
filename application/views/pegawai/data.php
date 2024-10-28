@@ -55,13 +55,13 @@
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-          <h3 class="card-title">Data Pegawai</h3>
+          <h3 class="card-title">Data Karyawan</h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
         <div class="d-flex">
           <div class="flex-fill pegawai-aktif">
             <div class="mb-1 row">
-              <label for="no_polisi" class="col-sm-4 col-form-label">Pegawai aktif</label>
+              <label for="no_polisi" class="col-sm-4 col-form-label">Karyawan aktif</label>
               <div class="col-sm-8">
                 <input type="text" readonly class="form-control-plaintext" value=": <?= $total_pegawai_aktif->total_pegawai?> Orang">
               </div>
@@ -85,7 +85,7 @@
           <thead>
           <tr>
             <th>No</th>
-            <th width="15vh">Nama pegawai</th>
+            <th width="15vh">Nama Karyawan</th>
             <th width="40px">Usia</th>
             <th width="15vh">Masa Kerja</th>
             <th width="15vh">Dept. | Divisi</th>
@@ -259,17 +259,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h1 class="modal-title fs-5" id="titleAddPegawai">Informasi Pegawai</h1>
+        <h1 class="modal-title fs-5" id="titleAddPegawai">Informasi Karyawan</h1>
         <div class="form-group">
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-8">
-                <label for="nip" class="form-label">Nomor Induk Pegawai</label>
+                <label for="nip" class="form-label">Nomor Induk Karyawan</label>
                 <input type="text" name="nip" value="<?= sprintf("%04s", $maxNIP+1) ?>" class="form-control-plaintext tabel-PR" readonly/>
               </div>
               <div class="col-md-10">
-                <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
-                <input type="text" name="nama_pegawai" placeholder="tulis nama pegawai disini" class="form-control tabel-PR" required/>
+                <label for="nama_pegawai" class="form-label">Nama Karyawan</label>
+                <input type="text" name="nama_pegawai" placeholder="tulis nama karyawan disini" class="form-control tabel-PR" required/>
               </div>
               <div class="col-md-10">
                 <label for="jabatan_id" class="form-label">Jabatan</label>
@@ -455,11 +455,11 @@
           <div class="row">
             <div class="col-md-6">
               <div class="col-md-10">
-                <label for="nip" class="form-label">Nomor Induk Pegawai</label>
+                <label for="nip" class="form-label">Nomor Induk Karyawan</label>
                 <input type="text" name="nip" id="nip" class="form-control-plaintext tabel-PR" readonly/>
               </div>
               <div class="col-md-10">
-                <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
+                <label for="nama_pegawai" class="form-label">Nama Karyawan</label>
                 <input type="text" name="nama_pegawai" id="nama_pegawai" placeholder="tulis nama pegawai disini" class="form-control tabel-PR"/>
               </div>
               <div class="col-md-10">
@@ -720,13 +720,13 @@
             <div class="mb-3 row">
               <label for="info_alamat_ktp" class="col-sm-4 col-form-label">Alamat KTP</label>
               <div class="col-sm-8">
-                <input type="text" id="info_alamat_ktp" readonly class="form-control-plaintext">
+                <textarea type="text" id="info_alamat_ktp" readonly class="form-control-plaintext"></textarea>
               </div>
             </div>
             <div class="mb-3 row">
               <label for="info_alamat_domisili" class="col-sm-4 col-form-label">Alamat domisili</label>
               <div class="col-sm-8">
-                <input type="text" id="info_alamat_domisili" readonly class="form-control-plaintext">
+                <textarea type="text" id="info_alamat_domisili" readonly class="form-control-plaintext"></textarea>
               </div>
             </div>
             <div class="mb-3 row">
@@ -828,16 +828,16 @@
     <div class="modal-content">
       <form action="<?=base_url('pegawai/saveNonAktif')?>" role="form" method="post" enctype="multipart/form-data">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="titleAddPegawai">Pegawai Non Aktif</h1>
+        <h1 class="modal-title fs-5" id="titleAddPegawai">Karyawan Non Aktif</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
           <div class="row">
             <div class="col-md-10">
-              <label for="id_pegawai" class="form-label">Nama Pegawai</label>
+              <label for="id_pegawai" class="form-label">Nama Karyawan</label>
               <select name="id_pegawai" class="form-select tabel-PR" required>
-                <option>----- pilih pegawai ---</option>
+                <option>----- pilih Karyawan ---</option>
                 <?php foreach($list_data as $ld): ?>
                 <option value="<?= $ld->id_pegawai?>"><?=$ld->nip?> | <?=$ld->nama_pegawai?></option>
                 <?php endforeach; ?>

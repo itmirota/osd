@@ -414,7 +414,7 @@ class Absensi extends BaseController
       'pegawai_id' => $pegawai_id 
     );
 
-    $data['list_data']= $this->crud_model->GetDataById($where,'tbl_absensi_istirahat');
+    $data['list_data']= $this->crud_model->getdataOrderBy($where,'id_absensi_istirahat','DESC','tbl_absensi_istirahat');
     $data['datenow']= DATE('d M Y');
 
     // Check if the "mobile" word exists in User-Agent 

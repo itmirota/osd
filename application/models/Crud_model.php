@@ -35,9 +35,11 @@ class Crud_model extends CI_Model
         return $query->row();
 	}
 
-    function getdataOrderBy($table){
+    function getdataOrderBy($where, $param, $order, $table){
         $this->db->select('*');
         $this->db->from($table);
+		$this->db->where($where);
+        $this->db->order_by($param,$order);
         $query = $this->db->get();
 
         return $query->result();
