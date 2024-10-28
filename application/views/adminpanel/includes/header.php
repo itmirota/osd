@@ -107,17 +107,17 @@ if($role != ROLE_STAFF){ ?>
 
         <!-- MENU PEGAWAI -->
         <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-users"></i> Data Pegawai <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-users"></i> Data Karyawan <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
             <li class="sidebar-item">
               <a href="<?php echo base_url('Datapegawai'); ?>" class="sidebar-link">
-                <span>Pegawai Aktif</span>
+                <span>Karyawan Aktif</span>
               </a>
             </li>
 
             <li class="sidebar-item">
               <a href="<?php echo base_url('Datapegawainonaktif'); ?>" class="sidebar-link">
-                <span>Pegawai Tidak Aktif</span>
+                <span>Karyawan Tidak Aktif</span>
               </a>
             </li>
           </ul>

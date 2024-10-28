@@ -52,7 +52,7 @@ class Dashboard extends BaseController
   }
 
   public function downloadAPK(){
-    $file_path = './assets/APK/osd.apk';
+    $file_path = FCPATH.'assets/APK/osd.apk';
     header('Content-Type: application/vnd.android.package-archive');
     header("Content-length: " . filesize($file_path));
     header('Content-Disposition: attachment; filename="OSD APK"');
