@@ -62,7 +62,8 @@ class Pegawai extends BaseController
 
     $where = array(
       'status_pegawai' => 'kontrak',
-      'MONTH(tgl_selesai)' => $bulan
+      'MONTH(tgl_selesai)' => $bulan,
+      'YEAR(tgl_selesai) =' => DATE('Y')
     );
 
     $data = array(
