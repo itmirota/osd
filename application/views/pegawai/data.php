@@ -720,7 +720,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label for="provinsiktp_id" class="form-label">Provinsi</label>
-                    <select name="provinsiktp_id" id="provinsiktp_edit_id" onchange="Kabupatenktp_edit()" class="form-select tabel-PR" required>
+                    <select name="provinsiktp_id" id="provinsiktp_edit_id" onchange="Kabupatenktp_edit()" class="form-select tabel-PR">
                       <option>----- pilih Provinsi ---</option>
                       <?php foreach($provinsi as $p): ?>
                       <option value="<?= $p->id?>"><?=$p->name?></option>
@@ -729,26 +729,26 @@
                   </div> 
                   <div class="col-md-6">
                     <label for="kabupatenktp_id" class="form-label">Kabupaten</label>
-                    <select name="kabupatenktp_id" id="kabupatenktp_edit_id" onchange="Kecamatanktp_edit()" class="form-select tabel-PR" required>
+                    <select name="kabupatenktp_id" id="kabupatenktp_edit_id" onchange="Kecamatanktp_edit()" class="form-select tabel-PR">
                     </select>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="kecamatanktp_id" class="form-label">Kecamatan</label>
-                    <select name="kecamatanktp_id" id="kecamatanktp_edit_id" onchange="Kelurahanktp_edit()" class="form-select tabel-PR" required>
+                    <select name="kecamatanktp_id" id="kecamatanktp_edit_id" onchange="Kelurahanktp_edit()" class="form-select tabel-PR">
                     </select>
                   </div>
                   <div class="col-md-6">
                     <label for="kelurahanktp_id" class="form-label">Kelurahan</label>
-                    <select name="kelurahanktp_id" id="kelurahanktp_edit_id" class="form-select tabel-PR" required>
+                    <select name="kelurahanktp_id" id="kelurahanktp_edit_id" class="form-select tabel-PR">
                     </select>
                   </div> 
                 </div>
               </div>
               <div class="col-md-5">
                 <label for="kodepos_ktp" class="form-label">Kodepos</label>
-                <input type="text" name="kodepos_ktp" placeholder="tulis kodepos disini" class="form-control tabel-PR" required />
+                <input type="text" name="kodepos_ktp" placeholder="tulis kodepos disini" class="form-control tabel-PR" />
               </div>
               <div class="col-md-10">
                 <label for="Alamat_ktp" class="form-label">Alamat Detail</label>
