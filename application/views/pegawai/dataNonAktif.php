@@ -39,11 +39,9 @@
           <thead>
           <tr>
             <th>No</th>
-            <th>Nomor Induk</th>
-            <th>Nama pegawai</th>
+            <th  width="20vh">Nama pegawai</th>
             <th>Tanggal Berakhir</th>
-            <th>Divisi</th>
-            <th class="text-center">Detail</th>
+            <th>Alasan</th>
             <th>Status</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
@@ -62,11 +60,15 @@
           ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= $data->nip ?></td>
-            <td><?= $data->nama_pegawai ?></td>
+            <td>
+              <a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><strong><?= $data->nama_pegawai ?></strong></a>
+              <hr class="m-0">
+              <span style="font-size:12px"><strong><?= $data->nama_departement ?>/<?= $data->nama_divisi ?></strong></span><br>
+              <span style="font-size:12px"><strong>Area: KANTOR</strong></span><br>
+              <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span>
+            </td>
             <td class="text-center"><?= is_null($data->tgl_keluar) ? '-': mediumdate_indo($data->tgl_keluar) ?></td>
             <td><?= $data->nama_divisi ?></td>
-            <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><i class="fa fa-eye"></a></td>
             <td><span class="badge <?= ($data->status_pegawai == "tetap" ? 'bg-primary':'bg-info')?>"><?=  ($data->status_pegawai == "tetap" ? 'PKWTT':'PKWT') ?></span></td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
@@ -151,6 +153,10 @@
             <div class="col-md-10">
               <label for="tgl_keluar" class="col-sm-4 col-form-label">Tanggal Berakhir</label>
               <input type="date" name="tgl_keluar" class="form-control"> 
+            </div>
+            <div class="col-md-10">
+              <label for="alasan" class="col-sm-4 col-form-label">Alasan</label>
+              <input type="text" name="alasan" placeholder="masukkan alasan disini" class="form-control"> 
             </div>
           </div>    
         </div>

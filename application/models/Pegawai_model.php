@@ -8,6 +8,7 @@ class Pegawai_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
     $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
     $this->db->where('a.status','aktif');
     $query = $this->db->get();
     return $query->result();
@@ -18,6 +19,7 @@ class Pegawai_model extends CI_Model
     $this->db->select($params);
     $this->db->from('tbl_pegawai a');
     $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
     $this->db->where('a.status','aktif');
     $this->db->where($where);
 
@@ -38,6 +40,7 @@ class Pegawai_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
     $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
     $this->db->where('a.status','tidak');
     $query = $this->db->get();
     return $query->result();

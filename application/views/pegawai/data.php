@@ -1,6 +1,8 @@
 <div class="row">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
+    <a href="<?= base_url('pegawai/excel_pegawai')?>" class="btn btn-primary me-2"><i class="fa fa-download"></i> Export Pegawai</a>
+    <?php if($role == ROLE_SUPERADMIN){?>
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button>
     <div class="form-group">
         <!-- Button trigger modal -->
@@ -40,6 +42,7 @@
           </div>
         </div>
     </div>
+    <?php } ?>
   </div>
 
   <div class="col-md-12">
@@ -85,17 +88,14 @@
           <thead>
           <tr>
             <th>No</th>
-            <th width="15vh">Nama Karyawan</th>
+            <th width="20vh">Nama Karyawan</th>
             <th width="40px">Usia</th>
             <th width="15vh">Masa Kerja</th>
-            <th width="15vh">Dept. | Divisi</th>
             <th>Status</th>
-            <!-- <th>Tanggal Bergabung</th>
-            <th>Tanggal Selesai</th> -->
-            <th class="text-end" width="10px">Durasi Kontrak</th>
-            <th class="text-end" width="10px">Kuota Cuti</th>
-            <th class="text-end" width="80px">Sisa Cuti Tahun Lalu</th>
-            <!-- <th class="text-end" width="80px">Surat Peringatan</th> -->
+            <th class="text-end" width="10vh">Durasi Kontrak</th>
+            <th class="text-end" width="10vh">Kuota Cuti</th>
+            <th class="text-end" width="15vh">Sisa Cuti Tahun Lalu</th>
+            <th class="text-end" width="10vh">Surat Peringatan</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
@@ -113,8 +113,13 @@
           ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><?= $data->nama_pegawai ?></a><hr class="m-0">
-            <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span></td>
+            <td>
+              <a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><strong><?= $data->nama_pegawai ?></strong></a>
+              <hr class="m-0">
+              <span style="font-size:12px"><strong><?= $data->nama_departement ?>/<?= $data->nama_divisi ?></strong></span><br>
+              <span style="font-size:12px"><strong>Area: KANTOR</strong></span><br>
+              <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span>
+            </td>
             <td><?php
               $date1=date_create($data->tgl_lahir);
               $date2=date_create(DATE('Y-m-d'));
@@ -127,14 +132,29 @@
               $diff=date_diff($date1,$date2);
               echo $diff->format("%y th, %m bln");
             ?></td>
-            <td><?= $data->nama_divisi ?></td>
             <td><span class="badge <?= ($data->status_pegawai == "tetap" ? 'bg-primary':'bg-info')?>"><?=  ($data->status_pegawai == "tetap" ? 'PKWTT':'PKWT') ?></span></td>
-            <!-- <td><?= mediumdate_indo($data->tgl_masuk) ?></td>
-            <td><?= isset($data->tgl_selesai) ? mediumdate_indo($data->tgl_selesai) : '-' ?></td> -->
             <td class="text-center"><?= $data->status_pegawai == "tetap" ? '-': $data->durasi_kontrak.' bulan' ?></td>
             <td  class="text-center"><?= $data->kuota_cuti ?></td>
             <td  class="text-center"><?= $data->sisa_cuti ?></td>
-            <!-- <td  class="text-center"><span class="badge bg-success">SP 1</span></td> -->
+            <td  class="text-center">
+            <?php switch ($data->tingkat_peringatan) {
+              case 3 : ?>
+                <span class="badge bg-danger">SP <?= $data->tingkat_peringatan ?></span>
+            <?php break; ?>
+
+            <?php case 2 : ?>
+              <span class="badge bg-warning">SP <?= $data->tingkat_peringatan ?></span>
+            <?php break; ?>
+
+            <?php case 1 : ?>
+              <span class="badge bg-success">SP <?= $data->tingkat_peringatan ?></span>
+            <?php break; ?>
+              
+            <?php default: ?>
+                -
+            <?php break; ?>
+            <?php } ?>
+            </td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
@@ -149,6 +169,7 @@
                 <?php if($data->status_pegawai == "kontrak"){?>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)">Perpanjang Kontrak</a></li>
                 <?php } ?>
+                <li><a class="dropdown-item suratPeringatan" href="#" data-bs-toggle="modal" data-bs-target="#addNewWarningLetter" onclick="suratPeringatan(<?= $data->id_pegawai?>)">Surat Peringatan</a></li>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAkun" onclick="editAkun(<?= $data->id_pegawai?>)">Edit Akun</a></li>
                 <li><a class="dropdown-item" href="#"  onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
@@ -209,6 +230,53 @@
                 <option value="3"> 3 Bulan</option>
                 <option value="6"> 6 Bulan</option>
                 <option value="12"> 12 Bulan</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Surat Peringatan-->
+<div class="modal fade" id="addNewWarningLetter" tabindex="-1" aria-labelledby="addNewKontrak" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4">Surat Peringatan</h1>
+      </div>
+      <form action="<?=base_url('pegawai/add_peringatan')?>" role="form" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <h1 class="fs-5 mb-2">Histori Surat Peringatan</h1>
+          <table id="example1" class="table table-bordered table-striped mb-4">
+            <thead>
+            <tr>
+              <th>Tanggal Surat Peringatan</th>
+              <th>Surat Peringatan</th>
+            </tr>
+            </thead>
+            <tbody id="list_peringatan">
+            </tbody>
+          </table>
+          <hr>
+          <div class="mb-4 row">
+            <label for="tgl_surat_peringatan" class="col-sm-4 col-form-label">Tanggal Surat Peringatan</label>
+            <div class="col-sm-8">
+              <input type="hidden" name="id_pegawai" id="id_pegawai_sp" class="form-control tabel-PR"/>
+              <input type="date" name="tgl_surat_peringatan" id="tgl_surat_peringatan" class="form-control tabel-PR"/>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="tingkat_peringatan" class="col-sm-4 col-form-label">Durasi Kontrak</label>
+            <div class="col-sm-8">
+              <select name="tingkat_peringatan" class="form-select tabel-PR">
+                <option value="1"> Peringatan pertama</option>
+                <option value="2"> Peringatan kedua</option>
+                <option value="3"> Peringatan ketiga</option>
               </select>
             </div>
           </div>
@@ -335,13 +403,89 @@
                 <label for="agama" class="form-label">Agama</label>
                 <input type="text" name="agama" placeholder="tulis agama disini" class="form-control tabel-PR" required />
               </div>
-              <div class="col-md-10">
+              <hr>
+              <div class="row">
                 <label for="Alamat_ktp" class="form-label">Alamat KTP</label>
-                <textarea name="alamat_ktp" placeholder="tulis alamat sesuai ktp disini" class="form-control tabel-PR" required rows="3"></textarea>
               </div>
               <div class="col-md-10">
-                <label for="alamat_domisili" class="form-label">Alamat Domisili</label>
-                <textarea name="alamat_domisili" placeholder="tulis alamat domisili disini" class="form-control tabel-PR" required rows="3"></textarea>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="provinsiktp_id" class="form-label">Provinsi</label>
+                    <select name="provinsiktp_id" id="provinsiktp_id" onchange="Kabupatenktp()" class="form-select tabel-PR" required>
+                      <option>----- pilih Provinsi ---</option>
+                      <?php foreach($provinsi as $p): ?>
+                      <option value="<?= $p->id?>"><?=$p->name?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div> 
+                  <div class="col-md-6">
+                    <label for="kabupatenktp_id" class="form-label">Kabupaten</label>
+                    <select name="kabupatenktp_id" id="kabupatenktp_id" onchange="Kecamatanktp()" class="form-select tabel-PR" required>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="kecamatanktp_id" class="form-label">Kecamatan</label>
+                    <select name="kecamatanktp_id" id="kecamatanktp_id" onchange="Kelurahanktp()" class="form-select tabel-PR" required>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="kelurahanktp_id" class="form-label">Kelurahan</label>
+                    <select name="kelurahanktp_id" id="kelurahanktp_id" class="form-select tabel-PR" required>
+                    </select>
+                  </div> 
+                </div>
+              </div>
+              <div class="col-md-5">
+                <label for="kodepos_ktp" class="form-label">Kodepos</label>
+                <input type="text" name="kodepos_ktp" placeholder="tulis kodepos disini" class="form-control tabel-PR" required />
+              </div>
+              <div class="col-md-10">
+                <label for="Alamat_ktp" class="form-label">Alamat Detail</label>
+                <textarea name="alamat_ktp" placeholder="tulis alamat sesuai ktp disini" class="form-control tabel-PR" required rows="3"></textarea>
+              </div>
+              <hr>
+              <div class="row">
+                <label for="Alamat_domisili" class="form-label">Alamat domisili</label>
+              </div>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="provinsidomisili_id" class="form-label">Provinsi</label>
+                    <select name="provinsidomisili_id" id="provinsidomisili_id" onchange="Kabupatendomisili()" class="form-select tabel-PR" required>
+                      <option>----- pilih Provinsi ---</option>
+                      <?php foreach($provinsi as $p): ?>
+                      <option value="<?= $p->id?>"><?=$p->name?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div> 
+                  <div class="col-md-6">
+                    <label for="kabupatendomisili_id" class="form-label">Kabupaten</label>
+                    <select name="kabupatendomisili_id" id="kabupatendomisili_id" onchange="Kecamatandomisili()" class="form-select tabel-PR" required>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="kecamatandomisili_id" class="form-label">Kecamatan</label>
+                    <select name="kecamatandomisili_id" id="kecamatandomisili_id" onchange="Kelurahandomisili()" class="form-select tabel-PR" required>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="kelurahandomisili_id" class="form-label">Kelurahan</label>
+                    <select name="kelurahandomisili_id" id="kelurahandomisili_id" class="form-select tabel-PR" required>
+                    </select>
+                  </div> 
+                </div>
+              </div>
+              <div class="col-md-5">
+                <label for="kodepos_domisili" class="form-label">Kodepos</label>
+                <input type="text" name="kodepos_domisili" placeholder="tulis kodepos disini" class="form-control tabel-PR" required />
+              </div>
+              <div class="col-md-10">
+                <label for="Alamat_domisili" class="form-label">Alamat Detail</label>
+                <textarea name="alamat_domisili" placeholder="tulis alamat sesuai domisili disini" class="form-control tabel-PR" required rows="3"></textarea>
               </div>
             </div>
             <div class="col-md-6">
@@ -386,13 +530,19 @@
                 <label for="email_pegawai" class="form-label">Email</label>
                 <input type="email" name="email_pegawai" placeholder="tulis Email disini" class="form-control tabel-PR" required/>
               </div>
+              <hr>
               <div class="col-md-10">
-                <label for="nama_ibu" class="form-label">Nama Ibu</label>
-                <input type="text" name="nama_ibu" placeholder="tulis nama ibu disini" class="form-control tabel-PR"/>
+              <label for="nama_ibu" class="form-label">Informasi Keluarga</label>
               </div>
-              <div class="col-md-10">
-                <label for="nama_ayah" class="form-label">Nama Ayah</label>
-                <input type="text" name="nama_ayah" placeholder="tulis nama ayah disini" class="form-control tabel-PR"/>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="nama_ibu" class="form-label">Nama Ibu</label>
+                  <input type="text" name="nama_ibu" placeholder="tulis nama ibu disini" class="form-control tabel-PR"/>
+                </div>
+                <div class="col-md-5">
+                  <label for="nama_ayah" class="form-label">Nama Ayah</label>
+                  <input type="text" name="nama_ayah" placeholder="tulis nama ayah disini" class="form-control tabel-PR"/>
+                </div>
               </div>
               <div class="col-md-10">
                 <label for="status_pernikahan" class="form-label">Status Pernikahan</label>
@@ -402,13 +552,51 @@
                   <option value="menikah"> Menikah</option>
                 </select>
               </div>
-              <div class="col-md-10">
-                <label for="nama_pasangan" class="form-label">Nama Pasangan</label>
-                <input type="text" name="nama_pasangan" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="nama_pasangan" class="form-label">Nama Pasangan</label>
+                  <input type="text" name="nama_pasangan" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
+                </div>
+                <div class="col-md-5">
+                  <label for="kontak_pasangan" class="form-label">No. HP</label>
+                  <input type="text" name="kontak_pasangan" placeholder="tulis No. HP pasangan disini" class="form-control tabel-PR" />
+                </div>
               </div>
               <div class="col-md-10">
                 <label for="nama_anak" class="form-label">Nama Anak</label>
                 <textarea name="nama_anak" placeholder="tulis nama anak disini" class="form-control tabel-PR"></textarea>
+              </div>
+              <hr>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat1" class="form-label">Kontak Darurat</label>
+              </div>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat1" class="form-label">Nama Kontak Darurat 1</label>
+                <input type="text" name="nama_kontakdarurat1" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="no_hpdarurat1" class="form-label">No. HP 1</label>
+                  <input type="text" name="no_hpdarurat1" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
+                </div>
+                <div class="col-md-5">
+                  <label for="hubungan_darurat1" class="form-label">Hubungan Kontak Darurat 1</label>
+                  <input type="text" name="hubungan_darurat1" placeholder="tulis No. HP pasangan disini" class="form-control tabel-PR" />
+                </div>
+              </div>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat2" class="form-label">Nama Kontak Darurat 2</label>
+                <input type="text" name="nama_kontakdarurat2" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="no_hpdarurat2" class="form-label">No. HP 2</label>
+                  <input type="text" name="no_hpdarurat2" placeholder="tulis nama pasangan disini" class="form-control tabel-PR" />
+                </div>
+                <div class="col-md-5">
+                  <label for="hubungan_darurat2" class="form-label">Hubungan Kontak Darurat 2</label>
+                  <input type="text" name="hubungan_darurat2" placeholder="tulis No. HP pasangan disini" class="form-control tabel-PR" />
+                </div>
               </div>
               <hr>
               <h1 class="modal-title fs-5" id="titleAddPegawai">Informasi akun</h1>
@@ -525,13 +713,88 @@
                 <label for="agama" class="form-label">Agama</label>
                 <input type="text" name="agama" id="agama" placeholder="tulis agama disini" class="form-control tabel-PR"/>
               </div>
-              <div class="col-md-10">
+              <div class="row">
                 <label for="Alamat_ktp" class="form-label">Alamat KTP</label>
-                <textarea name="alamat_ktp" id="alamat_ktp" placeholder="tulis alamat sesuai ktp disini" class="form-control tabel-PR" rows="3"></textarea>
               </div>
               <div class="col-md-10">
-                <label for="alamat_domisili" class="form-label">Alamat Domisili</label>
-                <textarea name="alamat_domisili" id="alamat_domisili" placeholder="tulis alamat domisili disini" class="form-control tabel-PR" rows="3"></textarea>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="provinsiktp_id" class="form-label">Provinsi</label>
+                    <select name="provinsiktp_id" id="provinsiktp_edit_id" onchange="Kabupatenktp_edit()" class="form-select tabel-PR" required>
+                      <option>----- pilih Provinsi ---</option>
+                      <?php foreach($provinsi as $p): ?>
+                      <option value="<?= $p->id?>"><?=$p->name?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div> 
+                  <div class="col-md-6">
+                    <label for="kabupatenktp_id" class="form-label">Kabupaten</label>
+                    <select name="kabupatenktp_id" id="kabupatenktp_edit_id" onchange="Kecamatanktp_edit()" class="form-select tabel-PR" required>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="kecamatanktp_id" class="form-label">Kecamatan</label>
+                    <select name="kecamatanktp_id" id="kecamatanktp_edit_id" onchange="Kelurahanktp_edit()" class="form-select tabel-PR" required>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="kelurahanktp_id" class="form-label">Kelurahan</label>
+                    <select name="kelurahanktp_id" id="kelurahanktp_edit_id" class="form-select tabel-PR" required>
+                    </select>
+                  </div> 
+                </div>
+              </div>
+              <div class="col-md-5">
+                <label for="kodepos_ktp" class="form-label">Kodepos</label>
+                <input type="text" name="kodepos_ktp" placeholder="tulis kodepos disini" class="form-control tabel-PR" required />
+              </div>
+              <div class="col-md-10">
+                <label for="Alamat_ktp" class="form-label">Alamat Detail</label>
+                <textarea name="alamat_ktp" id="alamat_ktp" placeholder="tulis alamat sesuai ktp disini" class="form-control tabel-PR" required rows="3"></textarea>
+              </div>
+              <hr>
+              <div class="row">
+                <label for="Alamat_domisili" class="form-label">Alamat domisili</label>
+              </div>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="provinsidomisili_id" class="form-label">Provinsi</label>
+                    <select name="provinsidomisili_id" id="provinsidomisili_edit_id" onchange="Kabupatendomisili_edit()" class="form-select tabel-PR">
+                      <option>----- pilih Provinsi ---</option>
+                      <?php foreach($provinsi as $p): ?>
+                      <option value="<?= $p->id?>"><?=$p->name?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div> 
+                  <div class="col-md-6">
+                    <label for="kabupatendomisili_id" class="form-label">Kabupaten</label>
+                    <select name="kabupatendomisili_id" id="kabupatendomisili_edit_id" onchange="Kecamatandomisili_edit()" class="form-select tabel-PR">
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="kecamatandomisili_id" class="form-label">Kecamatan</label>
+                    <select name="kecamatandomisili_id" id="kecamatandomisili_edit_id" onchange="Kelurahandomisili_edit()" class="form-select tabel-PR">
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="kelurahandomisili_id" class="form-label">Kelurahan</label>
+                    <select name="kelurahandomisili_id" id="kelurahandomisili_edit_id" class="form-select tabel-PR">
+                    </select>
+                  </div> 
+                </div>
+              </div>
+              <div class="col-md-5">
+                <label for="kodepos_domisili" class="form-label">Kodepos</label>
+                <input type="text" name="kodepos_domisili" placeholder="tulis kodepos disini" class="form-control tabel-PR" />
+              </div>
+              <div class="col-md-10">
+                <label for="Alamat_domisili" class="form-label">Alamat Detail</label>
+                <textarea name="alamat_domisili" id="alamat_domisili" placeholder="tulis alamat sesuai domisili disini" class="form-control tabel-PR" rows="3"></textarea>
               </div>
             </div>
             <div class="col-md-6">
@@ -595,13 +858,41 @@
                   <option value="menikah"> Menikah</option>
                 </select>
               </div>
-              <div class="col-md-10">
-                <label for="nama_pasangan" class="form-label">Nama Pasangan</label>
-                <input type="text" name="nama_pasangan" id="nama_pasangan" placeholder="tulis nama pasangan disini" class="form-control tabel-PR"/>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="nama_pasangan" class="form-label">Nama Pasangan</label>
+                  <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control tabel-PR" />
+                </div>
+                <div class="col-md-5">
+                  <label for="kontak_pasangan" class="form-label">No. HP</label>
+                  <input type="text" name="kontak_pasangan" id="kontak_pasangan" class="form-control tabel-PR" />
+                </div>
               </div>
               <div class="col-md-10">
                 <label for="nama_anak" class="form-label">Nama Anak</label>
-                <textarea name="nama_anak" id="nama_anak" placeholder="tulis nama anak disini" class="form-control tabel-PR"></textarea>
+                <textarea name="nama_anak" id="nama_anak" class="form-control tabel-PR"></textarea>
+              </div>
+              <hr>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat1" class="form-label">Kontak Darurat</label>
+              </div>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat1" class="form-label">Nama Kontak Darurat 1</label>
+                <input type="text" name="nama_kontakdarurat1" id="nama_kontakdarurat1" class="form-control tabel-PR" />
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="no_hpdarurat1" class="form-label">No. HP 1</label>
+                  <input type="text" name="no_hpdarurat1" id="no_hpdarurat1" class="form-control tabel-PR" />
+                </div>
+                <div class="col-md-5">
+                  <label for="hubungan_darurat1" class="form-label">Hubungan Kontak Darurat 1</label>
+                  <input type="text" name="hubungan_darurat1" id="hubungan_darurat1" class="form-control tabel-PR" />
+                </div>
+              </div>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat2" class="form-label">Nama Kontak Darurat 2</label>
+                <input type="text" name="nama_kontakdarurat2" id="nama_kontakdarurat2" class="form-control tabel-PR" />
               </div>
             </div>
           </div>    
@@ -810,11 +1101,39 @@
               </div>
             </div>
             <div class="mb-3 row">
+              <label for="info_no_pasangan" class="col-sm-4 col-form-label">No. HP Pasangan</label>
+              <div class="col-sm-8">
+                <input type="text" id="info_no_pasangan" readonly class="form-control-plaintext">
+              </div>
+            </div>
+            <div class="mb-3 row">
               <label for="info_anak" class="col-sm-4 col-form-label">Nama anak</label>
               <div class="col-sm-8">
                 <textarea id="info_anak" readonly class="form-control-plaintext"></textarea>
               </div>
             </div>
+            <hr>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat1" class="form-label">Kontak Darurat</label>
+              </div>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat1" class="form-label">Nama Kontak Darurat 1</label>
+                <input type="text" id="info_nama_kontakdarurat1" readonly class="form-control-plaintext" />
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="no_hpdarurat1" class="form-label">No. HP 1</label>
+                  <input type="text" id="info_no_hpdarurat1" readonly class="form-control-plaintext" />
+                </div>
+                <div class="col-md-5">
+                  <label for="hubungan_darurat1" class="form-label">Hubungan Kontak Darurat 1</label>
+                  <input type="text" id="info_hubungan_darurat1" readonly class="form-control-plaintext" />
+                </div>
+              </div>
+              <div class="col-md-10">
+                <label for="nama_kontakdarurat2" class="form-label">Nama Kontak Darurat 2</label>
+                <input type="text" id="info_nama_kontakdarurat2" readonly class="form-control-plaintext" />
+              </div>
           </div>
         </div>
       </div>
@@ -847,6 +1166,10 @@
               <label for="tgl_selesai" class="col-sm-4 col-form-label">Tanggal Berakhir</label>
               <input type="date" name="tgl_selesai" class="form-control"> 
             </div>
+            <div class="col-md-10">
+              <label for="alasan" class="col-sm-4 col-form-label">Alasan</label>
+              <input type="text" name="alasan" class="form-control"> 
+            </div>
           </div>    
         </div>
       </div>
@@ -859,7 +1182,7 @@
 </div>
 
 <script>
-    function perpanjanganKontrak($id){
+  function perpanjanganKontrak($id){
     $.ajax({
       url:"<?php echo site_url("pegawai/detailpegawai")?>/" + $id,
       dataType:"JSON",
@@ -884,6 +1207,33 @@
         const pegawai = hasil.pegawai;
         document.getElementById("id_pegawai_kontrak").value = $id;
         document.getElementById("tgl_selesai_kontrak").value = pegawai.tgl_selesai;
+      }
+    });
+  }
+
+  function suratPeringatan($id){
+    const id_pegawai = document.getElementById("id_pegawai_sp").value = $id;
+
+    $.ajax({
+      url:"<?php echo site_url("pegawai/listSuratPeringatan")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+
+        const peringatan = hasil;
+
+        console.log(hasil);
+        let html = '';
+        let i;
+        for ( i=0; i < hasil.length ; i++){
+          html +=
+            '<tr>'+
+            '<td>'+hasil[i].datecreated+'</td>'+
+            '<td> Peringatan Ke '+hasil[i].tingkat_peringatan+'</td>'+
+            '</tr>';
+        }
+
+        $("#list_peringatan").html(html);
       }
     });
   }
@@ -1011,26 +1361,279 @@
     });
 	}
 
-  function getDivisiByDept(){
-  let departement = $("#departement_id").val();
-  $.ajax({
-    type : "POST",
-    dataType : "JSON",
-    url:"<?php echo site_url("divisi/getDivisiByDept")?>/"+departement,
-    success : function(data){
+  function Kabupatenktp(){
+    let id = $("#provinsiktp_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getRegencies")?>/"+id,
+      success : function(data){
 
-      let html = ' ';
-      let i;
+        let html = ' ';
+        let i;
 
-      html += 
-          '<option>---pilih divisi---</option>';
-      for ( i=0; i < data.length ; i++){
-          html += 
-          '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
+        html += 
+            '<option>---pilih Kabupaten---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kabupatenktp_id").html(html);
       }
+    });
+  }
 
-      $("#divisi").html(html);
-    }
-  });
-}
+  function Kecamatanktp(){
+    let id = $("#kabupatenktp_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getDistricts")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kecamatan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kecamatanktp_id").html(html);
+      }
+    });
+  }
+
+  function Kelurahanktp(){
+    let id = $("#kecamatanktp_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getVillages")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kelurahan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kelurahanktp_id").html(html);
+      }
+    });
+  }
+
+  function Kabupatendomisili(){
+    let id = $("#provinsidomisili_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getRegencies")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kabupaten---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kabupatendomisili_id").html(html);
+      }
+    });
+  }
+
+  function Kecamatandomisili(){
+    let id = $("#kabupatendomisili_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getDistricts")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kecamatan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kecamatandomisili_id").html(html);
+      }
+    });
+  }
+
+  function Kelurahandomisili(){
+    let id = $("#kecamatandomisili_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getVillages")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kelurahan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kelurahandomisili_id").html(html);
+      }
+    });
+  }
+
+  function Kabupatenktp_edit(){
+    let id = $("#provinsiktp_edit_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getRegencies")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kabupaten---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kabupatenktp_edit_id").html(html);
+      }
+    });
+  }
+
+  function Kecamatanktp_edit(){
+    let id = $("#kabupatenktp_edit_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getDistricts")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kecamatan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kecamatanktp_edit_id").html(html);
+      }
+    });
+  }
+
+  function Kelurahanktp_edit(){
+    let id = $("#kecamatanktp_edit_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getVillages")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kelurahan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kelurahanktp_edit_id").html(html);
+      }
+    });
+  }
+
+  function Kabupatendomisili_edit(){
+    let id = $("#provinsidomisili_edit_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getRegencies")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kabupaten---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kabupatendomisili_edit_id").html(html);
+      }
+    });
+  }
+
+  function Kecamatandomisili_edit(){
+    let id = $("#kabupatendomisili_edit_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getDistricts")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kecamatan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kecamatandomisili_edit_id").html(html);
+      }
+    });
+  }
+
+  function Kelurahandomisili_edit(){
+    let id = $("#kecamatandomisili_edit_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("pegawai/getVillages")?>/"+id,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih Kelurahan---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
+
+        $("#kelurahandomisili_edit_id").html(html);
+      }
+    });
+  }
 </script>

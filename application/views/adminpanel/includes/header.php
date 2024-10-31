@@ -376,6 +376,11 @@ if($role != ROLE_STAFF){ ?>
                 <span>Absensi Istirahat</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('laporan-absensi-mesin'); ?>" class="sidebar-link">
+                <span>Absensi Mesin</span>
+              </a>
+            </li>
           </ul>
         </li>
         <!-- /MENU ABSENSI -->

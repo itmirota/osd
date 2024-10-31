@@ -103,6 +103,10 @@ $route['kehadiran/(:any)'] = 'absensi/Webcam/$1';
 $route['laporanAbsensi'] = 'absensi/laporan';
 $route['cekkoordinat/(:any)/(:any)'] = 'absensi/cekkoordinat/$1/$2';
 
+// ABSENSI MESIN
+$route['laporan-absensi-mesin'] = 'absensi/laporan_absensi_mesin';
+$route['input-absensi-mesin'] = 'absensi/input_absensi_mesin';
+
 // ABSENSI PEGAWAI HARIAN
 $route['PHL/kehadiran'] = 'absensiPegawaiHarian';
 $route['PHL/Absensi'] = 'absensiPegawaiHarian/listdata';
