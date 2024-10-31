@@ -183,7 +183,7 @@ class Pegawai extends BaseController
     $nama_anak = $this->input->post('nama_anak');    
     $nama_kontakdarurat1 = $this->input->post('nama_kontakdarurat1');    
     $no_hpdarurat1 = $this->input->post('no_hpdarurat1');    
-    $hubungan_darurat2 = $this->input->post('hubungan_darurat2'); 
+    $hubungan_darurat1 = $this->input->post('hubungan_darurat1'); 
     $nama_kontakdarurat2 = $this->input->post('nama_kontakdarurat2');    
     $no_hpdarurat2 = $this->input->post('no_hpdarurat2');    
     $hubungan_darurat2 = $this->input->post('hubungan_darurat2');       
