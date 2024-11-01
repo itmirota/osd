@@ -85,12 +85,16 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP  | $role == ROLE_KABAG)
         {
         ?>
         <li class="sidebar-header">
           Master Data
         </li>
+        <?php
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
+        {
+        ?>
         <!-- MENU DEPARTEMENT -->
         <li class="sidebar-item">
           <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
@@ -104,6 +108,9 @@ if($role != ROLE_STAFF){ ?>
             <span>Data Divisi</span>
           </a>
         </li>
+        <?php
+        }
+        ?>
 
         <!-- MENU PEGAWAI -->
         <li class="sidebar-item has-submenu">
@@ -124,7 +131,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
         <?php
-        if($role == ROLE_ADMIN | $role == ROLE_SUPERADMIN |  $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_KABAG)
+        if($role == ROLE_ADMIN | $role == ROLE_SUPERADMIN |  $role == ROLE_HRGA | $role == ROLE_HRBP)
         {
         ?>
         <li class="sidebar-header">

@@ -60,12 +60,30 @@ class Pegawai extends BaseController
       'YEAR(tgl_selesai) =' => DATE('Y')
     );
 
+    $role = $this->role;
+
+    if($role == ROLE_KABAG){
+      $divisi = $this->divisi_id;
+      $list_data = $this->pegawai_model->showDataWhere('*','divisi_id='.$divisi,NULL,NULL,NULL);
+
+      $whereTotalPegawai = array(
+        'divisi_id' => $divisi,
+        'status' => "aktif"
+      );
+    }else{
+      $list_data = $this->pegawai_model->showData();
+      
+      $whereTotalPegawai = array(
+        'status' => "aktif"
+      );
+    }
+
     $data = array(
-      'list_data' => $this->pegawai_model->showData(),
+      'list_data' => $list_data,
       'provinsi' => $this->crud_model->lihatdata('reg_provinces'),
       'mendekati_habis_kontrak' => $this->pegawai_model->showDataWhere('COUNT(id_pegawai) as pegawai, MONTH(tgl_selesai) as bulan', $where,'tgl_selesai','ASC','MONTH(tgl_selesai)'),
       'departement' => $this->crud_model->lihatdata('tbl_departement'),
-      'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai('status','aktif'),
+      'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai($whereTotalPegawai),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
       'list_role' => $this->crud_model->GetDataById('roleId > 1','tbl_roles'),
@@ -108,10 +126,33 @@ class Pegawai extends BaseController
     $this->global['pageTitle'] = 'SMART OSD | Perizinan Mirota KSM';
     $this->global['pageHeader'] = 'Perizinan Manual Karyawan ';
 
+    $role = $this->role;
+    if($role == ROLE_KABAG){
+      $divisi = $this->divisi_id;
+
+      $wherelistdata = array(
+        'divisi_id' => $divisi,
+        'status' => 'tidak'
+      );
+
+      $list_data = $this->pegawai_model->showDataWhere('*',$wherelistdata ,NULL,NULL,NULL);
+
+      $whereTotalPegawai = array(
+        'divisi_id' => $divisi,
+        'status' => "tidak"
+      );
+    }else{
+      $list_data = $this->pegawai_model->showDataNonAktif();
+      
+      $whereTotalPegawai = array(
+        'status' => "tidak"
+      );
+    }
+
     $data = array(
       'pegawai' => $this->pegawai_model->showData(),
-      'list_data' => $this->pegawai_model->showDataNonAktif(),
-      'total_pegawai_nonaktif' => $this->pegawai_model->TotalPegawai('status','tidak'),
+      'list_data' => $list_data,
+      'total_pegawai_nonaktif' => $this->pegawai_model->TotalPegawai($whereTotalPegawai),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
       'list_role' => $this->crud_model->GetDataById('roleId > 1','tbl_roles'),

@@ -45,6 +45,7 @@
     <?php } ?>
   </div>
 
+  <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
   <div class="col-md-12">
     <div class="alert alert-warning" role="alert">
     <h3> Informasi !!!</h3>
@@ -53,6 +54,7 @@
     <?php } ?>
     </div>
   </div>
+  <?php } ?>
 
 
   <div class="col-md-12">

@@ -20,7 +20,6 @@ class Pegawai_model extends CI_Model
     $this->db->from('tbl_pegawai a');
     $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
     $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
-    $this->db->where('a.status','aktif');
     $this->db->where($where);
 
     if(isset($orderby)){
@@ -46,11 +45,11 @@ class Pegawai_model extends CI_Model
     return $query->result();
   }
 
-  public function TotalPegawai($whereparam, $where)
+  public function TotalPegawai($where)
   {
     $this->db->select('COUNT(case when jenis_kelamin="L"  then id_pegawai end) as laki, COUNT(case when jenis_kelamin="P" then id_pegawai end) as perempuan, COUNT(id_pegawai) as total_pegawai');
     $this->db->from('tbl_pegawai');
-    $this->db->where($whereparam, $where);
+    $this->db->where($where);
     $query = $this->db->get();
     return $query->row();
   }
