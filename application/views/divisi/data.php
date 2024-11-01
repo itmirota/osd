@@ -156,7 +156,7 @@
             <div class="col-md-12">
               <label for="kadiv_id" class="form-label">Kepala Divisi</label>
               <select class="form-select js-example-basic-single js-states" name="kadiv_id" id="kadiv_id" aria-label="Small select example" style="width: 100%">
-                <option>-- Kepala divisi --</option>
+                <option value=" ">-- Kepala divisi --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
                 <?php } ?>
