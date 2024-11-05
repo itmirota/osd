@@ -250,4 +250,14 @@ class Master_model extends CI_Model
 
     return $query->result();
   }
+// ---------------------------------------------- AREA KERJA -------------------------------------------
+
+  function getAreaKerja(){
+    $this->db->select('*');
+    $this->db->from('tbl_areakerja a');
+    $this->db->join('tbl_pegawai b','a.spv_id = b.id_pegawai');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
 }

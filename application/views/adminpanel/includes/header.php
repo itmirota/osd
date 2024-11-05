@@ -90,7 +90,7 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP  | $role == ROLE_KABAG | $role == ROLE_MANAGER)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP  | $role == ROLE_KABAG | $role == ROLE_MANAGER | $role == ROLE_PAYROLL)
         {
         ?>
         <li class="sidebar-header">
@@ -118,6 +118,12 @@ if($role != ROLE_STAFF){ ?>
           <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
             <i class="fa-solid fa-people-line"></i>
             <span>Data Divisi</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('areakerja'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-people-line"></i>
+            <span>Data Area Kerja</span>
           </a>
         </li>
         <?php
@@ -229,15 +235,15 @@ if($role != ROLE_STAFF){ ?>
           </ul>
         </li>
         <?php } ?>
+        <?php
+        if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
+        {
+        ?>
         <!-- MENU KENDARAAN -->
         <li class="sidebar-header">
           HRGA
         </li>
         <!-- MENU TRANSAKSI SATPAM -->
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
-        {
-        ?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-shield"></i>  Transaksi Satpam <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -365,8 +371,11 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU APPROVAL PERIZINAN -->
 
+        <?php
+          if(!$role == ROLE_PAYROLL)
+          {
+        ?>
         <!-- MENU ABSENSI -->
-
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -403,6 +412,8 @@ if($role != ROLE_STAFF){ ?>
           </ul>
         </li>
         <!-- /MENU ABSENSI -->
+        <?php } ?>
+         
 
         <!-- MENU APPROVAL PERIZINAN -->
         <?php
@@ -463,7 +474,7 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php } ?>
-        <?php
+        <!-- <?php
         if($role != ROLE_POOL)
         {
         ?>
@@ -476,7 +487,7 @@ if($role != ROLE_STAFF){ ?>
             <span>Cek Barang</span>
           </a>
         </li>
-        <?php } ?>
+        <?php } ?> -->
       </ul>
     </div>
   </nav>

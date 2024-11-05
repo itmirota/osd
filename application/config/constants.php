@@ -47,6 +47,7 @@ define('ROLE_HRBP',                          '6');
 define('ROLE_POOL',                          '7');
 define('ROLE_STAFF',                         '8');
 define('ROLE_SPV',                           '9');
+define('ROLE_PAYROLL',                      '10');
 
 define('SEGMENT',								2);
 
