@@ -372,7 +372,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU APPROVAL PERIZINAN -->
 
         <?php
-          if(!$role == ROLE_PAYROLL)
+          if($role != ROLE_PAYROLL)
           {
         ?>
         <!-- MENU ABSENSI -->
