@@ -8,6 +8,7 @@
       <div class="col-xl-6 col-xxl-5 d-flex">
         <!-- <canvas id="myChart"></canvas> -->
           <div class="row flex-fill">
+            <?php if($role == ROLE_SUPERADMIN){?>
             <div class="col-md-12">
               <a href="<?= base_url('Datadepartement')?>">
               <div class="card">
@@ -28,6 +29,7 @@
               </div>
               </a>
             </div>
+            <?php } ?>
             <div class="col-sm-12">
               <a href="<?= base_url('Datadivisi')?>">
               <div class="card" >
@@ -53,79 +55,107 @@
       <div class="col-xl-6 col-xxl-5 d-flex">
         <div class="w-100">
           <div class="row">
-            <div class="col-sm-6">
-              <a href="<?= base_url('Datapegawai')?>">
-              <div class="card bg-success">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title text-light">Karyawan Aktif</h5>
-                    </div>
-                    <div class="col-auto">
-                      <div class="stat bg-light text-primary">
-                      <i class="fa-solid fa-users"></i>
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="<?= base_url('Datapegawai')?>">
+                  <div class="card bg-success">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col mt-0">
+                          <h5 class="card-title text-light">Karyawan Aktif</h5>
+                        </div>
+                        <div class="col-auto">
+                          <div class="stat bg-light text-primary">
+                          <i class="fa-solid fa-users"></i>
+                          </div>
+                        </div>
                       </div>
+                      <h1 class="mt-1 text-light"><?= $CountPegawaiAktif ?></h1>
                     </div>
                   </div>
-                  <h1 class="mt-1 mb-3 text-light"><?= $CountPegawaiAktif ?></h1>
+                  </a>
                 </div>
-              </div>
-              </a>
-              <a href="<?= base_url('Datapegawainonaktif')?>">
-              <div class="card  bg-danger">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="text-light">Karyawan Non-Aktif</h5>
-                    </div>
-                    <div class="col-auto">
-                      <div class="stat bg-light text-primary">
-                        <i class="fa-solid fa-user-xmark"></i>
+                <div class="col-md-6">
+                  <a href="<?= base_url('Datapegawainonaktif')?>">
+                  <div class="card  bg-danger">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col mt-0">
+                          <h5 class="text-light">Karyawan Non-Aktif</h5>
+                        </div>
+                        <div class="col-auto">
+                          <div class="stat bg-light text-primary">
+                            <i class="fa-solid fa-user-xmark"></i>
+                          </div>
+                        </div>
                       </div>
+                      <h1 class="mt-1 mb-3 text-light"><?= $CountPegawaiNonAktif ?></h1>
                     </div>
                   </div>
-                  <h1 class="mt-1 mb-3 text-light"><?= $CountPegawaiNonAktif ?></h1>
+                  </a>
                 </div>
               </div>
-              </a>
             </div>
-            <div class="col-sm-6">
-              <a href="<?= base_url('Datadepartement')?>">
-              <div class="card bg-success ">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title text-light">Penambahan Karyawan <?= DATE('Y') ?></h5>
-                    </div>
+            <div class="w-100">
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="<?= base_url('pegawai/detailPenambahanKaryawan')?>">
+                  <div class="card bg-success ">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col mt-0">
+                          <h5 class="card-title text-light">Penambahan Karyawan <?= DATE('Y') ?></h5>
+                        </div>
 
-                    <div class="col-auto">
-                      <div class="stat bg-light text-primary">
-                        <i class="fa-solid fa-user-plus"></i>
+                        <div class="col-auto">
+                          <div class="stat bg-light text-primary">
+                            <i class="fa-solid fa-user-plus"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <h1 class="mt-1 mb-3 text-light">+<?= $penambahanKaryawan ?></h1>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <p class="text-light text-secondary-modal"><strong><?= $penambahanKaryawanByDepartement ?></strong> Departement</p>
+                        </div>
+                        <div>
+                        <p class="text-light text-secondary-modal"><strong><?= $penambahanKaryawanByDivisi ?></strong> Divisi</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <h1 class="mt-1 mb-3 text-light">+<?= $penambahanKaryawan ?></h1>
+                  </a>
                 </div>
-              </div>
-              </a>
-              <a href="<?= base_url('Datadivisi')?>">
-              <div class="card bg-danger" >
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title text-light">Pengurangan Karyawan <?= DATE('Y') ?></h5>
-                    </div>
+                <div class="col-md-6">
+                  <a href="<?= base_url('pegawai/detailPenguranganKaryawan')?>">
+                  <div class="card bg-danger" >
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col mt-0">
+                          <h5 class="card-title text-light">Pengurangan Karyawan <?= DATE('Y') ?></h5>
+                        </div>
 
-                    <div class="col-auto">
-                      <div class="stat bg-light text-primary">
-                        <i class="fa-solid fa-user-minus"></i>
+                        <div class="col-auto">
+                          <div class="stat bg-light text-primary">
+                            <i class="fa-solid fa-user-minus"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <h1 class="mt-1 mb-3 text-light">-<?= $penguranganKaryawan ?></h1>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <p class="text-light text-secondary-modal"><strong><?= $penguranganKaryawanByDepartement ?></strong> Departement</p>
+                        </div>
+                        <div>
+                        <p class="text-light text-secondary-modal"><strong><?= $penguranganKaryawanByDivisi ?></strong> Divisi</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <h1 class="mt-1 mb-3 text-light">-<?= $penguranganKaryawan ?></h1>
+                  </a>
                 </div>
               </div>
-              </a>
             </div>
           </div>
         </div>

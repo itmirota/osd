@@ -43,7 +43,7 @@ class Kebersihan extends BaseController
     $this->global['pageHeader'] = 'OSD | Data Kebersihan';
 
     $data = array(
-      'pegawai' => $this->crud_model->GetDataById(array('divisi_id' => 7),'tbl_pegawai'),
+      'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' => 7),'tbl_pegawai'),
       'ruangan' => $this->crud_model->lihatdata('tbl_ruangan')
     );
 
@@ -119,7 +119,7 @@ class Kebersihan extends BaseController
       'DATE(tgl_perawatan) <=' => $tgl_akhir,
     );
 
-    $data = $this->crud_model->GetDataById($where,'tbl_perawatan_ruangan');
+    $data = $this->crud_model->GetDataByWhere($where,'tbl_perawatan_ruangan');
     foreach ($data as $d){
       unlink( FCPATH.'assets/images/kebersihan/'.$d->bukti_perawatan);
       $total++;

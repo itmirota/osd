@@ -25,7 +25,7 @@ public function getDatabyApproval($id){
   return $query->result();
 }
 
-public function getDatabyId($id){
+public function GetDataByWhere($id){
   $this->db->select('*, DATE(datecreated) as tgl_pengajuan, DATEDIFF(tgl_akhir,tgl_mulai) as selisih');
   $this->db->from('tbl_perizinan_cuti a');
   $this->db->where('id_cuti',$id);

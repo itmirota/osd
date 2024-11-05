@@ -25,19 +25,19 @@ class Pegawai extends BaseController
   }
 
   public function getRegencies($id){
-    $result = $this->crud_model->GetDataById(['province_id' => $id],'reg_regencies');
+    $result = $this->crud_model->GetDataByWhere(['province_id' => $id],'reg_regencies');
 
     echo json_encode($result);
   }
 
   public function getDistricts($id){
-    $result = $this->crud_model->GetDataById(['regency_id' => $id],'reg_districts');
+    $result = $this->crud_model->GetDataByWhere(['regency_id' => $id],'reg_districts');
 
     echo json_encode($result);
   }
 
   public function getVillages($id){
-    $result = $this->crud_model->GetDataById(['district_id' => $id],'reg_villages');
+    $result = $this->crud_model->GetDataByWhere(['district_id' => $id],'reg_villages');
 
     echo json_encode($result);
   }
@@ -61,13 +61,22 @@ class Pegawai extends BaseController
     );
 
     $role = $this->role;
+    $divisi = $this->divisi_id;
 
     if($role == ROLE_KABAG){
-      $divisi = $this->divisi_id;
-      $list_data = $this->pegawai_model->showDataWhere('*','divisi_id='.$divisi,NULL,NULL,NULL);
-
+      $pegawai_id = $this->pegawai_id;
+      $list_data = $this->pegawai_model->showDataWhere('*','kadiv_id='.$pegawai_id,NULL,NULL,NULL);
       $whereTotalPegawai = array(
         'divisi_id' => $divisi,
+        'status' => "aktif"
+      );
+    }elseif($role == ROLE_MANAGER){
+      $pegawai_id = $this->pegawai_id;
+      
+      $list_data = $this->pegawai_model->showDataWhere('*','manager_id='.$pegawai_id,NULL,NULL,NULL);
+
+      $whereTotalPegawai = array(
+        'manager_id' => $pegawai_id,
         'status' => "aktif"
       );
     }else{
@@ -86,7 +95,7 @@ class Pegawai extends BaseController
       'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai($whereTotalPegawai),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
-      'list_role' => $this->crud_model->GetDataById('roleId > 1','tbl_roles'),
+      'list_role' => $this->crud_model->GetDataByWhere('roleId > 1','tbl_roles'),
       'maxNIP' => $this->pegawai_model->showMaxNIP()->nip
     );
 
@@ -117,7 +126,7 @@ class Pegawai extends BaseController
       'divisi_id' => $id
     );
 
-    $pegawai = $this->crud_model->GetDataById($where,'tbl_pegawai');
+    $pegawai = $this->crud_model->GetDataByWhere($where,'tbl_pegawai');
 
     echo json_encode($pegawai);
   }
@@ -141,6 +150,20 @@ class Pegawai extends BaseController
         'divisi_id' => $divisi,
         'status' => "tidak"
       );
+    }elseif($role == ROLE_MANAGER){
+      $pegawai_id = $this->pegawai_id;
+
+      $wherelistdata = array(
+        'manager_id' => $pegawai_id,
+        'status' => 'tidak'
+      );
+
+      $list_data = $this->pegawai_model->showDataWhere('*',$wherelistdata ,NULL,NULL,NULL);
+
+      $whereTotalPegawai = array(
+        'manager_id' => $pegawai_id,
+        'status' => "tidak"
+      );
     }else{
       $list_data = $this->pegawai_model->showDataNonAktif();
       
@@ -155,7 +178,7 @@ class Pegawai extends BaseController
       'total_pegawai_nonaktif' => $this->pegawai_model->TotalPegawai($whereTotalPegawai),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
-      'list_role' => $this->crud_model->GetDataById('roleId > 1','tbl_roles'),
+      'list_role' => $this->crud_model->GetDataByWhere('roleId > 1','tbl_roles'),
       'maxNIP' => $this->pegawai_model->showMaxNIP()->nip
     );
 
@@ -298,9 +321,11 @@ class Pegawai extends BaseController
   public function saveNonAktif(){
     $id_pegawai = $this->input->post('id_pegawai');
     $tgl_keluar = $this->input->post('tgl_keluar');
+    $alasan = $this->input->post('alasan');
 
     $data = array(
       'tgl_keluar' => $tgl_keluar,
+      'alasan_keluar' => $alasan,
       'status'=>'tidak'
     );
 
@@ -317,6 +342,64 @@ class Pegawai extends BaseController
   public function listSuratPeringatan($id){
     $peringatan = $this->crud_model->getdataOrderBy('pegawai_id ='.$id, 'id_peringatan', 'ASC', 'tbl_histori_peringatan');
     echo json_encode($peringatan);
+  }
+
+  public function detailPenambahanKaryawan(){
+
+    $year = $this->input->post('tahun');
+
+    if(isset($year)){
+    $year = $year;
+    }else{
+    $year = DATE('Y');
+    }
+
+    $this->global['pageTitle'] = "Daftar Pegawai Tambahan ".$year;
+
+    $id = $this->pegawai_id;
+    $role = $this->role;
+
+    if($role == ROLE_MANAGER){
+      $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_masuk)' => $year],'tgl_masuk','DESC',NULL);
+    }else{
+      $list_data = $this->pegawai_model->showDataWhere('*',['year(tgl_masuk)' => $year],'tgl_masuk','DESC',NULL);
+    }
+
+    $data = array(
+      'list_data' => $list_data,
+      'year' => $year,
+    );
+
+    $this->loadViews("pegawai/listPenambahan", $this->global, $data, NULL);
+  }
+
+  public function detailPenguranganKaryawan(){
+
+    $year = $this->input->post('tahun');
+
+    if(isset($year)){
+    $year = $year;
+    }else{
+    $year = DATE('Y');
+    }
+
+    $this->global['pageTitle'] = "Daftar Pegawai Tambahan ".$year;
+
+    $id = $this->pegawai_id;
+    $role = $this->role;
+
+    if($role == ROLE_MANAGER){
+      $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_keluar)' => $year],'tgl_keluar','DESC',NULL);
+    }else{
+      $list_data = $this->pegawai_model->showDataWhere('*',['year(tgl_keluar)' => $year],'tgl_masuk','DESC',NULL);
+    }
+
+    $data = array(
+      'list_data' => $list_data,
+      'year' => $year,
+    );
+
+    $this->loadViews("pegawai/listPengurangan", $this->global, $data, NULL);
   }
 
   public function detailpegawai($id){

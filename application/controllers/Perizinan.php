@@ -168,7 +168,7 @@ class Perizinan extends BaseController
     $id_cuti = $this->uri->segment(2);
     $status = $this->uri->segment(3);
 
-    $list_cuti = $this->perizinan_model->getDatabyId($id_cuti);
+    $list_cuti = $this->perizinan_model->GetDataByWhere($id_cuti);
 
     $approval = explode(",",$list_cuti->approval);
     
@@ -176,10 +176,11 @@ class Perizinan extends BaseController
 
 
     switch ($id_jabatan){
-      case(5):
+      case(6):
         $approval[0] = $status;
       break;
       case(4):
+      case(5):
         $approval[1] = $status;
       break;
       default:

@@ -47,8 +47,10 @@ class Pegawai_model extends CI_Model
 
   public function TotalPegawai($where)
   {
-    $this->db->select('COUNT(case when jenis_kelamin="L"  then id_pegawai end) as laki, COUNT(case when jenis_kelamin="P" then id_pegawai end) as perempuan, COUNT(id_pegawai) as total_pegawai');
-    $this->db->from('tbl_pegawai');
+    $this->db->select('manager_id, COUNT(case when jenis_kelamin="L"  then id_pegawai end) as laki, COUNT(case when jenis_kelamin="P" then id_pegawai end) as perempuan, COUNT(id_pegawai) as total_pegawai');
+    $this->db->from('tbl_pegawai a');
+    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
     $this->db->where($where);
     $query = $this->db->get();
     return $query->row();

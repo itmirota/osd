@@ -37,7 +37,7 @@ public function getDatabyApproval($id){
   return $query->result();
 }
 
-public function getDatabyId($id){
+public function GetDataByWhere($id){
   $this->db->select('*');
   $this->db->from('tbl_perizinan_harian');
   $this->db->where('id_perizinan_harian',$id);

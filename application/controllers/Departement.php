@@ -57,7 +57,7 @@ class Departement extends BaseController
       'id_departement' => $id
     );
 
-    $departement = $this->crud_model->GetDataById($where,'tbl_departement');
+    $departement = $this->crud_model->GetDataByWhere($where,'tbl_departement');
     
     $data = array(
       'departement' => $departement[0]

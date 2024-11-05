@@ -60,6 +60,11 @@
       z-index: 1;
       opacity: 0.8;
     }
+
+    .text-secondary-modal{
+    font-size:10px;
+    margin:0;
+    }
   </style>
 </head>
 
@@ -85,23 +90,30 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP  | $role == ROLE_KABAG)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP  | $role == ROLE_KABAG | $role == ROLE_MANAGER)
         {
         ?>
         <li class="sidebar-header">
           Master Data
         </li>
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_MANAGER)
         {
         ?>
         <!-- MENU DEPARTEMENT -->
+        <?php
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
+        {
+        ?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
             <i class="fa-solid fa-people-roof"></i>
             <span>Data Departement</span>
           </a>
         </li>
+        <?php
+        }
+        ?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
             <i class="fa-solid fa-people-line"></i>

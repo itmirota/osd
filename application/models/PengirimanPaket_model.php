@@ -12,7 +12,7 @@ public function getData()
 	return $query->result();
 }
 
-public function getDatabyId($id)
+public function GetDataByWhere($id)
 {
   $this->db->select('*');
   $this->db->from('tbl_pengirimanpaket a');

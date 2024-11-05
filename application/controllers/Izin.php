@@ -116,7 +116,7 @@ class Izin extends BaseController
     $id_izin = $this->uri->segment(2);
     $status = $this->uri->segment(3);
 
-    $list_izin = $this->Izin_model->getDatabyId($id_izin);
+    $list_izin = $this->Izin_model->GetDataByWhere($id_izin);
 
     $approval = explode(",",$list_izin->approval);
     

@@ -98,7 +98,7 @@ class IzinHarian extends BaseController
     $id_perizinan_harian = $this->uri->segment(2);
     $status = $this->uri->segment(3);
 
-    $list_izin = $this->izinHarian_model->getDatabyId($id_perizinan_harian);
+    $list_izin = $this->izinHarian_model->GetDataByWhere($id_perizinan_harian);
 
     $approval = explode(",",$list_izin->approval);
     

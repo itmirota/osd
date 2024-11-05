@@ -96,7 +96,7 @@ class Kendaraan extends BaseController
       'id_kendaraan' => $id
     );
 
-    $kendaraan = $this->crud_model->GetDataById($where,'tbl_kendaraan');
+    $kendaraan = $this->crud_model->GetDataByWhere($where,'tbl_kendaraan');
     echo json_encode($kendaraan[0]);
   }
 

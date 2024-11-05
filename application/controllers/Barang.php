@@ -40,7 +40,7 @@ class Barang extends BaseController
     );
 
     $data = array(
-      'barang' => $this->crud_model->GetDataById($where,'tbl_barang'),
+      'barang' => $this->crud_model->GetDataByWhere($where,'tbl_barang'),
       'jumlah' => $jumlah
     );
 
@@ -100,7 +100,7 @@ class Barang extends BaseController
       'id_barang' => $id
     );
 
-    $barang = $this->crud_model->GetDataById($where,'tbl_barang');
+    $barang = $this->crud_model->GetDataByWhere($where,'tbl_barang');
     echo json_encode($barang[0]);
   }
 
@@ -116,7 +116,7 @@ class Barang extends BaseController
       'id_kerusakan_barang' => $id
     );
 
-    $kerusakanbarang = $this->crud_model->GetDataById($where,'tbl_kerusakan_barang');
+    $kerusakanbarang = $this->crud_model->GetDataByWhere($where,'tbl_kerusakan_barang');
     echo json_encode($kerusakanbarang[0]);
   }
 
@@ -194,7 +194,7 @@ class Barang extends BaseController
     $divisi = $this->divisi_id;
 
     $data['list_data'] = $this->master_model->getjadwalbarang($divisi)->result();
-    $data['barang']= $this->crud_model->GetDataById(['divisi_id' => $divisi],'tbl_barang');
+    $data['barang']= $this->crud_model->GetDataByWhere(['divisi_id' => $divisi],'tbl_barang');
     $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');

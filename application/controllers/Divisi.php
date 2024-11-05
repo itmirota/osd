@@ -23,11 +23,24 @@ class Divisi extends BaseController
       $this->isLoggedIn();   
   }
 
-
+  // DIVISI
   public function index(){
-    $this->global['pageTitle'] = 'Admin Panel : Dashboard';
+    $this->global['pageTitle'] = 'Admin Panel : Data Divisi';
 
-    $data['list_data']= $this->divisi_model->GetDivisi();
+    $role = $this->role;
+    $pegawai_id = $this->pegawai_id;
+
+    if($role == ROLE_MANAGER){
+      $where = array(
+        'manager_id' => $pegawai_id,
+        'status' => 'aktif',
+      );
+      $list_data = $this->divisi_model->GetDivisiWhere($where);
+    }else{
+      $list_data = $this->divisi_model->GetDivisi();
+    }
+    
+    $data['list_data']= $list_data;
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
 
@@ -35,8 +48,8 @@ class Divisi extends BaseController
     $this->loadViews("divisi/data", $this->global, $data, NULL);
   }
 
-  public function listdata(){
-    $this->global['pageTitle'] = 'Admin Panel : Dashboard';
+  public function divisiByDept(){
+    $this->global['pageTitle'] = 'Admin Panel : Divisi';
 
     $id = $this->uri->segment(2);
 
@@ -77,7 +90,7 @@ class Divisi extends BaseController
       'id_divisi' => $id
     );
 
-    $divisi = $this->crud_model->GetDataById($where,'tbl_divisi');
+    $divisi = $this->crud_model->GetDataByWhere($where,'tbl_divisi');
     
     $data = array(
       'divisi' => $divisi[0]
@@ -125,8 +138,12 @@ class Divisi extends BaseController
 
   public function getDivisiByDept($id_departement){
 
-    $divisi = $this->crud_model->GetDataById(['departement_id' => $id_departement],'tbl_divisi');
+    $divisi = $this->crud_model->GetDataByWhere(['departement_id' => $id_departement],'tbl_divisi');
 
     echo json_encode($divisi);
   }
+  // DIVISI
+
+  // SUBDIVISI
+  // SUBDIVISI
 }

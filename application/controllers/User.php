@@ -53,13 +53,40 @@ class User extends BaseController
           $CountTugas = COUNT($this->perizinan_model->getTugasbyApproval($id));
         }
 
+        if($role == ROLE_MANAGER){
+        $divisi = $this->crud_model->GetDataByWhere(['id_divisi !=' => '1','manager_id =' => $id],'tbl_divisi');
+        $PegawaiAktif = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'status' => 'aktif'],NULL,NULL,NULL);
+        $PegawaiNonAktif = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'status' => 'tidak'],NULL,NULL,NULL);
+        $PenambahanKaryawan = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_masuk)' => DATE('Y')],NULL,NULL,NULL);
+        $PenguranganKaryawan = $this->pegawai_model->showDataWhere('*', ['manager_id' => $id,'year(tgl_keluar)' => DATE('Y')],NULL,NULL,NULL);
+        $penambahanKaryawanByDepartement = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_masuk)' => DATE('Y'),'status' => 'aktif'],NULL,NULL,'departement_id');
+        $penguranganKaryawanByDepartement = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_keluar)' => DATE('Y'),'status' => 'tidak'],NULL,NULL,'departement_id');
+        $penambahanKaryawanByDivisi = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_masuk)' => DATE('Y'),'status' => 'aktif'],NULL,NULL,'divisi_id');
+        $penguranganKaryawanByDivisi = $this->pegawai_model->showDataWhere('*',['manager_id' => $id,'year(tgl_keluar)' => DATE('Y'),'status' => 'tidak'],NULL,NULL,'divisi_id');
+        }else{
+        $divisi = $this->crud_model->GetDataByWhere(['id_divisi !=' => '1'],'tbl_divisi');
+        $PegawaiAktif = $this->crud_model->GetDataByWhere(['status' => 'aktif'],'tbl_pegawai');
+        $PegawaiNonAktif = $this->crud_model->GetDataByWhere(['status' => 'tidak'],'tbl_pegawai');
+        $PenambahanKaryawan = $this->crud_model->GetDataByWhere(['year(tgl_masuk)' => DATE('Y')],'tbl_pegawai');
+        $PenguranganKaryawan = $this->crud_model->GetDataByWhere(['year(tgl_keluar)' => DATE('Y')],'tbl_pegawai');
+        $penambahanKaryawanByDepartement = $this->pegawai_model->showDataWhere('*',['year(tgl_masuk)' => DATE('Y'),'status' => 'aktif'],NULL,NULL,'departement_id');
+        $penguranganKaryawanByDepartement = $this->pegawai_model->showDataWhere('*',['year(tgl_keluar)' => DATE('Y'),'status' => 'tidak'],NULL,NULL,'departement_id');
+        $penambahanKaryawanByDivisi = $this->pegawai_model->showDataWhere('*',['year(tgl_masuk)' => DATE('Y'),'status' => 'aktif'],NULL,NULL,'divisi_id');
+        $penguranganKaryawanByDivisi = $this->pegawai_model->showDataWhere('*',['year(tgl_keluar)' => DATE('Y'),'status' => 'tidak'],NULL,NULL,'divisi_id');
+        }
+
+
         $data = array(
             'CountDepartement' => COUNT($this->crud_model->lihatdata('tbl_departement')),
-            'CountDivisi' => COUNT($this->crud_model->GetDataById(['id_divisi !=' => '1'],'tbl_divisi')),
-            'CountPegawaiAktif' => COUNT($this->crud_model->GetDataById(['status' => 'aktif'],'tbl_pegawai')),
-            'CountPegawaiNonAktif' => COUNT($this->crud_model->GetDataById(['status' => 'tidak'],'tbl_pegawai')),
-            'penambahanKaryawan' => COUNT($this->crud_model->GetDataById(['year(tgl_masuk)' => DATE('Y')],'tbl_pegawai')),
-            'penguranganKaryawan'  => COUNT($this->crud_model->GetDataById(['year(tgl_keluar)' => DATE('Y')],'tbl_pegawai')),
+            'CountDivisi' => COUNT($divisi),
+            'CountPegawaiAktif' => COUNT($PegawaiAktif),
+            'CountPegawaiNonAktif' => COUNT($PegawaiNonAktif),
+            'penambahanKaryawan' => COUNT($PenambahanKaryawan),
+            'penguranganKaryawan'  => COUNT($PenguranganKaryawan),
+            'penambahanKaryawanByDepartement'  => COUNT($penambahanKaryawanByDepartement),
+            'penguranganKaryawanByDepartement'  => COUNT($penguranganKaryawanByDepartement),
+            'penambahanKaryawanByDivisi'  => COUNT($penambahanKaryawanByDivisi),
+            'penguranganKaryawanByDivisi'  => COUNT($penguranganKaryawanByDivisi),
             'CountCuti' => $CountCuti,
             'CountIzin' => $CountIzin,
             'CountIzinHarian' => $CountIzinHarian,

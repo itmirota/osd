@@ -104,7 +104,7 @@ class absensiPegawaiHarian extends BaseController
 
     $data = array(
       'jenis_absen' => $this->uri->segment(3),
-      'pegawai' => $this->crud_model->GetDataById($where,'tbl_absensi_pegawaiHarian') 
+      'pegawai' => $this->crud_model->GetDataByWhere($where,'tbl_absensi_pegawaiHarian') 
     );
 
 

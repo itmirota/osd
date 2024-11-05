@@ -70,10 +70,11 @@ $route['laporan-kebersihan'] = "kebersihan/report";
 // DEPARTEMENT
 $route['Datadepartement'] = 'departement';
 $route['deletedepartement/(:num)'] = "departement/delete/$1";
-$route['divisi/(:num)'] = 'divisi/listdata/$1';
+$route['divisi/(:num)'] = 'divisi/divisiByDept/$1';
 
 // DIVISI
 $route['Datadivisi'] = 'divisi';
+$route['Subdivisi/(:num)'] = 'divisi/getSubDivisi/$1';
 $route['deletedivisi/(:num)'] = "divisi/delete/$1";
 
 // BARANG

@@ -31,7 +31,7 @@ class Pengirimanpaket extends BaseController
     if ($role == ROLE_HRGA){
       $list_data = $this->pengirimanPaket_model->getData();
     }else{
-      $list_data = $this->pengirimanPaket_model->getDatabyId($id);
+      $list_data = $this->pengirimanPaket_model->GetDataByWhere($id);
     }
 
     $data = array(

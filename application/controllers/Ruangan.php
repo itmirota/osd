@@ -70,7 +70,7 @@ class Ruangan extends BaseController
       'id_ruangan' => $id
     );
 
-    $ruangan = $this->crud_model->GetDataById($where,'tbl_ruangan');
+    $ruangan = $this->crud_model->GetDataByWhere($where,'tbl_ruangan');
     echo json_encode($ruangan[0]);
   }
 
@@ -298,7 +298,7 @@ class Ruangan extends BaseController
       'id_kerusakan_ruangan' => $id
     );
 
-    $ruangan = $this->crud_model->GetDataById($where,'tbl_kerusakan_ruangan');
+    $ruangan = $this->crud_model->GetDataByWhere($where,'tbl_kerusakan_ruangan');
     echo json_encode($ruangan[0]);
   }
 
