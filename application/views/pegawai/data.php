@@ -273,7 +273,7 @@
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="tingkat_peringatan" class="col-sm-4 col-form-label">Durasi Kontrak</label>
+            <label for="tingkat_peringatan" class="col-sm-4 col-form-label">Surat Peringatan Ke</label>
             <div class="col-sm-8">
               <select name="tingkat_peringatan" class="form-select tabel-PR">
                 <option value="1"> Peringatan pertama</option>

@@ -344,6 +344,29 @@ class Pegawai extends BaseController
     echo json_encode($peringatan);
   }
 
+  public function add_peringatan(){
+    $pegawai_id = $this->input->post('id_pegawai');
+    $tingkat_peringatan = $this->input->post('tingkat_peringatan');
+    $datecreated = $this->input->post('tgl_surat_peringatan');
+
+    $data = array(
+      'pegawai_id' => $pegawai_id,
+      'tingkat_peringatan' => $tingkat_peringatan,
+      'datecreated' => $datecreated,
+    );
+
+    $update = $this->crud_model->update(['id_pegawai' => $pegawai_id],['tingkat_peringatan' => $tingkat_peringatan],'tbl_pegawai');
+    $sql = $this->crud_model->input($data,'tbl_histori_peringatan');
+    if (is_null($sql)){
+      $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    }else{
+      $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
+    }
+
+    redirect('Datapegawai');
+
+  }
+
   public function detailPenambahanKaryawan(){
 
     $year = $this->input->post('tahun');
