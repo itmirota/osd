@@ -30,26 +30,30 @@
                     <th colspan="2"  class="text-center" style="font-size:20px">Norma Penilaian</th>
                   </tr>
                   </thead>
-                  <tbody  class="text-center">                
+                  <tbody  class="text-center">    
+                    <tr>
+                      <td width="100px"><strong>Poin</strong></td>
+                      <td width="100px"><strong>Score</strong></td>
+                    </tr>             
                     <tr>
                       <td width="100px">5</td>
-                      <td width="100px">91% - 100%</td>
+                      <td width="100px">91 - 100</td>
                     </tr>
                     <tr>
                       <td>4</td>
-                      <td>81% - 90%</td>
+                      <td>81 - 90</td>
                     </tr>
                     <tr>
                       <td>3</td>
-                      <td>71% - 80%</td>
+                      <td>71 - 80</td>
                     </tr>
                     <tr>
                       <td>2</td>
-                      <td>61% - 70%</td>
+                      <td>61 - 70</td>
                     </tr>
                     <tr>
                       <td>1</td>
-                      <td>50% - 60%</td>
+                      <td>50 - 60</td>
                     </tr>
                   </tbody>
                 </table>
