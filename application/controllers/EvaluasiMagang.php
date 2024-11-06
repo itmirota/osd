@@ -58,7 +58,7 @@ class evaluasiMagang extends BaseController
       'tgl_akhir_kontrak' => $tgl_akhir_kontrak,
     );
 
-    $query = $this->crud_model->input($data, 'tbl_evaluasiMagang');
+    $query = $this->crud_model->input($data, 'tbl_evaluasimagang');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     redirect('evaluasiMagang');
