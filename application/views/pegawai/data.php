@@ -1638,4 +1638,26 @@
       }
     });
   }
+  function getDivisiByDept(){
+    let departement = $("#departement_id").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("divisi/getDivisiByDept")?>/"+departement,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih divisi---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
+        }
+
+        $("#divisi").html(html);
+      }
+    });
+  }
 </script>
