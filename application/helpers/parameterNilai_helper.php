@@ -26,4 +26,5 @@ function ubahNilai($nilai,$target,$bobot) {
   }
 
   return $hasil;
+  
 }
