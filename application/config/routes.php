@@ -156,11 +156,19 @@ $route['pengajuanIzin'] = 'izin/listPengajuanIzin';
 $route['addJadwalEvaluasi'] = 'evaluasiKerja/jadwalEvaluasiKerja';
 $route['penilaianEvaluasi'] = 'evaluasiKerja';
 $route['hasilEvaluasi/(:any)'] = 'evaluasiKerja/hasilEvaluasi/$1';
-$route['penilaian/(:any)'] = 'evaluasiKerja/penilaian/$1';
+$route['penilaian/(:any)'] = 'evaluasiKerja/penilaian_v31/$1';
+$route['penilaian-v2/(:any)'] = 'evaluasiKerja/penilaian_v2/$1';
+$route['penilaian-v21/(:any)'] = 'evaluasiKerja/penilaian_v21/$1';
+$route['penilaian-v3/(:any)'] = 'evaluasiKerja/penilaian_v3/$1';
+$route['penilaian-v31/(:any)'] = 'evaluasiKerja/penilaian_v31/$1';
+/*********** EVALUASI KINERJA DEFINED ROUTES *******************/
 
-$route['kategori-soal'] = 'evaluasiKerja/kategori';
-$route['list-soal/(:any)'] = 'evaluasiKerja/listSoal/$1';
-$route['hapusKategori/(:any)/(:any)'] = 'evaluasiKerja/hapusKategori/$1/$2';
+/*********** EVALUASI KINERJA DEFINED ROUTES *******************/
+$route['jadwal-evaluasi-magang'] = 'evaluasiMagang/jadwalevaluasiMagang';
+$route['penilaian-evaluasi-magang'] = 'evaluasiMagang';
+$route['hasil-evaluasi-magang/(:any)'] = 'evaluasiMagang/hasilEvaluasi/$1';
+$route['penilaian-magang/(:any)'] = 'evaluasiMagang/penilaian_v31/$1';
+/*********** EVALUASI KINERJA DEFINED ROUTES *******************/
 
 //SAMPLE
 $route['sample-masuk'] = 'sample/listdata';

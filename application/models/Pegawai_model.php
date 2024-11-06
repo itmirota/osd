@@ -87,6 +87,8 @@ class Pegawai_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
     $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
+    $this->db->join('tbl_jabatan d','d.id_jabatan = a.jabatan_id');
     $this->db->where('id_pegawai',$id);
     $query = $this->db->get();
     return $query->row();

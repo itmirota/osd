@@ -432,34 +432,24 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU APPROVAL PERIZINAN -->
 
-        <?php
-        if($role == ROLE_MANAGER | $role == ROLE_KABAG | $role == ROLE_SUPERADMIN | $role == ROLE_HRBP)
-        {
-        ?>
         <li class="sidebar-header">
           HRBP
         </li>
         <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
             <li class="sidebar-item">
-              <a href="<?php echo base_url('evaluasiKerja'); ?>" class="sidebar-link">
-                <span>Jadwal Evaluasi</span>
+              <a href="<?php echo base_url('EvaluasiKerja'); ?>" class="sidebar-link">
+                <span>Evaluasi Karyawan</span>
               </a>
             </li>
-            <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP)
-            {
-            ?>
             <li class="sidebar-item">
-              <a href="<?php echo base_url('kategori-soal'); ?>" class="sidebar-link">
-                <span>List Parameter Evaluasi</span>
+              <a href="<?php echo base_url('EvaluasiMagang'); ?>" class="sidebar-link">
+                <span>Evaluasi Magang</span>
               </a>
             </li>
-            <?php } ?>
           </ul>
         </li>
-        <?php } ?>
         <?php
         if($role == ROLE_SUPERADMIN)
         {

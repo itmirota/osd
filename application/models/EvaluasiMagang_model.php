@@ -1,11 +1,11 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class EvaluasiKerja_model extends CI_Model
+class evaluasiMagang_model extends CI_Model
 {
     
   function getData(){
     $this->db->select('*, DATE(tgl_evaluasi) as date');
-    $this->db->from('tbl_evaluasikerja');
+    $this->db->from('tbl_evaluasiMagang');
     $query = $this->db->get();
 
     return $query->result();
@@ -13,8 +13,8 @@ class EvaluasiKerja_model extends CI_Model
 
   function getDataEvaluasi($id){
     $this->db->select('*');
-    $this->db->from('tbl_evaluasikerja');
-    $this->db->where('id_evaluasiKerja', $id);
+    $this->db->from('tbl_evaluasiMagang');
+    $this->db->where('id_evaluasiMagang', $id);
     $query = $this->db->get();
 
     return $query->result();
@@ -22,7 +22,7 @@ class EvaluasiKerja_model extends CI_Model
   
   function getDataEvaluasibyDate(){
     $this->db->select('*, DATE(tgl_evaluasi) as date, TIME(tgl_evaluasi) as time');
-    $this->db->from('tbl_evaluasikerja');
+    $this->db->from('tbl_evaluasiMagang');
     $this->db->where('DATE(tgl_evaluasi)',DATE('Y-m-d'));
     $query = $this->db->get();
 
@@ -31,8 +31,8 @@ class EvaluasiKerja_model extends CI_Model
 
   function getDataHasil($id){
     $this->db->select('*');
-    $this->db->from('tbl_penilaian');
-    $this->db->where('evaluasiKerja_id', $id);
+    $this->db->from('tbl_penilaian_magang');
+    $this->db->where('evaluasiMagang_id', $id);
     $query = $this->db->get();
 
     return $query->result();
@@ -40,8 +40,8 @@ class EvaluasiKerja_model extends CI_Model
 
   function getSumHasil($id){
     $this->db->select('SUM(total_nilai) as total_nilai');
-    $this->db->from('tbl_penilaian');
-    $this->db->where('evaluasiKerja_id', $id);
+    $this->db->from('tbl_penilaian_magang');
+    $this->db->where('evaluasiMagang_id', $id);
     $query = $this->db->get();
 
     return $query->row();

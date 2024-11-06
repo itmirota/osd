@@ -8,13 +8,13 @@ require APPPATH . '/libraries/BaseController.php';
  * @since : 11 Februari 2024
  */
 
-class evaluasiKerja extends BaseController
+class evaluasiMagang extends BaseController
 {
 
   public function __construct()
   {
       parent::__construct();
-      $this->load->model('evaluasiKerja_model');
+      $this->load->model('evaluasiMagang_model');
       $this->load->model('pegawai_model');
       $this->load->model('crud_model');
       $this->isLoggedIn();
@@ -24,50 +24,44 @@ class evaluasiKerja extends BaseController
     $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
     $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';
 
-    $role = $this->role;
     $check = $this->uri->segment(1);
     
-    if ($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){
-      $data['list_data']= $this->evaluasiKerja_model->getData();
+    if ($check != 'penilaianEvaluasi'){
+      $data['list_data']= $this->evaluasiMagang_model->getData();
     }else{
-      $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasibyDate();
+      $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasibyDate();
     };
     
     $data['check']= $this->uri->segment(1);
 
-    $this->loadViews("evaluasiKerja/data", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/data", $this->global, $data, NULL);
   }
 
-  public function jadwalEvaluasiKerja(){
+  public function jadwalevaluasiMagang(){
     $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
     $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';
 
-    $data['pegawai'] = $this->crud_model->lihatdata('tbl_pegawai');
-
-    $this->loadViews("evaluasiKerja/formulir", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/formulir", $this->global, NULL);
   }
 
   public function saveJadwalPenilaian(){
     $tgl_evaluasi = $this->input->post('tgl_evaluasi');
-    $id_pegawai = $this->input->post('id_pegawai');
-    $tujuan_evaluasi = $this->input->post('tujuan_evaluasi');
+    $nama_peserta = $this->input->post('nama_peserta');
+    $bagian = $this->input->post('bagian');
     $tgl_akhir_kontrak = $this->input->post('tgl_akhir_kontrak');
 
-    $pegawai = $this->pegawai_model->getPegawaibyId($id_pegawai);
 
     $data = array(
       'tgl_evaluasi' => $tgl_evaluasi,
-      'pegawai_id' => $id_pegawai,
-      'nama_peserta' => $pegawai->nama_pegawai,
-      'bagian' => $pegawai->nama_departement.'/'.$pegawai->nama_divisi,
-      'tujuan_evaluasi' => $tujuan_evaluasi,
+      'nama_peserta' => $nama_peserta,
+      'bagian' => $bagian,
       'tgl_akhir_kontrak' => $tgl_akhir_kontrak,
     );
 
-    $query = $this->crud_model->input($data, 'tbl_evaluasikerja');
+    $query = $this->crud_model->input($data, 'tbl_evaluasiMagang');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('EvaluasiKerja');
+    redirect('evaluasiMagang');
   }
 
   public function hasilEvaluasi(){
@@ -76,11 +70,11 @@ class evaluasiKerja extends BaseController
 
     $id = $this->uri->segment(2);
     
-    $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
-    $data['hasil']= $this->evaluasiKerja_model->getDataHasil($id);
-    $data['nilai']= $this->evaluasiKerja_model->getSumHasil($id);
+    $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasi($id);
+    $data['hasil']= $this->evaluasiMagang_model->getDataHasil($id);
+    $data['nilai']= $this->evaluasiMagang_model->getSumHasil($id);
 
-    $this->loadViews("evaluasiKerja/laporan", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/laporan", $this->global, $data, NULL);
   }
 
   public function penilaian(){
@@ -88,10 +82,10 @@ class evaluasiKerja extends BaseController
     $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
     $id = $this->uri->segment(2);
 
-    $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+    $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasi($id);
     $data['id']= $id;
 
-    $this->loadViews("evaluasiKerja/penilaian", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/penilaian", $this->global, $data, NULL);
   }
 
   public function penilaian_v2(){
@@ -99,10 +93,10 @@ class evaluasiKerja extends BaseController
     $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
     $id = $this->uri->segment(2);
 
-    $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+    $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasi($id);
     $data['id']= $id;
 
-    $this->loadViews("evaluasiKerja/penilaian_tabel", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/penilaian_tabel", $this->global, $data, NULL);
   }
 
   public function penilaian_v21(){
@@ -110,10 +104,10 @@ class evaluasiKerja extends BaseController
     $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
     $id = $this->uri->segment(2);
 
-    $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+    $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasi($id);
     $data['id']= $id;
 
-    $this->loadViews("evaluasiKerja/penilaian_tabel2", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/penilaian_tabel2", $this->global, $data, NULL);
   }
 
 
@@ -122,10 +116,10 @@ class evaluasiKerja extends BaseController
     $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
     $id = $this->uri->segment(2);
 
-    $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+    $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasi($id);
     $data['id']= $id;
 
-    $this->loadViews("evaluasiKerja/penilaian_list", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/penilaian_list", $this->global, $data, NULL);
   }
 
   public function penilaian_v31(){
@@ -139,14 +133,14 @@ class evaluasiKerja extends BaseController
     $data = array(
       'pegawai' => $pegawai,
       'id' => $id,
-      'list_data' => $this->evaluasiKerja_model->getDataEvaluasi($id)
+      'list_data' => $this->evaluasiMagang_model->getDataEvaluasi($id)
     );
 
-    $this->loadViews("evaluasiKerja/penilaian_list2", $this->global, $data, NULL);
+    $this->loadViews("evaluasiMagang/penilaian_list2", $this->global, $data, NULL);
   }
 
   public function savePenilaian(){
-    $evaluasiKerja_id = $this->input->post('evaluasiKerja_id');
+    $evaluasiMagang_id = $this->input->post('evaluasiMagang_id');
     $nama_penilai = $this->input->post('nama_penilai');
     $jabatan_bagian = $this->input->post('jabatan_bagian');
     $parameter1 = $this->input->post('parameter1');
@@ -166,32 +160,23 @@ class evaluasiKerja extends BaseController
     $parameter7 = $this->input->post('parameter7');
     $keterangan8 = $this->input->post('keterangan8');
     $parameter8 = $this->input->post('parameter8');
-    $keterangan9 = $this->input->post('keterangan9');
-    $parameter9 = $this->input->post('parameter9');
-    $keterangan10 = $this->input->post('keterangan10');
-    $parameter10 = $this->input->post('parameter10');
-    $keterangan11 = $this->input->post('keterangan11');
-    $parameter11 = $this->input->post('parameter11');
     $kelebihan = $this->input->post('kelebihan');
     $kekurangan = $this->input->post('kekurangan');
     $rekomendasi = $this->input->post('rekomendasi');
 
     $hasil1 = ubahNilai($parameter1,2,10);
-    $hasil2 = ubahNilai($parameter2,2,5);
-    $hasil3 = ubahNilai($parameter3,3,5);
-    $hasil4 = ubahNilai($parameter4,2,5);
-    $hasil5 = ubahNilai($parameter5,3,5);
-    $hasil6 = ubahNilai($parameter6,3,10);
-    $hasil7 = ubahNilai($parameter7,3,12);
-    $hasil8 = ubahNilai($parameter8,3,12);
-    $hasil9 = ubahNilai($parameter9,3,12);
-    $hasil10 = ubahNilai($parameter10,3,12);
-    $hasil11 = ubahNilai($parameter11,3,12);
+    $hasil2 = ubahNilai($parameter2,2,10);
+    $hasil3 = ubahNilai($parameter3,3,15);
+    $hasil4 = ubahNilai($parameter4,3,15);
+    $hasil5 = ubahNilai($parameter5,2,10);
+    $hasil6 = ubahNilai($parameter6,3,15);
+    $hasil7 = ubahNilai($parameter7,3,15);
+    $hasil8 = ubahNilai($parameter8,2,10);
 
-    $total_nilai = $hasil1+$hasil2+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil10+$hasil11;
+    $total_nilai = $hasil1+$hasil2+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8;
 
     $data = array(
-      'evaluasiKerja_id' => $evaluasiKerja_id,
+      'evaluasiMagang_id' => $evaluasiMagang_id,
       'nama_penilai' => $nama_penilai,
       'jabatan_bagian' => $jabatan_bagian,
       'parameter1' => $parameter1.'|'.$keterangan1,
@@ -202,19 +187,16 @@ class evaluasiKerja extends BaseController
       'parameter6' => $parameter6.'|'.$keterangan6,
       'parameter7' => $parameter7.'|'.$keterangan7,
       'parameter8' => $parameter8.'|'.$keterangan8,
-      'parameter9' => $parameter9.'|'.$keterangan9,
-      'parameter10' => $parameter10.'|'.$keterangan10,
-      'parameter11' => $parameter11.'|'.$keterangan11,
       'kelebihan' => $kelebihan,
       'kekurangan' => $kekurangan,
       'rekomendasi' => $rekomendasi,
       'total_nilai' => $total_nilai
     );
 
-    $query = $this->crud_model->input($data, 'tbl_penilaian');
+    $query = $this->crud_model->input($data, 'tbl_penilaian_magang');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('penilaianEvaluasi');
+    redirect('EvaluasiMagang');
   }
 
 }

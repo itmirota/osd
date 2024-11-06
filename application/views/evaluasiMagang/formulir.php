@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
 <div class="col-md-6">
-  <form action="<?= base_url('evaluasiKerja/saveJadwalPenilaian')?>" role="form" method="post" enctype="multipart/form-data">
+  <form action="<?= base_url('evaluasiMagang/saveJadwalPenilaian')?>" role="form" method="post" enctype="multipart/form-data">
   <div class="card p-2">
     <div class="card-body">
         <div class="form-group">
@@ -10,21 +10,12 @@
               <input type="date" name="tgl_evaluasi" class="form-control tabel-PR" required />
             </div>
             <div class="col-md-12">
-              <label for="nama_peserta" class="form-label">Nama Karyawan</label>
-              <select name="id_pegawai" class="form-select tabel-PR" required>
-                <option>----- pilih pegawai ---</option>
-                <?php foreach($pegawai as $ld): ?>
-                <option value="<?= $ld->id_pegawai?>"><?=$ld->nip?> | <?=$ld->nama_pegawai?></option>
-                <?php endforeach; ?>
-              </select>
+              <label for="nama_peserta" class="form-label">Nama Peserta</label>
+              <input type="text" name="nama_peserta" class="form-control tabel-PR" required>
             </div>
             <div class="col-md-12">
-              <label for="tujuan_evaluasi" class="form-label">Tujuan Evaluasi</label>
-              <select name="tujuan_evaluasi" class="form-select tabel-PR">
-                <option >---- Tujuan ---</option>
-                <option value="probation">Masa Akhir Probation</option>
-                <option value="kontrak">Masa Akhir Kontrak</option>
-              </select>
+              <label for="bagian" class="form-label">Posisi</label>
+              <input type="text" name="bagian" class="form-control tabel-PR" required />
             </div>
             <div class="col-md-12">
               <label for="tgl_evaluasi" class="form-label">Tanggal Habis Kontrak</label>

@@ -6,23 +6,19 @@
       <div class="card-header">
       <div class="d-flex justify-content-between mb-4">
         <button class="btn btn-warning" onclick="refresh()"><i class="fa fa-rotate"></i> Refresh</button>
-        <a href="<?= base_url('addJadwalEvaluasi')?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+        <a href="<?= base_url('jadwal-evaluasi-magang')?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
       </div>
       </div>
       <?php } ?>
       <div class="card-body table-responsive no-padding">
-        <table id="dataTable" class="table table-hover">
+        <table id="DataTable" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
             <th>Tanggal evaluasi</th>
             <th>Nama Peserta</th>
             <th>Bagian</th>
-            <th>Tujuan Evaluasi</th>
             <th>Tanggal Habis Kontrak</th>
-            <?php if ($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){ ?>
-            <th class="text-center">Hasil</th>
-            <?php } ?>
             <th class="text-center">Penilaian</th>
           </tr>
           </thead>
@@ -35,18 +31,13 @@
               <td><?= mediumdate_indo($ld->date) ?></td>
               <td><?= $ld->nama_peserta ?></td>
               <td><?= $ld->bagian ?></td>
-              <td> <?= !empty($ld->tujuan_evaluasi) ? "Masa Akhir ".$ld->tujuan_evaluasi : '' ?></td>
               <td><?= mediumdate_indo($ld->tgl_akhir_kontrak) ?></td>
-              <?php if ($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){ ?>
-                <td class="text-center">
-                <a href="<?= base_url('hasilEvaluasi/'.$ld->id_evaluasiKerja)?>"><i class="fa fa-eye"></i></a> 
-                </td>
-              <?php } ?>
               <td class="text-center">
-                <div class="">
-                <a href="<?= base_url('penilaian/'.$ld->id_evaluasiKerja)?>" target="_blank" class="btn btn-sm btn-success"><i class="fas fa-pencil"></i> penilaian</a>
-                </div>
-                <!-- <input type="text" value="<?= base_url('penilaian/'.$ld->id_evaluasiKerja)?>" id="myInput">
+                  <?php if ($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){ ?>
+                 <a href="<?= base_url('hasil-evaluasi-magang/'.$ld->id_evaluasiMagang)?>" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> hasil</a> 
+                 <?php } ?>
+                <a href="<?= base_url('penilaian-magang/'.$ld->id_evaluasiMagang)?>" target="_blank" class="btn btn-sm btn-success"><i class="fas fa-pencil"></i> penilaian</a>
+                <!-- <input type="text" value="<?= base_url('penilaian/'.$ld->id_evaluasiMagang)?>" id="myInput">
                 <button class="btn btn-sm btn-primary" onclick="myFunction()">Copy link</button> -->
               </td>
 
