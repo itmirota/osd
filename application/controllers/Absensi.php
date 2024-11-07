@@ -406,7 +406,7 @@ class Absensi extends BaseController
   public function istirahat(){
     $this->global['pageTitle'] = 'Absensi Istirahat Mirota KSM';
     $this->global['pageHeader'] = 'Absensi Istirahat Karyawan ';
-
+    $role = $this->role;
     $pegawai_id = $this->global ['pegawai_id'];
 
     $where = array(
@@ -517,12 +517,16 @@ class Absensi extends BaseController
 
     $divisi = $this->divisi_id;
     $role = $this->global ['role'];
+    $id = $this->pegawai_id;
+
     $tgl_awal = $this->input->post('tgl_awal');
     $tgl_akhir = $this->input->post('tgl_akhir');
     $id_pegawai = $this->input->post('id_pegawai');
 
-    if ($role == ROLE_HRGA | $role == ROLE_SUPERADMIN | $role == ROLE_MANAGER){
+    if ($role == ROLE_HRGA | $role == ROLE_SUPERADMIN){
       $list_data = $this->absensi_model->getDataIstirahat();
+    }elseif($role == ROLE_MANAGER){
+      $list_data = $this->absensi_model->getDataIstirahatByManager($id);
     }else{
       $list_data = $this->absensi_model->getDataIstirahatByDivisi($divisi);
     }
