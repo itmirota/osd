@@ -23,10 +23,9 @@ class evaluasiMagang extends BaseController
   public function index(){
     $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
     $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';
-
-    $check = $this->uri->segment(1);
+    $role = $this->role;
     
-    if ($check != 'penilaianEvaluasi'){
+    if ($role == ROLE_HRBP){
       $data['list_data']= $this->evaluasiMagang_model->getData();
     }else{
       $data['list_data']= $this->evaluasiMagang_model->getDataEvaluasibyDate();
