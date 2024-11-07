@@ -1,13 +1,8 @@
 <div class="row">
 
-  <?php
-  if($role == ROLE_ADMIN)
-  {
-  ?>
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPengirimanPaket"><i class="fa fa-plus"></i> Tambah Data</button>
   </div>
-  <?php } ?>
 
   <div class="col-md-12">
     <div class="card card-primary">
