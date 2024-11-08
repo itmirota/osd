@@ -2,12 +2,11 @@
   <div class="col-12">
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
             <div class="p-2">
                 <strong>Periode:</strong>   
             </div>
             <div class="p-2">
-                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#filterAbsenToko">
                 Filter
                 </button>
@@ -18,7 +17,7 @@
                 Refresh
                 </a>
             </div>
-        </div>
+        </div> -->
         <table id="dataTable" class="table table-hover">
           <thead>
             <tr>

@@ -372,7 +372,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU APPROVAL PERIZINAN -->
 
         <?php
-          if($role != ROLE_PAYROLL)
+          if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG)
           {
         ?>
         <!-- MENU ABSENSI -->
@@ -404,11 +404,17 @@ if($role != ROLE_STAFF){ ?>
                 <span>Absensi Istirahat</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a href="<?php echo base_url('laporan-absensi-mesin'); ?>" class="sidebar-link">
                 <span>Absensi Mesin</span>
               </a>
+            </li> -->
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('karyawan-terlambat'); ?>" class="sidebar-link">
+                <span>Keterlambatan Karyawan</span>
+              </a>
             </li>
+            
           </ul>
         </li>
         <!-- /MENU ABSENSI -->

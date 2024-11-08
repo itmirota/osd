@@ -67,7 +67,6 @@
           </tfoot>
         </table>
         </div>
-        
       </div><!-- /.box-body -->
     </div><!-- /.box -->
   </div>

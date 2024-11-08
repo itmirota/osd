@@ -188,4 +188,23 @@ public function getDataIstirahatByManager($id){
 
 }
 // END ABSENSI ISTIRAHAT
+
+// PEGAWAI TERLAMBAT
+public function getPegawaiTerlambat($where){
+  $this->db->select('*');
+  $this->db->from('tbl_absensi_terlambat a');
+  $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
+  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+
+  if(isset($where)){
+  $this->db->where($where);
+  }
+  
+  $this->db->order_by('id_absensi_terlambat','DESC');
+
+  $query = $this->db->get();
+  return $query->result();
+}
+// PEGAWAI TERLAMBAT
 }

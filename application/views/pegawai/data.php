@@ -119,7 +119,7 @@
               <a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><strong><?= $data->nama_pegawai ?></strong></a>
               <hr class="m-0">
               <span style="font-size:12px"><strong><?= $data->nama_departement ?>/<?= $data->nama_divisi ?></strong></span><br>
-              <span style="font-size:12px"><strong>Area: KANTOR</strong></span><br>
+              <!-- <span style="font-size:12px"><strong>Area: KANTOR</strong></span><br> -->
               <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span>
             </td>
             <td><?php

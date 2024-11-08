@@ -849,4 +849,44 @@ class Absensi extends BaseController
     }
   }
   // ABSENSI MESIN
+
+  // KETERLAMBATAN
+  public function keterlambatan(){
+    $this->global['pageTitle'] = 'Laporan Istirahat Karyawan Mirota KSM';
+    $role = $this->role;
+    $divisi = $this->divisi;
+
+    if($role == ROLE_MANAGER){
+    $data['list_data'] = $this->absensi_model->getPegawaiTerlambat(['manager_id' => $id_pegawai]);
+    }elseif($role == ROLE_KABAG){
+    $data['list_data'] = $this->absensi_model->getPegawaiTerlambat(['divisi_id' => $divisi]);
+    }else{
+    $data['list_data'] = $this->absensi_model->getPegawaiTerlambat(NULL);
+    }
+
+    $data['pegawai'] = $this->crud_model->lihatdata('tbl_pegawai');
+    $data['departement'] = $this->crud_model->lihatdata('tbl_departement');
+
+    $this->loadViews("absensi/data_pegawai_terlambat", $this->global, $data, NULL);
+  }
+
+  public function simpanKeterlambatan(){
+    $pegawai_id = $this->input->post('pegawai_id');
+    $tgl_terlambat = $this->input->post('tgl_terlambat');
+    $waktu_terlambat = $this->input->post('waktu_terlambat');
+    $createdBy = $this->pegawai_id;
+
+
+    $data = array(
+      'pegawai_id' => $pegawai_id,
+      'tgl_terlambat' => $tgl_terlambat,
+      'waktu_terlambat' => $waktu_terlambat,
+      'createdBy' => $createdBy
+    );
+
+    $sql = $this->crud_model->input($data,'tbl_absensi_terlambat');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Diinput');
+    redirect('karyawan-terlambat');
+  }
+  // KETERLAMBATAN
 }

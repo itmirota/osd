@@ -42,6 +42,7 @@ $route['default_controller'] = "login";
 $route['admin'] = "login/admin";
 $route['admin-login'] = "login/adminLogin";
 $route['404_override'] = 'error';
+$route['daftar-hadir'] = 'DaftarHadir';
 
 
 /*********** MASTER DATA DEFINED ROUTES *******************/
@@ -124,6 +125,9 @@ $route['istirahat'] = 'absensi/istirahat';
 $route['istirahat/(:any)'] = 'absensi/absensiIstirahat/$1';
 $route['laporan-istirahat'] = 'absensi/laporanIstirahat';
 $route['export-excel-istirahat'] = 'absensi/exportExcelIstirahat';
+
+// DATA TERLAMBAT
+$route['karyawan-terlambat'] = 'absensi/keterlambatan';
 
 
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';

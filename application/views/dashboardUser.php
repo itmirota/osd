@@ -1,3 +1,24 @@
+<style>
+.event{
+  background-color:blue;
+}
+
+.event .headertext{
+  color:#fff;
+  font-size:32px;
+  font-weight:bold;
+}
+
+.event .text{
+  color:#fff;
+  text-align:center;
+}
+
+.event .img-qrcode{
+  /* width: 10px; */
+}
+</style>
+
 <div class="container">
   <div class="d-flex">
     <div class="col-md-12">
@@ -46,7 +67,7 @@
     <h3 class="m-0"> Layanan OSD</h3>
     <p style="font-size:12px" class="m-0 mt-1">Layanan yang bisa kamu manfaatkan, seperti pengajuan izin, peminjaman, absensi</p>
   </div>
-  <div class="d-flex flex-row justify-content-center p-4">
+  <div class="d-flex flex-row justify-content-center p-4 pb-1">
     <div class="col-3 m-1">
       <a href="<?= base_url('peminjaman') ?>">
         <div class="d-flex flex-column">
@@ -128,6 +149,74 @@
     <?php } ?>
     
   </div>
+
+  <?php if($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){?>
+  <div class="d-flex flex-row justify-content-start">
+    <div class="col-3 m-1">
+      <a data-bs-toggle="modal" data-bs-target="#DaftarHadir">
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-center mb-2">
+            <img class="img-menu" src="<?= base_url('assets/images/hut51.jpeg')?>">
+          </div>
+          <div class="d-flex justify-content-center text-header">
+            HUT 51 MIROTA
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <?php } ?>
   <!-- Menu -->
 </div>
+
+<!-- MODAL DAFTAR HADIR -->
+<!-- Modal -->
+<div class="modal fade" id="DaftarHadir" tabindex="-1" aria-labelledby="DaftarHadirLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">HUT 51 PT. Mirota KSM</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="event mb-2 p-4" id="konfirmasi" style="display:<?= isset($event) ? 'none' : 'block' ?>">
+            <h1 class="headertext d-flex justify-content-center">HALO SELAMAT DATANG</h1>
+            <h1 class="headertext d-flex justify-content-center">Tak terasa perusahaan kita sudah menginjak 51TH</h1>
+            <p class="text">Ikut sertamu dalam acara ulangtahun ini sangat dinantikan, yuk konfirmasi kehadiranmu</p>
+            <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" onclick="kehadiran(<?= $this->pegawai_id ?>)">Aku Akan Hadir</button>
+            </div>
+        </div>
+        <div class="event" id="qrcode" style="display:<?= isset($event) ? 'block' : 'none' ?>">
+          <div class="d-flex flex-column mb-3">
+            <div class="header d-flex justify-content-center mt-3 mb-3">
+              <h1 class="headertext">INFO KEHADIRAN</h1>
+            </div>
+            <div class="img-qrcode d-flex justify-content-center mb-3" style="display:<?= isset($event) ? 'none' : 'block' ?>">
+              <img class="img-qrcode" id="image_qrcode" src="<?= isset($event) ? base_url('assets/images/qrcode/HUT51/').$event->data_qrcode :''?>" alt="<?= isset($event) ? $event->data_qrcode : ''?>">
+            </div>
+            <div class="info d-flex justify-content-center">
+              <p class="text">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function kehadiran($id){
+  $.ajax({
+    url:"<?php echo site_url("DaftarHadir/simpanDaftarHadir")?>/" + $id,
+    dataType:"JSON",
+    type: "get",
+    success:function(hasil){
+      document.getElementById("konfirmasi").style.display = "none";
+      document.getElementById("qrcode").style.display = "block";
+      document.getElementById("image_qrcode").src = "<?= base_url('assets/images/qrcode/HUT51/')?>"+ hasil.data_qrcode;
+    }
+  });
+}
+</script>
  

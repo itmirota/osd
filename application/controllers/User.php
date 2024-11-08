@@ -117,7 +117,8 @@ class User extends BaseController
 
         $pegawai_id = $this->pegawai_id;
         $data['pegawai'] = $this->pegawai_model->getPegawaibyId($pegawai_id);
-
+        $data['event'] = $this->crud_model->getdataRowbyWhere('*', ['event_id' => 1,'pegawai_id' => $pegawai_id], 'tbl_daftar_hadir');
+ 
         $this->loadViewsUser("dashboardUser", $this->global, $data, NULL);
     }
 

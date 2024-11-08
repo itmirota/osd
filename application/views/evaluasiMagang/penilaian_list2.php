@@ -15,11 +15,11 @@
                 <?php endforeach ?>
                 <div class="col-md-12">
                   <label for="nama_penilai" class="form-label">Nama Penilai</label>
-                  <input type="text" name="nama_penilai" class="form-control-plaintext tabel-PR" value="<?= $name?>" required />
+                  <input type="text" name="nama_penilai" class="form-control tabel-PR" value="<?= $name?>" required />
                 </div>
                 <div class="col-md-12">
                   <label for="jabatan_bagian" class="form-label">Jabatan dan Bagian Penilai</label>
-                  <input type="text" name="jabatan_bagian" class="form-control-plaintext tabel-PR" value="<?= $pegawai->nama_jabatan.' - '.$pegawai->nama_departement.'/'.$pegawai->nama_divisi?>" required />
+                  <input type="text" name="jabatan_bagian" class="form-control tabel-PR" value="<?= $pegawai->nama_jabatan.' - '.$pegawai->nama_departement.'/'.$pegawai->nama_divisi?>" required />
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4 mb-4">
@@ -32,7 +32,7 @@
                   </thead>
                   <tbody  class="text-center">      
                     <tr>
-                      <td width="100px"><strong>Poin</strong></td>
+                      <td width="100px"><strong>poin</strong></td>
                       <td width="100px"><strong>Score</strong></td>
                     </tr>          
                     <tr>
@@ -75,9 +75,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter1" class="form-label">Poin</label>
+                        <label for="parameter1" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter1"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">50% -</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -113,9 +113,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter2" class="form-label">Poin</label>
+                        <label for="parameter2" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter2"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -153,9 +153,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter3" class="form-label">Poin</label>
+                        <label for="parameter3" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter3"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -190,9 +190,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter4" class="form-label">Poin</label>
+                        <label for="parameter4" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter4"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -226,9 +226,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter5" class="form-label">Poin</label>
+                        <label for="parameter5" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter5"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -265,9 +265,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter6" class="form-label">Poin</label>
+                        <label for="parameter6" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter6"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -306,9 +306,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter7" class="form-label">Poin</label>
+                        <label for="parameter7" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter7"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -343,9 +343,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter8" class="form-label">Poin</label>
+                        <label for="parameter8" class="form-label">score</label>
                         <!-- <select class="form-select" name="parameter8"  aria-label="Default select example">
-                          <option selected>Pilih Poin</option>
+                          <option selected>Pilih score</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
