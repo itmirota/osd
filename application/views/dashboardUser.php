@@ -232,7 +232,7 @@
             </div>
             <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
             <div class="info d-flex justify-content-center">
-              <p class="text">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
+              <p class="text p-4">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
             </div>
           </div>
         </div>
