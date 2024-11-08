@@ -1,16 +1,33 @@
 <style>
 .event{
-  background-color:blue;
+  background-color:#ebebeb;
 }
 
 .event .headertext{
-  color:#fff;
+  color:#1e88c8;
   font-size:32px;
   font-weight:bold;
 }
 
+.btn-event{
+  background-color:#ebbc0d;
+  color:#1e88c8;
+}
+
+.event .theme{
+  font-size: 24px;
+  background: linear-gradient(37deg, rgba(244,198,10,1) 24%, rgba(218,176,6,1) 34%, rgba(218,176,6,1) 57%, rgba(244,198,10,1) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.event .subheadertext{
+  color:#1e88c8;
+  font-size:18px;
+}
+
 .event .text{
-  color:#fff;
+  color:#1e88c8;
   text-align:center;
 }
 
@@ -156,7 +173,7 @@
       <a data-bs-toggle="modal" data-bs-target="#DaftarHadir">
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/hut51.jpeg')?>">
+            <img class="img-menu" src="<?= base_url('assets/images/logo51.png')?>">
           </div>
           <div class="d-flex justify-content-center text-header">
             HUT 51 MIROTA
@@ -180,21 +197,40 @@
       </div>
       <div class="modal-body">
         <div class="event mb-2 p-4" id="konfirmasi" style="display:<?= isset($event) ? 'none' : 'block' ?>">
-            <h1 class="headertext d-flex justify-content-center">HALO SELAMAT DATANG</h1>
-            <h1 class="headertext d-flex justify-content-center">Tak terasa perusahaan kita sudah menginjak 51TH</h1>
-            <p class="text">Ikut sertamu dalam acara ulangtahun ini sangat dinantikan, yuk konfirmasi kehadiranmu</p>
-            <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" onclick="kehadiran(<?= $this->pegawai_id ?>)">Aku Akan Hadir</button>
+            <div class="d-flex justify-content-center">
+              <div class="p-2">
+                <img width=80px src="<?= base_url('assets/dist/img/logo51.png') ?>" alt="" srcset="">
+              </div>
+            </div>
+            <h2 class="subheadertext d-flex justify-content-center m-0">PERAYAAN HUT 51</h2>
+            <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1>
+            <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
+            <div class="d-flex justify-content-center">
+            <div class="col-md-5">
+            <p class="text text-start m-0"><i class="fa fa-solid fa-calendar"></i> 15 November 2024</p>
+            <p class="text text-start m-0"><i class="fa fa-solid fa-clock"></i> 13:00 WIB - 17:00 WIB</p>
+            <p class="text text-start"><i class="fa fa-solid fa-building"></i> Aula PT Mirota KSM</p>
+            </div>
+            </div>
+            <p class="text">Tak terasa perusahaan kita sebentar lagi menginjak 51 tahun. banyak tantangan dan rintangan yang sudah kita lewati bersama, ikut sertamu dalam acara ulang tahun ini sangat dinantikan. akan ada banyak hadiah menarik yang bisa kamu bawa pulang. yuk segera konfirmasi kehadiranmu.</p>
+            <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-event" onclick="kehadiran(<?= $this->pegawai_id ?>)">Yaps, Pasti Hadir</button>
             </div>
         </div>
-        <div class="event" id="qrcode" style="display:<?= isset($event) ? 'block' : 'none' ?>">
-          <div class="d-flex flex-column mb-3">
-            <div class="header d-flex justify-content-center mt-3 mb-3">
-              <h1 class="headertext">INFO KEHADIRAN</h1>
+        <div class="event mb-4" id="qrcode" style="display:<?= isset($event) ? 'block' : 'none' ?>">
+          <div class="d-flex justify-content-center">
+            <div class="p-2 mt-4">
+              <img width=80px src="<?= base_url('assets/dist/img/logo51.png') ?>" alt="" srcset="">
             </div>
+          </div>
+          <div class="d-flex flex-column mb-3">
+            <h2 class="subheadertext d-flex justify-content-center m-0 mt-4">Perayaan HUT ke 51</h2>
+            <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1>
+            <p class="text d-flex justify-content-center m-0 mb-3"> 15 November 2024</p>
             <div class="img-qrcode d-flex justify-content-center mb-3" style="display:<?= isset($event) ? 'none' : 'block' ?>">
               <img class="img-qrcode" id="image_qrcode" src="<?= isset($event) ? base_url('assets/images/qrcode/HUT51/').$event->data_qrcode :''?>" alt="<?= isset($event) ? $event->data_qrcode : ''?>">
             </div>
+            <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
             <div class="info d-flex justify-content-center">
               <p class="text">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
             </div>
