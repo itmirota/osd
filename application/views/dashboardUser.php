@@ -192,7 +192,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">HUT 51 PT. Mirota KSM</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">HUT ke 51 PT. Mirota KSM</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -202,7 +202,7 @@
                 <img width=80px src="<?= base_url('assets/dist/img/logo51.png') ?>" alt="" srcset="">
               </div>
             </div>
-            <h2 class="subheadertext d-flex justify-content-center m-0">PERAYAAN HUT 51</h2>
+            <h2 class="subheadertext d-flex justify-content-center m-0">PERAYAAN HUT ke 51</h2>
             <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1>
             <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
             <div class="d-flex justify-content-center">
@@ -232,7 +232,7 @@
             </div>
             <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
             <div class="info d-flex justify-content-center">
-              <p class="text p-4">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
+              <p class="text p-4 pt-0">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
             </div>
           </div>
         </div>
