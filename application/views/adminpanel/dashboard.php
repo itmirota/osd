@@ -6,51 +6,7 @@
     <h1 class="h3 mb-3"><strong>Info</strong> Perusahaan</h1>
     <div class="row">
       <div class="col-xl-6 col-xxl-5 d-flex">
-        <!-- <canvas id="myChart"></canvas> -->
-          <div class="row flex-fill">
-            <?php if($role == ROLE_SUPERADMIN){?>
-            <div class="col-md-12">
-              <a href="<?= base_url('Datadepartement')?>">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title">Departement</h5>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="stat text-primary">
-                        <i class="fa-solid fa-people-roof"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <h1 class="mt-1 mb-3"><?= $CountDepartement ?></h1>
-                </div>
-              </div>
-              </a>
-            </div>
-            <?php } ?>
-            <div class="col-sm-12">
-              <a href="<?= base_url('Datadivisi')?>">
-              <div class="card" >
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col mt-0">
-                      <h5 class="card-title">Divisi</h5>
-                    </div>
-
-                    <div class="col-auto">
-                      <div class="stat text-primary">
-                        <i class="fa-solid fa-users-line"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <h1 class="mt-1 mb-3"><?= $CountDivisi ?></h1>
-                </div>
-              </div>
-              </a>
-            </div>
-          </div>
+        <canvas id="myChart"></canvas>  
       </div>
       <div class="col-xl-6 col-xxl-5 d-flex">
         <div class="w-100">
@@ -133,7 +89,7 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col mt-0">
-                          <h5 class="card-title text-light">Pengurangan Karyawan <?= DATE('Y') ?></h5>
+                          <h5 class="card-title text-light">Karyawan Non Aktif Tahun <?= DATE('Y') ?></h5>
                         </div>
 
                         <div class="col-auto">
@@ -361,10 +317,8 @@
   </div>
   <?php } ?>
 <?php } ?>
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
 <script>
   $.ajax({
   type : "GET",
@@ -378,10 +332,10 @@
   });
 
   function chart(penambahan, pengurangan){
-        // setup 
-        const data = {
+    // setup 
+    const data = {
       datasets: [{
-        label: 'Penambahan Karyawan',
+        label: 'Penambahan Karyawan '+<?=DATE('Y')?>,
         data: penambahan,
         backgroundColor: [
           'rgb(28,187,140,0.2)',
@@ -392,7 +346,7 @@
         borderWidth: 1
       },
       {
-        label: 'Pengurangan Karyawan',
+        label: 'Pengurangan Karyawan '+<?=DATE('Y')?>,
         data: pengurangan,
         backgroundColor: [
           'rgb(220,53,69,0.2)',

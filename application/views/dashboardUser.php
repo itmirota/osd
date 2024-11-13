@@ -1,17 +1,18 @@
 <style>
 .event{
-  background-color:#ebebeb;
+  background: rgb(18,11,63);
+  background: linear-gradient(180deg, rgba(18,11,63,1) 0%, rgba(20,39,98,1) 24%, rgba(26,109,187,1) 49%, rgba(18,17,70,1) 77%, rgba(18,17,70,1) 93%);
 }
 
 .event .headertext{
-  color:#1e88c8;
+  color:#fff;
   font-size:32px;
   font-weight:bold;
 }
 
 .btn-event{
   background-color:#ebbc0d;
-  color:#1e88c8;
+  color:rgb(18,11,63);
 }
 
 .event .theme{
@@ -22,12 +23,12 @@
 }
 
 .event .subheadertext{
-  color:#1e88c8;
+  color:#fff;
   font-size:18px;
 }
 
 .event .text{
-  color:#1e88c8;
+  color:#fff;
   text-align:center;
 }
 
@@ -167,7 +168,6 @@
     
   </div>
 
-  <?php if($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){?>
   <div class="d-flex flex-row justify-content-start">
     <div class="col-3 m-1">
       <a data-bs-toggle="modal" data-bs-target="#DaftarHadir">
@@ -182,7 +182,6 @@
       </a>
     </div>
   </div>
-  <?php } ?>
   <!-- Menu -->
 </div>
 
@@ -202,9 +201,11 @@
                 <img width=80px src="<?= base_url('assets/dist/img/logo51.png') ?>" alt="" srcset="">
               </div>
             </div>
-            <h2 class="subheadertext d-flex justify-content-center m-0">PERAYAAN HUT ke 51</h2>
-            <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1>
-            <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
+            <!-- <h2 class="subheadertext d-flex justify-content-center m-0">PERAYAAN HUT ke 51</h2>
+            <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1> -->
+            <div class="d-flex justify-content-center mt-4 mb-4">
+            <img style="width:100%" src="<?= base_url('assets/images/tema51.png') ?>" alt="" srcset="">
+            </div>
             <div class="d-flex justify-content-center">
             <div class="col-md-5">
             <p class="text text-start m-0"><i class="fa fa-solid fa-calendar"></i> 15 November 2024</p>
@@ -224,13 +225,15 @@
             </div>
           </div>
           <div class="d-flex flex-column mb-3">
-            <h2 class="subheadertext d-flex justify-content-center m-0 mt-4">Perayaan HUT ke 51</h2>
-            <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1>
-            <p class="text d-flex justify-content-center m-0 mb-3"> 15 November 2024</p>
+            <!-- <h2 class="subheadertext d-flex justify-content-center m-0 mt-4">Perayaan HUT ke 51</h2>
+            <h1 class="headertext d-flex justify-content-center">PT MIROTA KSM</h1> -->
+            <div class="d-flex justify-content-center mt-4 mb-4">
+            <img style="width:80%" src="<?= base_url('assets/images/tema51.png') ?>" alt="" srcset="">
+            </div>
             <div class="img-qrcode d-flex justify-content-center mb-3" style="display:<?= isset($event) ? 'none' : 'block' ?>">
               <img class="img-qrcode" id="image_qrcode" src="<?= isset($event) ? base_url('assets/images/qrcode/HUT51/').$event->data_qrcode :''?>" alt="<?= isset($event) ? $event->data_qrcode : ''?>">
             </div>
-            <h1 class="theme d-flex justify-content-center text-center"><strong>"Expanding Horizon, Leading With Vision"</strong></h1>
+            <p class="text d-flex justify-content-center m-0 mb-3"> 15 November 2024</p>
             <div class="info d-flex justify-content-center">
               <p class="text p-4 pt-0">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
             </div>

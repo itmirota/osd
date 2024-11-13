@@ -46,7 +46,11 @@
   <!-- LEAFLET -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  
+  <!-- CHART.JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -82,350 +86,326 @@ if($role != ROLE_STAFF){ ?>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-nav">
         <li class="sidebar-header">
-          Dashboard
+          Menu
         </li>
         <li class="sidebar-item">
           <a href="<?php echo base_url('/dashboard');?>" class="sidebar-link">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
           </a>
         </li>
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP  | $role == ROLE_KABAG | $role == ROLE_MANAGER | $role == ROLE_PAYROLL)
-        {
-        ?>
-        <li class="sidebar-header">
-          Master Data
-        </li>
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_MANAGER)
-        {
-        ?>
-        <!-- MENU DEPARTEMENT -->
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
-        {
-        ?>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-people-roof"></i>
-            <span>Data Departement</span>
-          </a>
-        </li>
-        <?php
-        }
-        ?>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-people-line"></i>
-            <span>Data Divisi</span>
-          </a>
-        </li>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('areakerja'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-people-line"></i>
-            <span>Data Area Kerja</span>
-          </a>
-        </li>
-        <?php
-        }
-        ?>
+        <!-- MASTER DATA -->
+        <li class="sidebar-item has-submenu">
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-database"></i> Master Data <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <ul class="submenu collapse">
+            <!-- MENU DEPARTEMENT -->
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-people-roof"></i>
+                <span>Data Departement</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-people-line"></i>
+                <span>Data Divisi</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('areakerja'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-people-line"></i>
+                <span>Data Area Kerja</span>
+              </a>
+            </li>
+            <!-- MENU PEGAWAI -->
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa-solid fa-users"></i> Data Karyawan <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('Datapegawai'); ?>" class="sidebar-link">
+                    <span>Karyawan Aktif</span>
+                  </a>
+                </li>
 
-        <!-- MENU PEGAWAI -->
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-users"></i> Data Karyawan <i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('Datapegawai'); ?>" class="sidebar-link">
-                <span>Karyawan Aktif</span>
-              </a>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('Datapegawainonaktif'); ?>" class="sidebar-link">
+                    <span>Karyawan Tidak Aktif</span>
+                  </a>
+                </li>
+              </ul>
             </li>
+          </ul>
+        </li>
+        <!-- MASTER DATA -->
 
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('Datapegawainonaktif'); ?>" class="sidebar-link">
-                <span>Karyawan Tidak Aktif</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <?php } ?>
-        <?php
-        if($role == ROLE_ADMIN | $role == ROLE_SUPERADMIN |  $role == ROLE_HRGA | $role == ROLE_HRBP)
-        {
-        ?>
-        <li class="sidebar-header">
-          Data Inventaris
-        </li>
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
-        {
-        ?>
-        <!-- MENU RUANGAN -->
+        <!-- INVENTARIS -->
         <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa fa-building"></i>  Ruangan <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-warehouse"></i> Inventaris<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('Dataruangan'); ?>" class="sidebar-link">
-              <span>Data Ruangan</span>
-              </a>
+            <!-- MENU RUANGAN -->
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa fa-building"></i>  Ruangan <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('Dataruangan'); ?>" class="sidebar-link">
+                  <span>Data Ruangan</span>
+                  </a>
+                </li>
+                <?php
+                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+                {
+                ?>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('Pinjamruangan'); ?>" class="sidebar-link">
+                    <span>Peminjaman Ruangan</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>kerusakanRuangan" class="sidebar-link">
+                    <span>Kerusakan Ruangan</span>
+                  </a>
+                </li>
+                <?php } ?>
+              </ul>
             </li>
-            <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
-            {
-            ?>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('Pinjamruangan'); ?>" class="sidebar-link">
-                <span>Peminjaman Ruangan</span>
-              </a>
+            <!-- MENU BARANG -->
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa fa-boxes-stacked"></i>  Barang <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('Databarang'); ?>" class="sidebar-link">
+                    <span>Data Barang</span>
+                  </a>
+                </li>
+                <?php
+                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id == ROLE_KABAG)
+                {
+                ?>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('data-pinjam-barang'); ?>" class="sidebar-link">
+                    <span>Peminjaman Barang</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>kerusakanBarang" class="sidebar-link">
+                    <span>Kerusakan Barang</span>
+                  </a>
+                </li>
+                <?php } ?>
+              </ul>
             </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>kerusakanRuangan" class="sidebar-link">
-                <span>Kerusakan Ruangan</span>
-              </a>
+            <!-- MENU KENDARAAN -->
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa-solid fa-car"></i>  Kendaraan <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('Datakendaraan'); ?>" class="sidebar-link">
+                    <span>Data Kendaraan</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('tugas'); ?>" class="sidebar-link">
+                    <span>Peminjaman Kendaraan</span>
+                  </a>
+                </li>
+              </ul>
             </li>
-            <?php } ?>
           </ul>
         </li>
-        <?php } ?>
-        <!-- MENU BARANG -->
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa fa-boxes-stacked"></i>  Barang <i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('Databarang'); ?>" class="sidebar-link">
-                <span>Data Barang</span>
-              </a>
-            </li>
-            <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id == ROLE_KABAG)
-            {
-            ?>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('data-pinjam-barang'); ?>" class="sidebar-link">
-                <span>Peminjaman Barang</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>kerusakanBarang" class="sidebar-link">
-                <span>Kerusakan Barang</span>
-              </a>
-            </li>
-            <?php } ?>
-          </ul>
-        </li>
-        <?php } ?>
+        <!-- INVENTARIS -->
 
-        <!-- MENU KENDARAAN -->
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_POOL | $role == ROLE_HRGA)
-        {
-        ?>
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-car"></i>  Kendaraan <i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('Datakendaraan'); ?>" class="sidebar-link">
-                <span>Data Kendaraan</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('tugas'); ?>" class="sidebar-link">
-                <span>Peminjaman Kendaraan</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <?php } ?>
         <?php
         if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
         {
         ?>
-        <!-- MENU KENDARAAN -->
-        <li class="sidebar-header">
-          HRGA
-        </li>
-        <!-- MENU TRANSAKSI SATPAM -->
+        <!-- MENU HRGA -->
         <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-shield"></i>  Transaksi Satpam <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-house-medical"></i> HRGA<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
+            <!-- MENU TRANSAKSI SATPAM -->
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa-solid fa-shield"></i>  Transaksi Satpam <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <?php
+                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+                {
+                ?>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('report-saldo'); ?>" class="sidebar-link">
+                    <i class="fa-solid fa-coins"></i>
+                    <span>Saldo</span>
+                  </a>
+                </li>
+                <?php
+                }
+                ?>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('pengirimanpaket'); ?>" class="sidebar-link">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Pengiriman Paket</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('pembelian-galon'); ?>" class="sidebar-link">
+                    <i class="fa-solid fa-bottle-water"></i>
+                    <span>Pembelian Galon</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <?php } ?>
+            <!-- MENU TRANSAKSI SATPAM -->
+
+            <!-- MENU KEBERSIHAN -->
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
             <li class="sidebar-item">
-              <a href="<?php echo base_url('report-saldo'); ?>" class="sidebar-link">
-                <i class="fa-solid fa-coins"></i>
-                <span>Saldo</span>
-              </a>
-            </li>
-            <?php
-            }
-            ?>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('pengirimanpaket'); ?>" class="sidebar-link">
-                <i class="fa-solid fa-cubes"></i>
-                <span>Pengiriman Paket</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('pembelian-galon'); ?>" class="sidebar-link">
-                <i class="fa-solid fa-bottle-water"></i>
-                <span>Pembelian Galon</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <?php } ?>
-        <!-- MENU TRANSAKSI SATPAM -->
-
-        <!-- MENU KEBERSIHAN -->
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
-        {
-        ?>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('laporan-kebersihan'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-broom"></i>
-            <span>Kebersihan</span>
-          </a>
-        </li>
-        <?php } ?>
-        <!-- /MENU KEBERSIHAN -->
-
-        <!-- MENU KEBERSIHAN -->
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id <= 4)
-        {
-        ?>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('dokumen-legal'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-file"></i>
-            <span>Dokumen Legal</span>
-          </a>
-        </li>
-        <?php } ?>
-        <!-- /MENU KEBERSIHAN -->
-
-        <!-- MENU PENGAJUAN PERIZINAN -->
-        <!-- <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_KABAG || $role == ROLE_MANAGER || $role == ROLE_HRGA  || $role == ROLE_HRBP)
-        {
-        ?>
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Pengajuan Perizinan <i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>pengajuanIzin" class="sidebar-link">
-                <span>Pengajuan Izin</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>pengajuanCuti" class="sidebar-link">
-                <span>Pengajuan Cuti Tahunan/ Khusus</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>pengajuanTugas" class="sidebar-link">
-                <span>Pengajuan Tugas</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>pengajuanIzinHarian" class="sidebar-link">
-                <span>Pengajuan Izin Kurang dari 1 Hari</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <?php } ?> -->
-        <!-- /MENU PENGAJUAN PERIZINAN -->
-
-        <!-- MENU APPROVAL PERIZINAN -->
-        <?php
-        if($jabatan_id <= 4  | $role == ROLE_HRGA)
-        {
-        ?>
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Approval Izin<i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>izin" class="sidebar-link">
-                <span>Izin</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>cuti" class="sidebar-link">
-                <span>Cuti Tahunan/ Khusus</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>tugas" class="sidebar-link">
-                <span>Surat Tugas</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url(); ?>izin-harian" class="sidebar-link">
-                <span>Izin Kurang dari 1 Hari</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <?php } ?>
-        <!-- /MENU APPROVAL PERIZINAN -->
-
-        <?php
-          if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG)
-          {
-        ?>
-        <!-- MENU ABSENSI -->
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
-            {
-            ?>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('laporanAbsensi'); ?>" class="sidebar-link">
-                <span>Absensi Online</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('laporanAbsensiPHL'); ?>" class="sidebar-link">
-                <span>Absensi Pegawai Harian/Magang</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('laporan-absen-toko'); ?>" class="sidebar-link">
-                <span>Absensi Toko Manual</span>
+              <a href="<?php echo base_url('laporan-kebersihan'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-broom"></i>
+                <span>Kebersihan</span>
               </a>
             </li>
             <?php } ?>
+            <!-- /MENU KEBERSIHAN -->
+
+            <!-- MENU KEBERSIHAN -->
+            <?php
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id <= 4)
+            {
+            ?>
             <li class="sidebar-item">
-              <a href="<?php echo base_url('laporan-istirahat'); ?>" class="sidebar-link">
-                <span>Absensi Istirahat</span>
+              <a href="<?php echo base_url('dokumen-legal'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-file"></i>
+                <span>Dokumen Legal</span>
               </a>
             </li>
-            <!-- <li class="sidebar-item">
-              <a href="<?php echo base_url('laporan-absensi-mesin'); ?>" class="sidebar-link">
-                <span>Absensi Mesin</span>
-              </a>
-            </li> -->
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('karyawan-terlambat'); ?>" class="sidebar-link">
-                <span>Keterlambatan Karyawan</span>
-              </a>
+            <?php } ?>
+            <!-- /MENU KEBERSIHAN -->
+
+            <!-- MENU PENGAJUAN PERIZINAN -->
+            <!-- <?php
+            if($role == ROLE_SUPERADMIN | $role == ROLE_KABAG || $role == ROLE_MANAGER || $role == ROLE_HRGA  || $role == ROLE_HRBP)
+            {
+            ?>
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Pengajuan Perizinan <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>pengajuanIzin" class="sidebar-link">
+                    <span>Pengajuan Izin</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>pengajuanCuti" class="sidebar-link">
+                    <span>Pengajuan Cuti Tahunan/ Khusus</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>pengajuanTugas" class="sidebar-link">
+                    <span>Pengajuan Tugas</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>pengajuanIzinHarian" class="sidebar-link">
+                    <span>Pengajuan Izin Kurang dari 1 Hari</span>
+                  </a>
+                </li>
+              </ul>
             </li>
-            
+            <?php } ?> -->
+            <!-- /MENU PENGAJUAN PERIZINAN -->
+
+            <!-- MENU APPROVAL PERIZINAN -->
+            <?php
+            if($jabatan_id <= 4  | $role == ROLE_HRGA)
+            {
+            ?>
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Approval Izin<i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>izin" class="sidebar-link">
+                    <span>Izin</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>cuti" class="sidebar-link">
+                    <span>Cuti Tahunan/ Khusus</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>tugas" class="sidebar-link">
+                    <span>Surat Tugas</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url(); ?>izin-harian" class="sidebar-link">
+                    <span>Izin Kurang dari 1 Hari</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <?php } ?>
+            <!-- /MENU APPROVAL PERIZINAN -->
+
+            <?php
+              if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG)
+              {
+            ?>
+            <!-- MENU ABSENSI -->
+            <li class="sidebar-item has-submenu">
+              <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
+              <ul class="submenu collapse">
+                <?php
+                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+                {
+                ?>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('laporanAbsensi'); ?>" class="sidebar-link">
+                    <span>Absensi Online</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('laporanAbsensiPHL'); ?>" class="sidebar-link">
+                    <span>Absensi Pegawai Harian/Magang</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('laporan-absen-toko'); ?>" class="sidebar-link">
+                    <span>Absensi Toko Manual</span>
+                  </a>
+                </li>
+                <?php } ?>
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('laporan-istirahat'); ?>" class="sidebar-link">
+                    <span>Absensi Istirahat</span>
+                  </a>
+                </li>
+                <!-- <li class="sidebar-item">
+                  <a href="<?php echo base_url('laporan-absensi-mesin'); ?>" class="sidebar-link">
+                    <span>Absensi Mesin</span>
+                  </a>
+                </li> -->
+                <li class="sidebar-item">
+                  <a href="<?php echo base_url('karyawan-terlambat'); ?>" class="sidebar-link">
+                    <span>Keterlambatan Karyawan</span>
+                  </a>
+                </li>
+                
+              </ul>
+            </li>
+            <!-- /MENU ABSENSI -->
+            <?php } ?>
           </ul>
         </li>
-        <!-- /MENU ABSENSI -->
-        <?php } ?>
+        <!-- MENU HRGA -->
          
-
-        <!-- MENU APPROVAL PERIZINAN -->
         <?php
         if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)
         {
         ?>
+        <!-- MENU SAMPLE -->
         <li class="sidebar-header">
           Sample
         </li>
@@ -436,7 +416,7 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php } ?>
-        <!-- /MENU APPROVAL PERIZINAN -->
+        <!-- /MENU SAMPLE -->
 
         <li class="sidebar-header">
           HRBP
@@ -493,7 +473,6 @@ if($role != ROLE_STAFF){ ?>
       <a class="sidebar-toggle js-sidebar-toggle">
         <i class="hamburger align-self-center"></i>
       </a>
-
       <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
           <li class="nav-item dropdown">
@@ -508,7 +487,7 @@ if($role != ROLE_STAFF){ ?>
               </div>
               <div class="list-group">
                 <?php
-                if($role == ROLE_ADMIN || $role == ROLE_HRGA)
+                if($role == ROLE_SUPERADMIN || $role == ROLE_HRGA)
                 {
                 ?>
                 <a href="<?php base_url(); ?>kerusakanBarang" class="list-group-item" onclick="bacaNotifBarang()">
@@ -525,7 +504,7 @@ if($role != ROLE_STAFF){ ?>
                 <?php } ?>
 
                 <?php
-                if($role == ROLE_HRGA)
+                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
                 {
                 ?>
                 <a href="<?php base_url();?>kerusakanRuangan" class="list-group-item" onclick="bacaNotifRuangan()">

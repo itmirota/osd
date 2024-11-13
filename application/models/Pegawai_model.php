@@ -133,6 +133,7 @@ class Pegawai_model extends CI_Model
     $this->db->select('tgl_keluar as x, COUNT(id_pegawai) as y');
     $this->db->from('tbl_pegawai');
     $this->db->where('status','tidak');
+    $this->db->where('YEAR(tgl_keluar)',DATE('Y'));
     $this->db->group_by('MONTH(tgl_keluar)');
     $this->db->order_by('tgl_keluar','ASC');
     $query = $this->db->get();

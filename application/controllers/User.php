@@ -87,6 +87,7 @@ class User extends BaseController
             'penguranganKaryawanByDepartement'  => COUNT($penguranganKaryawanByDepartement),
             'penambahanKaryawanByDivisi'  => COUNT($penambahanKaryawanByDivisi),
             'penguranganKaryawanByDivisi'  => COUNT($penguranganKaryawanByDivisi),
+            'ChartpenambahanKaryawan'  => $this->pegawai_model->getPegawaiBaru(['year(tgl_masuk)' => DATE('Y')],'tbl_pegawai'),
             'CountCuti' => $CountCuti,
             'CountIzin' => $CountIzin,
             'CountIzinHarian' => $CountIzinHarian,
