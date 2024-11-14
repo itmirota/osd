@@ -7,7 +7,7 @@
     <div class="card card-primary">
       <div class="card-body">
         <div class="table-responsive no-padding">
-            <table id="DataTable" class="table table-hover">
+            <table id="dataTable" class="table table-hover">
                 <thead>
                 <tr>
                 <th>No</th>
