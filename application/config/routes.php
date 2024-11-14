@@ -43,6 +43,7 @@ $route['admin'] = "login/admin";
 $route['admin-login'] = "login/adminLogin";
 $route['404_override'] = 'error';
 $route['daftar-hadir'] = 'DaftarHadir';
+$route['laporan-daftar-hadir'] = 'DaftarHadir/laporan';
 
 
 /*********** MASTER DATA DEFINED ROUTES *******************/

@@ -418,6 +418,23 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU SAMPLE -->
 
+        <?php
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP)
+        {
+        ?>
+        <!-- MENU SAMPLE -->
+        <li class="sidebar-header">
+          Daftar Hadir Kegiatan
+        </li>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('laporan-daftar-hadir'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-table-list"></i>
+            <span>Laporan Daftar Hadir</span>
+          </a>
+        </li>
+        <?php } ?>
+        <!-- /MENU SAMPLE -->
+
         <li class="sidebar-header">
           HRBP
         </li>
