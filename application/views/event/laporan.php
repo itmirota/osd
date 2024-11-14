@@ -33,7 +33,6 @@
                     </td>
                     <td class="text-center">
                         <span><?= mediumdate_indo(date("Y-m-d",strtotime($ld->datecreated)))?></span><br>
-                        <span><?= date("h:i",strtotime($ld->datecreated))?></span>
                     </td>
                     <td class="text-center">
                         <span><?= isset($ld->time_attend) ? date("h:i",strtotime($ld->time_attend)) : '-'?></span>
