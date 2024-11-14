@@ -210,7 +210,7 @@
             <div class="col-md-5">
             <p class="text text-start m-0"><i class="fa fa-solid fa-calendar"></i> 15 November 2024</p>
             <p class="text text-start m-0"><i class="fa fa-solid fa-clock"></i> 13:00 WIB - 17:00 WIB</p>
-            <p class="text text-start"><i class="fa fa-solid fa-building"></i> Aula PT Mirota KSM</p>
+            <p class="text text-start"><i class="fa fa-solid fa-building"></i> Ruang Aula 2 / Ruang Makan Lt. 2</p>
             </div>
             </div>
             <p class="text">Tak terasa perusahaan kita sebentar lagi menginjak 51 tahun. banyak tantangan dan rintangan yang sudah kita lewati bersama, ikut sertamu dalam acara ulang tahun ini sangat dinantikan. akan ada banyak hadiah menarik yang bisa kamu bawa pulang. yuk segera konfirmasi kehadiranmu.</p>
@@ -233,7 +233,8 @@
             <div class="img-qrcode d-flex justify-content-center mb-3" style="display:<?= isset($event) ? 'none' : 'block' ?>">
               <img class="img-qrcode" id="image_qrcode" src="<?= isset($event) ? base_url('assets/images/qrcode/HUT51/').$event->data_qrcode :''?>" alt="<?= isset($event) ? $event->data_qrcode : ''?>">
             </div>
-            <p class="text d-flex justify-content-center m-0 mb-3"> 15 November 2024</p>
+            <p class="text d-flex justify-content-center m-0"> 15 November 2024</p>
+            <p class="text d-flex justify-content-center m-0 mb-3">13:00 WIB - 17:00 WIB</p>
             <div class="info d-flex justify-content-center">
               <p class="text p-4 pt-0">Harap Screenshoot layar ini dan tunjukkan kepada panitia sebagai daftar kehadiran</p>
             </div>

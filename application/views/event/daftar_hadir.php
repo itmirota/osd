@@ -1,5 +1,8 @@
 
-<div class="row" style="margin-top:25vh">
+<div class="row" style="margin-top:10vh">
+  <div class="col-md-12 d-flex justify-content-center mb-4">
+  <img style="width:100%;max-width:500px" src="<?= base_url('assets/images/tema51.png') ?>" alt="" srcset="">
+  </div>
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
