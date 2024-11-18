@@ -84,11 +84,7 @@ class evaluasiKerja extends BaseController
   }
 
   public function detailEvaluasiKerja($id) {
-
-    $where = array(
-      'id_evaluasiKerja' => $id
-    );
-    $result = $this->crud_model->getdataRowbyWhere('*',$where , 'tbl_evaluasikerja');
+    $result = $this->crud_model->getdataRowbyWhere('*', ['id_evaluasiKerja' => $id], 'tbl_evaluasikerja');
     echo json_encode($result);
   }
 

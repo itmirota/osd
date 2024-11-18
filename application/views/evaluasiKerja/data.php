@@ -123,7 +123,7 @@
 <script>
   function editData($id){
     $.ajax({
-      url:"<?php echo site_url("evaluasikerja/detailEvaluasiKerja")?>/" + $id,
+      url:"<?php echo site_url("evaluasiKerja/detailEvaluasiKerja")?>/" + $id,
       dataType:"JSON",
       type: "get",
       success:function(hasil){
