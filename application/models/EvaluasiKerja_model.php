@@ -6,6 +6,7 @@ class EvaluasiKerja_model extends CI_Model
   function getData(){
     $this->db->select('*, DATE(tgl_evaluasi) as date');
     $this->db->from('tbl_evaluasikerja');
+    $this->db->order_by('id_evaluasiKerja','DESC');
     $query = $this->db->get();
 
     return $query->result();
@@ -24,6 +25,7 @@ class EvaluasiKerja_model extends CI_Model
     $this->db->select('*, DATE(tgl_evaluasi) as date, TIME(tgl_evaluasi) as time');
     $this->db->from('tbl_evaluasikerja');
     $this->db->where('DATE(tgl_evaluasi)',DATE('Y-m-d'));
+    $this->db->order_by('id_evaluasiKerja','DESC');
     $query = $this->db->get();
 
     return $query->result();
