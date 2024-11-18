@@ -45,6 +45,8 @@ $route['404_override'] = 'error';
 $route['daftar-hadir'] = 'DaftarHadir';
 $route['laporan-daftar-hadir'] = 'DaftarHadir/laporan';
 
+$route['area-kerja'] = 'areaKerja';
+
 
 /*********** MASTER DATA DEFINED ROUTES *******************/
 

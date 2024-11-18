@@ -27,7 +27,7 @@ class evaluasiKerja extends BaseController
     $role = $this->role;
     $check = $this->uri->segment(1);
     
-    if ($role == ROLE_HRBP | $role == ROLE_SUPERADMIN){
+    if ($role == ROLE_HRBP | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN){
       $data['list_data']= $this->evaluasiKerja_model->getData();
     }else{
       $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasibyDate();
@@ -81,6 +81,29 @@ class evaluasiKerja extends BaseController
     $data['nilai']= $this->evaluasiKerja_model->getSumHasil($id);
 
     $this->loadViews("evaluasiKerja/laporan", $this->global, $data, NULL);
+  }
+
+  public function detailEvaluasiKerja($id) {
+    $result = $this->crud_model->getdataRowbyWhere('*', ['id_evaluasiKerja' => $id], 'tbl_evaluasikerja');
+    echo json_encode($result);
+  }
+
+  public function updateJadwalPenilaian(){
+    $id_evaluasiKerja = $this->input->post('id_evaluasiKerja');
+    $tgl_evaluasi = $this->input->post('tgl_evaluasi');
+    $tujuan_evaluasi = $this->input->post('tujuan_evaluasi');
+    $tgl_akhir_kontrak = $this->input->post('tgl_akhir_kontrak');
+
+    $data = array(
+      'tgl_evaluasi' => $tgl_evaluasi,
+      'tujuan_evaluasi' => isset($tujuan_evaluasi) ? $tujuan_evaluasi:'',
+      'tgl_akhir_kontrak' => $tgl_akhir_kontrak,
+    );
+
+    $query = $this->crud_model->update(['id_evaluasiKerja' => $id_evaluasiKerja], $data, 'tbl_evaluasikerja');
+
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    redirect('EvaluasiKerja');
   }
 
   public function penilaian(){
