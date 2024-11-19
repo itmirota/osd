@@ -168,7 +168,7 @@
     
   </div>
 
-  <div class="d-flex flex-row justify-content-start">
+  <!-- <div class="d-flex flex-row justify-content-start">
     <div class="col-3 m-1">
       <a data-bs-toggle="modal" data-bs-target="#DaftarHadir">
         <div class="d-flex flex-column">
@@ -181,7 +181,7 @@
         </div>
       </a>
     </div>
-  </div>
+  </div> -->
   <!-- Menu -->
 </div>
 
