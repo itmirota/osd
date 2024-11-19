@@ -419,7 +419,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU SAMPLE -->
 
         <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP)
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_HRGA)
         {
         ?>
         <!-- MENU SAMPLE -->
