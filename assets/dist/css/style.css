@@ -196,7 +196,7 @@
 }
 
 .img-menu{
-  max-width:80px; 
+  width: 60px;
   padding:1rem;
   border-radius:15%;
   background: rgb(255,255,255);
