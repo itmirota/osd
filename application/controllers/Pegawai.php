@@ -1022,7 +1022,7 @@ class Pegawai extends BaseController
     $numrow = 6;
     foreach ($list_data as $ld) {
       $sheet->setCellValue('B'.$numrow, $no);
-      $sheet->setCellValue('C'.$numrow, 'MRT'.$ld->nip);
+      $sheet->setCellValue('C'.$numrow, $ld->no_ktp);
       $sheet->setCellValue('D'.$numrow, $ld->nama_pegawai);
       $sheet->setCellValue('E'.$numrow, $ld->nama_departement);
       $sheet->setCellValue('F'.$numrow, $ld->nama_divisi);
