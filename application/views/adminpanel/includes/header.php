@@ -231,7 +231,7 @@ if($role != ROLE_STAFF){ ?>
           </ul>
         </li>
         <?php } ?>
-        <!-- MENU EVALUASI -->
+        <!-- /MENU EVALUASI -->
 
         <?php
         if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
