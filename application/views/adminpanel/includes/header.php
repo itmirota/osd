@@ -213,6 +213,26 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <!-- INVENTARIS -->
 
+        <!-- MENU EVALUASI -->
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP){?>
+        <li class="sidebar-item has-submenu">
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <ul class="submenu collapse">
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('EvaluasiKerja'); ?>" class="sidebar-link">
+                <span>Evaluasi Karyawan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('EvaluasiMagang'); ?>" class="sidebar-link">
+                <span>Evaluasi Magang</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <?php } ?>
+        <!-- MENU EVALUASI -->
+
         <?php
         if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
         {
@@ -283,39 +303,6 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
             <!-- /MENU KEBERSIHAN -->
 
-            <!-- MENU PENGAJUAN PERIZINAN -->
-            <!-- <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_KABAG || $role == ROLE_MANAGER || $role == ROLE_HRGA  || $role == ROLE_HRBP)
-            {
-            ?>
-            <li class="sidebar-item has-submenu">
-              <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Pengajuan Perizinan <i class="fa fa-angle-down" style="float: right;"></i> </a>
-              <ul class="submenu collapse">
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>pengajuanIzin" class="sidebar-link">
-                    <span>Pengajuan Izin</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>pengajuanCuti" class="sidebar-link">
-                    <span>Pengajuan Cuti Tahunan/ Khusus</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>pengajuanTugas" class="sidebar-link">
-                    <span>Pengajuan Tugas</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>pengajuanIzinHarian" class="sidebar-link">
-                    <span>Pengajuan Izin Kurang dari 1 Hari</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <?php } ?> -->
-            <!-- /MENU PENGAJUAN PERIZINAN -->
-
             <!-- MENU APPROVAL PERIZINAN -->
             <?php
             if($jabatan_id <= 4  | $role == ROLE_HRGA)
@@ -349,17 +336,13 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
             <!-- /MENU APPROVAL PERIZINAN -->
 
-            <?php
-              if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG)
-              {
-            ?>
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
             <!-- MENU ABSENSI -->
             <li class="sidebar-item has-submenu">
               <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
               <ul class="submenu collapse">
                 <?php
-                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
-                {
+                if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){
                 ?>
                 <li class="sidebar-item">
                   <a href="<?php echo base_url('laporanAbsensi'); ?>" class="sidebar-link">
@@ -399,8 +382,7 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
           </ul>
         </li>
-        <!-- MENU HRGA -->
-         
+
         <?php
         if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)
         {
@@ -417,42 +399,6 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
         <!-- /MENU SAMPLE -->
-
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_HRGA)
-        {
-        ?>
-        <!-- MENU SAMPLE -->
-        <li class="sidebar-header">
-          Daftar Hadir Kegiatan
-        </li>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('laporan-daftar-hadir'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-table-list"></i>
-            <span>Laporan Daftar Hadir</span>
-          </a>
-        </li>
-        <?php } ?>
-        <!-- /MENU SAMPLE -->
-
-        <li class="sidebar-header">
-          HRBP
-        </li>
-        <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
-          <ul class="submenu collapse">
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('EvaluasiKerja'); ?>" class="sidebar-link">
-                <span>Evaluasi Karyawan</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?php echo base_url('EvaluasiMagang'); ?>" class="sidebar-link">
-                <span>Evaluasi Magang</span>
-              </a>
-            </li>
-          </ul>
-        </li>
         <?php
         if($role == ROLE_SUPERADMIN)
         {

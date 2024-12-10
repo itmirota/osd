@@ -52,6 +52,29 @@ class evaluasiKerja extends BaseController
     $id_pegawai = $this->input->post('id_pegawai');
     $tujuan_evaluasi = $this->input->post('tujuan_evaluasi');
     $tgl_akhir_kontrak = $this->input->post('tgl_akhir_kontrak');
+    $target1 = $this->input->post('target1');
+    $bobot1 = $this->input->post('bobot1');
+    $target2 = $this->input->post('target2');
+    $bobot2 = $this->input->post('bobot2');
+    $target3 = $this->input->post('target3');
+    $bobot3 = $this->input->post('bobot3');
+    $target4 = $this->input->post('target4');
+    $bobot4 = $this->input->post('bobot4');
+    $target5 = $this->input->post('target5');
+    $bobot5 = $this->input->post('bobot5');
+    $target6 = $this->input->post('target6');
+    $bobot6 = $this->input->post('bobot6');
+    $target7 = $this->input->post('target7');
+    $bobot7 = $this->input->post('bobot7');
+    $target8 = $this->input->post('target8');
+    $bobot8 = $this->input->post('bobot8');
+    $target9 = $this->input->post('target9');
+    $bobot9 = $this->input->post('bobot9');
+    $target10 = $this->input->post('target10');
+    $bobot10 = $this->input->post('bobot10');
+    $target11 = $this->input->post('target11');
+    $bobot11 = $this->input->post('bobot11');
+    
 
     $pegawai = $this->pegawai_model->getPegawaibyId($id_pegawai);
 
@@ -62,6 +85,28 @@ class evaluasiKerja extends BaseController
       'bagian' => $pegawai->nama_departement.'/'.$pegawai->nama_divisi,
       'tujuan_evaluasi' => $tujuan_evaluasi,
       'tgl_akhir_kontrak' => $tgl_akhir_kontrak,
+      'target1' => $target1,
+      'bobot1' => $bobot1,
+      'target2' => $target2,
+      'bobot2' => $bobot2,
+      'target3' => $target3,
+      'bobot3' => $bobot3,
+      'target4' => $target4,
+      'bobot4' => $bobot4,
+      'target5' => $target5,
+      'bobot5' => $bobot5,
+      'target6' => $target6,
+      'bobot6' => $bobot6,
+      'target7' => $target7,
+      'bobot7' => $bobot7,
+      'target8' => $target8,
+      'bobot8' => $bobot8,
+      'target9' => $target9,
+      'bobot9' => $bobot9,
+      'target10' => $target10,
+      'bobot10' => $bobot10,
+      'target11' => $target11,
+      'bobot11' => $bobot11,
     );
 
     $query = $this->crud_model->input($data, 'tbl_evaluasikerja');
@@ -199,17 +244,19 @@ class evaluasiKerja extends BaseController
     $kekurangan = $this->input->post('kekurangan');
     $rekomendasi = $this->input->post('rekomendasi');
 
-    $hasil1 = ubahNilai($parameter1,2,10);
-    $hasil2 = ubahNilai($parameter2,2,5);
-    $hasil3 = ubahNilai($parameter3,3,5);
-    $hasil4 = ubahNilai($parameter4,2,5);
-    $hasil5 = ubahNilai($parameter5,3,5);
-    $hasil6 = ubahNilai($parameter6,3,10);
-    $hasil7 = ubahNilai($parameter7,3,12);
-    $hasil8 = ubahNilai($parameter8,3,12);
-    $hasil9 = ubahNilai($parameter9,3,12);
-    $hasil10 = ubahNilai($parameter10,3,12);
-    $hasil11 = ubahNilai($parameter11,3,12);
+    $evaluasi = $this->evaluasiKerja_model->getDataRowEvaluasi($evaluasiKerja_id);
+
+    $hasil1 = ubahNilai($parameter1,$evaluasi->target1,$evaluasi->bobot1);
+    $hasil2 = ubahNilai($parameter2,$evaluasi->target2,$evaluasi->bobot2);
+    $hasil3 = ubahNilai($parameter3,$evaluasi->target3,$evaluasi->bobot3);
+    $hasil4 = ubahNilai($parameter4,$evaluasi->target4,$evaluasi->bobot4);
+    $hasil5 = ubahNilai($parameter5,$evaluasi->target5,$evaluasi->bobot5);
+    $hasil6 = ubahNilai($parameter6,$evaluasi->target6,$evaluasi->bobot6);
+    $hasil7 = ubahNilai($parameter7,$evaluasi->target7,$evaluasi->bobot7);
+    $hasil8 = ubahNilai($parameter8,$evaluasi->target8,$evaluasi->bobot8);
+    $hasil9 = ubahNilai($parameter9,$evaluasi->target9,$evaluasi->bobot9);
+    $hasil10 = ubahNilai($parameter10,$evaluasi->target10,$evaluasi->bobot10);
+    $hasil11 = ubahNilai($parameter11,$evaluasi->target11,$evaluasi->bobot11);
 
     $total_nilai = $hasil1+$hasil2+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil10+$hasil11;
 

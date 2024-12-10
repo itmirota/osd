@@ -20,6 +20,15 @@ class EvaluasiKerja_model extends CI_Model
 
     return $query->result();
   }
+
+  function getDataRowEvaluasi($id){
+    $this->db->select('*');
+    $this->db->from('tbl_evaluasikerja');
+    $this->db->where('id_evaluasiKerja', $id);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
   
   function getDataEvaluasibyDate(){
     $this->db->select('*, DATE(tgl_evaluasi) as date, TIME(tgl_evaluasi) as time');
