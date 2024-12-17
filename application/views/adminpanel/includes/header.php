@@ -551,7 +551,4 @@ if($role != ROLE_STAFF){ ?>
 
 	}); 
 	// DOMContentLoaded  end
-
-
-
 </script>

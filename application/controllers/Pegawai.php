@@ -65,7 +65,7 @@ class Pegawai extends BaseController
 
     if($role == ROLE_KABAG){
       $pegawai_id = $this->pegawai_id;
-      $list_data = $this->pegawai_model->showDataWhere('*','kadiv_id='.$pegawai_id,NULL,NULL,NULL);
+      $list_data = $this->pegawai_model->showDataWhere('*',['kadiv_id' => $pegawai_id,'status' => 'aktif'],NULL,NULL,NULL);
       $whereTotalPegawai = array(
         'divisi_id' => $divisi,
         'status' => "aktif"
@@ -73,7 +73,7 @@ class Pegawai extends BaseController
     }elseif($role == ROLE_MANAGER){
       $pegawai_id = $this->pegawai_id;
       
-      $list_data = $this->pegawai_model->showDataWhere('*','manager_id='.$pegawai_id,NULL,NULL,NULL);
+      $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $pegawai_id, 'status' => 'aktif'],NULL,NULL,NULL);
 
       $whereTotalPegawai = array(
         'manager_id' => $pegawai_id,
