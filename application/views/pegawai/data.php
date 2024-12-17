@@ -56,13 +56,13 @@
   </div>
   <?php } ?>
 
-  <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
           <h3 class="card-title">Data Karyawan</h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
         <div class="d-flex">
           <div class="flex-fill pegawai-aktif">
             <div class="mb-1 row">
@@ -86,6 +86,7 @@
           </div>
         </div>
         <hr>
+        <?php }?>
         <table id="dataTableScrollX" class="table table-hover">
           <thead>
           <tr>
@@ -196,7 +197,6 @@
       </div><!-- /.box-body -->
     </div><!-- /.box -->
   </div>
-  <?php }?>
 </div>
 
 <!-- Modal Perpanjangan Kontrak-->
