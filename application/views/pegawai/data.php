@@ -56,7 +56,7 @@
   </div>
   <?php } ?>
 
-
+  <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
@@ -196,6 +196,7 @@
       </div><!-- /.box-body -->
     </div><!-- /.box -->
   </div>
+  <?php }?>
 </div>
 
 <!-- Modal Perpanjangan Kontrak-->
