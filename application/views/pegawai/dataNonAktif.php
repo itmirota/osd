@@ -3,6 +3,7 @@
   <div class="d-flex justify-content-end mb-4">
     <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button> -->
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawaiNonAktif"><i class="fa fa-plus"></i> Tambah Pegawai Non Aktif</button>
+    <a href="<?= base_url('pegawai/excel_pegawai_nonAktif')?>" class="btn btn-primary me-2"><i class="fa fa-download"></i> Export Karyawan</a>
   </div>
 
 
