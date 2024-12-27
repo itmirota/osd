@@ -66,14 +66,14 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-fill">
+              <!-- <div class="flex-fill">
                 <div class="mb-3 row">
                   <label for="SisaCuti" class="col-5 col-form-label">Kuota Cuti</label>
                   <div class="col-6">
                     <input type="text" readonly class="form-control-plaintext" id="SisaCuti" value=": <?= $pegawai->kuota_cuti+$pegawai->sisa_cuti?>">
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
         </div>
       </div>
