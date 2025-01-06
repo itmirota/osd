@@ -99,7 +99,7 @@
       </a>
     </div>
 
-    <div class="col-3 m-1">
+    <!-- <div class="col-3 m-1">
       <a href="<?= base_url('perizinan') ?>">
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-center mb-2">
@@ -110,7 +110,7 @@
           </div>
         </div>
       </a>
-    </div>
+    </div> -->
 
     <?php if($divisi_id >= 16){ ?>
     <div class="col-3 m-1">
