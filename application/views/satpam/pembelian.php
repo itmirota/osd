@@ -77,6 +77,7 @@
               if ($role == ROLE_SUPERADMIN){?>
             <td>
               <button type="button" data-bs-toggle="modal" data-bs-target="#editPembelian"  onclick="editData(<?= $data->id_pembelian?>)" class="btn btn-sm btn-info"><i class="fas fa-pencil"></i></button>
+              <a class="btn btn-sm btn-danger" href="<?= base_url('TransaksiSatpam/hapusTransaksi/'.$data->id_pembelian.'/'.$data->harga)?>"> <i class="fa fa-solid fa-trash"></i></a>
             </td>
             <?php }} ?>
           </tr>

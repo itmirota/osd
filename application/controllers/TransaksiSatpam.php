@@ -68,6 +68,31 @@ class TransaksiSatpam extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     redirect('TransaksiSatpam');
   }
+
+  public function tambahSaldo($biaya){
+    $id = $this->crud_model->GetRowOrderby('id_saldo','DESC','tbl_satpam_saldo')->id_saldo;
+    $saldo = $this->crud_model->GetRowOrderby('id_saldo','DESC','tbl_satpam_saldo')->sisa_saldo;
+
+    $saldo = $saldo + $biaya;
+    $this->crud_model->update('id_saldo ='.$id, array('sisa_saldo' => $saldo),'tbl_satpam_saldo');
+  }
+
+  public function hapusTransaksi(){
+    $id = $this->uri->segment(3);
+    $harga = $this->uri->segment(4);
+
+    $data = array(
+      'id' => $id, 'harga' => $harga
+    );
+
+    var_dump($data);
+
+    $this->tambahSaldo($harga);
+
+    $query = $this->crud_model->delete(['id_pembelian' => $id],'tbl_satpam_pembelian');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+    redirect('pembelian-galon');
+  }
 // END PEMBELIAN SATPAM
 
 // ADMIN PANEL
