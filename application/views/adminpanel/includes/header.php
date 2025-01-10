@@ -214,7 +214,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- INVENTARIS -->
 
         <!-- MENU EVALUASI -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP){?>
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_KABAG | $role == ROLE_MANAGER){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
