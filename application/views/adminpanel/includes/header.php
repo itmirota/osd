@@ -224,6 +224,11 @@ if($role != ROLE_STAFF){ ?>
               </a>
             </li>
             <li class="sidebar-item">
+              <a href="<?php echo base_url('EvaluasiPromosi'); ?>" class="sidebar-link">
+                <span>Promosi Karyawan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a href="<?php echo base_url('EvaluasiMagang'); ?>" class="sidebar-link">
                 <span>Evaluasi Magang</span>
               </a>

@@ -177,6 +177,18 @@ $route['hasil-evaluasi-magang/(:any)'] = 'evaluasiMagang/hasilEvaluasi/$1';
 $route['penilaian-magang/(:any)'] = 'evaluasiMagang/penilaian_v31/$1';
 /*********** EVALUASI KINERJA DEFINED ROUTES *******************/
 
+/*********** EVALUASI PROMOSI DEFINED ROUTES *******************/
+$route['jadwal-evaluasi-promosi'] = 'evaluasiPromosi/jadwalEvaluasiPromosi';
+$route['penilaian-evaluasi-promosi'] = 'evaluasiPromosi';
+$route['hasil-evaluasi-promosi/(:any)'] = 'evaluasiPromosi/hasilEvaluasi/$1';
+$route['penilaian-promosi/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
+$route['penilaian-promosi-v2/(:any)'] = 'evaluasiPromosi/penilaian_v2/$1';
+$route['penilaian-promosi-v21/(:any)'] = 'evaluasiPromosi/penilaian_v21/$1';
+$route['penilaian-promosi-v3/(:any)'] = 'evaluasiPromosi/penilaian_v3/$1';
+$route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
+/*********** EVALUASI PROMOSI DEFINED ROUTES *******************/
+
+
 //SAMPLE
 $route['sample-masuk'] = 'sample/listdata';
 $route['sample-masuk/(:any)/(:any)'] = 'sample/updateStatus/$1/$2';
