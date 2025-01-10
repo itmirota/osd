@@ -60,7 +60,7 @@ class evaluasiPromosi extends BaseController
       'bagian' => $pegawai->nama_departement.'/'.$pegawai->nama_divisi,
     );
 
-    $query = $this->crud_model->input($data, 'tbl_evaluasiPromosi');
+    $query = $this->crud_model->input($data, 'tbl_evaluasipromosi');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     redirect('evaluasiPromosi');
@@ -80,7 +80,7 @@ class evaluasiPromosi extends BaseController
   }
 
   public function detailevaluasiPromosi($id) {
-    $result = $this->crud_model->getdataRowbyWhere('*', ['id_evaluasiPromosi' => $id], 'tbl_evaluasiPromosi');
+    $result = $this->crud_model->getdataRowbyWhere('*', ['id_evaluasiPromosi' => $id], 'tbl_evaluasipromosi');
     echo json_encode($result);
   }
 
@@ -94,7 +94,7 @@ class evaluasiPromosi extends BaseController
       'tgl_akhir_kontrak' => $tgl_akhir_kontrak,
     );
 
-    $query = $this->crud_model->update(['id_evaluasiPromosi' => $id_evaluasiPromosi], $data, 'tbl_evaluasiPromosi');
+    $query = $this->crud_model->update(['id_evaluasiPromosi' => $id_evaluasiPromosi], $data, 'tbl_evaluasipromosi');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
     redirect('evaluasiPromosi');
