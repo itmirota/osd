@@ -5,7 +5,7 @@ class evaluasiPromosi_model extends CI_Model
     
   function getData(){
     $this->db->select('*, DATE(tgl_evaluasi) as date');
-    $this->db->from('tbl_evaluasiPromosi');
+    $this->db->from('tbl_evaluasipromosi');
     $this->db->order_by('id_evaluasiPromosi','DESC');
     $query = $this->db->get();
 
@@ -14,7 +14,7 @@ class evaluasiPromosi_model extends CI_Model
 
   function getDataEvaluasi($id){
     $this->db->select('*');
-    $this->db->from('tbl_evaluasiPromosi');
+    $this->db->from('tbl_evaluasipromosi');
     $this->db->where('id_evaluasiPromosi', $id);
     $query = $this->db->get();
 
@@ -23,7 +23,7 @@ class evaluasiPromosi_model extends CI_Model
 
   function getDataRowEvaluasi($id){
     $this->db->select('*');
-    $this->db->from('tbl_evaluasiPromosi');
+    $this->db->from('tbl_evaluasipromosi');
     $this->db->where('id_evaluasiPromosi', $id);
     $query = $this->db->get();
 
@@ -32,7 +32,7 @@ class evaluasiPromosi_model extends CI_Model
   
   function getDataEvaluasibyDate(){
     $this->db->select('*, DATE(tgl_evaluasi) as date, TIME(tgl_evaluasi) as time');
-    $this->db->from('tbl_evaluasiPromosi');
+    $this->db->from('tbl_evaluasipromosi');
     $this->db->where('DATE(tgl_evaluasi)',DATE('Y-m-d'));
     $this->db->order_by('id_evaluasiPromosi','DESC');
     $query = $this->db->get();
