@@ -52,8 +52,13 @@ class AbsensiTokoManual extends BaseController
       $date = date_create($datenow);
     }
 
-    $bulan = date_format($date,'m')-1;
-    $tahun = date_format($date,'Y');
+    if ($bulanNow = 1){
+      $bulan = 12;
+      $tahun = date_format($date,'Y')-1;
+    }else{
+      $bulan = date_format($date,'m')-1;
+      $tahun = date_format($date,'Y');
+    }
 
     $periodeAwal = $tahun.'-'.$bulan.'-21';
 
