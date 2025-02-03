@@ -51,11 +51,12 @@ class Barang extends BaseController
   public function index(){
     $this->global['pageTitle'] = 'Admin Panel : Data Barang';
     $role = $this->role;
-    
+    $divisi = $this->divisi_id;
+
+
     if($role == ROLE_SUPERADMIN){
       $data['list_data']= $this->master_model->getDataBarang(0);
     }else{
-      $divisi = $this->divisi_id;
       $data['list_data']= $this->master_model->getDataBarang($divisi);
     }
     
