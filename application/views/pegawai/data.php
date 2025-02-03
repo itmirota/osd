@@ -5,42 +5,42 @@
     <?php if($role == ROLE_SUPERADMIN){?>
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button>
     <div class="form-group">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exportUser">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exportUser">
         <i class="fa fa-download"></i> Export User
-        </button>
-                <!-- Modal -->
-                <div class="modal fade" id="exportUser" tabindex="-1" aria-labelledby="filterAbsenTokoLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="<?=base_url('user/excel_user')?>" role="form" method="post" enctype="multipart/form-data">
-                  <div class="modal-body">
-                    <div class="mb-3">
-                      <label for="divisi" class="form-label">Departement</label>
-                      <select class="form-select" id="departement_id" onchange="getDivisiByDept()" required>
-                        <option>--- pilih departement ---</option>
-                        <?php foreach($departement as $data){?>
-                        <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="divisi" class="form-label">Divisi</label>
-                      <select id="divisi" name="divisi" class="form-select" required>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-success">Input</button>
-                  </div>
-                  </form>
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exportUser" tabindex="-1" aria-labelledby="filterAbsenTokoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?=base_url('user/excel_user')?>" role="form" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="divisi" class="form-label">Departement</label>
+                <select class="form-select" id="departement_id" onchange="getDivisiByDept()" required>
+                  <option>--- pilih departement ---</option>
+                  <?php foreach($departement as $data){?>
+                  <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
+                  <?php } ?>
+                </select>
               </div>
+              <div class="mb-3">
+                <label for="divisi" class="form-label">Divisi</label>
+                <select id="divisi" name="divisi" class="form-select" required>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Input</button>
+            </div>
+            </form>
           </div>
         </div>
+      </div>
     </div>
     <?php } ?>
   </div>

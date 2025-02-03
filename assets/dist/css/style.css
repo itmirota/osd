@@ -34,7 +34,7 @@
     margin: 0; 
     padding: 0; 
     padding-left: 1rem; 
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
   }
 
   .card{
@@ -48,6 +48,36 @@
   .sidebar-content{
     background: rgb(31,182,245);
     background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+  }
+
+  .sidebar-nav{
+    height: 10px;
+    overflow: auto;
+    margin-right: 10px;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(85, 82, 82); 
+    background: rgb(255, 255, 255); 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(31,182,245);
+    background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(6, 71, 145); 
   }
 
   a.sidebar-link{
