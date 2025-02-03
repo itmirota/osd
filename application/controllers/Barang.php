@@ -50,6 +50,7 @@ class Barang extends BaseController
 
   public function index(){
     $this->global['pageTitle'] = 'Admin Panel : Data Barang';
+    $role = $this->role;
     
     if($role == ROLE_SUPERADMIN){
       $data['list_data']= $this->master_model->getDataBarang(0);
