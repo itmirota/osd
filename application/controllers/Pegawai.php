@@ -1008,10 +1008,11 @@ class Pegawai extends BaseController
     
     $sheet->setCellValue('B5', 'No');
     $sheet->setCellValue('C5', 'NIK');
-    $sheet->setCellValue('D5', 'Nama Karyawan');
-    $sheet->setCellValue('E5', 'Departement');
-    $sheet->setCellValue('F5', 'Tanggal Lahir');
+    $sheet->setCellValue('D5', 'No. KTP');
+    $sheet->setDellValue('E5', 'Nama Karyawan');
+    $sheet->setCellValue('F5', 'Departement');
     $sheet->setCellValue('G5', 'Divisi');
+    $sheet->setCellValue('H5', 'Tanggal Lahir');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -1019,22 +1020,25 @@ class Pegawai extends BaseController
     $sheet->getStyle('E5')->applyFromArray($style_col);
     $sheet->getStyle('F5')->applyFromArray($style_col);
     $sheet->getStyle('G5')->applyFromArray($style_col);
+    $sheet->getStyle('H5')->applyFromArray($style_col);
 
     $no = 1;
     $numrow = 6;
     foreach ($list_data as $ld) {
       $sheet->setCellValue('B'.$numrow, $no);
-      $sheet->setCellValue('C'.$numrow, $ld->no_ktp);
-      $sheet->setCellValue('D'.$numrow, $ld->nama_pegawai);
-      $sheet->setCellValue('E'.$numrow, $ld->nama_departement);
-      $sheet->setCellValue('F'.$numrow, $ld->tgl_lahir);
+      $sheet->setCellValue('C'.$numrow, 'MRT'.$ld->nik);
+      $sheet->setCellValue('D'.$numrow, $ld->no_ktp);
+      $sheet->setCellValue('E'.$numrow, $ld->nama_pegawai);
+      $sheet->setCellValue('F'.$numrow, $ld->nama_departement);
       $sheet->setCellValue('G'.$numrow, $ld->nama_divisi);
+      $sheet->setCellValue('H'.$numrow, $ld->tgl_lahir);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
       $sheet->getColumnDimension('E')->setAutoSize(true);
       $sheet->getColumnDimension('F')->setAutoSize(true);
       $sheet->getColumnDimension('G')->setAutoSize(true);
+      $sheet->getColumnDimension('H')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
@@ -1042,6 +1046,7 @@ class Pegawai extends BaseController
       $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;
