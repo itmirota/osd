@@ -1008,8 +1008,8 @@ class Pegawai extends BaseController
     
     $sheet->setCellValue('B5', 'No');
     $sheet->setCellValue('C5', 'NIK');
-    $sheet->setCellValue('D5', 'No. KTP');
-    $sheet->setDellValue('E5', 'Nama Karyawan');
+    $sheet->setCellValue('D5', 'No KTP');
+    $sheet->setCellValue('E5', 'Nama Karyawan');
     $sheet->setCellValue('F5', 'Departement');
     $sheet->setCellValue('G5', 'Divisi');
     $sheet->setCellValue('H5', 'Tanggal Lahir');
@@ -1026,7 +1026,7 @@ class Pegawai extends BaseController
     $numrow = 6;
     foreach ($list_data as $ld) {
       $sheet->setCellValue('B'.$numrow, $no);
-      $sheet->setCellValue('C'.$numrow, 'MRT'.$ld->nik);
+      $sheet->setCellValue('C'.$numrow, 'MRT'.$ld->nip);
       $sheet->setCellValue('D'.$numrow, $ld->no_ktp);
       $sheet->setCellValue('E'.$numrow, $ld->nama_pegawai);
       $sheet->setCellValue('F'.$numrow, $ld->nama_departement);
