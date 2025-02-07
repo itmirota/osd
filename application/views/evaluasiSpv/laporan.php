@@ -31,7 +31,7 @@
               <label for="staticEmail" class="col-sm-3 col-form-label">Nilai</label>
               <div class="col-sm-8">
                 <?php
-                $nilai = $nilai->total_nilai/(COUNT($hasil)-1)
+                $nilai = $nilai->total_nilai/COUNT($hasil)
                 ?>
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?=  round($nilai,2).'%' ?>">
               </div>
@@ -67,7 +67,6 @@
             <th width="20vh">Nama Penguji</th>
             <th width="20vh">Jabatan dan Bagian</th>
             <th class="text-end">Pencapaian Kinerja</th>
-            <th class="text-end">Kualitas Kerja</th>
             <th class="text-end">Problem Solving</th>
             <th class="text-end">Inisiatif</th>
             <th class="text-end">Agility</th>
@@ -77,6 +76,9 @@
             <th class="text-end">Etica</th>
             <th class="text-end">Profesionals</th>
             <th class="text-end">Learning</th>
+            <th class="text-end">Analytical Thinking</th>
+            <th class="text-end">Conceptual Thinking</th>
+            <th class="text-end">Decision Making</th>
             <th class="text-end">Hasil</th>
             <th class="text-end">kelebihan</th>
             <th class="text-end">kekurangan</th>
@@ -154,6 +156,24 @@
               ?>
               <?= $jawaban11[0] ?>
               <p class="text-secondary-modal">catatan: <?= isset($jawaban11[1]) ? $jawaban11[1] :'' ?> </p>
+              </td>
+              <td class="text-start"><?php 
+              $jawaban12 = explode('|',$h->parameter12);
+              ?>
+              <?= $jawaban12[0] ?>
+              <p class="text-secondary-modal">catatan: <?= isset($jawaban12[1]) ? $jawaban12[1] :'' ?> </p>
+              </td>
+              <td class="text-start"><?php 
+              $jawaban13 = explode('|',$h->parameter13);
+              ?>
+              <?= $jawaban13[0] ?>
+              <p class="text-secondary-modal">catatan: <?= isset($jawaban13[1]) ? $jawaban13[1] :'' ?> </p>
+              </td>
+              <td class="text-start"><?php 
+              $jawaban14 = explode('|',$h->parameter14);
+              ?>
+              <?= $jawaban14[0] ?>
+              <p class="text-secondary-modal">catatan: <?= isset($jawaban14[1]) ? $jawaban14[1] :'' ?> </p>
               </td>
               <td><?= $h->total_nilai ?></td>
               <td><?= $h->kelebihan ?></td>

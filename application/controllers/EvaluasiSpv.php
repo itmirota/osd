@@ -74,6 +74,12 @@ class evaluasiSpv extends BaseController
     $bobot10 = $this->input->post('bobot10');
     $target11 = $this->input->post('target11');
     $bobot11 = $this->input->post('bobot11');
+    $target12 = $this->input->post('target12');
+    $bobot12 = $this->input->post('bobot12');
+    $target13 = $this->input->post('target13');
+    $bobot13 = $this->input->post('bobot13');
+    $target14 = $this->input->post('target14');
+    $bobot14 = $this->input->post('bobot14');
     
 
     $pegawai = $this->pegawai_model->getPegawaibyId($id_pegawai);
@@ -107,6 +113,12 @@ class evaluasiSpv extends BaseController
       'bobot10' => $bobot10,
       'target11' => $target11,
       'bobot11' => $bobot11,
+      'target12' => $target12,
+      'bobot12' => $bobot12,
+      'target13' => $target13,
+      'bobot13' => $bobot13,
+      'target14' => $target14,
+      'bobot14' => $bobot14,
     );
 
     $query = $this->crud_model->input($data, 'tbl_evaluasiSpv');
@@ -219,8 +231,8 @@ class evaluasiSpv extends BaseController
     $jabatan_bagian = $this->input->post('jabatan_bagian');
     $parameter1 = $this->input->post('parameter1');
     $keterangan1 = $this->input->post('keterangan1');
-    // $parameter2 = $this->input->post('parameter2');
-    // $keterangan2 = $this->input->post('keterangan2');
+    $parameter2 = $this->input->post('parameter2');
+    $keterangan2 = $this->input->post('keterangan2');
     $parameter3 = $this->input->post('parameter3');
     $keterangan3 = $this->input->post('keterangan3');
     $parameter4 = $this->input->post('parameter4');
@@ -240,6 +252,12 @@ class evaluasiSpv extends BaseController
     $parameter10 = $this->input->post('parameter10');
     $keterangan11 = $this->input->post('keterangan11');
     $parameter11 = $this->input->post('parameter11');
+    $keterangan12 = $this->input->post('keterangan12');
+    $parameter12 = $this->input->post('parameter12');
+    $keterangan13 = $this->input->post('keterangan13');
+    $parameter13 = $this->input->post('parameter13');
+    $keterangan14 = $this->input->post('keterangan14');
+    $parameter14 = $this->input->post('parameter14');
     $kelebihan = $this->input->post('kelebihan');
     $kekurangan = $this->input->post('kekurangan');
     $rekomendasi = $this->input->post('rekomendasi');
@@ -247,7 +265,7 @@ class evaluasiSpv extends BaseController
     $evaluasi = $this->evaluasiSpv_model->getDataRowEvaluasi($evaluasiSpv_id);
 
     $hasil1 = ubahNilai($parameter1,$evaluasi->target1,$evaluasi->bobot1);
-    // $hasil2 = ubahNilai($parameter2,$evaluasi->target2,$evaluasi->bobot2);
+    $hasil2 = ubahNilai($parameter2,$evaluasi->target2,$evaluasi->bobot2);
     $hasil3 = ubahNilai($parameter3,$evaluasi->target3,$evaluasi->bobot3);
     $hasil4 = ubahNilai($parameter4,$evaluasi->target4,$evaluasi->bobot4);
     $hasil5 = ubahNilai($parameter5,$evaluasi->target5,$evaluasi->bobot5);
@@ -257,15 +275,19 @@ class evaluasiSpv extends BaseController
     $hasil9 = ubahNilai($parameter9,$evaluasi->target9,$evaluasi->bobot9);
     $hasil10 = ubahNilai($parameter10,$evaluasi->target10,$evaluasi->bobot10);
     $hasil11 = ubahNilai($parameter11,$evaluasi->target11,$evaluasi->bobot11);
+    $hasil12 = ubahNilai($parameter12,$evaluasi->target12,$evaluasi->bobot12);
+    $hasil13 = ubahNilai($parameter13,$evaluasi->target13,$evaluasi->bobot13);
+    $hasil14 = ubahNilai($parameter14,$evaluasi->target14,$evaluasi->bobot14);
 
-    $total_nilai = $hasil1+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil10+$hasil11;
+
+    $total_nilai = $hasil1+$hasil2+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil10+$hasil11+$hasil12+$hasil13+$hasil14;
 
     $data = array(
       'evaluasiSpv_id' => $evaluasiSpv_id,
       'nama_penilai' => $nama_penilai,
       'jabatan_bagian' => $jabatan_bagian,
       'parameter1' => $parameter1.'|'.$keterangan1,
-      // 'parameter2' => $parameter2.'|'.$keterangan2,
+      'parameter2' => $parameter2.'|'.$keterangan2,
       'parameter3' => $parameter3.'|'.$keterangan3,
       'parameter4' => $parameter4.'|'.$keterangan4,
       'parameter5' => $parameter5.'|'.$keterangan5,
@@ -275,6 +297,9 @@ class evaluasiSpv extends BaseController
       'parameter9' => $parameter9.'|'.$keterangan9,
       'parameter10' => $parameter10.'|'.$keterangan10,
       'parameter11' => $parameter11.'|'.$keterangan11,
+      'parameter12' => $parameter12.'|'.$keterangan12,
+      'parameter13' => $parameter13.'|'.$keterangan13,
+      'parameter14' => $parameter14.'|'.$keterangan14,
       'kelebihan' => $kelebihan,
       'kekurangan' => $kekurangan,
       'rekomendasi' => $rekomendasi,
