@@ -392,14 +392,6 @@
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="parameter10" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter10"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
                         <input type="text" name="parameter10" placeholder="contoh 100" class="form-control" required>
 
                       </div>
@@ -428,25 +420,94 @@
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="parameter11" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
                         <input type="text" name="parameter11" placeholder="contoh 100" class="form-control" required>
-
                       </div>
                       <div class="mb-3">
                         <label for="keterangan11" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 12 -->
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Analytical Thinking</strong></h3>
+                      <p class="m-0"><strong>Deskripsi:</strong></p>
+                      <p class="m-0">kemampuan untuk memecah masalah yang kompleks menjadi bagian-bagian yang lebih kecil dan mudah dikelola.</p>
+                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam mengidentifikasi dan memahami masalah secara mendalam, serta membaginya menjadi bagian-bagian yang lebih kecil untuk dianalisis, kemampuan dalam mengumpulkan dan mengevaluasi data secara objektif, membuat kesimpulan yang logis, serta mengembangkan solusi yang efektif, mampu melihat pola, menghubungkan informasi secara sistematis, dan mengambil keputusan berbasis data untuk menyelesaikan masalah secara efisien.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label for="parameter12" class="form-label">score</label>
+                        <input type="text" name="parameter12" placeholder="contoh 100" class="form-control" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="keterangan12" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan12" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 13 -->
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Conceptual Thinking</strong></h3>
+                      <p class="m-0"><strong>Deskripsi:</strong></p>
+                      <p class="m-0">Semangat karyawan untuk terus belajarkemampuan untuk melihat gambaran besar dari suatu situasi atau masalah, mengidentifikasi pola yang lebih luas, dan merumuskan ide-ide baru.</p>
+                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
+                      <p class="m-0" style="text-align:justify">kemampua dalam memahami gambaran besar suatu situasi atau masalah serta mengidentifikasi hubungan dan pola yang lebih luas, kemampuan dalam mengembangkan ide-ide baru, merumuskan strategi yang inovatif, serta mengantisipasi dampak jangka panjang dari suatu keputusan, Karyawan dengan pemikiran konseptual yang baik harus mampu berpikir secara strategis, melihat peluang di tengah tantangan, dan menyusun solusi kreatif yang berorientasi pada pertumbuhan dan perkembangan bisnis.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label for="parameter13" class="form-label">score</label>
+                        <input type="text" name="parameter13" placeholder="contoh 100" class="form-control" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="keterangan13" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan13" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 14 -->
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Decision Making</strong></h3>
+                      <p class="m-0"><strong>Deskripsi:</strong></p>
+                      <p class="m-0">Kemampuan dalam menimbang, merumuskan hingga memberikan keputusan secara cepat dan tepat.</p>
+                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam mengumpulkan dan menganalisis informasi sebelum mengambil keputusan, serta mempertimbangkan risiko dan dampak dari setiap pilihan, kecepatan dalam merumuskan solusi, ketegasan dalam mengambil keputusan, serta konsistensi dalam menegakkan keputusan yang diambil, Karyawan dengan kemampuan pengambilan keputusan yang baik harus mampu bersikap objektif, mempertimbangkan berbagai sudut pandang, serta memastikan keputusan yang dibuat mendukung pencapaian tujuan perusahaan secara efektif dan efisien.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label for="parameter14" class="form-label">score</label>
+                        <input type="text" name="parameter14" placeholder="contoh 100" class="form-control" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="keterangan14" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan14" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -460,15 +521,6 @@
               <label for="kekurangan" class="form-label">Hal yang perlu ditingkatkan dari yang bersangkutan (Kekurangan)</label>
               <textarea type="text" name="kekurangan" class="form-control tabel-PR"></textarea>
             </div>
-            <!-- <div class="col-md-12">
-              <label for="rekomendasi" class="form-label">Layak Dipertahankan :</label>
-              <select name="rekomendasi" class="form-select tabel-PR" placeholder="masukkan kategori disini" required>
-                <option>----- pilih kategori ---</option>
-                <option value="3">3 Bulan</option>
-                <option value="6">6 Bulan</option>
-                <option value="12">1 Tahun</option>
-              </select>
-            </div> -->
           </div>
         </div>
     </div>
