@@ -3,9 +3,9 @@
     <div class="card-body table-responsive no-padding">
       <div class="d-flex justify-content-end mb-4">
         <div class="p-2">
-            <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#AddTerlambat">
-            Add Karyawan Terlambat
-            </button>
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#AddTerlambat">
+          Add Karyawan Terlambat
+          </button>
         </div>
       </div>
       <table id="dataTable" class="table table-hover">

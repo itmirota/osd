@@ -88,17 +88,17 @@
               </div>
             </div>
             <!-- 2 -->
-            <!-- <div class="col-md-12">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Lingkup Kerja</h6>
-                      <h3><strong>Kualitas Kerja</strong></h3>
+                      <h3><strong>Problem Solving</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Tingkat ketelitian, keefektifan, dan kualitas hasil kerja yang dihasilkan.</p>
+                      <p class="m-0">Kemampuan karyawan dalam menyelesaikan/memecahkan masalah yang di hadapi oleh pekerjaan dan teamnya.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p>
+                      <p class="m-0" style="text-align:justify">Seberapa sering karyawan menyelesaikan tugas meski dalam situasi penuh tekanan, Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah baru & Kualitas dari solusi yang diberikan.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -109,38 +109,27 @@
                         <label for="keterangan2" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan2" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- 3 -->
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Lingkup Kerja</h6>
-                      <h3><strong>Problem Solving</strong></h3>
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Leadership</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan karyawan menghadapi dan mengatasi tantangan dalam pekerjaan</p>
+                      <p class="m-0">Kemampuan karyawan dalam memimpin tim.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyelesaikan tugas meski dalam situasi penuh tekanan, Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah baru & Kualitas dari solusi yang diberikan</p>
+                      <p class="m-0" style="text-align:justify">kemampuannya dalam memberikan arahan yang jelas, mengambil keputusan dengan pertimbangan matang, serta memotivasi dan mengembangkan tim. Selain itu, efektivitas dalam mendelegasikan tugas, menyelesaikan konflik secara adil, serta menunjukkan keteladanan dan integritas, fleksibel dalam menghadapi perubahan dan mampu menyesuaikan gaya kepemimpinan sesuai situasi.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="parameter3" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter3"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
                         <input type="text" name="parameter3" placeholder="contoh 100" class="form-control" required>
                       </div>
                       <div class="mb-3">
@@ -158,6 +147,33 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Bussiness Orientation</strong></h3>
+                      <p class="m-0"><strong>Deskripsi:</strong></p>
+                      <p class="m-0">Kemampuan untuk mengelola kinerja dan pemanfaatan sumber daya dengan prinsip-prinsip bisnis yang efektif dan efisien, serta melakukan pengembangan bisnis yang berkelanjutan.</p>
+                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam menganalisis peluang bisnis, mengambil keputusan strategis yang berdampak positif bagi perusahaan, serta melakukan inovasi dan pengembangan bisnis yang berkelanjutan, mampu memahami pasar, mengelola risiko, serta beradaptasi dengan perubahan untuk memastikan pertumbuhan dan daya saing perusahaan.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label for="parameter4" class="form-label">score</label>
+                        <input type="text" name="parameter4" placeholder="contoh 100" class="form-control" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="keterangan4" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan4" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 5 -->
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
                       <h6>Lingkup Kerja</h6>
                       <h3><strong>Inisiatif</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
@@ -167,30 +183,19 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter4" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter4"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter4" placeholder="contoh 100" class="form-control" required>
+                        <label for="parameter5" class="form-label">score</label>
+                        <input type="text" name="parameter5" placeholder="contoh 100" class="form-control" required>
                       </div>
                       <div class="mb-3">
-                        <label for="keterangan4" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan4" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                        <label for="keterangan5" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan5" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
             </div>
-            <!-- 5 -->
+            <!-- 6 -->
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
@@ -205,29 +210,19 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter5" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter5"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter5" placeholder="contoh 100" class="form-control" required>
-
+                        <label for="parameter6" class="form-label">score</label>
+                        <input type="text" name="parameter6" placeholder="contoh 100" class="form-control" required>
                       </div>
                       <div class="mb-3">
-                        <label for="keterangan5" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan5" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                        <label for="keterangan6" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan6" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- 6 -->
+            <!-- 7 -->
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
@@ -242,54 +237,7 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter6" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter6"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter6" placeholder="contoh 100" class="form-control" required>
-
-                      </div>
-                      <div class="mb-3">
-                        <label for="keterangan6" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan6" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
-
-                    </div>
-
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 7 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Communication</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan berkomunikasi dengan baik dengan rekan kerja, atasan, dan pihak eksternal.</p>
-                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal).</p>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
                         <label for="parameter7" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter7"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
                         <input type="text" name="parameter7" placeholder="contoh 100" class="form-control" required>
 
                       </div>
@@ -309,33 +257,22 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Team Work</strong></h3>
+                      <h3><strong>Communication</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan bekerja sama dalam tim dan membangun hubungan yang baik dengan orang lain.</p>
+                      <p class="m-0">Kemampuan berkomunikasi dengan baik dengan rekan kerja, atasan, dan pihak eksternal.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit, Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama, Seberapa sering karyawan menunjukkan sikap bersedia bekerja sama dengan satu tim atau departemen lain.</p>
+                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal).</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="parameter8" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter8"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
                         <input type="text" name="parameter8" placeholder="contoh 100" class="form-control" required>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan8" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan8" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -347,25 +284,16 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Etika</strong></h3>
+                      <h3><strong>Team Work</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Integritas, kejujuran, dan tanggung jawab dalam bekerja.</p>
+                      <p class="m-0">Kemampuan bekerja sama dalam tim dan membangun hubungan yang baik dengan orang lain.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan, Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan, Frekuensi karyawan mengakui kesalahan tanpa menyalahkan orang lain, Frekuensi karyawan menyelesaikan tugas tanpa perlu diingatkan atau dipantau secara terus-menerus.</p>
+                      <p class="m-0" style="text-align:justify">Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit, Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama, Seberapa sering karyawan menunjukkan sikap bersedia bekerja sama dengan satu tim atau departemen lain.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="parameter9" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter9"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
                         <input type="text" name="parameter9" placeholder="contoh 100" class="form-control" required>
-
                       </div>
                       <div class="mb-3">
                         <label for="keterangan9" class="form-label">Penjelasan</label>
@@ -383,11 +311,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Profesionals</strong></h3>
+                      <h3><strong>Etika</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
+                      <p class="m-0">Integritas, kejujuran, dan tanggung jawab dalam bekerja.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas, Seberapa sering karyawan menyelesaikan tugas dengan kualitas yang konsisten sesuai ekspektasi, Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja, Seberapa sering karyawan menjaga komunikasi dan hubungan yang baik dengan pihak eksternal, tanpa merusak nama baik perusahaan.</p>
+                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan, Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan, Frekuensi karyawan mengakui kesalahan tanpa menyalahkan orang lain, Frekuensi karyawan menyelesaikan tugas tanpa perlu diingatkan atau dipantau secara terus-menerus.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -411,16 +339,17 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Learning</strong></h3>
+                      <h3><strong>Profesionals</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Semangat karyawan untuk terus belajar.</p>
+                      <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan, Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar, Seberapa baik karyawan menunjukkan perubahan positif setelah menerima revisi/feedback.</p>
+                      <p class="m-0" style="text-align:justify">Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas, Seberapa sering karyawan menyelesaikan tugas dengan kualitas yang konsisten sesuai ekspektasi, Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja, Seberapa sering karyawan menjaga komunikasi dan hubungan yang baik dengan pihak eksternal, tanpa merusak nama baik perusahaan.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="parameter11" class="form-label">score</label>
                         <input type="text" name="parameter11" placeholder="contoh 100" class="form-control" required>
+
                       </div>
                       <div class="mb-3">
                         <label for="keterangan11" class="form-label">Penjelasan</label>
@@ -437,12 +366,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Leadership Value</h6>
-                      <h3><strong>Analytical Thinking</strong></h3>
+                      <h6>Sikap & Perilaku</h6>
+                      <h3><strong>Learning</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">kemampuan untuk memecah masalah yang kompleks menjadi bagian-bagian yang lebih kecil dan mudah dikelola.</p>
+                      <p class="m-0">Semangat karyawan untuk terus belajar.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">kemampuan dalam mengidentifikasi dan memahami masalah secara mendalam, serta membaginya menjadi bagian-bagian yang lebih kecil untuk dianalisis, kemampuan dalam mengumpulkan dan mengevaluasi data secara objektif, membuat kesimpulan yang logis, serta mengembangkan solusi yang efektif, mampu melihat pola, menghubungkan informasi secara sistematis, dan mengambil keputusan berbasis data untuk menyelesaikan masalah secara efisien.</p>
+                      <p class="m-0" style="text-align:justify">Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan, Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar, Seberapa baik karyawan menunjukkan perubahan positif setelah menerima revisi/feedback.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -465,11 +394,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Leadership Value</h6>
-                      <h3><strong>Conceptual Thinking</strong></h3>
+                      <h3><strong>Analytical Thinking</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Semangat karyawan untuk terus belajarkemampuan untuk melihat gambaran besar dari suatu situasi atau masalah, mengidentifikasi pola yang lebih luas, dan merumuskan ide-ide baru.</p>
+                      <p class="m-0">kemampuan untuk memecah masalah yang kompleks menjadi bagian-bagian yang lebih kecil dan mudah dikelola.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">kemampua dalam memahami gambaran besar suatu situasi atau masalah serta mengidentifikasi hubungan dan pola yang lebih luas, kemampuan dalam mengembangkan ide-ide baru, merumuskan strategi yang inovatif, serta mengantisipasi dampak jangka panjang dari suatu keputusan, Karyawan dengan pemikiran konseptual yang baik harus mampu berpikir secara strategis, melihat peluang di tengah tantangan, dan menyusun solusi kreatif yang berorientasi pada pertumbuhan dan perkembangan bisnis.</p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam mengidentifikasi dan memahami masalah secara mendalam, serta membaginya menjadi bagian-bagian yang lebih kecil untuk dianalisis, kemampuan dalam mengumpulkan dan mengevaluasi data secara objektif, membuat kesimpulan yang logis, serta mengembangkan solusi yang efektif, mampu melihat pola, menghubungkan informasi secara sistematis, dan mengambil keputusan berbasis data untuk menyelesaikan masalah secara efisien.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -492,11 +421,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Leadership Value</h6>
-                      <h3><strong>Decision Making</strong></h3>
+                      <h3><strong>Conceptual Thinking</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan dalam menimbang, merumuskan hingga memberikan keputusan secara cepat dan tepat.</p>
+                      <p class="m-0">Semangat karyawan untuk terus belajarkemampuan untuk melihat gambaran besar dari suatu situasi atau masalah, mengidentifikasi pola yang lebih luas, dan merumuskan ide-ide baru.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">kemampuan dalam mengumpulkan dan menganalisis informasi sebelum mengambil keputusan, serta mempertimbangkan risiko dan dampak dari setiap pilihan, kecepatan dalam merumuskan solusi, ketegasan dalam mengambil keputusan, serta konsistensi dalam menegakkan keputusan yang diambil, Karyawan dengan kemampuan pengambilan keputusan yang baik harus mampu bersikap objektif, mempertimbangkan berbagai sudut pandang, serta memastikan keputusan yang dibuat mendukung pencapaian tujuan perusahaan secara efektif dan efisien.</p>
+                      <p class="m-0" style="text-align:justify">kemampua dalam memahami gambaran besar suatu situasi atau masalah serta mengidentifikasi hubungan dan pola yang lebih luas, kemampuan dalam mengembangkan ide-ide baru, merumuskan strategi yang inovatif, serta mengantisipasi dampak jangka panjang dari suatu keputusan, Karyawan dengan pemikiran konseptual yang baik harus mampu berpikir secara strategis, melihat peluang di tengah tantangan, dan menyusun solusi kreatif yang berorientasi pada pertumbuhan dan perkembangan bisnis.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -506,6 +435,33 @@
                       <div class="mb-3">
                         <label for="keterangan14" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan14" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 15 -->
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Decision Making</strong></h3>
+                      <p class="m-0"><strong>Deskripsi:</strong></p>
+                      <p class="m-0">Kemampuan dalam menimbang, merumuskan hingga memberikan keputusan secara cepat dan tepat.</p>
+                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam mengumpulkan dan menganalisis informasi sebelum mengambil keputusan, serta mempertimbangkan risiko dan dampak dari setiap pilihan, kecepatan dalam merumuskan solusi, ketegasan dalam mengambil keputusan, serta konsistensi dalam menegakkan keputusan yang diambil, Karyawan dengan kemampuan pengambilan keputusan yang baik harus mampu bersikap objektif, mempertimbangkan berbagai sudut pandang, serta memastikan keputusan yang dibuat mendukung pencapaian tujuan perusahaan secara efektif dan efisien.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label for="parameter15" class="form-label">score</label>
+                        <input type="text" name="parameter15" placeholder="contoh 100" class="form-control" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="keterangan15" class="form-label">Penjelasan</label>
+                        <textarea class="form-control" name="keterangan15" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
                     </div>
                   </div>
