@@ -228,6 +228,59 @@
             </div>
             <!-- target & bobot 11 -->
 
+            <!-- target & bobot 12 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Analytical Thinking</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target12" class="form-label">Target</label>
+                    <input type="text" name="target12" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot12" class="form-label">Bobot</label>
+                    <input type="text" name="bobot12" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 12 -->
+
+            <!-- target & bobot 13 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Conceptual Thinking</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target13" class="form-label">Target</label>
+                    <input type="text" name="target13" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot13" class="form-label">Bobot</label>
+                    <input type="text" name="bobot13" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 13 -->
+
+            <!-- target & bobot 14 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Decision Making</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target14" class="form-label">Target</label>
+                    <input type="text" name="target14" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot14" class="form-label">Bobot</label>
+                    <input type="text" name="bobot14" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 14 -->
           </div>
         </div>
     </div>
