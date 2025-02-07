@@ -22,7 +22,6 @@
               <label for="tujuan_evaluasi" class="form-label">Tujuan Evaluasi</label>
               <select name="tujuan_evaluasi" class="form-select tabel-PR">
                 <option >---- Tujuan ---</option>
-                <option value="probation">Masa Akhir Probation</option>
                 <option value="kontrak">Masa Akhir Kontrak</option>
               </select>
             </div>

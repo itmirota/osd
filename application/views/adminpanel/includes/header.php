@@ -220,7 +220,12 @@ if($role != ROLE_STAFF){ ?>
           <ul class="submenu collapse">
             <li class="sidebar-item">
               <a href="<?php echo base_url('EvaluasiKerja'); ?>" class="sidebar-link">
-                <span>Evaluasi Karyawan</span>
+                <span>Evaluasi Staff</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('EvaluasiSpv'); ?>" class="sidebar-link">
+                <span>Evaluasi SPV</span>
               </a>
             </li>
             <li class="sidebar-item">

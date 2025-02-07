@@ -15,11 +15,11 @@
                 <?php endforeach ?>
                 <div class="col-md-12">
                   <label for="nama_penilai" class="form-label">Nama Penilai</label>
-                  <input type="text" name="nama_penilai" class="form-control-plaintext tabel-PR" value="<?= $name?>" required />
+                  <input type="text" name="nama_penilai" class="form-control tabel-PR" placeholder="masukkan nama anda disini" required />
                 </div>
                 <div class="col-md-12">
                   <label for="jabatan_bagian" class="form-label">Jabatan dan Bagian Penilai</label>
-                  <input type="text" name="jabatan_bagian" class="form-control-plaintext tabel-PR" value="<?= $pegawai->nama_jabatan.' - '.$pegawai->nama_departement.'/'.$pegawai->nama_divisi?>" required />
+                  <input type="text" name="jabatan_bagian" class="form-control tabel-PR" placeholder="co: Manager - Operasional" required />
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4 mb-4">
@@ -30,30 +30,26 @@
                     <th colspan="2"  class="text-center" style="font-size:20px">Norma Penilaian</th>
                   </tr>
                   </thead>
-                  <tbody  class="text-center">    
-                    <tr>
-                      <td width="100px"><strong>poin</strong></td>
-                      <td width="100px"><strong>Score</strong></td>
-                    </tr>             
+                  <tbody  class="text-center">                
                     <tr>
                       <td width="100px">5</td>
-                      <td width="100px">91 - 100</td>
+                      <td width="100px">91% - 100%</td>
                     </tr>
                     <tr>
                       <td>4</td>
-                      <td>81 - 90</td>
+                      <td>81% - 90%</td>
                     </tr>
                     <tr>
                       <td>3</td>
-                      <td>71 - 80</td>
+                      <td>71% - 80%</td>
                     </tr>
                     <tr>
                       <td>2</td>
-                      <td>61 - 70</td>
+                      <td>61% - 70%</td>
                     </tr>
                     <tr>
                       <td>1</td>
-                      <td>50 - 60</td>
+                      <td>50% - 60%</td>
                     </tr>
                   </tbody>
                 </table>
@@ -66,16 +62,23 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Lingkup Kerja</h6>
-                      <h3><strong>Achievement & Action</strong></h3>
+                      <h3><strong>Pencapaian Kinerja</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Sejauh mana karyawan mencapai target yang telah di tetapkan. Tingkat ketelitian, keefektifan, dan kualitas hasil kerja yang dihasilkan.</p>
+                      <p class="m-0">Sejauh mana karyawan mencapai target yang telah di tetapkan</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Target bulanan/semester yang telah ditentukan oleh leader dalam KPI & Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak</p>
+                      <p class="m-0" style="text-align:justify">Target bulanan/semester yang telah ditentukan oleh leader dalam KPI</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter1" class="form-label">score</label>
-                        <input type="text" name="parameter1" placeholder="contoh 100" class="form-control" required>
+                        <label for="parameter1" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter1"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan1" class="form-label">Penjelasan</label>
@@ -88,7 +91,7 @@
               </div>
             </div>
             <!-- 2 -->
-            <!-- <div class="col-md-12">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
@@ -102,8 +105,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter2" class="form-label">score</label>
-                        <input type="text" name="parameter2" placeholder="contoh 100" class="form-control" required>
+                        <label for="parameter2" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter2"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan2" class="form-label">Penjelasan</label>
@@ -116,7 +126,7 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- 3 -->
             <div class="col-md-12">
               <div class="card">
@@ -132,16 +142,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter3" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter3"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter3" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter3"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter3" placeholder="contoh 100" class="form-control" required>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan3" class="form-label">Penjelasan</label>
@@ -167,25 +176,21 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter4" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter4"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter4" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter4"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter4" placeholder="contoh 100" class="form-control" required>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan4" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan4" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -205,17 +210,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter5" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter5"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter5" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter5"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter5" placeholder="contoh 100" class="form-control" required>
-
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan5" class="form-label">Penjelasan</label>
@@ -242,26 +245,21 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter6" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter6"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter6" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter6"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter6" placeholder="contoh 100" class="form-control" required>
-
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan6" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan6" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -281,17 +279,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter7" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter7"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter7" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter7"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter7" placeholder="contoh 100" class="form-control" required>
-
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan7" class="form-label">Penjelasan</label>
@@ -317,16 +313,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter8" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter8"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter8" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter8"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter8" placeholder="contoh 100" class="form-control" required>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan8" class="form-label">Penjelasan</label>
@@ -355,17 +350,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter9" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter9"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter9" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter9"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter9" placeholder="contoh 100" class="form-control" required>
-
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan9" class="form-label">Penjelasan</label>
@@ -391,17 +384,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter10" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter10"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter10" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter10"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter10" placeholder="contoh 100" class="form-control" required>
-
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan10" class="form-label">Penjelasan</label>
@@ -427,17 +418,15 @@
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="parameter11" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
+                        <label for="parameter11" class="form-label">Poin</label>
+                        <select class="form-select" name="parameter11"  aria-label="Default select example">
+                          <option selected>Pilih Poin</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter11" placeholder="contoh 100" class="form-control" required>
-
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="keterangan11" class="form-label">Penjelasan</label>

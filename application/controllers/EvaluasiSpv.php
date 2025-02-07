@@ -8,13 +8,13 @@ require APPPATH . '/libraries/BaseController.php';
  * @since : 11 Februari 2024
  */
 
-class evaluasiKerja extends BaseController
+class evaluasiSpv extends BaseController
 {
 
   public function __construct()
   {
       parent::__construct();
-      $this->load->model('evaluasiKerja_model');
+      $this->load->model('evaluasiSpv_model');
       $this->load->model('pegawai_model');
       $this->load->model('crud_model');
       $this->isLoggedIn();
@@ -28,23 +28,23 @@ class evaluasiKerja extends BaseController
     $check = $this->uri->segment(1);
     
     if ($role == ROLE_HRBP | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN){
-      $data['list_data']= $this->evaluasiKerja_model->getData();
+      $data['list_data']= $this->evaluasiSpv_model->getData();
     }else{
-      $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasibyDate();
+      $data['list_data']= $this->evaluasiSpv_model->getDataEvaluasibyDate();
     };
     
     $data['check']= $this->uri->segment(1);
 
-    $this->loadViews("evaluasiKerja/data", $this->global, $data, NULL);
+    $this->loadViews("evaluasiSpv/data", $this->global, $data, NULL);
   }
 
-  public function jadwalEvaluasiKerja(){
+  public function jadwalevaluasiSpv(){
     $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
     $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';
 
     $data['pegawai'] = $this->crud_model->lihatdata('tbl_pegawai');
 
-    $this->loadViews("evaluasiKerja/formulir", $this->global, $data, NULL);
+    $this->loadViews("evaluasiSpv/formulir", $this->global, $data, NULL);
   }
 
   public function saveJadwalPenilaian(){
@@ -109,10 +109,10 @@ class evaluasiKerja extends BaseController
       'bobot11' => $bobot11,
     );
 
-    $query = $this->crud_model->input($data, 'tbl_evaluasikerja');
+    $query = $this->crud_model->input($data, 'tbl_evaluasiSpv');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('EvaluasiKerja');
+    redirect('evaluasiSpv');
   }
 
   public function hasilEvaluasi(){
@@ -121,20 +121,20 @@ class evaluasiKerja extends BaseController
 
     $id = $this->uri->segment(2);
     
-    $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
-    $data['hasil']= $this->evaluasiKerja_model->getDataHasil($id);
-    $data['nilai']= $this->evaluasiKerja_model->getSumHasil($id);
+    $data['list_data']= $this->evaluasiSpv_model->getDataEvaluasi($id);
+    $data['hasil']= $this->evaluasiSpv_model->getDataHasil($id);
+    $data['nilai']= $this->evaluasiSpv_model->getSumHasil($id);
 
-    $this->loadViews("evaluasiKerja/laporan", $this->global, $data, NULL);
+    $this->loadViews("evaluasiSpv/laporan", $this->global, $data, NULL);
   }
 
-  public function detailEvaluasiKerja($id) {
-    $result = $this->crud_model->getdataRowbyWhere('*', ['id_evaluasiKerja' => $id], 'tbl_evaluasikerja');
+  public function detailevaluasiSpv($id) {
+    $result = $this->crud_model->getdataRowbyWhere('*', ['id_evaluasiSpv' => $id], 'tbl_evaluasiSpv');
     echo json_encode($result);
   }
 
   public function updateJadwalPenilaian(){
-    $id_evaluasiKerja = $this->input->post('id_evaluasiKerja');
+    $id_evaluasiSpv = $this->input->post('id_evaluasiSpv');
     $tgl_evaluasi = $this->input->post('tgl_evaluasi');
     $tujuan_evaluasi = $this->input->post('tujuan_evaluasi');
     $tgl_akhir_kontrak = $this->input->post('tgl_akhir_kontrak');
@@ -145,10 +145,10 @@ class evaluasiKerja extends BaseController
       'tgl_akhir_kontrak' => $tgl_akhir_kontrak,
     );
 
-    $query = $this->crud_model->update(['id_evaluasiKerja' => $id_evaluasiKerja], $data, 'tbl_evaluasikerja');
+    $query = $this->crud_model->update(['id_evaluasiSpv' => $id_evaluasiSpv], $data, 'tbl_evaluasiSpv');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('EvaluasiKerja');
+    redirect('evaluasiSpv');
   }
 
   // public function penilaian(){
@@ -156,10 +156,10 @@ class evaluasiKerja extends BaseController
   //   $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
   //   $id = $this->uri->segment(2);
 
-  //   $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+  //   $data['list_data']= $this->evaluasiSpv_model->getDataEvaluasi($id);
   //   $data['id']= $id;
 
-  //   $this->loadViews("evaluasiKerja/penilaian", $this->global, $data, NULL);
+  //   $this->loadViews("evaluasiSpv/penilaian", $this->global, $data, NULL);
   // }
 
   // public function penilaian_v2(){
@@ -167,10 +167,10 @@ class evaluasiKerja extends BaseController
   //   $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
   //   $id = $this->uri->segment(2);
 
-  //   $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+  //   $data['list_data']= $this->evaluasiSpv_model->getDataEvaluasi($id);
   //   $data['id']= $id;
 
-  //   $this->loadViews("evaluasiKerja/penilaian_tabel", $this->global, $data, NULL);
+  //   $this->loadViews("evaluasiSpv/penilaian_tabel", $this->global, $data, NULL);
   // }
 
   // public function penilaian_v21(){
@@ -178,10 +178,10 @@ class evaluasiKerja extends BaseController
   //   $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
   //   $id = $this->uri->segment(2);
 
-  //   $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+  //   $data['list_data']= $this->evaluasiSpv_model->getDataEvaluasi($id);
   //   $data['id']= $id;
 
-  //   $this->loadViews("evaluasiKerja/penilaian_tabel2", $this->global, $data, NULL);
+  //   $this->loadViews("evaluasiSpv/penilaian_tabel2", $this->global, $data, NULL);
   // }
 
 
@@ -190,10 +190,10 @@ class evaluasiKerja extends BaseController
   //   $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
   //   $id = $this->uri->segment(2);
 
-  //   $data['list_data']= $this->evaluasiKerja_model->getDataEvaluasi($id);
+  //   $data['list_data']= $this->evaluasiSpv_model->getDataEvaluasi($id);
   //   $data['id']= $id;
 
-  //   $this->loadViews("evaluasiKerja/penilaian_list", $this->global, $data, NULL);
+  //   $this->loadViews("evaluasiSpv/penilaian_list", $this->global, $data, NULL);
   // }
 
   public function penilaian_v31(){
@@ -207,14 +207,14 @@ class evaluasiKerja extends BaseController
     $data = array(
       'pegawai' => $pegawai,
       'id' => $id,
-      'list_data' => $this->evaluasiKerja_model->getDataEvaluasi($id)
+      'list_data' => $this->evaluasiSpv_model->getDataEvaluasi($id)
     );
 
-    $this->loadViews("evaluasiKerja/penilaian_list2", $this->global, $data, NULL);
+    $this->loadViews("evaluasiSpv/penilaian_list2", $this->global, $data, NULL);
   }
 
   public function savePenilaian(){
-    $evaluasiKerja_id = $this->input->post('evaluasiKerja_id');
+    $evaluasiSpv_id = $this->input->post('evaluasiSpv_id');
     $nama_penilai = $this->input->post('nama_penilai');
     $jabatan_bagian = $this->input->post('jabatan_bagian');
     $parameter1 = $this->input->post('parameter1');
@@ -244,7 +244,7 @@ class evaluasiKerja extends BaseController
     $kekurangan = $this->input->post('kekurangan');
     $rekomendasi = $this->input->post('rekomendasi');
 
-    $evaluasi = $this->evaluasiKerja_model->getDataRowEvaluasi($evaluasiKerja_id);
+    $evaluasi = $this->evaluasiSpv_model->getDataRowEvaluasi($evaluasiSpv_id);
 
     $hasil1 = ubahNilai($parameter1,$evaluasi->target1,$evaluasi->bobot1);
     // $hasil2 = ubahNilai($parameter2,$evaluasi->target2,$evaluasi->bobot2);
@@ -261,7 +261,7 @@ class evaluasiKerja extends BaseController
     $total_nilai = $hasil1+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil10+$hasil11;
 
     $data = array(
-      'evaluasiKerja_id' => $evaluasiKerja_id,
+      'evaluasiSpv_id' => $evaluasiSpv_id,
       'nama_penilai' => $nama_penilai,
       'jabatan_bagian' => $jabatan_bagian,
       'parameter1' => $parameter1.'|'.$keterangan1,
