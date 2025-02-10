@@ -123,7 +123,7 @@
             <!-- target & bobot 4 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Problem Solving</label>
+                <label class="form-label">Bussiness Orientation</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target4" class="form-label">Target</label>
@@ -177,7 +177,7 @@
             <!-- target & bobot 7 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Dicipline</label>
+                <label class="form-label">Communication</label>
                 <div class="row">
                   <div class="col-md-7">
                     <label for="target7" class="form-label">Target</label>
@@ -195,7 +195,7 @@
             <!-- target & bobot 8 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Communication</label>
+                <label class="form-label">Team Work</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target8" class="form-label">Target</label>
@@ -213,7 +213,7 @@
             <!-- target & bobot 9 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Team Work</label>
+                <label class="form-label">Etica</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target9" class="form-label">Target</label>
@@ -231,7 +231,7 @@
             <!-- target & bobot 10 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Etica</label>
+                <label class="form-label">Profesionals</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target10" class="form-label">Target</label>
@@ -249,7 +249,7 @@
             <!-- target & bobot 11 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Profesionals</label>
+                <label class="form-label">Learning</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target11" class="form-label">Target</label>
@@ -267,7 +267,7 @@
             <!-- target & bobot 12 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Learning</label>
+                <label class="form-label">Analytical Thinking</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target12" class="form-label">Target</label>
@@ -285,7 +285,7 @@
             <!-- target & bobot 13 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Analytical Thinking</label>
+                <label class="form-label">Conceptual Thinking</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target13" class="form-label">Target</label>
@@ -303,7 +303,7 @@
             <!-- target & bobot 14 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Conceptual Thinking</label>
+                <label class="form-label">Decision Making</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target14" class="form-label">Target</label>
@@ -317,24 +317,6 @@
               </div>
             </div>
             <!-- target & bobot 14 -->
-
-            <!-- target & bobot 15 -->
-            <div class="card">
-              <div class="card-body">
-                <label class="form-label">Decision Making</label>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="target15" class="form-label">Target</label>
-                    <input type="text" name="target15" class="form-control tabel-PR" required />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="bobot15" class="form-label">Bobot</label>
-                    <input type="text" name="bobot15" class="form-control tabel-PR" required />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- target & bobot 15 -->
           </div>
         </div>
     </div>

@@ -229,11 +229,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Dicipline</strong></h3>
+                      <h3><strong>Communication</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Ketaatan terhadap aturan perusahaan dan waktu kerja.</p>
+                      <p class="m-0">Kemampuan berkomunikasi dengan baik dengan rekan kerja, atasan, dan pihak eksternal.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi pelanggaran peraturan perusahaan yang dilakukan, Seberapa sering tidak masuk kerja tanpa keterangan, Seberapa sering terlambat dan waktu kerja tidak sesuai peraturan perusahaan (dilihat dari absensi) serta seberapa efektif memanfaatkan total waktu kerja.</p>
+                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal).</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -257,11 +257,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Communication</strong></h3>
+                      <h3><strong>Team Work</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan berkomunikasi dengan baik dengan rekan kerja, atasan, dan pihak eksternal.</p>
+                      <p class="m-0">Kemampuan bekerja sama dalam tim dan membangun hubungan yang baik dengan orang lain.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal).</p>
+                      <p class="m-0" style="text-align:justify">Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit, Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama, Seberapa sering karyawan menunjukkan sikap bersedia bekerja sama dengan satu tim atau departemen lain.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -284,11 +284,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Team Work</strong></h3>
+                      <h3><strong>Etika</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan bekerja sama dalam tim dan membangun hubungan yang baik dengan orang lain.</p>
+                      <p class="m-0">Integritas, kejujuran, dan tanggung jawab dalam bekerja.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit, Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama, Seberapa sering karyawan menunjukkan sikap bersedia bekerja sama dengan satu tim atau departemen lain.</p>
+                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan, Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan, Frekuensi karyawan mengakui kesalahan tanpa menyalahkan orang lain, Frekuensi karyawan menyelesaikan tugas tanpa perlu diingatkan atau dipantau secara terus-menerus.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -311,11 +311,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Etika</strong></h3>
+                      <h3><strong>Profesionals</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Integritas, kejujuran, dan tanggung jawab dalam bekerja.</p>
+                      <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan, Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan, Frekuensi karyawan mengakui kesalahan tanpa menyalahkan orang lain, Frekuensi karyawan menyelesaikan tugas tanpa perlu diingatkan atau dipantau secara terus-menerus.</p>
+                      <p class="m-0" style="text-align:justify">Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas, Seberapa sering karyawan menyelesaikan tugas dengan kualitas yang konsisten sesuai ekspektasi, Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja, Seberapa sering karyawan menjaga komunikasi dan hubungan yang baik dengan pihak eksternal, tanpa merusak nama baik perusahaan.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -339,11 +339,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Profesionals</strong></h3>
+                      <h3><strong>Learning</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
+                      <p class="m-0">Semangat karyawan untuk terus belajar.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas, Seberapa sering karyawan menyelesaikan tugas dengan kualitas yang konsisten sesuai ekspektasi, Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja, Seberapa sering karyawan menjaga komunikasi dan hubungan yang baik dengan pihak eksternal, tanpa merusak nama baik perusahaan.</p>
+                      <p class="m-0" style="text-align:justify">Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan, Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar, Seberapa baik karyawan menunjukkan perubahan positif setelah menerima revisi/feedback.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -366,12 +366,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Learning</strong></h3>
+                      <h6>Leadership Value</h6>
+                      <h3><strong>Analytical Thinking</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Semangat karyawan untuk terus belajar.</p>
+                      <p class="m-0">kemampuan untuk memecah masalah yang kompleks menjadi bagian-bagian yang lebih kecil dan mudah dikelola.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan, Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar, Seberapa baik karyawan menunjukkan perubahan positif setelah menerima revisi/feedback.</p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam mengidentifikasi dan memahami masalah secara mendalam, serta membaginya menjadi bagian-bagian yang lebih kecil untuk dianalisis, kemampuan dalam mengumpulkan dan mengevaluasi data secara objektif, membuat kesimpulan yang logis, serta mengembangkan solusi yang efektif, mampu melihat pola, menghubungkan informasi secara sistematis, dan mengambil keputusan berbasis data untuk menyelesaikan masalah secara efisien.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -394,11 +394,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Leadership Value</h6>
-                      <h3><strong>Analytical Thinking</strong></h3>
+                      <h3><strong>Conceptual Thinking</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">kemampuan untuk memecah masalah yang kompleks menjadi bagian-bagian yang lebih kecil dan mudah dikelola.</p>
+                      <p class="m-0">Semangat karyawan untuk terus belajarkemampuan untuk melihat gambaran besar dari suatu situasi atau masalah, mengidentifikasi pola yang lebih luas, dan merumuskan ide-ide baru.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">kemampuan dalam mengidentifikasi dan memahami masalah secara mendalam, serta membaginya menjadi bagian-bagian yang lebih kecil untuk dianalisis, kemampuan dalam mengumpulkan dan mengevaluasi data secara objektif, membuat kesimpulan yang logis, serta mengembangkan solusi yang efektif, mampu melihat pola, menghubungkan informasi secara sistematis, dan mengambil keputusan berbasis data untuk menyelesaikan masalah secara efisien.</p>
+                      <p class="m-0" style="text-align:justify">kemampua dalam memahami gambaran besar suatu situasi atau masalah serta mengidentifikasi hubungan dan pola yang lebih luas, kemampuan dalam mengembangkan ide-ide baru, merumuskan strategi yang inovatif, serta mengantisipasi dampak jangka panjang dari suatu keputusan, Karyawan dengan pemikiran konseptual yang baik harus mampu berpikir secara strategis, melihat peluang di tengah tantangan, dan menyusun solusi kreatif yang berorientasi pada pertumbuhan dan perkembangan bisnis.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -421,11 +421,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Leadership Value</h6>
-                      <h3><strong>Conceptual Thinking</strong></h3>
+                      <h3><strong>Decision Making</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Semangat karyawan untuk terus belajarkemampuan untuk melihat gambaran besar dari suatu situasi atau masalah, mengidentifikasi pola yang lebih luas, dan merumuskan ide-ide baru.</p>
+                      <p class="m-0">Kemampuan dalam menimbang, merumuskan hingga memberikan keputusan secara cepat dan tepat.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">kemampua dalam memahami gambaran besar suatu situasi atau masalah serta mengidentifikasi hubungan dan pola yang lebih luas, kemampuan dalam mengembangkan ide-ide baru, merumuskan strategi yang inovatif, serta mengantisipasi dampak jangka panjang dari suatu keputusan, Karyawan dengan pemikiran konseptual yang baik harus mampu berpikir secara strategis, melihat peluang di tengah tantangan, dan menyusun solusi kreatif yang berorientasi pada pertumbuhan dan perkembangan bisnis.</p>
+                      <p class="m-0" style="text-align:justify">kemampuan dalam mengumpulkan dan menganalisis informasi sebelum mengambil keputusan, serta mempertimbangkan risiko dan dampak dari setiap pilihan, kecepatan dalam merumuskan solusi, ketegasan dalam mengambil keputusan, serta konsistensi dalam menegakkan keputusan yang diambil, Karyawan dengan kemampuan pengambilan keputusan yang baik harus mampu bersikap objektif, mempertimbangkan berbagai sudut pandang, serta memastikan keputusan yang dibuat mendukung pencapaian tujuan perusahaan secara efektif dan efisien.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -435,33 +435,6 @@
                       <div class="mb-3">
                         <label for="keterangan14" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan14" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 15 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>Leadership Value</h6>
-                      <h3><strong>Decision Making</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan dalam menimbang, merumuskan hingga memberikan keputusan secara cepat dan tepat.</p>
-                      <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">kemampuan dalam mengumpulkan dan menganalisis informasi sebelum mengambil keputusan, serta mempertimbangkan risiko dan dampak dari setiap pilihan, kecepatan dalam merumuskan solusi, ketegasan dalam mengambil keputusan, serta konsistensi dalam menegakkan keputusan yang diambil, Karyawan dengan kemampuan pengambilan keputusan yang baik harus mampu bersikap objektif, mempertimbangkan berbagai sudut pandang, serta memastikan keputusan yang dibuat mendukung pencapaian tujuan perusahaan secara efektif dan efisien.</p>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter15" class="form-label">score</label>
-                        <input type="text" name="parameter15" placeholder="contoh 100" class="form-control" required>
-                      </div>
-                      <div class="mb-3">
-                        <label for="keterangan15" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan15" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
                     </div>
                   </div>
