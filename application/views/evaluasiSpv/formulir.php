@@ -100,42 +100,6 @@
                 </div>
               </div>
             </div>
-            <!-- target & bobot 3 -->
-
-            <!-- target & bobot 4 -->
-            <div class="card">
-              <div class="card-body">
-                <label class="form-label">Problem Solving</label>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="target3" class="form-label">Target</label>
-                    <input type="text" name="target3" class="form-control tabel-PR" required />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="bobot3" class="form-label">Bobot</label>
-                    <input type="text" name="bobot3" class="form-control tabel-PR" required />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- target & bobot 3 -->
-
-            <!-- target & bobot 4 -->
-            <div class="card">
-              <div class="card-body">
-                <label class="form-label">Bussiness Orientation</label>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="target4" class="form-label">Target</label>
-                    <input type="text" name="target4" class="form-control tabel-PR" required />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="bobot4" class="form-label">Bobot</label>
-                    <input type="text" name="bobot4" class="form-control tabel-PR" required />
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- target & bobot 4 -->
             
             <!-- target & bobot 5 -->
