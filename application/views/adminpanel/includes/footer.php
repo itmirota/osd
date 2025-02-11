@@ -98,6 +98,11 @@ if(isset($name)){ ?>
 				dropdownParent: $('#filterAbsenToko')
 			});
 
+			$('#pegawai_id').select2({
+				theme: 'bootstrap-5',
+				dropdownParent: $('#addKeterlambatan')
+			});
+
 			$('#penugasan_id').select2({
 				theme: 'bootstrap-5',
         	dropdownParent: $('#addTugas')

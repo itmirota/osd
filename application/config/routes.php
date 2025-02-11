@@ -130,7 +130,8 @@ $route['laporan-istirahat'] = 'absensi/laporanIstirahat';
 $route['export-excel-istirahat'] = 'absensi/exportExcelIstirahat';
 
 // DATA TERLAMBAT
-$route['karyawan-terlambat'] = 'absensi/keterlambatan';
+$route['karyawan-terlambat'] = 'keterlambatan';
+$route['deleteketerlambatan/(:num)'] = 'keterlambatan/delete/$1';
 
 
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';

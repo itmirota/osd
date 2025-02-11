@@ -39,11 +39,13 @@ class Keterlambatan extends BaseController
     }
     
     $data['list_data']= $list_data;
+    $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
 
     $this->loadViews("keterlambatan/data", $this->global, $data, NULL);
   }
 
   public function save(){
+    
     $periode = $this->input->post('periode');
     $pegawai_id = $this->input->post('pegawai_id');
     $jml_keterlambatan = $this->input->post('jml_keterlambatan');
