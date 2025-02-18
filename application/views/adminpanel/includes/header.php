@@ -382,7 +382,7 @@ if($role != ROLE_STAFF){ ?>
                 </li> -->
                 <li class="sidebar-item">
                   <a href="<?php echo base_url('karyawan-terlambat'); ?>" class="sidebar-link">
-                    <span>Keterlambatan Karyawan</span>
+                    <span>Pelanggaran Karyawan</span>
                   </a>
                 </li>
                 

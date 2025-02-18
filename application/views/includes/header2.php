@@ -54,48 +54,83 @@
 <body class="bg-pattern">
 <div>
   <?php if (isset($name)){?>
-  <div class="box" style="margin-bottom:10vh">
+  <!-- Up Navbar -->
+  <nav class="navbar navbar-dark bg-info navbar-expand mb-4">
     <div class="container">
-		  <div class="d-flex justify-content-between">
-				<div class="p-2">
-					<?php 
-					if ($this->uri->segment(1) != 'dashboardUser'){?>
-					<a href="<?= base_url('dashboardUser')?>" class="btn login-button"><i class="fas fa-angles-left"></i> kembali</a>
-					<?php }?>
-				</div>
-				<div class="btn-group p-2">
+    <ul class="navbar-nav justify-content-start w-100">
+      <li class="nav-item">
+        <h1 class="text-header text-light">OSD Mirota KSM</h1>
+      </li>
+    </ul>
+    <ul class="navbar-nav justify-content-end w-25">
+      <li class="nav-item">
+        <div class="btn-group p-2">
 					<button type="button" class="btn login-button dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
 					<i class="fa-solid fa-circle-user"></i> Hi, <?= $name ?>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-lg-end">
-						<li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">User Info</a></li>
+						<li class="d-block d-sm-none"><a class="dropdown-item" href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" onclick="detailPegawai(<?= $pegawai_id?>)">User Info offcanvas</a></li>
+						<li class="d-none d-sm-block"><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">User Info</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?= base_url('logout')?>">Keluar</a></li>
 					</ul>
 				</div>
-			</div>
+      </li>
+    </ul>
     </div>
-    <!-- <div class="container d-none d-sm-block">
-		  <div class="d-flex justify-content-between">
-				<div class="p-2">
-					<?php 
-					if ($this->uri->segment(1) != 'dashboardUser'){?>
-					<a href="<?= base_url('dashboardUser')?>" class="btn login-button"><i class="fas fa-angles-left"></i> kembali</a>
-					<?php }?>
-				</div>
-				<div class="btn-group p-2">
-					<button type="button" class="btn login-button dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-					<i class="fa-solid fa-circle-user"></i> Hi, <?= $name ?>
-					</button>
-					<ul class="dropdown-menu dropdown-menu-lg-end">
-						<li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">User Info</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="<?= base_url('logout')?>">Keluar</a></li>
-					</ul>
-				</div>
-			</div>
-    </div> -->
-  </div>
+  </nav>
+
+  <!-- Bottom Navbar -->
+  <nav class="navbar navbar-dark bg-info navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none">
+    <ul class="navbar-nav nav-justified w-100">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+          </svg>
+        </a>
+        <span class="text-light">Home</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+          </svg>
+        </a>
+        <span class="text-light">Pinjam</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-fingerprint" viewBox="0 0 16 16">
+            <path d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z"/>
+            <path d="M6.06 7a2 2 0 1 1 4 0 .5.5 0 1 1-1 0 1 1 0 1 0-2 0v.332q0 .613-.066 1.221A.5.5 0 0 1 6 8.447q.06-.555.06-1.115zm3.509 1a.5.5 0 0 1 .487.513 11.5 11.5 0 0 1-.587 3.339l-1.266 3.8a.5.5 0 0 1-.949-.317l1.267-3.8a10.5 10.5 0 0 0 .535-3.048A.5.5 0 0 1 9.569 8m-3.356 2.115a.5.5 0 0 1 .33.626L5.24 14.939a.5.5 0 1 1-.955-.296l1.303-4.199a.5.5 0 0 1 .625-.329"/>
+            <path d="M4.759 5.833A3.501 3.501 0 0 1 11.559 7a.5.5 0 0 1-1 0 2.5 2.5 0 0 0-4.857-.833.5.5 0 1 1-.943-.334m.3 1.67a.5.5 0 0 1 .449.546 10.7 10.7 0 0 1-.4 2.031l-1.222 4.072a.5.5 0 1 1-.958-.287L4.15 9.793a9.7 9.7 0 0 0 .363-1.842.5.5 0 0 1 .546-.449Zm6 .647a.5.5 0 0 1 .5.5c0 1.28-.213 2.552-.632 3.762l-1.09 3.145a.5.5 0 0 1-.944-.327l1.089-3.145c.382-1.105.578-2.266.578-3.435a.5.5 0 0 1 .5-.5Z"/>
+            <path d="M3.902 4.222a5 5 0 0 1 5.202-2.113.5.5 0 0 1-.208.979 4 4 0 0 0-4.163 1.69.5.5 0 0 1-.831-.556m6.72-.955a.5.5 0 0 1 .705-.052A4.99 4.99 0 0 1 13.059 7v1.5a.5.5 0 1 1-1 0V7a3.99 3.99 0 0 0-1.386-3.028.5.5 0 0 1-.051-.705M3.68 5.842a.5.5 0 0 1 .422.568q-.044.289-.044.59c0 .71-.1 1.417-.298 2.1l-1.14 3.923a.5.5 0 1 1-.96-.279L2.8 8.821A6.5 6.5 0 0 0 3.058 7q0-.375.054-.736a.5.5 0 0 1 .568-.422m8.882 3.66a.5.5 0 0 1 .456.54c-.084 1-.298 1.986-.64 2.934l-.744 2.068a.5.5 0 0 1-.941-.338l.745-2.07a10.5 10.5 0 0 0 .584-2.678.5.5 0 0 1 .54-.456"/>
+            <path d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865m-.89 1.257a.5.5 0 0 1 .04.706A5.48 5.48 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346m12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49"/>
+          </svg>
+        </a>
+        <span class="text-light">Kehadiran</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+          </svg>
+        </a>
+        <span class="text-light">Like</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+          </svg>
+        </a>
+        <span class="text-light">User</span>
+      </li>
+    </ul>
+  </nav>
   <?php } ?>
   
   <?php if($this->uri->segment(1) == 'satpam' | $this->uri->segment(1) == 'kebersihan' | $this->uri->segment(1) == 'PHL'){?>
@@ -278,6 +313,20 @@
     </div>
   </div>
 </div>
+
+<!-- Off Detail Pegawai-->
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
+
+
+
 
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function(){
