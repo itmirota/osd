@@ -25,13 +25,14 @@
             </div>
           </div>
           <?php 
-          if(isset($nilai->total_nilai)){?>
+          if(isset($nilai->total_nilai)){
+          ?>
           <div class="col sm-6">
             <div class="mb-3 row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Nilai</label>
               <div class="col-sm-8">
                 <?php
-                $nilai = $nilai->total_nilai/(COUNT($hasil)-1)
+                $nilai = $nilai->total_nilai/(COUNT($hasil))
                 ?>
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?=  round($nilai,2).'%' ?>">
               </div>

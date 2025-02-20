@@ -182,10 +182,7 @@
                         <label for="keterangan4" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan4" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -258,10 +255,7 @@
                         <label for="keterangan6" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan6" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -443,10 +437,7 @@
                         <label for="keterangan11" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
