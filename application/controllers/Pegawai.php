@@ -1013,6 +1013,7 @@ class Pegawai extends BaseController
     $sheet->setCellValue('F5', 'Departement');
     $sheet->setCellValue('G5', 'Divisi');
     $sheet->setCellValue('H5', 'Tanggal Lahir');
+    $sheet->setCellValue('I5', 'Agama');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -1021,6 +1022,7 @@ class Pegawai extends BaseController
     $sheet->getStyle('F5')->applyFromArray($style_col);
     $sheet->getStyle('G5')->applyFromArray($style_col);
     $sheet->getStyle('H5')->applyFromArray($style_col);
+    $sheet->getStyle('I5')->applyFromArray($style_col);
 
     $no = 1;
     $numrow = 6;
@@ -1032,6 +1034,7 @@ class Pegawai extends BaseController
       $sheet->setCellValue('F'.$numrow, $ld->nama_departement);
       $sheet->setCellValue('G'.$numrow, $ld->nama_divisi);
       $sheet->setCellValue('H'.$numrow, $ld->tgl_lahir);
+      $sheet->setCellValue('I'.$numrow, $ld->agama);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
@@ -1039,6 +1042,7 @@ class Pegawai extends BaseController
       $sheet->getColumnDimension('F')->setAutoSize(true);
       $sheet->getColumnDimension('G')->setAutoSize(true);
       $sheet->getColumnDimension('H')->setAutoSize(true);
+      $sheet->getColumnDimension('I')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
@@ -1047,6 +1051,7 @@ class Pegawai extends BaseController
       $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;

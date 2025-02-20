@@ -264,4 +264,27 @@
             return $nama_hari;
         }
     }
+
+    if ( ! function_exists('nama_waktu'))
+    {
+        function nama_waktu($waktu)
+        {
+            switch ($waktu) {
+                case $waktu >= 00 && $waktu <= 10:
+                    $hasil = "pagi";
+                break;
+                case $waktu >= 11 && $waktu <= 14:
+                    $hasil = "siang";
+                break;
+                case $waktu >= 15 && $waktu <= 17:
+                    $hasil = "sore";
+                break;
+                case $waktu >= 16 && $waktu <= 24:
+                    $hasil = "malam";
+                break;  
+            }
+
+            return $hasil;
+        }
+    }
     

@@ -63,6 +63,8 @@ if(isset($name)){ ?>
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="<?= base_url(); ?>assets/owlcarousel/js/owl.carousel.js"></script>
+
 
 <script>
 	$(document).ready(function() {
@@ -87,6 +89,18 @@ if(isset($name)){ ?>
 		$('#pemberi_izin').select2({
 			theme: 'bootstrap-5',
 			dropdownParent: $('#suratIzin')
+		});
+
+		$('.loop').owlCarousel({
+			center: true,
+			items:1,
+			loop:true,
+			margin:10,
+			responsive:{
+				600:{
+					items:2
+				}
+			}
 		});
 
 	});

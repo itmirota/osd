@@ -42,6 +42,10 @@
   <!-- SELECT2 -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/owlcarousel/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>/assets/owlcarousel/css/owl.theme.default.min.css">
+
     <!-- LEAFLET -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -51,16 +55,16 @@
 </head>
 
 <!-- <body class="sidebar-mini skin-black-light"> -->
-<body class="bg-pattern">
+<body class="theme-white">
 <div>
   <?php if (isset($name)){?>
   <!-- Up Navbar -->
-  <nav class="navbar navbar-dark bg-info navbar-expand mb-4">
+  <nav class="navbar navbar-dark bg-navbar navbar-expand mb-4">
     <div class="container">
     <ul class="navbar-nav justify-content-start w-100">
-      <li class="nav-item">
-        <h1 class="text-header text-light">OSD Mirota KSM</h1>
-      </li>
+      <a class="navbar-brand" href="#">
+        <img class="navbar-logo" src="<?= base_url('assets/dist/img/mirota.png')?>" alt="Logo" class="d-inline-block align-text-top">
+      </a>
     </ul>
     <ul class="navbar-nav justify-content-end w-25">
       <li class="nav-item">
@@ -69,8 +73,7 @@
 					<i class="fa-solid fa-circle-user"></i> Hi, <?= $name ?>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-lg-end">
-						<li class="d-block d-sm-none"><a class="dropdown-item" href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" onclick="detailPegawai(<?= $pegawai_id?>)">User Info offcanvas</a></li>
-						<li class="d-none d-sm-block"><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">User Info</a></li>
+						<li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">User Info</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?= base_url('logout')?>">Keluar</a></li>
 					</ul>
@@ -81,10 +84,10 @@
   </nav>
 
   <!-- Bottom Navbar -->
-  <nav class="navbar navbar-dark bg-info navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none">
+  <nav class="navbar navbar-dark bg-navbar navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none">
     <ul class="navbar-nav nav-justified w-100">
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="<?= base_url('dashboardUser')?>" class="nav-link">
           <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
             <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
@@ -139,11 +142,6 @@
       <div class="d-flex justify-content-center">
         <img class="imageheader" src="<?= base_url('assets/dist/img/mirotaksm.png')?>" alt="" srcset="">
       </div>
-      <!-- <div class="d-flex justify-content-center m-4">
-        <h1 class="text-header">
-          <?= $pageHeader ?>
-        </h1>
-      </div> -->
     </div>
   </div>
   <?php } ?>
@@ -311,17 +309,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Off Detail Pegawai-->
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    ...
   </div>
 </div>
 
