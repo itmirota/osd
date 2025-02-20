@@ -68,7 +68,6 @@
             <th width="20vh">Nama Penguji</th>
             <th width="20vh">Jabatan dan Bagian</th>
             <th class="text-end">Pencapaian Kinerja</th>
-            <th class="text-end">Kualitas Kerja</th>
             <th class="text-end">Problem Solving</th>
             <th class="text-end">Inisiatif</th>
             <th class="text-end">Agility</th>
@@ -95,12 +94,6 @@
               ?>
               <?= $jawaban1[0]; ?>
               <p class="text-secondary-modal">catatan: <?= isset($jawaban1[1]) ? $jawaban1[1] :'' ?> </p>
-              </td>
-              <td class="text-start"><?php 
-              $jawaban2 = explode('|',$h->parameter2);
-              ?>
-              <?= $jawaban2[0] ?>
-              <p class="text-secondary-modal">catatan: <?= isset($jawaban2[1]) ? $jawaban2[1] :'' ?> </p>
               </td>
               <td class="text-start"><?php 
               $jawaban3 = explode('|',$h->parameter3);
