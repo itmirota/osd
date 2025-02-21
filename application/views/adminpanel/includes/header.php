@@ -380,18 +380,21 @@ if($role != ROLE_STAFF){ ?>
                     <span>Absensi Mesin</span>
                   </a>
                 </li> -->
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url('karyawan-terlambat'); ?>" class="sidebar-link">
-                    <span>Pelanggaran Karyawan</span>
-                  </a>
-                </li>
-                
               </ul>
             </li>
             <!-- /MENU ABSENSI -->
             <?php } ?>
           </ul>
         </li>
+        
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('pelanggaran-karyawan'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>Pelanggaran</span>
+          </a>
+        </li>
+        <?php }?>
 
         <?php
         if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)

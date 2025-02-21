@@ -129,9 +129,9 @@ $route['istirahat/(:any)'] = 'absensi/absensiIstirahat/$1';
 $route['laporan-istirahat'] = 'absensi/laporanIstirahat';
 $route['export-excel-istirahat'] = 'absensi/exportExcelIstirahat';
 
-// DATA TERLAMBAT
-$route['karyawan-terlambat'] = 'keterlambatan';
-$route['deleteketerlambatan/(:num)'] = 'keterlambatan/delete/$1';
+// DATA Pelanggaran
+$route['pelanggaran-karyawan'] = 'pelanggaran';
+$route['deletepelanggaran/(:num)'] = 'pelanggaran/delete/$1';
 
 
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';

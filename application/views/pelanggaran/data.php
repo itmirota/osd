@@ -1,20 +1,15 @@
 
 <div class="row">
-  <?php if(empty($this->uri->segment(2))){?>
+  <?php if($role == ROLE_HRGA | $role == ROLE_SUPERADMIN){?>
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addKeterlambatan"><i class="fa fa-plus"></i> Tambah Data</button>
   </div>
-  <?php }else{ ?> 
-    <div class="d-flex justify-content-between mb-4">
-      <a href="<?= base_url('Datadepartement')?>" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addKeterlambatan"><i class="fa fa-plus"></i> Tambah Data</button>
-    </div>
-  <?php } ?>
+  <?php }?>
 
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-          <h3 class="card-title">Data Keterlambatan</h3>
+          <h3 class="card-title">Data Pelanggaran</h3>
       </div><!-- /.box-header -->
       <div class="card-body">
         <div class="table-responsive no-padding">
@@ -23,8 +18,9 @@
           <tr>
             <th>No</th>
             <th class="text-center">Periode</th>  
-            <th class="text-center">Nama Pegawai</th>  
+            <th class="text-left">Nama Pegawai</th>  
             <th class="text-center">Jumlah</th>  
+            <th class="text-center">Sanksi</th>  
             <th class="text-center">#</th>
           </tr>
           </thead>
@@ -39,8 +35,12 @@
           <tr>
             <td><?= $no++ ?></td>
             <td class="text-center"><?= bulan(substr($data->periode, 5, 2)).' '.substr($data->periode, 0, 4) ?></td>
-            <td class="text-center"><?= $data->nama_pegawai ?></td>
-            <td class="text-center"><?= $data->jml_keterlambatan ?></td>
+            <td class="text-left">
+              <p class="m-0"><?= $data->nama_pegawai ?></p>
+              <p class="m-0" style="font-size:12px"><strong><?= $data->nama_divisi ?> / <?= $data->nama_departement ?></strong></p>
+            </td>
+            <td class="text-center"><?= $data->jml_pelanggaran ?> <?= $data->satuan ?></td>
+            <td class="text-center"><?= $data->sanksi ?></td>
             <td class="text-center">
             <div class="btn-group">
               <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,7 +49,7 @@
 
               <ul class="dropdown-menu">
                 <!-- <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_keterlambatan?>)">Edit Data</a></li> -->
-                <li><a class="dropdown-item" href="<?= base_url('deleteketerlambatan/'.$data->id_keterlambatan) ?>">Hapus Data</a></li>
+                <li><a class="dropdown-item" href="<?= base_url('deletepelanggaran/'.$data->id_pelanggaran) ?>">Hapus Data</a></li>
               </ul>
             </div>
             </td>
@@ -70,7 +70,7 @@
 <div class="modal fade" id="addKeterlambatan" tabindex="-1" aria-labelledby="addKeterlambatanLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="<?=base_url('keterlambatan/save')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('pelanggaran/save')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Tambah Data</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -92,8 +92,24 @@
               </select>
             </div>   
             <div class="col-md-12">
-              <label for="jml_keterlambatan" class="form-label">Jumlah Terlambat</label>
-              <input type="text" name="jml_keterlambatan" placeholder="Jumlah Terlambat" class="form-control tabel-PR" required />
+              <label for="jenis_pelanggaran" class="form-label">Jenis Pelanggaran</label>
+              <input type="text" name="jenis_pelanggaran" placeholder="Jenis Pelanggaran" class="form-control tabel-PR" required />
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+              <div class="col-md-6">
+                <label for="jml_pelanggaran" class="form-label">Jumlah Pelanggaran</label>
+                <input type="text" name="jml_pelanggaran" placeholder="Jumlah Pelanggaran" class="form-control tabel-PR" required />
+              </div>
+              <div class="col-md-6">
+                <label for="satuan" class="form-label">Satuan</label>
+                <input type="text" name="satuan" placeholder="Jam/kali" class="form-control tabel-PR" required />
+              </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label for="sanksi" class="form-label">Sanksi</label>
+              <input type="text" name="sanksi" placeholder="sanksi" class="form-control tabel-PR" required />
             </div>
           </div>
         </div>
