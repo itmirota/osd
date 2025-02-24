@@ -138,7 +138,7 @@
           <div class="row">
             <div class="col-md-12">
               <label for="pegawai_id" class="form-label">Nama Pegawai</label>
-              <input type="text" name="id_pelanggaran" id="id_pelanggaran" class="form-control tabel-PR"/>
+              <input type="hidden" name="id_pelanggaran" id="id_pelanggaran" class="form-control tabel-PR"/>
               <select class="form-select" style="width:100%" id="info_pegawai" name="pegawai_id">
                 <option readonly>-- nama pegawai --</option>
                 <?php foreach ($pegawai as $p){ ?>
