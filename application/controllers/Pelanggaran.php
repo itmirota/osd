@@ -87,7 +87,7 @@ class Pelanggaran extends BaseController
   }
 
   public function update(){
-    $periode = $this->input->post('periode');
+    $id_pelanggaran = $this->input->post('id_pelanggaran');
     $pegawai_id = $this->input->post('pegawai_id');
     $jenis_pelanggaran = $this->input->post('jenis_pelanggaran');
     $jml_pelanggaran = $this->input->post('jml_pelanggaran');
@@ -95,7 +95,6 @@ class Pelanggaran extends BaseController
     $sanksi = $this->input->post('sanksi');
 
     $data = array(
-      'periode' => $periode,
       'pegawai_id' => $pegawai_id,
       'jenis_pelanggaran' => $jenis_pelanggaran,
       'jml_pelanggaran' => $jml_pelanggaran,
@@ -103,12 +102,7 @@ class Pelanggaran extends BaseController
       'sanksi' => $sanksi,
     );
 
-
-    $where = array(
-      'id_pelanggaran' => $id_pelanggaran
-    );
-
-    $sql = $this->crud_model->update($where, $data,'tbl_pelanggaran');
+    $sql = $this->crud_model->update(['id_pelanggaran' => $id_pelanggaran], $data,'tbl_pelanggaran');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Diubah');
 

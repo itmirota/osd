@@ -19,6 +19,7 @@
             <th>No</th>
             <th class="text-center">Periode</th>  
             <th class="text-left">Nama Pegawai</th>  
+            <th class="text-left">Jenis Pelanggaran</th>  
             <th class="text-center">Jumlah</th>  
             <th class="text-center">Sanksi</th>  
             <th class="text-center">#</th>
@@ -39,6 +40,7 @@
               <p class="m-0"><?= $data->nama_pegawai ?></p>
               <p class="m-0" style="font-size:12px"><strong><?= $data->nama_divisi ?> / <?= $data->nama_departement ?></strong></p>
             </td>
+            <td class="text-left"><?= $data->jenis_pelanggaran ?></td>
             <td class="text-center"><?= $data->jml_pelanggaran ?> <?= $data->satuan ?></td>
             <td class="text-center"><?= $data->sanksi ?></td>
             <td class="text-center">
@@ -48,7 +50,7 @@
               </a>
 
               <ul class="dropdown-menu">
-                <!-- <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_keterlambatan?>)">Edit Data</a></li> -->
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pelanggaran?>)">Edit Data</a></li>
                 <li><a class="dropdown-item" href="<?= base_url('deletepelanggaran/'.$data->id_pelanggaran) ?>">Hapus Data</a></li>
               </ul>
             </div>
@@ -122,21 +124,75 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="editData" tabindex="-1" aria-labelledby="editDataLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="<?=base_url('pelanggaran/update')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Tambah Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="pegawai_id" class="form-label">Nama Pegawai</label>
+              <input type="text" name="id_pelanggaran" id="id_pelanggaran" class="form-control tabel-PR"/>
+              <select class="form-select" style="width:100%" id="info_pegawai" name="pegawai_id">
+                <option readonly>-- nama pegawai --</option>
+                <?php foreach ($pegawai as $p){ ?>
+                <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
+                <?php } ?>
+              </select>
+            </div>   
+            <div class="col-md-12">
+              <label for="jenis_pelanggaran" class="form-label">Jenis Pelanggaran</label>
+              <input type="text" name="jenis_pelanggaran" id="jenis_pelanggaran" placeholder="Jenis Pelanggaran" class="form-control tabel-PR" required />
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+              <div class="col-md-6">
+                <label for="jml_pelanggaran" class="form-label">Jumlah Pelanggaran</label>
+                <input type="text" id="jml_pelanggaran" name="jml_pelanggaran" placeholder="Jumlah Pelanggaran" class="form-control tabel-PR" required />
+              </div>
+              <div class="col-md-6">
+                <label for="satuan" class="form-label">Satuan</label>
+                <input type="text" id="satuan" name="satuan" placeholder="Jam/kali" class="form-control tabel-PR" required />
+              </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label for="sanksi" class="form-label">Sanksi</label>
+              <input type="text" id="sanksi" name="sanksi" placeholder="sanksi" class="form-control tabel-PR" required />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <script>
 
   function editData($id){
     $.ajax({
-      url:"<?php echo site_url("divisi/detaildivisi")?>/" + $id,
+      url:"<?php echo site_url("pelanggaran/detailpelanggaran")?>/" + $id,
       dataType:"JSON",
       type: "get",
       success:function(hasil){
-        const divisi = hasil.divisi;
-        document.getElementById("id_divisi").value = divisi.id_divisi;
-        document.getElementById("departement_id").value = divisi.departement_id;
-        document.getElementById("nama_divisi").value = divisi.nama_divisi;
-        document.getElementById("kadiv_id").value = divisi.kadiv_id;
-        document.getElementById("manager_id").value = divisi.manager_id;
+        const pelanggaran = hasil.pelanggaran;
+        console.log(pelanggaran);
+        document.getElementById("id_pelanggaran").value = pelanggaran.id_pelanggaran;
+        document.getElementById("info_pegawai").value = pelanggaran.pegawai_id;
+        document.getElementById("jenis_pelanggaran").value = pelanggaran.jenis_pelanggaran;
+        document.getElementById("jml_pelanggaran").value = pelanggaran.jml_pelanggaran;
+        document.getElementById("satuan").value = pelanggaran.satuan;
+        document.getElementById("sanksi").value = pelanggaran.sanksi;
       }
     });
   }
