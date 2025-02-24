@@ -243,6 +243,15 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU EVALUASI -->
 
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('pelanggaran-karyawan'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>Pelanggaran</span>
+          </a>
+        </li>
+        <?php }?>
+
         <?php
         if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
         {
@@ -265,9 +274,7 @@ if($role != ROLE_STAFF){ ?>
                     <span>Saldo</span>
                   </a>
                 </li>
-                <?php
-                }
-                ?>
+                <?php }?>
                 <li class="sidebar-item">
                   <a href="<?php echo base_url('pengirimanpaket'); ?>" class="sidebar-link">
                     <i class="fa-solid fa-cubes"></i>
@@ -299,7 +306,7 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
             <!-- /MENU KEBERSIHAN -->
 
-            <!-- MENU KEBERSIHAN -->
+            <!-- MENU Dokumen -->
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $jabatan_id <= 4)
             {
@@ -311,7 +318,7 @@ if($role != ROLE_STAFF){ ?>
               </a>
             </li>
             <?php } ?>
-            <!-- /MENU KEBERSIHAN -->
+            <!-- /MENU Dokumen -->
 
             <!-- MENU APPROVAL PERIZINAN -->
             <?php
@@ -386,24 +393,12 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
           </ul>
         </li>
-        
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('pelanggaran-karyawan'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span>Pelanggaran</span>
-          </a>
-        </li>
-        <?php }?>
 
         <?php
         if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)
         {
         ?>
         <!-- MENU SAMPLE -->
-        <li class="sidebar-header">
-          Sample
-        </li>
         <li class="sidebar-item">
           <a href="<?php echo base_url('permintaan-sample'); ?>" class="sidebar-link">
             <i class="fa-solid fa-clipboard-check"></i>
@@ -412,6 +407,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
         <!-- /MENU SAMPLE -->
+
         <?php
         if($role == ROLE_SUPERADMIN)
         {
@@ -426,6 +422,7 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         <?php } ?>
+
         <!-- <?php
         if($role != ROLE_POOL)
         {
