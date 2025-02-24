@@ -22,7 +22,9 @@
             <th class="text-left">Jenis Pelanggaran</th>  
             <th class="text-center">Jumlah</th>  
             <th class="text-center">Sanksi</th>  
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
             <th class="text-center">#</th>
+            <?php }?>
           </tr>
           </thead>
           <tbody>
@@ -43,6 +45,7 @@
             <td class="text-left"><?= $data->jenis_pelanggaran ?></td>
             <td class="text-center"><?= $data->jml_pelanggaran ?> <?= $data->satuan ?></td>
             <td class="text-center"><?= $data->sanksi ?></td>
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
             <td class="text-center">
             <div class="btn-group">
               <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,6 +58,7 @@
               </ul>
             </div>
             </td>
+            <?php } ?>
           </tr>
           <?php
               }
