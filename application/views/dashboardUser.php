@@ -99,6 +99,19 @@
       </a>
     </div>
 
+    <div class="col-3 m-1">
+      <a href="" data-bs-toggle="modal" data-bs-target="#addPengirimanPaket">
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-center mb-2">
+            <img class="img-menu" src="<?= base_url('assets/images/truck.png')?>">
+          </div>
+          <div class="d-flex justify-content-center text-header">
+            Pengiriman Paket
+          </div>
+        </div>
+      </a>
+    </div>
+
     <!-- <div class="col-3 m-1">
       <a href="<?= base_url('perizinan') ?>">
         <div class="d-flex flex-column">
@@ -241,6 +254,49 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addPengirimanPaket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="<?=base_url('kirimpaket')?>" role="form" id="addPengirimanPaket" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h1 class="modal-title fs-3" id="exampleModalLabel">Formulir Tambah Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="tgl_kirim" class="form-label">tanggal pengiriman</label>
+              <input type="date" name="tgl_kirim" class="form-control tabel-PR" required/>
+            </div> 
+            <div class="col-md-12">
+              <label for="deskripsi_paket" class="form-label">Deskripsi Paket</label>
+              <textarea  class="form-control tabel-PR" name="deskripsi_paket" cols="30" rows="5" required></textarea>
+            </div> 
+            <div class="col-md-12">
+              <label for="nama_penerima" class="form-label">Nama Penerima</label>
+              <input type="text" name="nama_penerima" placeholder="Nama penerima" class="form-control tabel-PR" required />
+            </div>
+            <div class="col-md-12">
+              <label for="ekspedisi" class="form-label">Nama Ekspedisi</label>
+              <input type="text" name="ekspedisi" placeholder="Nama Ekspedisi" class="form-control tabel-PR" required />
+            </div>
+            <div class="col-md-12">
+              <label for="alamat_penerima" class="form-label">Alamat Penerima</label>
+              <textarea  class="form-control tabel-PR" name="alamat_penerima" cols="30" rows="5" required></textarea>
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+      </form>
     </div>
   </div>
 </div>

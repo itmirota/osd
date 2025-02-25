@@ -46,6 +46,7 @@ $route['daftar-hadir'] = 'DaftarHadir';
 $route['laporan-daftar-hadir'] = 'DaftarHadir/laporan';
 
 $route['area-kerja'] = 'areaKerja';
+$route['kirimpaket'] = 'pengirimanpaket/save';
 
 
 /*********** MASTER DATA DEFINED ROUTES *******************/

@@ -46,6 +46,8 @@ class Pengirimanpaket extends BaseController
   public function save(){
     $this->isLoggedIn();
 
+    $page = $this->uri->segment(1);
+
     $pengirim_id = $this->pegawai_id;
     $tgl_kirim = $this->input->post('tgl_kirim');
     $deskripsi_paket = $this->input->post('deskripsi_paket');
@@ -64,6 +66,11 @@ class Pengirimanpaket extends BaseController
 
     $this->crud_model->input($data,'tbl_pengirimanpaket');
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
-    redirect('pengirimanpaket');
+
+    if($page = "kirimpaket"){
+      redirect('dashboardUser');
+    }else{
+      redirect('pengirimanpaket');
+    }
   }
 }
