@@ -77,10 +77,10 @@
                         <label for="parameter1" class="form-label">score</label>
                         <input type="text" name="parameter1" placeholder="contoh 100" class="form-control" required>
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan1" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan1" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
 
                     </div>
                   </div>
@@ -143,10 +143,10 @@
                         </select> -->
                         <input type="text" name="parameter3" placeholder="contoh 100" class="form-control" required>
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan3" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan3" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -178,10 +178,10 @@
                         </select> -->
                         <input type="text" name="parameter4" placeholder="contoh 100" class="form-control" required>
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan4" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan4" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -214,10 +214,10 @@
                         <input type="text" name="parameter5" placeholder="contoh 100" class="form-control" required>
 
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan5" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan5" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
 
                     </div>
                   </div>
@@ -251,10 +251,10 @@
                         <input type="text" name="parameter6" placeholder="contoh 100" class="form-control" required>
 
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan6" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan6" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -287,10 +287,10 @@
                         <input type="text" name="parameter7" placeholder="contoh 100" class="form-control" required>
 
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan7" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan7" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -322,10 +322,10 @@
                         </select> -->
                         <input type="text" name="parameter8" placeholder="contoh 100" class="form-control" required>
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan8" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan8" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
 
                     </div>
 
@@ -361,10 +361,10 @@
                         <input type="text" name="parameter9" placeholder="contoh 100" class="form-control" required>
 
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan9" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan9" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -397,10 +397,10 @@
                         <input type="text" name="parameter10" placeholder="contoh 100" class="form-control" required>
 
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan10" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan10" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -433,10 +433,10 @@
                         <input type="text" name="parameter11" placeholder="contoh 100" class="form-control" required>
 
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <label for="keterangan11" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
