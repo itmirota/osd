@@ -2,22 +2,16 @@
   <div class="col-12">
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">
-        <!-- <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
             <div class="p-2">
                 <strong>Periode:</strong>   
             </div>
             <div class="p-2">
-                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#filterAbsenToko">
-                Filter
-                </button>
-                <a href="<?= base_url('export-excel-istirahat/')?>" type="button" class="btn btn-success me-2">
+                <a href="" type="button" class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#ExportExcel">
                 Export Excel
                 </a>
-                <a href="<?= base_url('istirahat')?>" type="button" class="btn btn-warning">
-                Refresh
-                </a>
             </div>
-        </div> -->
+        </div>
         <table id="dataTable" class="table table-hover">
           <thead>
             <tr>
@@ -84,6 +78,33 @@
             <img src="" class="imagepreview" style="width: 100%;" >
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal Export -->
+  <div class="modal fade" id="ExportExcel" tabindex="-1" aria-labelledby="ExportExcel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?=base_url('absensi/exportExcelIstirahat')?>" role="form" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="col-md-6">
+                <label for="tgl_pembelian" class="form-label">Dari</label>
+                <input type="date" name="tgl_awal" class="form-control tabel-PR" />
+              </div>  
+              <div class="col-md-6">
+                <label for="tgl_pembelian" class="form-label">Sampai</label>
+                <input type="date" name="tgl_akhir" class="form-control tabel-PR" />
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Input</button>
+            </div>
+            </form>
+        </div>
     </div>
   </div>
 </div>

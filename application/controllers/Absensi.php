@@ -546,18 +546,17 @@ class Absensi extends BaseController
   }
   
   public function exportExcelIstirahat(){
-    $id = $this->uri->segment(2);
-    $periodeAwal = $this->uri->segment(3);
-    $periodeAkhir = $this->uri->segment(4);
-    $awal = strftime('%d/%b/%Y', strtotime($periodeAwal));
-    $akhir = strftime('%d/%b/%Y', strtotime($periodeAkhir));
+    $awal = $this->input->post('tgl_awal');
+    $akhir = $this->input->post('tgl_akhir');
+    $tgl_awal = strftime('%d/%b/%Y', strtotime($awal));
+    $tgl_akhir = strftime('%d/%b/%Y', strtotime($akhir));
 
     $where = array(
-      'date >=' => $periodeAwal,
-      'date <=' => $periodeAkhir,
+      'date >=' => $awal,
+      'date <=' => $akhir,
     );
 
-    $list_data = $this->absensi_model->ReportAbsenOnline($id, $where);
+    $list_data = $this->absensi_model->ReportAbsenIstirahat($where);
 
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
@@ -614,8 +613,8 @@ class Absensi extends BaseController
     $sheet->setCellValue('D5', 'Departement');
     $sheet->setCellValue('E5', 'Divisi');
     $sheet->setCellValue('F5', 'Tanggal');
-    $sheet->setCellValue('G5', 'Masuk');
-    $sheet->setCellValue('H5', 'Pulang');
+    $sheet->setCellValue('G5', 'Keluar');
+    $sheet->setCellValue('H5', 'Masuk');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -633,8 +632,8 @@ class Absensi extends BaseController
       $sheet->setCellValue('D'.$numrow, $ld->nama_departement);
       $sheet->setCellValue('E'.$numrow, $ld->nama_divisi);
       $sheet->setCellValue('F'.$numrow, $ld->date);
-      $sheet->setCellValue('G'.$numrow, $ld->time_in);
-      $sheet->setCellValue('H'.$numrow, $ld->time_out);
+      $sheet->setCellValue('G'.$numrow, $ld->time_out);
+      $sheet->setCellValue('H'.$numrow, $ld->time_in);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
@@ -659,10 +658,10 @@ class Absensi extends BaseController
     $writer = new Xlsx($spreadsheet);
     header('Content-Type: application/vnd.ms-excel');
 
-    if (!empty($periodeAwal) && !empty($periodeAkhir)){
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan" '.$awal.' - '.$akhir.'.xlsx');
+    if (!empty($tgl_awal) && !empty($tgl_akhir)){
+        header('Content-Disposition: attactchment;filename="Laporan Istirahat " '.$tgl_awal.' - '.$tgl_akhir.'.xlsx');
     }else{
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan".xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Istirahat".xlsx');
     }
 
     header('Cache-Control: max-age=0');
