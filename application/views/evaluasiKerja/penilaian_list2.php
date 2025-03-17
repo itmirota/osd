@@ -60,6 +60,7 @@
             </div>
             </div>
             <!-- 1 -->
+            <h3><strong>Soft Skill</strong></h3>
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
@@ -131,11 +132,11 @@
                       <p class="m-0"><strong>Deskripsi:</strong></p>
                       <p class="m-0">Tingkat proaktif dalam menyelesaikan tugas dan memberikan ide-ide baru.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">1. Frekuensi karyawan menyelesaikan tugas tambahan atau mengidentifikasi pekerjaan yang perlu diselesaikan tanpa diminta</p>
-                      <p class="m-0"  style="text-align:justify">2. Seberapa cepat karyawan menindaklanjuti tugas-tugas yang penting.</p>
-                      <p class="m-0"  style="text-align:justify">3. Frekuensi karyawan memberikan ide-ide baru yang bermanfaat.</p>
-                      <p class="m-0"  style="text-align:justify">4. Kualitas dan relevansi ide yang diajukan dalam konteks pekerjaan.</p>
-                      <p class="m-0"  style="text-align:justify">5. Dampak dari ide-ide yang diimplementasikan terhadap produktivitas tim atau perusahaan.</p>
+                      <p class="m-0"  style="text-align:left">1. Frekuensi karyawan menyelesaikan tugas tambahan atau mengidentifikasi pekerjaan yang perlu diselesaikan tanpa diminta</p>
+                      <p class="m-0"  style="text-align:left">2. Seberapa cepat karyawan menindaklanjuti tugas-tugas yang penting.</p>
+                      <p class="m-0"  style="text-align:left">3. Frekuensi karyawan memberikan ide-ide baru yang bermanfaat.</p>
+                      <p class="m-0"  style="text-align:left">4. Kualitas dan relevansi ide yang diajukan dalam konteks pekerjaan.</p>
+                      <p class="m-0"  style="text-align:left">5. Dampak dari ide-ide yang diimplementasikan terhadap produktivitas tim atau perusahaan.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -389,6 +390,7 @@
               </div>
             </div>
             <!-- 10 -->
+            <h3><strong>Hard Skill</strong></h3>
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
