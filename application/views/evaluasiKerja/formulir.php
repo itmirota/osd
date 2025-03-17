@@ -204,7 +204,7 @@
                     <input type="text" name="target10" class="form-control tabel-PR" required />
                   </div>
                   <div class="col-md-6">
-                    <label for="bobot10" class="form-label">hasil</label>
+                    <label for="bobot10" class="form-label">detail</label>
                     <input type="text" name="bobot10" class="form-control tabel-PR" required />
                   </div>
                 </div>
