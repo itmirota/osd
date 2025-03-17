@@ -258,7 +258,7 @@ class evaluasiKerja extends BaseController
     $hasil10 = ubahNilai($parameter10,$evaluasi->target10,$evaluasi->bobot10);
     $hasil11 = ubahNilai($parameter11,$evaluasi->target11,$evaluasi->bobot11);
 
-    $total_nilai = $hasil1+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil10+$hasil11;
+    $total_nilai = $hasil1+$hasil3+$hasil4+$hasil5+$hasil6+$hasil7+$hasil8+$hasil9+$hasil11;
 
     $data = array(
       'evaluasiKerja_id' => $evaluasiKerja_id,

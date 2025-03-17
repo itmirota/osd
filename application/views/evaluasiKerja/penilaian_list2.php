@@ -418,13 +418,13 @@
                           <option value="4">4</option>
                           <option value="5">5</option>
                         </select> -->
-                        <input type="text" name="parameter10" placeholder="contoh 100" class="form-control" required>
+                        <!-- <input type="text" name="parameter10" placeholder="contoh 100" class="form-control" value="0"> -->
 
                       </div>
-                      <!-- <div class="mb-3">
+                      <div class="mb-3">
                         <label for="keterangan10" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan10" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
+                      </div>
                     </div>
                   </div>
                 </div>
