@@ -31,6 +31,7 @@
               <input type="date" name="tgl_akhir_kontrak" class="form-control tabel-PR" required />
             </div>
             <hr>
+            <h3><strong>Soft Skill</strong></h3>
             <!-- target & bobot 1 -->
             <div class="card">
               <div class="card-body">
@@ -192,7 +193,7 @@
               </div>
             </div>
             <!-- target & bobot 9 -->
-
+            <h3><strong>Hard Skill</strong></h3>
             <!-- target & bobot 10 -->
             <div class="card">
               <div class="card-body">
