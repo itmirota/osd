@@ -34,7 +34,7 @@
             <!-- target & bobot 1 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Achievement & Action</label>
+                <label class="form-label">Agility</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target1" class="form-label">Target</label>
@@ -70,7 +70,7 @@
             <!-- target & bobot 3 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Problem Solving</label>
+                <label class="form-label">Inisiatif</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target3" class="form-label">Target</label>
@@ -88,7 +88,7 @@
             <!-- target & bobot 4 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Inisiatif</label>
+                <label class="form-label">Problem Solving</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target4" class="form-label">Target</label>
@@ -106,7 +106,7 @@
             <!-- target & bobot 5 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Agility</label>
+                <label class="form-label">Profesionals</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target5" class="form-label">Target</label>
@@ -124,7 +124,7 @@
             <!-- target & bobot 6 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Dicipline</label>
+                <label class="form-label">Communication</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target6" class="form-label">Target</label>
@@ -142,7 +142,7 @@
             <!-- target & bobot 7 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Communication</label>
+                <label class="form-label">Team Work</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target7" class="form-label">Target</label>
@@ -160,7 +160,7 @@
             <!-- target & bobot 8 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Team Work</label>
+                <label class="form-label">Etica</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target8" class="form-label">Target</label>
@@ -178,7 +178,7 @@
             <!-- target & bobot 9 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Etica</label>
+                <label class="form-label">Learning</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target9" class="form-label">Target</label>
@@ -196,7 +196,7 @@
             <!-- target & bobot 10 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Profesionals</label>
+                <label class="form-label">TUPOKSI</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target10" class="form-label">Target</label>
@@ -214,7 +214,7 @@
             <!-- target & bobot 11 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Learning</label>
+                <label class="form-label">Achievement & Action</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target11" class="form-label">Target</label>

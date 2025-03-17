@@ -65,12 +65,15 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Lingkup Kerja</h6>
-                      <h3><strong>Achievement & Action</strong></h3>
+                      <h6>Agility</h6>
+                      <h3><strong>Adaptif</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Sejauh mana karyawan mencapai target yang telah di tetapkan. Tingkat ketelitian, keefektifan, dan kualitas hasil kerja yang dihasilkan.</p>
+                      <p class="m-0">Kemampuan karyawan menyesuaikan diri dengan perubahan lingkungan kerja.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Target bulanan/semester yang telah ditentukan oleh leader dalam KPI & Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak</p>
+                      <p class="m-0" style="text-align:left">1. Frekuensi keluhan atau resistensi terhadap perubahan</p>
+                      <p class="m-0" style="text-align:left">2. Seberapa cepat karyawan mempelajari proses baru atau menggunakan alat kerja yang baru</p>
+                      <p class="m-0" style="text-align:left">3. Seberapa konsisten karyawan menunjukkan kemampuan beradaptasi seiring dengan perubahan yang terus berlangsung</p>
+                      <p class="m-0" style="text-align:left">4. Seberapa sering karyawan berpartisipasi dalam diskusi tim untuk mengatasi tantangan yang muncul dari perubahan</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -123,12 +126,16 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Lingkup Kerja</h6>
-                      <h3><strong>Problem Solving</strong></h3>
+                      <h6>Inisiatif</h6>
+                      <h3><strong>Inovatif & Proaktif</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan karyawan menghadapi dan mengatasi tantangan dalam pekerjaan</p>
+                      <p class="m-0">Tingkat proaktif dalam menyelesaikan tugas dan memberikan ide-ide baru.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyelesaikan tugas meski dalam situasi penuh tekanan, Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah baru & Kualitas dari solusi yang diberikan</p>
+                      <p class="m-0"  style="text-align:justify">1. Frekuensi karyawan menyelesaikan tugas tambahan atau mengidentifikasi pekerjaan yang perlu diselesaikan tanpa diminta</p>
+                      <p class="m-0"  style="text-align:justify">2. Seberapa cepat karyawan menindaklanjuti tugas-tugas yang penting.</p>
+                      <p class="m-0"  style="text-align:justify">3. Frekuensi karyawan memberikan ide-ide baru yang bermanfaat.</p>
+                      <p class="m-0"  style="text-align:justify">4. Kualitas dan relevansi ide yang diajukan dalam konteks pekerjaan.</p>
+                      <p class="m-0"  style="text-align:justify">5. Dampak dari ide-ide yang diimplementasikan terhadap produktivitas tim atau perusahaan.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -158,12 +165,14 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Lingkup Kerja</h6>
-                      <h3><strong>Inisiatif</strong></h3>
+                      <h6>Problem Solving</h6>
+                      <h3><strong>Resilience</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Tingkat proaktif dalam menyelesaikan tugas dan memberikan ide-ide baru.</p>
+                      <p class="m-0">Kemampuan karyawan menghadapi dan mengatasi tantangan dalam pekerjaan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi karyawan menyelesaikan tugas tambahan atau mengidentifikasi pekerjaan yang perlu diselesaikan tanpa diminta, Seberapa cepat karyawan menindaklanjuti tugas-tugas yang penting, Frekuensi karyawan memberikan ide-ide baru yang bermanfaat dan Kualitas dan relevansi ide yang diajukan dalam konteks pekerjaan serta Dampak dari ide-ide yang diimplementasikan terhadap produktivitas tim atau perusahaan.</p>
+                      <p class="m-0" style="text-align:left">1. Seberapa sering karyawan menyelesaikan tugas meski dalam situasi penuh tekanan</p>
+                      <p class="m-0" style="text-align:left">2. Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah bar</p>
+                      <p class="m-0" style="text-align:left">3. Kualitas dari solusi yang diberikan</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -194,11 +203,11 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>Lingkup Kerja</h6>
-                      <h3><strong>Agility</strong></h3>
+                      <h3><strong>Profesionals</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan karyawan menyesuaikan diri dengan perubahan lingkungan kerja</p>
+                      <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi keluhan atau resistensi terhadap perubahan, Seberapa cepat karyawan mempelajari proses baru atau menggunakan alat kerja yang baru, Seberapa konsisten karyawan menunjukkan kemampuan beradaptasi seiring dengan perubahan yang terus berlangsung, Seberapa sering karyawan berpartisipasi dalam diskusi tim untuk mengatasi tantangan yang muncul dari perubahan</p>
+                      <p class="m-0" style="text-align:justify">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -230,12 +239,14 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Dicipline</strong></h3>
+                      <h6>Communication</h6>
+                      <h3><strong>Etika Komunikasi</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Ketaatan terhadap aturan perusahaan dan waktu kerja.</p>
+                      <p class="m-0">Kemampuan berkomunikasi dengan baik dengan rekan kerja, atasan, dan pihak eksternal.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi pelanggaran peraturan perusahaan yang dilakukan, Seberapa sering tidak masuk kerja tanpa keterangan, Seberapa sering terlambat dan waktu kerja tidak sesuai peraturan perusahaan (dilihat dari absensi) serta seberapa efektif memanfaatkan total waktu kerja.</p>
+                      <p class="m-0" style="text-align:left">1. Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal)</p>
+                      <p class="m-0" style="text-align:left">2. Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja</p>
+                      <p class="m-0" style="text-align:left">3. Seberapa sering karyawan menjaga komunikasi dan hubungan yang baik dengan pihak eksternal, tanpa merusak nama baik perusahaan</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -266,12 +277,14 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Communication</strong></h3>
+                      <h6>Team Work</h6>
+                      <h3><strong>Sinergi</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan berkomunikasi dengan baik dengan rekan kerja, atasan, dan pihak eksternal.</p>
+                      <p class="m-0">Kemampuan bekerja sama dalam tim dan membangun hubungan yang baik dengan orang lain.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal).</p>
+                      <p class="m-0"  style="text-align:left">1. Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit.</p>
+                      <p class="m-0"  style="text-align:left">2. Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama.</p>
+                      <p class="m-0"  style="text-align:left">3. Seberapa sering karyawan menunjukkan sikap bersedia bekerja sama dengan satu tim atau departemen lain.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -302,12 +315,15 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Team Work</strong></h3>
+                      <h6>Etica</h6>
+                      <h3><strong>Integritas & Akuntable</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan bekerja sama dalam tim dan membangun hubungan yang baik dengan orang lain.</p>
+                      <p class="m-0">Integritas, kejujuran, dan tanggung jawab dalam bekerja.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit, Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama, Seberapa sering karyawan menunjukkan sikap bersedia bekerja sama dengan satu tim atau departemen lain.</p>
+                      <p class="m-0" style="text-align:left">1. Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan.</p>
+                      <p class="m-0" style="text-align:left">2. Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan.</p>
+                      <p class="m-0" style="text-align:left">3. Frekuensi karyawan mengakui kesalahan tanpa menyalahkan orang lain.</p>
+                      <p class="m-0" style="text-align:left">4. Frekuensi karyawan menyelesaikan tugas tanpa perlu diingatkan atau dipantau secara terus-menerus.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -340,12 +356,14 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Etika</strong></h3>
+                      <h6>Learning</h6>
+                      <h3><strong>Continues Improvement</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Integritas, kejujuran, dan tanggung jawab dalam bekerja.</p>
+                      <p class="m-0">Semangat karyawan untuk terus belajar.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0"  style="text-align:justify">Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan, Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan, Frekuensi karyawan mengakui kesalahan tanpa menyalahkan orang lain, Frekuensi karyawan menyelesaikan tugas tanpa perlu diingatkan atau dipantau secara terus-menerus.</p>
+                      <p class="m-0"  style="text-align:left">1. Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan.</p>
+                      <p class="m-0"  style="text-align:left">2. Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar.</p>
+                      <p class="m-0"  style="text-align:left">3. Seberapa baik karyawan menunjukkan perubahan positif setelah menerima revisi/feedback.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -376,12 +394,18 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Profesionals</strong></h3>
+                      <h6>TUPOKSI</h6>
+                      <h3><strong>Tugas Pokok Divisi</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
+                      <p class="m-0">Bertanggung jawab mengontrol perangkat keras dan jaringan (Komputer, Hardware, LAN dan CCTV).</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas, Seberapa sering karyawan menyelesaikan tugas dengan kualitas yang konsisten sesuai ekspektasi, Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja, Seberapa sering karyawan menjaga komunikasi dan hubungan yang baik dengan pihak eksternal, tanpa merusak nama baik perusahaan.</p>
+                      <p class="m-0" style="text-align:left">1. Perbaikan dan perawatan berkala hardware, jaringan, dan CCTV</p>
+                      <p class="m-0" style="text-align:left">2. Pengadaan hardware dan jaringan.</p>
+                      <p class="m-0" style="text-align:left">3. Instalasi, upgrade, konfigurasi, dan pemeliharaan sistem operasi (OS, Windows, Linux).</p>
+                      <p class="m-0" style="text-align:left">4. Pendataan berkala terkait dengan aset hardware.</p>
+                      <p class="m-0" style="text-align:left">5. Pembuatan laporan pembelian, tagihan, dan perawatan hardware dan jaringan.</p>
+                      <p class="m-0" style="text-align:left">6. Penanganan atas keluhan terkait hardware dan jaringan dari divisi lain.</p>
+                      <p class="m-0" style="text-align:left">7. Pencegahan virus dan malware.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -412,12 +436,13 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>Sikap & Perilaku</h6>
-                      <h3><strong>Learning</strong></h3>
+                      <h6>Achievement & Action</h6>
+                      <!-- <h3><strong>Learning</strong></h3> -->
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Semangat karyawan untuk terus belajar.</p>
+                      <p class="m-0">Sejauh mana karyawan mencapai target yang telah di tetapkan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan, Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar, Seberapa baik karyawan menunjukkan perubahan positif setelah menerima revisi/feedback.</p>
+                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
+                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
