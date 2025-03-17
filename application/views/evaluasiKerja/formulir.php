@@ -200,11 +200,11 @@
                 <label class="form-label">TUPOKSI</label>
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="target10" class="form-label">Target</label>
+                    <label for="target10" class="form-label">deskripsi</label>
                     <input type="text" name="target10" class="form-control tabel-PR" required />
                   </div>
                   <div class="col-md-6">
-                    <label for="bobot10" class="form-label">Bobot</label>
+                    <label for="bobot10" class="form-label">hasil</label>
                     <input type="text" name="bobot10" class="form-control tabel-PR" required />
                   </div>
                 </div>
