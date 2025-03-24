@@ -151,6 +151,19 @@
         </div>
       </a>
     </div>
+
+    <div class="col-3 m-1">
+      <a href="<?= base_url('absensi') ?>">
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-center mb-2">
+            <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+          </div>
+          <div class="d-flex justify-content-center text-header">
+            Absensi Online
+          </div>
+        </div>
+      </a>
+    </div>
     <?php }else{?>
     <div class="col-3 m-1">
       <a href="<?= base_url('absensi') ?>">
