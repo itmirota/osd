@@ -172,7 +172,7 @@
                       <p class="m-0">Kemampuan karyawan menghadapi dan mengatasi tantangan dalam pekerjaan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Seberapa sering karyawan menyelesaikan tugas meski dalam situasi penuh tekanan</p>
-                      <p class="m-0" style="text-align:left">2. Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah bar</p>
+                      <p class="m-0" style="text-align:left">2. Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah baru</p>
                       <p class="m-0" style="text-align:left">3. Kualitas dari solusi yang diberikan</p>
                     </div>
                     <div class="col-md-4">
@@ -208,7 +208,10 @@
                       <p class="m-0"><strong>Deskripsi:</strong></p>
                       <p class="m-0">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:justify">Tingkat profesionalisme dalam menjalankan tugas dan mewakili perusahaan.</p>
+                      <p class="m-0" style="text-align:left">1. Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas</p>
+                      <p class="m-0" style="text-align:left">2. Seberapa efektif memanfaatkan total waktu kerja</p>
+                      <p class="m-0" style="text-align:left">3. Seberapa sering karyawan menyelesaikan tugas dengan kualitas yang konsisten sesuai ekspektasi</p>
+                      <p class="m-0" style="text-align:left">4. Mampu menjaga nama baik perusahaan</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
@@ -399,15 +402,14 @@
                       <h6>TUPOKSI</h6>
                       <h3><strong>Tugas Pokok Divisi</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Bertanggung jawab mengontrol perangkat keras dan jaringan (Komputer, Hardware, LAN dan CCTV).</p>
+                      <p class="m-0">Bertanggung jawab atas pencapaian target penjualan dan penagihan, pengembangan wilayah, serta kelancaran distribusi produk. Mengawasi kinerja tim lapangan, memastikan produk tersalurkan dengan baik dan tidak kedaluwarsa, serta menjaga hubungan baik dengan pelanggan dan tenaga kesehatan guna mendukung pertumbuhan bisnis.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Perbaikan dan perawatan berkala hardware, jaringan, dan CCTV</p>
-                      <p class="m-0" style="text-align:left">2. Pengadaan hardware dan jaringan.</p>
-                      <p class="m-0" style="text-align:left">3. Instalasi, upgrade, konfigurasi, dan pemeliharaan sistem operasi (OS, Windows, Linux).</p>
-                      <p class="m-0" style="text-align:left">4. Pendataan berkala terkait dengan aset hardware.</p>
-                      <p class="m-0" style="text-align:left">5. Pembuatan laporan pembelian, tagihan, dan perawatan hardware dan jaringan.</p>
-                      <p class="m-0" style="text-align:left">6. Penanganan atas keluhan terkait hardware dan jaringan dari divisi lain.</p>
-                      <p class="m-0" style="text-align:left">7. Pencegahan virus dan malware.</p>
+                      <p class="m-0" style="text-align:left">1. Pencapaian Target Penjualan & Penagihan</p>
+                      <p class="m-0" style="text-align:left">2. Pengembangan Wilayah</p>
+                      <p class="m-0" style="text-align:left">3. Kinerja Tim Lapangan</p>
+                      <p class="m-0" style="text-align:left">4. Distribusi & Kelayakan Produk</p>
+                      <p class="m-0" style="text-align:left">5. Hubungan Pelanggan & Tenaga Kesehatan</p>
+                      <p class="m-0" style="text-align:left">6. Pelaporan dan Administrasi</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">

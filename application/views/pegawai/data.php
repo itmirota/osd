@@ -1639,6 +1639,7 @@
       }
     });
   }
+  
   function getDivisiByDept(){
     let departement = $("#departement_id").val();
     $.ajax({
