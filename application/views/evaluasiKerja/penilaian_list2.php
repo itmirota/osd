@@ -404,12 +404,11 @@
                       <p class="m-0"><strong>Deskripsi:</strong></p>
                       <p class="m-0">Bertanggung jawab atas pencapaian target penjualan dan penagihan, pengembangan wilayah, serta kelancaran distribusi produk. Mengawasi kinerja tim lapangan, memastikan produk tersalurkan dengan baik dan tidak kedaluwarsa, serta menjaga hubungan baik dengan pelanggan dan tenaga kesehatan guna mendukung pertumbuhan bisnis.</p>
                       <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Pencapaian Target Penjualan & Penagihan</p>
-                      <p class="m-0" style="text-align:left">2. Pengembangan Wilayah</p>
-                      <p class="m-0" style="text-align:left">3. Kinerja Tim Lapangan</p>
-                      <p class="m-0" style="text-align:left">4. Distribusi & Kelayakan Produk</p>
-                      <p class="m-0" style="text-align:left">5. Hubungan Pelanggan & Tenaga Kesehatan</p>
-                      <p class="m-0" style="text-align:left">6. Pelaporan dan Administrasi</p>
+                      <p class="m-0" style="text-align:left">1. Bertanggung jawab melakukan review produk Mirota dan maklon</p>
+                      <p class="m-0" style="text-align:left">2. Aktif dalam memberikan ide dan gagasan terkait keilmuan gizi dalam suatu konsep produk baru/reformulasi (baik produk Mirota maupun maklon)</p>
+                      <p class="m-0" style="text-align:left">3. Bertanggung jawab memberikan informasi produk Mirota yang up to date kepada department/pihak yang membutuhkan.</p>
+                      <p class="m-0" style="text-align:left">4. Aktif mencari rekanan makloon secara daring maupun luring</p>
+                      <p class="m-0" style="text-align:left">5.Fasilitator antara calon maupun rekanan dengan bagian operasional PT Mirota KSM mengenai alur maklon operasional (praproduksi dan produksi)</p>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
