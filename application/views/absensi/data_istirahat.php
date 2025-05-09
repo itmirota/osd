@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-end mb-4" >
-        <h3><?= $datenow ?></h3>
+        <h3><?=$datenow?></h3>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -57,7 +57,7 @@
                   <?php if (isset($ld->time_in)){ ?>
                   <?= $ld->time_in?>
                   <?php }else{ ?>
-                  <span class="badge text-bg-secondary">belum absen</span> 
+                  <span class="badge text-bg-secondary">Belum Absen</span> 
                   <?php } ?>
                 </td>
               </tr>
