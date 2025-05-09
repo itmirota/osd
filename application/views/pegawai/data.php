@@ -875,27 +875,37 @@
                 <label for="nama_anak" class="form-label">Nama Anak</label>
                 <textarea name="nama_anak" id="nama_anak" class="form-control tabel-PR"></textarea>
               </div>
+              <div class="col-md-10">
+                <h3><strong>Kontak Darurat</strong></h3>
+              </div>
               <hr>
               <div class="col-md-10">
-                <label for="nama_kontakdarurat1" class="form-label">Kontak Darurat</label>
-              </div>
-              <div class="col-md-10">
                 <label for="nama_kontakdarurat1" class="form-label">Nama Kontak Darurat 1</label>
-                <input type="text" name="nama_kontakdarurat1" id="nama_kontakdarurat1" class="form-control tabel-PR" />
+                <input type="text" id="nama_kontakdarurat1" readonly class="form-control" />
               </div>
               <div class="row">
                 <div class="col-md-5">
                   <label for="no_hpdarurat1" class="form-label">No. HP 1</label>
-                  <input type="text" name="no_hpdarurat1" id="no_hpdarurat1" class="form-control tabel-PR" />
+                  <input type="text" id="no_kontakdarurat1" class="form-control" />
                 </div>
                 <div class="col-md-5">
                   <label for="hubungan_darurat1" class="form-label">Hubungan Kontak Darurat 1</label>
-                  <input type="text" name="hubungan_darurat1" id="hubungan_darurat1" class="form-control tabel-PR" />
+                  <input type="text" id="hubungan_kontakdarurat1" class="form-control" />
                 </div>
               </div>
               <div class="col-md-10">
-                <label for="nama_kontakdarurat2" class="form-label">Nama Kontak Darurat 2</label>
-                <input type="text" name="nama_kontakdarurat2" id="nama_kontakdarurat2" class="form-control tabel-PR" />
+                <label for="nama_kontakdarurat1" class="form-label">Nama Kontak Darurat 2</label>
+                <input type="text" id="nama_kontakdarurat2" class="form-control" />
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="no_hpdarurat1" class="form-label">No. HP 2</label>
+                  <input type="text" id="no_kontakdarurat2" class="form-control" />
+                </div>
+                <div class="col-md-5">
+                  <label for="hubungan_darurat1" class="form-label">Hubungan Kontak Darurat 2</label>
+                  <input type="text" id="hubungan_kontakdarurat2" class="form-control" />
+                </div>
               </div>
             </div>
           </div>    
@@ -1290,6 +1300,12 @@
         document.getElementById("nama_ayah").value = pegawai.nama_ayah;
         document.getElementById("nama_pasangan").value = pegawai.nama_pasangan;
         document.getElementById("nama_anak").value = pegawai.nama_anak;
+        document.getElementById("nama_kontakdarurat1").value = pegawai.nama_kontakdarurat1;
+        document.getElementById("no_kontakdarurat1").value = pegawai.no_hpdarurat1;
+        document.getElementById("hubungan_kontakdarurat2").value = pegawai.hubungan_darurat2;
+        document.getElementById("nama_kontakdarurat2").value = pegawai.nama_kontakdarurat2;
+        document.getElementById("no_kontakdarurat2").value = pegawai.no_hpdarurat2;
+        document.getElementById("hubungan_kontakdarurat2").value = pegawai.hubungan_darurat2;
       }
     });
   }
