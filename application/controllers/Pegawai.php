@@ -1014,6 +1014,8 @@ class Pegawai extends BaseController
     $sheet->setCellValue('G5', 'Divisi');
     $sheet->setCellValue('H5', 'Tanggal Lahir');
     $sheet->setCellValue('I5', 'Agama');
+    $sheet->setCellValue('J5', 'Alamat');
+    $sheet->setCellValue('K5', 'Pendidikan');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -1023,6 +1025,8 @@ class Pegawai extends BaseController
     $sheet->getStyle('G5')->applyFromArray($style_col);
     $sheet->getStyle('H5')->applyFromArray($style_col);
     $sheet->getStyle('I5')->applyFromArray($style_col);
+    $sheet->getStyle('J5')->applyFromArray($style_col);
+    $sheet->getStyle('K5')->applyFromArray($style_col);
 
     $no = 1;
     $numrow = 6;
@@ -1035,6 +1039,8 @@ class Pegawai extends BaseController
       $sheet->setCellValue('G'.$numrow, $ld->nama_divisi);
       $sheet->setCellValue('H'.$numrow, $ld->tgl_lahir);
       $sheet->setCellValue('I'.$numrow, $ld->agama);
+      $sheet->setCellValue('J'.$numrow, $ld->alamat_domisili);
+      $sheet->setCellValue('K'.$numrow, $ld->pendidikan_terakhir.' '.$ld->jurusan);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
@@ -1043,6 +1049,8 @@ class Pegawai extends BaseController
       $sheet->getColumnDimension('G')->setAutoSize(true);
       $sheet->getColumnDimension('H')->setAutoSize(true);
       $sheet->getColumnDimension('I')->setAutoSize(true);
+      $sheet->getColumnDimension('J')->setAutoSize(true);
+      $sheet->getColumnDimension('K')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
@@ -1052,6 +1060,8 @@ class Pegawai extends BaseController
       $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;
