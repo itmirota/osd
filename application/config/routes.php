@@ -161,6 +161,9 @@ $route['izin'] = 'izin/listIzin';
 $route['approvalIzin/(:any)/(:any)'] = 'izin/approvalIzin/$1/$2';
 $route['pengajuanIzin'] = 'izin/listPengajuanIzin';
 
+// EVALUASI
+$route['evaluasi/(:num)'] = 'evaluasiKerja/list_evaluasi/$1';
+
 /*********** EVALUASI KINERJA DEFINED ROUTES *******************/
 $route['addJadwalEvaluasi'] = 'evaluasiKerja/jadwalEvaluasiKerja';
 $route['penilaianEvaluasi'] = 'evaluasiKerja';

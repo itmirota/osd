@@ -240,6 +240,32 @@ if($role != ROLE_STAFF){ ?>
             </li>
           </ul>
         </li>
+
+        <li class="sidebar-item has-submenu">
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <ul class="submenu collapse">
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('evaluasi/Kinerja'); ?>" class="sidebar-link">
+                <span>Evaluasi Kinjerja</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('evaluasi/Probation'); ?>" class="sidebar-link">
+                <span>Evaluasi Probation</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('evaluasi/Promosi'); ?>" class="sidebar-link">
+                <span>Evaluasi Promosi</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('evaluasi/Magang'); ?>" class="sidebar-link">
+                <span>Evaluasi Magang</span>
+              </a>
+            </li>
+          </ul>
+        </li>
         <?php } ?>
         <!-- /MENU EVALUASI -->
 

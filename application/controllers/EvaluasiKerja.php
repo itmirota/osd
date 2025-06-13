@@ -20,6 +20,13 @@ class evaluasiKerja extends BaseController
       $this->isLoggedIn();
   }
 
+  public function list_evaluasi(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';
+
+    $this->loadViews("evaluasi/data", $this->global, $data, NULL);
+  }
+
   public function index(){
     $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
     $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';
