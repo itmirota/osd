@@ -214,7 +214,10 @@ if($role != ROLE_STAFF){ ?>
         <!-- INVENTARIS -->
 
         <!-- MENU EVALUASI -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_KABAG | $role == ROLE_MANAGER){?>
+        <?php 
+        if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_KABAG | $role == ROLE_MANAGER){
+        $kategori = $this->crud_model->lihatdata('tbl_evaluasi_kategori');  
+        ?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -242,14 +245,21 @@ if($role != ROLE_STAFF){ ?>
         </li>
 
         <li class="sidebar-item has-submenu">
-          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
             <li class="sidebar-item">
-              <a href="<?php echo base_url('evaluasi/Kinerja'); ?>" class="sidebar-link">
-                <span>Evaluasi Kinjerja</span>
+              <a href="<?php echo base_url('soal-evaluasi'); ?>" class="sidebar-link">
+                <span>Soal Evaluasi</span>
               </a>
             </li>
+            <?php foreach ($kategori as $k) { ?>
             <li class="sidebar-item">
+              <a href="<?php echo base_url('evaluasi/'.$k->nama_evaluasi_kategori); ?>" class="sidebar-link">
+                <span>Evaluasi <?= $k->nama_evaluasi_kategori?></span>
+              </a>
+            </li>
+            <?php } ?>
+            <!-- <li class="sidebar-item">
               <a href="<?php echo base_url('evaluasi/Probation'); ?>" class="sidebar-link">
                 <span>Evaluasi Probation</span>
               </a>
@@ -263,7 +273,7 @@ if($role != ROLE_STAFF){ ?>
               <a href="<?php echo base_url('evaluasi/Magang'); ?>" class="sidebar-link">
                 <span>Evaluasi Magang</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <?php } ?>

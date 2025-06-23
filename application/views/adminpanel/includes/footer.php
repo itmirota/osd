@@ -123,6 +123,11 @@ if(isset($name)){ ?>
 				dropdownParent: $('#AddPeminjamanBarang')
 			});
 
+			$('#pegawai_id').select2({
+				theme: 'bootstrap-5',
+				dropdownParent: $('#AddDataEvaluasi')
+			});
+
 			const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 			const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 	});
