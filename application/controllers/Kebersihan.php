@@ -106,7 +106,7 @@ class Kebersihan extends BaseController
     $tahun = DATE('Y');
     
     $data = array(
-      'list_data' => $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun])
+      'list_data' => $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun],'"id_perawatan_ruangan","DESC"')
     );
 
     $this->loadViews("kebersihan/report", $this->global, $data, NULL);
@@ -147,7 +147,7 @@ class Kebersihan extends BaseController
     if(empty($tgl_mulai)){
       $list_data = $this->master_model->getPerawatanRuangan();
     }else{
-      $list_data = $this->master_model->getPerawatanRuanganbyWhere($where);
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere($where,'"id_perawatan_ruangan","DESC"');
     }
 
     $spreadsheet = new Spreadsheet();
