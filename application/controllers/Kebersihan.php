@@ -102,11 +102,20 @@ class Kebersihan extends BaseController
   public function report(){
     $this->global['pageTitle'] = 'Tim Kebersihan';
     $this->global['pageHeader'] = 'OSD | Data Kebersihan';
+    $periode = $this->input->post('periode');
     $bulan = DATE('m');
     $tahun = DATE('Y');
-    
+
+    $explode = explode("-",$periode);
+
+    if (!empty($periode)){
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $explode[1],'YEAR(tgl_perawatan)' => $explode[0]],'"id_perawatan_ruangan","DESC"');
+    }else{
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun],'"id_perawatan_ruangan","DESC"');
+    }
+
     $data = array(
-      'list_data' => $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun],'"id_perawatan_ruangan","DESC"')
+      'list_data' => $list_data
     );
 
     $this->loadViews("kebersihan/report", $this->global, $data, NULL);
