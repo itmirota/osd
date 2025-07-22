@@ -219,8 +219,8 @@ class evaluasiKerja extends BaseController
     $jabatan_bagian = $this->input->post('jabatan_bagian');
     $parameter1 = $this->input->post('parameter1');
     $keterangan1 = $this->input->post('keterangan1');
-    // $parameter2 = $this->input->post('parameter2');
-    // $keterangan2 = $this->input->post('keterangan2');
+    $parameter2 = $this->input->post('parameter2');
+    $keterangan2 = $this->input->post('keterangan2');
     $parameter3 = $this->input->post('parameter3');
     $keterangan3 = $this->input->post('keterangan3');
     $parameter4 = $this->input->post('parameter4');
