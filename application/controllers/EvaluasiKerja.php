@@ -74,6 +74,29 @@ class evaluasiKerja extends BaseController
     $bobot10 = $this->input->post('bobot10');
     $target11 = $this->input->post('target11');
     $bobot11 = $this->input->post('bobot11');
+    $target12 = $this->input->post('target12');
+    $bobot12 = $this->input->post('bobot12');
+    $target13 = $this->input->post('target13');
+    $bobot13 = $this->input->post('bobot13');
+    $target14 = $this->input->post('target14');
+    $bobot14 = $this->input->post('bobot14');
+    $target15 = $this->input->post('target15');
+    $bobot15 = $this->input->post('bobot15');
+    $target16 = $this->input->post('target16');
+    $bobot16 = $this->input->post('bobot16');
+    $target17 = $this->input->post('target17');
+    $bobot17 = $this->input->post('bobot17');
+    $target18 = $this->input->post('target18');
+    $bobot18 = $this->input->post('bobot18');
+    $target19 = $this->input->post('target19');
+    $bobot19 = $this->input->post('bobot19');
+    $target20 = $this->input->post('target20');
+    $bobot20 = $this->input->post('bobot20');
+    $target21 = $this->input->post('target21');
+    $bobot21 = $this->input->post('bobot21');
+    $target22 = $this->input->post('target22');
+    $bobot22 = $this->input->post('bobot22');
+    
     
 
     $pegawai = $this->pegawai_model->getPegawaibyId($id_pegawai);
@@ -107,6 +130,28 @@ class evaluasiKerja extends BaseController
       'bobot10' => $bobot10,
       'target11' => $target11,
       'bobot11' => $bobot11,
+      'target12' => $target12,
+      'bobot12' => $bobot12,
+      'target13' => $target13,
+      'bobot13' => $bobot13,
+      'target14' => $target14,
+      'bobot14' => $bobot14,
+      'target15' => $target15,
+      'bobot15' => $bobot15,
+      'target16' => $target16,
+      'bobot16' => $bobot16,
+      'target17' => $target17,
+      'bobot17' => $bobot17,
+      'target18' => $target18,
+      'bobot18' => $bobot18,
+      'target19' => $target19,
+      'bobot19' => $bobot19,
+      'target20' => $target20,
+      'bobot20' => $bobot20,
+      'target21' => $target21,
+      'bobot21' => $bobot21,
+      'target22' => $target22,
+      'bobot22' => $bobot22,
     );
 
     $query = $this->crud_model->input($data, 'tbl_evaluasikerja');
