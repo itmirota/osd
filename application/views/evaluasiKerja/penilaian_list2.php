@@ -67,9 +67,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>Manajemen Hubungan Pemasok (Supplier Relationship Management - SRM)</strong></h3>
+                      <h3><strong>Manajemen Limbah & Lingkungan (Environmental Management)</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Memiliki keahlian dalam membangun, memelihara, dan mengembangkan hubungan jangka panjang yang kuat dan saling menguntungkan dengan pemasok kunci. Ini termasuk evaluasi kinerja pemasok</p>
+                      <p class="m-0"> Mampu mengimplementasikan, memelihara, dan mengawasi sistem manajemen lingkungan (misalnya, ISO). Ini mencakup pengelolaan limbah B3 dan non-B3, pengurangan limbah, efisiensi sumber daya (air, energi), dan kepatuhan terhadap regulasi lingkungan</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Frekuensi keluhan atau resistensi terhadap perubahan</p>
                       <p class="m-0" style="text-align:left">2. Seberapa cepat karyawan mempelajari proses baru atau menggunakan alat kerja yang baru</p>
@@ -85,7 +85,6 @@
                         <label for="keterangan1" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan1" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div> -->
-
                     </div>
                   </div>
                 </div>
@@ -98,9 +97,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>Analisis Pasar & Sumber (Sourcing Analysis)</strong></h3>
+                      <h3><strong>Manajemen Proyek (terkait Kualitas)</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Mampu melakukan riset pasar untuk mengidentifikasi pemasok potensial baru, menganalisis tren harga komoditas, dan memahami dinamika penawaran-permintaan di pasar bahan baku FMCG.</p>
+                      <p class="m-0">Mampu mengelola proyek-proyek peningkatan kualitas, implementasi sistem baru, atau sertifikasi.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:justify">Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
                     </div>
@@ -113,10 +112,7 @@
                         <label for="keterangan2" class="form-label">Penjelasan</label>
                         <textarea class="form-control" name="keterangan2" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
                       </div>
-
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -128,9 +124,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>Analisis Biaya & Total Cost of Ownership (TCO)</strong></h3>
+                      <h3><strong>ERP (Enterprise Resource Planning)</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Keterampilan dalam menganalisis total biaya yang terkait dengan pembelian, bukan hanya harga beli, tetapi juga biaya pengiriman, penyimpanan, kualitas, dan risiko.</p>
+                      <p class="m-0">Mampu mengoperasikan dan memanfaatkan sistem informasi manufacture (misalnya, ERP atau MES).</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0"  style="text-align:left">1. Frekuensi karyawan menyelesaikan tugas tambahan atau mengidentifikasi pekerjaan yang perlu diselesaikan tanpa diminta</p>
                       <p class="m-0"  style="text-align:left">2. Seberapa cepat karyawan menindaklanjuti tugas-tugas yang penting.</p>
@@ -167,9 +163,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>Manajemen Risiko Rantai Pasok</strong></h3>
+                      <h3><strong>Manajemen Hubungan Vendor</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Mengidentifikasi dan memitigasi risiko-risiko dalam rantai pasok pembelian, seperti fluktuasi harga, gangguan pasokan, atau masalah kualitas pemasok.</p>
+                      <p class="m-0">Memiliki keahlian dalam membangun, memelihara, dan mengembangkan hubungan jangka panjang yang kuat dan saling menguntungkan dengan vendor. Ini termasuk evaluasi kinerja vendor pest control.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Seberapa sering karyawan menyelesaikan tugas meski dalam situasi penuh tekanan</p>
                       <p class="m-0" style="text-align:left">2. Seberapa cepat dan efektif karyawan menemukan solusi untuk masalah baru</p>
@@ -203,10 +199,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>Manajemen Kontrak</strong></h3>
+                      <h6>KNOWLEDGE COMPETENCY</h6>
+                      <h3><strong>Prinsip Lean Manufacturing & Six Sigma</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Mampu menyusun, meninjau, dan mengelola kontrak pembelian dengan pemasok, memastikan kepatuhan terhadap syarat dan ketentuan.</p>
+                      <p class="m-0">Memiliki pemahaman dan pengetahuan tentang metodologi untuk eliminasi pemborosan, peningkatan efisiensi, dan pengurangan variasi dalam proses.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Frekuensi kehadiran tepat waktu, termasuk kehadiran dalam rapat, dan waktu penyelesaian tugas</p>
                       <p class="m-0" style="text-align:left">2. Seberapa efektif memanfaatkan total waktu kerja</p>
@@ -242,10 +238,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>Project Management</strong></h3>
+                      <h6>KNOWLEDGE COMPETENCY</h6>
+                      <h3><strong>Manajemen Risiko Kualitas</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Mampu merencanakan, mengatur, dan mengendalikan proyek-proyek teknis yang kompleks, termasuk perencanaan, penganggaran, penjadwalan, dan pengendalian proyek.</p>
+                      <p class="m-0">Pengetahuan tentang bagaimana mengidentifikasi, menilai, dan memitigasi risiko-risiko yang dapat memengaruhi kualitas dan keamanan produkMemiliki pemahaman dan pengetahuan tentang metodologi untuk eliminasi pemborosan, peningkatan efisiensi, dan pengurangan variasi dalam proses.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Seberapa sering karyawan menyesuaikan gaya komunikasi mereka untuk lawan bicara yang berbeda (formal dengan atasan, lebih kasual dengan rekan kerja, profesional dengan pihak eksternal)</p>
                       <p class="m-0" style="text-align:left">2. Tingkat kesopanan dan perilaku profesional dalam interaksi dengan klien, mitra, dan rekan kerja</p>
@@ -280,10 +276,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>SKILL COMPETENCY</h6>
-                      <h3><strong>ERP (Enterprise Resource Planning)</strong></h3>
+                      <h6>KNOWLEDGE COMPETENCY</h6>
+                      <h3><strong>Production Process FMCG</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Mampu mengoperasikan dan memanfaatkan sistem informasi manufacture (misalnya, ERP atau MES).</p>
+                      <p class="m-0">Pemahaman menyeluruh tentang alur dan tahapan proses produksi FMCG di pabrik untuk mengidentifikasi critical control points (CCP) dan quality control points.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0"  style="text-align:left">1. Seberapa sering karyawan menunjukkan empati terhadap rekan kerja dalam situasi yang sulit.</p>
                       <p class="m-0"  style="text-align:left">2. Seberapa sering rekan kerja atau atasan merasa dapat mengandalkan dan mempercayai karyawan untuk membantu tugas bersama.</p>
@@ -319,9 +315,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Prinsip Lean Manufacturing & Six Sigma</strong></h3>
+                      <h3><strong>Sistem K3</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Memiliki pemahaman dan pengetahuan tentang metodologi untuk eliminasi pemborosan, peningkatan efisiensi, dan pengurangan variasi dalam proses.</p>
+                      <p class="m-0">Memahami sistem kesehatan, keselamatan, dan kecelakaan kerja.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Seberapa sering karyawan memberikan laporan yang jujur tanpa menyembunyikan kesalahan atau kegagalan.</p>
                       <p class="m-0" style="text-align:left">2. Tingkat kepercayaan atasan dan rekan kerja terhadap karyawan dalam menjaga kepentingan perusahaan.</p>
@@ -357,9 +353,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Prinsip-prinsip Pembelian Strategis</strong></h3>
+                      <h3><strong>Regulasi & Hukum</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pengetahuan tentang berbagai strategi pembelian (misalnya, pembelian global, single sourcing, multiple sourcing, make-or-buy decisions).</p>
+                      <p class="m-0">Pemahaman tentang peraturan perundang-undangan terkait industri FMCG, labelisasi, dan perlindungan konsumen.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0"  style="text-align:left">1. Frekuensi karyawan secara sukarela mengajukan/mengikuti pelatihan di luar tuntutan pekerjaan.</p>
                       <p class="m-0"  style="text-align:left">2. Jumlah kegiatan pengembangan diri yang dilakukan karyawan, seperti membaca buku, mengikuti webinar, atau menghadiri seminar.</p>
@@ -395,10 +391,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Manajemen Rantai Pasok (SCM)</strong></h3>
+                      <h6>PSYCOLOGICAL TRAIT</h6>
+                      <h3><strong>Achievement and Action</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pemahaman menyeluruh tentang bagaimana fungsi pembelian terintegrasi dalam seluruh rantai pasok, dari hulu hingga hilir.</p>
+                      <p class="m-0">Derajat kepedulian seseorang terhadap pekerjaannya sehingga ia terdorong berusaha untuk bekerja dengan lebih baik atau di atas standar.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Pencapaian Target Penjualan & Penagihan</p>
                       <p class="m-0" style="text-align:left">2. Pengembangan Wilayah</p>
@@ -436,10 +432,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Jenis Bahan Baku & Bahan Kemas FMCG</strong></h3>
+                      <h6>PSYCOLOGICAL TRAIT</h6>
+                      <h3><strong>Problem Solving</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pengetahuan mendalam tentang berbagai jenis bahan baku (misalnya, bahan kimia, bahan pangan, perasa, pengawet) dan bahan kemas (plastik, karton, metal, kaca) yang digunakan dalam produk FMCG, termasuk spesifikasi teknis dan persyaratan kualitasnya.</p>
+                      <p class="m-0">Kemampuan menganalisis, memilah situasi secara sistematis dan memberikan alternatif solusi untuk menyelesaikan masalah dengan memanfaatkan informasi yang valid.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
                       <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
@@ -473,10 +469,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Analisis Biaya & Struktur Harga Pemasok</strong></h3>
+                      <h6>PSYCOLOGICAL TRAIT</h6>
+                      <h3><strong>Business Orientation</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pemahaman tentang komponen biaya dalam produk atau layanan yang dibeli dan bagaimana pemasok menentukan harga.</p>
+                      <p class="m-0">Kemampuan untuk mengelola kinerja dan pemanfaatan sumber daya dengan prinsip-prinsip bisnis yang efektif dan efisien, serta melakukan pengembangan bisnis yang berkelanjutan.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
                       <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
@@ -510,10 +506,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Hukum Kontrak & Peraturan Perdagangan</strong></h3>
+                      <h6>PSYCOLOGICAL TRAIT</h6>
+                      <h3><strong>Initiative</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pengetahuan dasar tentang aspek hukum dalam kontrak pembelian, hak dan kewajiban, serta regulasi perdagangan.</p>
+                      <p class="m-0">Kemauan untuk bertindak tanpa menunggu perintah, termasuk mengantisipasi masalah atau peluang dan mengambil tindakan lebih awal untuk menyelesaikannya.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
                       <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
@@ -547,10 +543,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Manajemen Kualitas Pemasok</strong></h3>
+                      <h6>PSYCOLOGICAL TRAIT</h6>
+                      <h3><strong>Impact and Influence</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pengetahuan tentang standar kualitas (misalnya, ISO) dan bagaimana melakukan audit pemasok atau mengevaluasi kinerja kualitas mereka.</p>
+                      <p class="m-0">Tindakan, membujuk, meyakinkan mempengaruhi orang lain sehingga mau mendukung rencana perusahaan serta mempengaruhi dalam hal positif.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
                       <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
@@ -584,10 +580,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
-                      <h6>KNOWLEDGE COMPETENCY</h6>
-                      <h3><strong>Procurement Management</strong></h3>
+                      <h6>PSYCOLOGICAL TRAIT</h6>
+                      <h3><strong>Relationship Building</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Pengelolaan seluruh siklus pengadaan produk, termasuk pemilihan supplier, pertemuan, permintaan penawaran, klarifikasi..</p>
+                      <p class="m-0">Pengelolaan seluruh siklus pengadaan produk, termasuk pemilihan supplier, pertemuan, permintaan penawaran, klarifikasi.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
                       <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
@@ -622,9 +618,9 @@
                   <div class="row">
                     <div class="col-md-8">
                       <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Achievement and Action</strong></h3>
+                      <h3><strong>Communication</strong></h3>
                       <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Derajat kepedulian seseorang terhadap pekerjaannya sehingga ia terdorong berusaha untuk bekerja dengan lebih baik atau di atas standar.</p>
+                      <p class="m-0">Kemampuan untuk menerangkan pandangan dan gagasan secara jelas, sistematis disertai argumentasi yang logis dengan cara-cara yang sesuai baik secara lisan maupun tertulis; memastikan pemahaman; mendengarkan secara aktif dan efektif; mempersuasi, meyakinkan dan membujuk orang lain dalam rangka mencapai tujuan organisasi.</p>
                       <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
                       <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
                       <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
@@ -652,228 +648,6 @@
                 </div>
               </div>
             </div>
-            <!-- 17 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Problem Solving</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan menganalisis, memilah situasi secara sistematis dan memberikan alternatif solusi untuk menyelesaikan masalah dengan memanfaatkan informasi yang valid.</p>
-                      <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
-                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter17" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter17" placeholder="1 - 5" class="form-control" required>
-
-                      </div>
-                      <!-- <div class="mb-3">
-                        <label for="keterangan11" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 18 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Business Orientation</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan untuk mengelola kinerja dan pemanfaatan sumber daya dengan prinsip-prinsip bisnis yang efektif dan efisien, serta melakukan pengembangan bisnis yang berkelanjutan.</p>
-                      <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
-                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter18" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter18" placeholder="1 - 5" class="form-control" required>
-
-                      </div>
-                      <!-- <div class="mb-3">
-                        <label for="keterangan11" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 19 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Initiative</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemauan untuk bertindak tanpa menunggu perintah, termasuk mengantisipasi masalah atau peluang dan mengambil tindakan lebih awal untuk menyelesaikannya.</p>
-                      <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
-                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter19" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter19" placeholder="1 - 5" class="form-control" required>
-
-                      </div>
-                      <!-- <div class="mb-3">
-                        <label for="keterangan11" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 20 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Impact and Influence</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Tindakan, membujuk, meyakinkan mempengaruhi orang lain sehingga mau mendukung rencana perusahaan serta mempengaruhi dalam hal positif.</p>
-                      <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
-                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter20" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter20" placeholder="1 - 5" class="form-control" required>
-
-                      </div>
-                      <!-- <div class="mb-3">
-                        <label for="keterangan11" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 21 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Relationship Building</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Besarnya usaha untuk menjalin dan membina hubungan sosial atau jaringan hubungan sosial agar tetap hangat dan akrab.</p>
-                      <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
-                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter21" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter21" placeholder="1 - 5" class="form-control" required>
-
-                      </div>
-                      <!-- <div class="mb-3">
-                        <label for="keterangan11" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 22 -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h6>PSYCOLOGICAL TRAIT</h6>
-                      <h3><strong>Communication</strong></h3>
-                      <p class="m-0"><strong>Deskripsi:</strong></p>
-                      <p class="m-0">Kemampuan untuk menerangkan pandangan dan gagasan secara jelas, sistematis disertai argumentasi yang logis dengan cara-cara yang sesuai baik secara lisan maupun tertulis; memastikan pemahaman; mendengarkan secara aktif dan efektif; mempersuasi, meyakinkan dan membujuk orang lain dalam rangka mencapai tujuan organisasi.</p>
-                      <!-- <p class="m-0"><strong>Aspek Pengukuran:</strong></p>
-                      <p class="m-0" style="text-align:left">1. Target bulanan/semester yang telah ditentukan oleh leader dalam KPI.</p>
-                      <p class="m-0" style="text-align:left">2. Kualitas hasil kerja dari setiap program yang dibuat/target yang telah ditentukan sudah memenuhi standar atau belum serta melebihi batas waktu pengerjaan atau tidak.</p> -->
-                    </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="parameter22" class="form-label">score</label>
-                        <!-- <select class="form-select" name="parameter11"  aria-label="Default select example">
-                          <option selected>Pilih score</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select> -->
-                        <input type="text" name="parameter22" placeholder="1 - 5" class="form-control" required>
-
-                      </div>
-                      <!-- <div class="mb-3">
-                        <label for="keterangan11" class="form-label">Penjelasan</label>
-                        <textarea class="form-control" name="keterangan11" placeholder="Tulis keterangan disini" id="floatingTextarea"></textarea>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="col-md-12">
               <label for="kelebihan" class="form-label">Hal yang perlu dipertahankan dari yang bersangkutan (Kelebihan)</label>
               <textarea type="text" name="kelebihan" class="form-control tabel-PR"></textarea>
@@ -882,7 +656,7 @@
               <label for="kekurangan" class="form-label">Hal yang perlu ditingkatkan dari yang bersangkutan (Kekurangan)</label>
               <textarea type="text" name="kekurangan" class="form-control tabel-PR"></textarea>
             </div>
-            <!-- <div class="col-md-12">
+            <div class="col-md-12">
               <label for="rekomendasi" class="form-label">Layak Dipertahankan :</label>
               <select name="rekomendasi" class="form-select tabel-PR" placeholder="masukkan kategori disini" required>
                 <option>----- pilih kategori ---</option>
@@ -890,7 +664,7 @@
                 <option value="6">6 Bulan</option>
                 <option value="12">1 Tahun</option>
               </select>
-            </div> -->
+            </div>
           </div>
         </div>
     </div>
