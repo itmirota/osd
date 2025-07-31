@@ -1134,12 +1134,16 @@ class Pegawai extends BaseController
     $sheet->setCellValue('D5', 'Nama Karyawan');
     $sheet->setCellValue('E5', 'Departement');
     $sheet->setCellValue('F5', 'Divisi');
+    $sheet->setCellValue('G5', 'Tanggal Masuk');
+    $sheet->setCellValue('H5', 'Tanggal Keluar');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
     $sheet->getStyle('D5')->applyFromArray($style_col);
     $sheet->getStyle('E5')->applyFromArray($style_col);
     $sheet->getStyle('F5')->applyFromArray($style_col);
+    $sheet->getStyle('G5')->applyFromArray($style_col);
+    $sheet->getStyle('H5')->applyFromArray($style_col);
 
     $no = 1;
     $numrow = 6;
@@ -1149,17 +1153,23 @@ class Pegawai extends BaseController
       $sheet->setCellValue('D'.$numrow, $ld->nama_pegawai);
       $sheet->setCellValue('E'.$numrow, $ld->nama_departement);
       $sheet->setCellValue('F'.$numrow, $ld->nama_divisi);
+      $sheet->setCellValue('G'.$numrow, $ld->tgl_keluar);
+      $sheet->setCellValue('H'.$numrow, $ld->tgl_keluar);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
       $sheet->getColumnDimension('E')->setAutoSize(true);
       $sheet->getColumnDimension('F')->setAutoSize(true);
+      $sheet->getColumnDimension('G')->setAutoSize(true);
+      $sheet->getColumnDimension('H')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;
