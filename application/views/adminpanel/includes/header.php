@@ -111,6 +111,13 @@ if($role != ROLE_STAFF){ ?>
               </a>
             </li>
             <li class="sidebar-item">
+              <a href="<?php echo base_url('Databagian'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-people-group"></i>
+                <span>Data Bagian</span>
+              </a>
+            </li>
+            
+            <li class="sidebar-item">
               <a href="<?php echo base_url('area-kerja'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-line"></i>
                 <span>Data Area Kerja</span>

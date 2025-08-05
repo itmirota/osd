@@ -82,6 +82,11 @@ $route['Datadivisi'] = 'divisi';
 $route['Subdivisi/(:num)'] = 'divisi/getSubDivisi/$1';
 $route['deletedivisi/(:num)'] = "divisi/delete/$1";
 
+// BAGIAN
+$route['Databagian'] = 'bagian';
+$route['bagian/(:num)'] = 'bagian/bagianByDivisi/$1';
+$route['deletebagian/(:num)'] = "bagian/delete/$1";
+
 // BARANG
 $route['Databarang'] = 'barang';
 $route['deletebarang/(:num)'] = "barang/delete/$1";
