@@ -54,6 +54,9 @@
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- Summernote --> 
+  <link href="<?php echo base_url(); ?>assets/dist/summernote-0.9.0/summernote-bs5.min.css" rel="stylesheet">
+
   <style>
     #load{
       width: 100%;

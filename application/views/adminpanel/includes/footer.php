@@ -33,7 +33,7 @@ if(isset($name)){ ?>
 
 
 	<!-- jQuery 3 -->
-	<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 	<!-- Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
@@ -42,8 +42,6 @@ if(isset($name)){ ?>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
-
 
 	<!-- DataTable -->
 	<script src="https://cdn.dataTables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -62,6 +60,9 @@ if(isset($name)){ ?>
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+	<!-- Summernote -->
+	<script src="<?php echo base_url(); ?>assets/dist/summernote-0.9.0/summernote-bs5.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
 			$("#load").fadeOut(2000);
@@ -77,6 +78,12 @@ if(isset($name)){ ?>
 			indicator();
 			dataTableDashboard();
 			checklist();
+
+			$('.summernote').summernote({
+        placeholder: 'Tulis disini...',
+        tabsize: 2,
+        height: 100
+      });
 
 			$('.select2, .selectDivisi, .selectApproval, .selectApprovalEdit').select2({
 				theme: 'bootstrap-5',
