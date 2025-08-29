@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
     <h3 class="card-title">Data Assessment Karyawan Satu Tingkat</h3>
-    <?php if($role == ROLE_SUPERADMIN){?>
+    <?php if($role == ROLE_HRGA){?>
       <div class="p-2">
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-tambah">
         <i class="fas fa-plus"></i> Tambah Data
@@ -35,11 +35,18 @@
             <td><?= $ld->nilai ?></td>
             <td><?= $ld->keterangan ?></td> -->
             <td>
-                <a href="<?= base_url('assessment/penilaian/').$ld->id_pegawai?>" class="btn btn-primary btn-sm">
+                <?php if(is_null($ld->nilai)){ ?>
+                <a href="<?= base_url('assessment/penilaian/').$ld->pegawai_id?>" class="btn btn-primary btn-sm">
                     <i class="fas fa-pencil"></i> Penilaian
                 </a>
-                <a href="<?= base_url('assessment/delete/'.$ld->id_pegawai) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                <?php }else{ ?>
+                  <span class="badge rounded-pill text-bg-success">Sudah dinilai</span>
+                <?php } ?>
+                <!-- <a href="<?= base_url('assessment/delete/'.$ld->pegawai_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                     <i class="fas fa-trash"></i> Hapus
+                </a> -->
+                <a href="<?= base_url('assessment/hasilAssessment/').$ld->pegawai_id?>" class="btn btn-primary btn-sm">
+                  <i class="fas fa-eye"></i> Hasil
                 </a>
             </td>
         </tr>
