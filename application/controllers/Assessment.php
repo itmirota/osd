@@ -188,26 +188,60 @@ class Assessment extends BaseController
     $this->global['pageTitle'] = 'Assessment';
 
     $data['soal_value'] = $this->assessment_model->getSoal();
-    $data['kategori'] = $this->assessment_model->getKategori();
+    $data['kategori'] = $this->assessment_model->getKategori()->result();
     $data['id_pegawai'] = $id;
+    $data['pegawai'] =$this->crud_model->getdataRowbyWhere('nama_pegawai', 'id_pegawai ='.$id ,'tbl_pegawai');
 
     $this->loadViews("assessment/penilaian", $this->global, $data, NULL);
   }
 
-  public function save_penilaian(){
-    $id_pegawai = $this->input->post('id_pegawai');
-    $jawaban = $this->input->post('jawaban');
+  public function save_penilaian($id){
+    $penilai_id = $this->global['pegawai_id'];
+  
+    $jml_kategori = $this->assessment_model->getKategori()->num_rows();
+    $kategori = $this->assessment_model->getKategori()->result();
 
-    foreach ($jawaban as $soal_id => $nilai) {
-      $data = array(
-        'id_pegawai' => $id_pegawai,
-        'id_assessment_soal' => $soal_id,
-        'jawaban' => $nilai
-      );
-      $this->crud_model->input($data, 'tbl_assessment_jawaban');
+    for ($i=0; $i < $jml_kategori  ; $i++) { 
+      $soal[$i] = $this->assessment_model->getSoalWhere(['kategori' => $kategori[$i]->kategori])->result();
+      $count_soal[$i] = $this->assessment_model->getSoalWhere(['kategori' => $kategori[$i]->kategori])->num_rows();
+      
+      for ($j=0; $j < $count_soal[$i] ; $j++) { 
+        $jawaban[$i][$j] = $this->input->post('jawaban_'.$soal[$i][$j]->id_assessment_soal);
+        $jawaban[$i][$j] = $soal[$i][$j]->id_assessment_soal.':'.$jawaban[$i][$j];
+      }
+
+      $hasil[$i] = implode(',', $jawaban[$i]);
     }
+
+    $jawaban = implode(',', $hasil);
+    $data = array(
+      'pegawai_id' => $id,
+      'nilai' => $jawaban,
+      'penilai_id' => $penilai_id,
+      'tgl_assessment' => date('Y-m-d H:i:s')
+    );
+
+    $where = array (
+      'pegawai_id' => $id,
+      'penilai_id' => $penilai_id
+    );
+ 
+
+    $this->crud_model->update($where, $data, 'tbl_assessment');
 
     $this->set_notifikasi_swal('success','Berhasil','Penilaian Berhasil Disimpan');
     redirect('assessment');
+  }
+
+  public function hasilAssessment($id){
+    $this->global['pageTitle'] = 'Assessment';
+
+    $hasil = $this->assessment_model->getHasilAssessment($id);
+    $explode_hasil = explode(',',$hasil->nilai);
+
+    $data['explode_hasil'] = $explode_hasil;
+    $data['hasil'] = $hasil;
+
+    $this->loadViews("assessment/hasil", $this->global, $data, NULL);
   }
 }

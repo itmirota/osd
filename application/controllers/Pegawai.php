@@ -627,81 +627,40 @@ class Pegawai extends BaseController
     $sheet = $spreadsheet->getActiveSheet();
     
     $sheet->setCellValue('A1', 'NIK');
-    $sheet->setCellValue('B1', 'Nama Karyawan');
-    $sheet->setCellValue('C1', 'Jabatan');
-    $sheet->setCellValue('D1', 'Departement');
-    $sheet->setCellValue('E1', 'Status Karyawan');
-    $sheet->setCellValue('F1', 'Tempat Lahir');
-    $sheet->setCellValue('G1', 'Tanggal Lahir');
-    $sheet->setCellValue('H1', 'Shio');
-    $sheet->setCellValue('I1', 'Zodiak');
-    $sheet->setCellValue('J1', 'Weton');
-    $sheet->setCellValue('K1', 'Jenis Kelamin');
-    $sheet->setCellValue('L1', 'Pendidikan Terakhir');
-    $sheet->setCellValue('M1', 'Jurusan terakhir');
-    $sheet->setCellValue('N1', 'Golongan Darah');
-    $sheet->setCellValue('O1', 'Agama');
-    $sheet->setCellValue('P1', 'Alamat(KTP)');
-    $sheet->setCellValue('Q1', 'Alamat(Domisili)');
-    $sheet->setCellValue('R1', 'No. Kontak');
-    $sheet->setCellValue('S1', 'No. KK');
-    $sheet->setCellValue('T1', 'No. KTP');
-    $sheet->setCellValue('U1', 'No. Jamsostek');
-    $sheet->setCellValue('V1', 'No. BPJSKes');
-    $sheet->setCellValue('W1', 'NPWP');
-    $sheet->setCellValue('X1', 'Tanggal Masuk');
-    $sheet->setCellValue('Y1', 'Tanggal Selesai');
-    $sheet->setCellValue('Z1', 'Durasi Kontrak');
-    $sheet->setCellValue('AA1', 'kuota Cuti');
-    $sheet->setCellValue('AB1', 'Sisa Cuti Tahun Lalu');
-    $sheet->setCellValue('AC1', 'Email');
-    $sheet->setCellValue('AD1', 'Nama Ibu');
-    $sheet->setCellValue('AE1', 'Status Pernikahan');
-    $sheet->setCellValue('AF1', 'Nama Ayah');
-    $sheet->setCellValue('AG1', 'Nama Pasangan');
-    $sheet->setCellValue('AH1', 'Nama Anak');
-    $sheet->setCellValue('AI1', 'Username');
-    $sheet->setCellValue('AJ1', 'Password');
-    $sheet->setCellValue('AK1', 'Role');
-
-
-    $sheet->setCellValue('A2', '0001');
-    $sheet->setCellValue('B2', 'Albert');
-    $sheet->setCellValue('C2', '5');
-    $sheet->setCellValue('D2', '6');
-    $sheet->setCellValue('E2', 'tetap/kontrak');
-    $sheet->setCellValue('F2', 'yogyakarta');
-    $sheet->setCellValue('G2', '2024-07-08 (thn-bln-tgl)');
-    $sheet->setCellValue('H2', 'Jaran Kepang');
-    $sheet->setCellValue('I2', 'Taurus');
-    $sheet->setCellValue('J2', 'Pon');
-    $sheet->setCellValue('K2', 'L');
-    $sheet->setCellValue('L2', 'S1');
-    $sheet->setCellValue('M2', 'S1 Perhutanan');
-    $sheet->setCellValue('N2', 'AB');
-    $sheet->setCellValue('O2', 'Islam');
-    $sheet->setCellValue('P2', 'jalan xxx');
-    $sheet->setCellValue('Q2', 'jalan xxx');
-    $sheet->setCellValue('R2', '082323456');
-    $sheet->setCellValue('S2', '347611330827');
-    $sheet->setCellValue('T2', '347611330827');
-    $sheet->setCellValue('U2', '347611330827');
-    $sheet->setCellValue('V2', '347611330827');
-    $sheet->setCellValue('W2', '(kosongkan jika tidak ada)');
-    $sheet->setCellValue('X2', '2024-07-08 (thn-bln-tgl)');
-    $sheet->setCellValue('Y2', '2024-07-08 (thn-bln-tgl)');
-    $sheet->setCellValue('Z2', '12');
-    $sheet->setCellValue('AA2', '12');
-    $sheet->setCellValue('AB2', '0');
-    $sheet->setCellValue('AC2', 'Email@gmail.com');
-    $sheet->setCellValue('AD2', 'Tukini');
-    $sheet->setCellValue('AE2', 'Tukini');
-    $sheet->setCellValue('AF2', 'menikah/lajang');
-    $sheet->setCellValue('AG2', 'Gudil Godel');
-    $sheet->setCellValue('AH2', 'Gudil Godel');
-    $sheet->setCellValue('AI2', 'albert');
-    $sheet->setCellValue('AJ2', 'albert');
-    $sheet->setCellValue('AK2', '8');
+    $sheet->setCellValue('B1', 'NIK Absensi');
+    $sheet->setCellValue('C1', 'Nama Karyawan');
+    $sheet->setCellValue('D1', 'Jabatan');
+    $sheet->setCellValue('E1', 'Bagian');
+    $sheet->setCellValue('F1', 'Penempatan');
+    $sheet->setCellValue('G1', 'Status Karyawan');
+    $sheet->setCellValue('H1', 'Tempat Lahir');
+    $sheet->setCellValue('I1', 'Tanggal Lahir');
+    $sheet->setCellValue('J1', 'Jenis Kelamin');
+    $sheet->setCellValue('K1', 'Pendidikan Terakhir');
+    $sheet->setCellValue('L1', 'Jurusan terakhir');
+    $sheet->setCellValue('M1', 'Golongan Darah');
+    $sheet->setCellValue('N1', 'Agama');
+    $sheet->setCellValue('O1', 'Alamat(KTP)');
+    $sheet->setCellValue('P1', 'Alamat(Domisili)');
+    $sheet->setCellValue('Q1', 'No. Kontak');
+    $sheet->setCellValue('R1', 'No. KK');
+    $sheet->setCellValue('S1', 'No. KTP');
+    $sheet->setCellValue('T1', 'No. Jamsostek');
+    $sheet->setCellValue('U1', 'No. BPJSKes');
+    $sheet->setCellValue('V1', 'NPWP');
+    $sheet->setCellValue('W1', 'Tanggal Masuk');
+    $sheet->setCellValue('X1', 'Tanggal Selesai');
+    $sheet->setCellValue('Y1', 'Tanggal Kontrak Terakhir');
+    $sheet->setCellValue('Z1', 'Email');
+    $sheet->setCellValue('AA1', 'Email Perusahaan');
+    $sheet->setCellValue('AB1', 'Nama Ibu');
+    $sheet->setCellValue('AC1', 'Nama Ayah');
+    $sheet->setCellValue('AD1', 'Status Pernikahan');
+    $sheet->setCellValue('AE1', 'Nama Pasangan');
+    $sheet->setCellValue('AF1', 'Nama Anak');
+    // $sheet->setCellValue('AI1', 'Username');
+    // $sheet->setCellValue('AJ1', 'Password');
+    // $sheet->setCellValue('AK1', 'Role');
 
     $sheet->getColumnDimension('A')->setAutoSize(true);
     $sheet->getColumnDimension('B')->setAutoSize(true);
@@ -731,14 +690,6 @@ class Pegawai extends BaseController
     $sheet->getColumnDimension('Z')->setAutoSize(true);
     $sheet->getColumnDimension('AA')->setAutoSize(true);
     $sheet->getColumnDimension('AB')->setAutoSize(true);
-    $sheet->getColumnDimension('AC')->setAutoSize(true);
-    $sheet->getColumnDimension('AD')->setAutoSize(true);
-    $sheet->getColumnDimension('AE')->setAutoSize(true);
-    $sheet->getColumnDimension('AF')->setAutoSize(true);
-    $sheet->getColumnDimension('AG')->setAutoSize(true);
-    $sheet->getColumnDimension('AH')->setAutoSize(true);
-    $sheet->getColumnDimension('AJ')->setAutoSize(true);
-    $sheet->getColumnDimension('AK')->setAutoSize(true);
 
     $writer = new Xlsx($spreadsheet);
     $writer->save("php://output");
@@ -831,81 +782,60 @@ class Pegawai extends BaseController
     {
       $data=array();
       for ($i=1; $i < $sheetcount; $i++) {         
-        $nip=sprintf("%04s", $sheetdata[$i][0]);
-        $nama_pegawai=$sheetdata[$i][1];
-        $jabatan_id=$sheetdata[$i][2];
-        $divisi_id=$sheetdata[$i][3];
-        $status_pegawai=$sheetdata[$i][4];
-        $tempat_lahir=$sheetdata[$i][5];
-        $tgl_lahir=$sheetdata[$i][6];
-        $shio=$sheetdata[$i][7];
-        $zodiak=$sheetdata[$i][8];
-        $weton=$sheetdata[$i][9];
-        $jenis_kelamin=$sheetdata[$i][10];
-        $pendidikan_terakhir=$sheetdata[$i][11];
-        $jurusan=$sheetdata[$i][12];
-        $golongan_darah=$sheetdata[$i][13];
-        $agama=$sheetdata[$i][14];
-        $alamat_ktp=$sheetdata[$i][15];
-        $alamat_domisili=$sheetdata[$i][16];
-        $kontak_pegawai=$sheetdata[$i][17];
-        $no_kk=$sheetdata[$i][18];
-        $no_ktp=$sheetdata[$i][19];
-        $no_jamsostek=$sheetdata[$i][20];
-        $no_bpjsKesehatan=$sheetdata[$i][21];
-        $no_npwp=$sheetdata[$i][22];
-        $tgl_masuk=$sheetdata[$i][23];
-        $tgl_selesai=$sheetdata[$i][24];
-        $durasi_kontrak=$sheetdata[$i][25];
-        $kuota_cuti=$sheetdata[$i][26];
-        $sisa_cuti=$sheetdata[$i][27];
-        $email_pegawai=$sheetdata[$i][28];
-        $nama_ibu=$sheetdata[$i][29];
-        $nama_ayah=$sheetdata[$i][30];
-        $status_pernikahan=$sheetdata[$i][31];
-        $nama_pasangan=$sheetdata[$i][32];
-        $nama_anak=$sheetdata[$i][33];
-        $username=$sheetdata[$i][34];
-        $password=$sheetdata[$i][35];
-        $role=$sheetdata[$i][36];
+        $nip=$sheetdata[$i][0];
+        $no_absensi=$sheetdata[$i][1];
+        $nama_pegawai=$sheetdata[$i][2];
+        $jabatan_id=$sheetdata[$i][3];
+        $bagian_id=$sheetdata[$i][4];
+        $penempatan_id=$sheetdata[$i][5];
+        $status_pegawai=$sheetdata[$i][6];
+        $tempat_lahir=$sheetdata[$i][7];
+        $tgl_lahir=$sheetdata[$i][8];
+        $shio=shio($tgl_lahir);
+        $zodiak=zodiak($tgl_lahir);
+        $weton=weton($tgl_lahir);
+        $jenis_kelamin=$sheetdata[$i][9];
+        $pendidikan_terakhir=$sheetdata[$i][10];
+        $jurusan=$sheetdata[$i][11];
+        $golongan_darah=$sheetdata[$i][12];
+        $agama=$sheetdata[$i][13];
+        $alamat_ktp=$sheetdata[$i][14];
+        $alamat_domisili=$sheetdata[$i][15];
+        $kontak_pegawai=$sheetdata[$i][16];
+        $no_kk=$sheetdata[$i][17];
+        $no_ktp=$sheetdata[$i][18];
+        $no_jamsostek=$sheetdata[$i][19];
+        $no_bpjsKesehatan=$sheetdata[$i][20];
+        $no_npwp=$sheetdata[$i][21];
+        $tgl_masuk=$sheetdata[$i][22];
+        $tgl_selesai=$sheetdata[$i][23];
+        $tgl_kontrak_terakhir=$sheetdata[$i][24];
+        $email_pegawai=$sheetdata[$i][25];
+        $email_kantor=$sheetdata[$i][26];
+        $nama_ibu=$sheetdata[$i][27];
+        $nama_ayah=$sheetdata[$i][28];
+        $status_pernikahan=strtolower($sheetdata[$i][29]);
+        $nama_pasangan=$sheetdata[$i][30];
+        $nama_anak=$sheetdata[$i][31];
+        // $username=$sheetdata[$i][34];
+        // $password=$sheetdata[$i][35];
+        // $role=$sheetdata[$i][36];
 
-        $explodeWeton = explode(" ",$weton);
-
-        switch ($explodeWeton[0]){
-          case("Sunday"):
-            $weton = "Minggu";
-          break;
-          case("Monday"):
-            $weton = "Senin";
-          break;
-          case("Tuesday"):
-            $weton = "Selasa";
-          break;
-          case("Wednesday"):
-            $weton = "Rabu";
-          break;
-          case("Thursday"):
-            $weton = "Kamis";
-          break;
-          case("Friday"):
-            $weton = "Jumat";
-          break;
-          case("Saturday"):
-            $weton = "Sabtu";
-          break;
-        }
+        var_dump($tgl_lahir);
 
         $data[]=array(
           'nip'=> $nip,
+          'no_absensi'=> $no_absensi,
           'nama_pegawai'=>$nama_pegawai,
           'jabatan_id'=>$jabatan_id,
-          'divisi_id'=>$divisi_id,
+          'bagian_id'=>$bagian_id,
+          'penempatan_id'=>$penempatan_id,
           'status_pegawai'=>$status_pegawai,
           'tempat_lahir'=>$tempat_lahir,
           'tgl_lahir'=>$tgl_lahir,
           'shio'=>$shio,
           'zodiak'=>$zodiak,
-          'weton'=>$weton.' '.$explodeWeton[1],
+          'weton'=>$weton,
           'jenis_kelamin'=>$jenis_kelamin,
           'pendidikan_terakhir'=>$pendidikan_terakhir,
           'jurusan'=>$jurusan,
@@ -921,28 +851,28 @@ class Pegawai extends BaseController
           'no_npwp'=>$no_npwp,
           'tgl_masuk'=>$tgl_masuk,
           'tgl_selesai'=>$tgl_selesai,
-          'durasi_kontrak'=>$durasi_kontrak,
-          'kuota_cuti'=>$kuota_cuti,
-          'sisa_cuti'=>$sisa_cuti,
+          'tgl_kontrak_terakhir'=>$tgl_kontrak_terakhir,
+          'email_kantor'=>$email_kantor,
           'email_pegawai'=>$email_pegawai,
           'nama_ibu'=>$nama_ibu,
+          'nama_ayah'=>$nama_ayah,
           'status_pernikahan'=>$status_pernikahan,
           'nama_pasangan'=>$nama_pasangan,
           'nama_anak'=>$nama_anak,
         );
 
-        $datauser[] = array(
-          'username'=>$username,
-          'password'=>getHashedPassword($password),
-          'nip'=>$nip,
-          'roleId'=>$role,
-          'createdDtm'=>DATE('Y-m-d H:i:s'),
-          'createdBy'=>1,
-        );
+        // $datauser[] = array(
+        //   'username'=>$username,
+        //   'password'=>getHashedPassword($password),
+        //   'nip'=>$nip,
+        //   'roleId'=>$role,
+        //   'createdDtm'=>DATE('Y-m-d H:i:s'),
+        //   'createdBy'=>1,
+        // );
       }
 
-      $inserdata=$this->crud_model->save_batch('tbl_pegawai',$data);
-      $inserdata=$this->crud_model->save_batch('tbl_users',$datauser);
+      $inserdata=$this->crud_model->save_batch('tbl_pegawai_new',$data);
+      // $inserdata=$this->crud_model->save_batch('tbl_users',$datauser);
       if($inserdata)
       {
         $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Diinput');

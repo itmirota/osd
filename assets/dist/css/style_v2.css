@@ -41,7 +41,17 @@
   html, body {
     margin: 0;
     padding: 0;
-    font-size: 14px;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1vw, 1.25rem);
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .main-page{
+    padding:0 0 15dvh 0;
   }
 
   .navbar-logo{
@@ -49,17 +59,34 @@
     height:auto;
   }
 
-  @media (max-width:576px){
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-size: 10px;
-    }
+  .svg-menu {
+     fill :#003366;
+     width:8dvh;
+     height:8dvh;
+  }
 
+  @media (max-width:576px){
     .navbar-logo{
       width:6em;
       height:auto;
     }
+  }
+
+  h1{
+    font-size: 4em;
+  }
+
+  h3{
+    font-size: 1.5em;
+    font-weight:bold;
+  }
+
+  h4{
+    font-size: 1.125em;
+  }
+
+  .caption-text{
+    font-size: clamp(0.875rem, 2vw, 1rem);
   }
 
   .bg-navbar{
@@ -282,7 +309,9 @@
 }
 
 .img-menu{
-  width: 60px;
+  max-width: 15dvh;
+  width: 80%;
+  height: auto;
   padding:1rem;
   border-radius:15%;
   background: rgb(255,255,255);
