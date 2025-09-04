@@ -41,17 +41,17 @@ class User extends BaseController
         $role = $this->global ['role'];
         $loginType = $this->global ['loginType'];
 
-        if ($role == ROLE_HRGA || $role == ROLE_POOL){
-          $CountCuti = COUNT($this->perizinan_model->getData());
-          $CountIzin = COUNT($this->Izin_model->getData());
-          $CountIzinHarian = COUNT($this->izinHarian_model->getData());
-          $CountTugas = COUNT($this->perizinan_model->getTugas());
-        }else{
-          $CountCuti = COUNT($this->perizinan_model->getDatabyApproval($id));
-          $CountIzin = COUNT($this->Izin_model->getDatabyApproval($id));
-          $CountIzinHarian = COUNT($this->izinHarian_model->getDatabyApproval($id));
-          $CountTugas = COUNT($this->perizinan_model->getTugasbyApproval($id));
-        }
+        // if ($role == ROLE_HRGA || $role == ROLE_POOL){
+        //   $CountCuti = COUNT($this->perizinan_model->getData());
+        //   $CountIzin = COUNT($this->Izin_model->getData());
+        //   $CountIzinHarian = COUNT($this->izinHarian_model->getData());
+        //   $CountTugas = COUNT($this->perizinan_model->getTugas());
+        // }else{
+        //   $CountCuti = COUNT($this->perizinan_model->getDatabyApproval($id));
+        //   $CountIzin = COUNT($this->Izin_model->getDatabyApproval($id));
+        //   $CountIzinHarian = COUNT($this->izinHarian_model->getDatabyApproval($id));
+        //   $CountTugas = COUNT($this->perizinan_model->getTugasbyApproval($id));
+        // }
 
         if($role == ROLE_MANAGER){
         $divisi = $this->crud_model->GetDataByWhere(['id_divisi !=' => '1','manager_id =' => $id],'tbl_divisi');
@@ -88,10 +88,10 @@ class User extends BaseController
             'penambahanKaryawanByDivisi'  => COUNT($penambahanKaryawanByDivisi),
             'penguranganKaryawanByDivisi'  => COUNT($penguranganKaryawanByDivisi),
             'ChartpenambahanKaryawan'  => $this->pegawai_model->getPegawaiBaru(['year(tgl_masuk)' => DATE('Y')],'tbl_pegawai'),
-            'CountCuti' => $CountCuti,
-            'CountIzin' => $CountIzin,
-            'CountIzinHarian' => $CountIzinHarian,
-            'CountTugas' => $CountTugas,
+            // 'CountCuti' => $CountCuti,
+            // 'CountIzin' => $CountIzin,
+            // 'CountIzinHarian' => $CountIzinHarian,
+            // 'CountTugas' => $CountTugas,
             'ruangan' => $this->master_model->getDataRuanganLimit(),
             'barang' => $this->master_model->getDataBarangLimit($this->divisi_id)
         );
@@ -109,6 +109,49 @@ class User extends BaseController
         );
     
         echo json_encode($data);
+    }
+
+    public function getChart2() {
+        // Tambahkan ini untuk memastikan tidak ada output lain dan hentikan eksekusi
+        ob_clean();
+        header('Content-Type: application/json');
+
+        // Ambil data dari model
+        $data_penambahan = $this->user_model->getPenambahanKaryawan(); 
+        $data_pengurangan = $this->user_model->getPenguranganKaryawan();
+
+        // Pastikan data selalu dalam format array yang benar
+        $penambahan_formatted = [];
+        if ($data_penambahan) {
+            foreach ($data_penambahan as $row) {
+                $penambahan_formatted[] = [
+                    'x' => date('Y-m-d', strtotime($row->tanggal)),
+                    'y' => (int) $row->jumlah_karyawan
+                ];
+            }
+        }
+
+        $pengurangan_formatted = [];
+        if ($data_pengurangan) {
+            foreach ($data_pengurangan as $row) {
+                $pengurangan_formatted[] = [
+                    'x' => date('Y-m-d', strtotime($row->tanggal)),
+                    'y' => (int) $row->jumlah_karyawan
+                ];
+            }
+        }
+
+        // Siapkan array hasil akhir
+        $result = [
+            'penambahanKaryawan' => $penambahan_formatted,
+            'penguranganKaryawan' => $pengurangan_formatted
+        ];
+
+        // Kirimkan respons JSON
+        echo json_encode($result);
+
+        // Hentikan eksekusi skrip untuk memastikan tidak ada output tambahan.
+        exit(); 
     }
 
     public function dashboardUser(){
@@ -429,9 +472,9 @@ class User extends BaseController
 	}
 
     public function excel_user(){
-        $divisi = $this->input->post('divisi');
-        $nama_divisi = $this->crud_model->getdataRowbyWhere('nama_divisi', 'id_divisi='.$divisi, 'tbl_divisi')->nama_divisi;
-        $list_data = $this->user_model->getUserByWhere('pegawai.divisi_id ='.$divisi);
+        $bagian = $this->input->post('bagian');
+        $nama_bagian = $this->crud_model->getdataRowbyWhere('nama_bagian', 'id_bagian='.$bagian, 'tbl_bagian')->nama_bagian;
+        $list_data = $this->user_model->getUserByWhere('pegawai.bagian_id ='.$bagian);
     
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

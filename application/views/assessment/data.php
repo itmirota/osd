@@ -1,14 +1,12 @@
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
     <h3 class="card-title">Data Assessment Karyawan Satu Tingkat</h3>
-    <?php if($role == ROLE_HRGA){?>
-      <div class="p-2">
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-tambah">
-        <i class="fas fa-plus"></i> Tambah Data
-      </button>
-      <a class="btn btn-primary" href="<?= base_url('assessment/list_soal')?>"> tambah soal</a>
-      </div>
-    <?php } ?>
+    <div class="p-2">
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-tambah">
+      <i class="fas fa-plus"></i> Tambah Data
+    </button>
+    <a class="btn btn-primary" href="<?= base_url('assessment/list_soal')?>"> tambah soal</a>
+    </div>
 
   </div>
   <!-- /.card-header -->

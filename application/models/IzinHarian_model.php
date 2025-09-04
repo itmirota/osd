@@ -24,18 +24,18 @@ class IzinHarian_model extends CI_Model
     return $query->result();
   }
 
-public function getDatabyApproval($id){
-  $this->db->select('*');
-  $this->db->from('tbl_perizinan_harian a');
-  $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-  $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
-  $this->db->where('c.kadiv_id', $id);
-  $this->db->or_where('c.manager_id', $id);
-  $this->db->order_by('id_perizinan_harian','DESC');
+// public function getDatabyApproval($id){
+//   $this->db->select('*');
+//   $this->db->from('tbl_perizinan_harian a');
+//   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
+//   $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+//   $this->db->where('c.kadiv_id', $id);
+//   $this->db->or_where('c.manager_id', $id);
+//   $this->db->order_by('id_perizinan_harian','DESC');
 
-  $query = $this->db->get();
-  return $query->result();
-}
+//   $query = $this->db->get();
+//   return $query->result();
+// }
 
 public function GetDataByWhere($id){
   $this->db->select('*');

@@ -5,115 +5,103 @@
   if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER){?>
     <h1 class="h3 mb-3"><strong>Info</strong> Perusahaan</h1>
     <div class="row">
-      <div class="col-xl-6 col-xxl-5 d-flex">
+      <!-- <div class="col-xl-6 col-xxl-5 d-flex">
         <canvas id="myChart"></canvas>  
-      </div>
-      <div class="col-xl-6 col-xxl-5 d-flex">
-        <div class="w-100">
-          <div class="row">
-            <div class="col-sm-12">
+      </div> -->
+      <div class="row">
+        <div class="col-md-6">
+          <a href="<?= base_url('Datapegawai')?>">
+          <div class="card bg-success">
+            <div class="card-body">
               <div class="row">
-                <div class="col-md-6">
-                  <a href="<?= base_url('Datapegawai')?>">
-                  <div class="card bg-success">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col mt-0">
-                          <h5 class="card-title text-light">Karyawan Aktif</h5>
-                        </div>
-                        <div class="col-auto">
-                          <div class="stat bg-light text-primary">
-                          <i class="fa-solid fa-users"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <h1 class="mt-1 text-light"><?= $CountPegawaiAktif ?></h1>
-                    </div>
-                  </div>
-                  </a>
+                <div class="col mt-0">
+                  <h5 class="card-title text-light">Karyawan Aktif</h5>
                 </div>
-                <div class="col-md-6">
-                  <a href="<?= base_url('Datapegawainonaktif')?>">
-                  <div class="card  bg-danger">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col mt-0">
-                          <h5 class="text-light">Karyawan Non-Aktif</h5>
-                        </div>
-                        <div class="col-auto">
-                          <div class="stat bg-light text-primary">
-                            <i class="fa-solid fa-user-xmark"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <h1 class="mt-1 mb-3 text-light"><?= $CountPegawaiNonAktif ?></h1>
-                    </div>
+                <div class="col-auto">
+                  <div class="stat bg-light text-primary">
+                  <i class="fa-solid fa-users"></i>
                   </div>
-                  </a>
                 </div>
               </div>
+              <h1 class="mt-1 text-light"><?= $CountPegawaiAktif ?></h1>
             </div>
-            <div class="w-100">
+          </div>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="<?= base_url('Datapegawainonaktif')?>">
+          <div class="card  bg-danger">
+            <div class="card-body">
               <div class="row">
-                <div class="col-md-6">
-                  <a href="<?= base_url('pegawai/detailPenambahanKaryawan')?>">
-                  <div class="card bg-success ">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col mt-0">
-                          <h5 class="card-title text-light">Penambahan Karyawan <?= DATE('Y') ?></h5>
-                        </div>
-
-                        <div class="col-auto">
-                          <div class="stat bg-light text-primary">
-                            <i class="fa-solid fa-user-plus"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <h1 class="mt-1 mb-3 text-light">+<?= $penambahanKaryawan ?></h1>
-                      <div class="d-flex justify-content-between">
-                        <div>
-                          <p class="text-light text-secondary-modal"><strong><?= $penambahanKaryawanByDepartement ?></strong> Departement</p>
-                        </div>
-                        <div>
-                        <p class="text-light text-secondary-modal"><strong><?= $penambahanKaryawanByDivisi ?></strong> Divisi</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </a>
+                <div class="col mt-0">
+                  <h5 class="text-light">Karyawan Non-Aktif</h5>
                 </div>
-                <div class="col-md-6">
-                  <a href="<?= base_url('pegawai/detailPenguranganKaryawan')?>">
-                  <div class="card bg-danger" >
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col mt-0">
-                          <h5 class="card-title text-light">Karyawan Non Aktif Tahun <?= DATE('Y') ?></h5>
-                        </div>
-
-                        <div class="col-auto">
-                          <div class="stat bg-light text-primary">
-                            <i class="fa-solid fa-user-minus"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <h1 class="mt-1 mb-3 text-light">-<?= $penguranganKaryawan ?></h1>
-                      <div class="d-flex justify-content-between">
-                        <div>
-                          <p class="text-light text-secondary-modal"><strong><?= $penguranganKaryawanByDepartement ?></strong> Departement</p>
-                        </div>
-                        <div>
-                        <p class="text-light text-secondary-modal"><strong><?= $penguranganKaryawanByDivisi ?></strong> Divisi</p>
-                        </div>
-                      </div>
-                    </div>
+                <div class="col-auto">
+                  <div class="stat bg-light text-primary">
+                    <i class="fa-solid fa-user-xmark"></i>
                   </div>
-                  </a>
+                </div>
+              </div>
+              <h1 class="mt-1 mb-3 text-light"><?= $CountPegawaiNonAktif ?></h1>
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="<?= base_url('pegawai/detailPenambahanKaryawan')?>">
+          <div class="card bg-success ">
+            <div class="card-body">
+              <div class="row">
+                <div class="col mt-0">
+                  <h5 class="card-title text-light">Penambahan Karyawan <?= DATE('Y') ?></h5>
+                </div>
+
+                <div class="col-auto">
+                  <div class="stat bg-light text-primary">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </div>
+                </div>
+              </div>
+              <h1 class="mt-1 mb-3 text-light">+<?= $penambahanKaryawan ?></h1>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="text-light text-secondary-modal"><strong><?= $penambahanKaryawanByDepartement ?></strong> Departement</p>
+                </div>
+                <div>
+                <p class="text-light text-secondary-modal"><strong><?= $penambahanKaryawanByDivisi ?></strong> Divisi</p>
                 </div>
               </div>
             </div>
           </div>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="<?= base_url('pegawai/detailPenguranganKaryawan')?>">
+          <div class="card bg-danger" >
+            <div class="card-body">
+              <div class="row">
+                <div class="col mt-0">
+                  <h5 class="card-title text-light">Karyawan Non Aktif Tahun <?= DATE('Y') ?></h5>
+                </div>
+
+                <div class="col-auto">
+                  <div class="stat bg-light text-primary">
+                    <i class="fa-solid fa-user-minus"></i>
+                  </div>
+                </div>
+              </div>
+              <h1 class="mt-1 mb-3 text-light">-<?= $penguranganKaryawan ?></h1>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="text-light text-secondary-modal"><strong><?= $penguranganKaryawanByDepartement ?></strong> Departement</p>
+                </div>
+                <div>
+                <p class="text-light text-secondary-modal"><strong><?= $penguranganKaryawanByDivisi ?></strong> Divisi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -146,7 +134,7 @@
                     </div>
                   </div>
                 </div>
-                <h1 class="mt-1 mb-3"><?= $CountIzin ?></h1>
+                <h1 class="mt-1 mb-3"><?= isset($CountIzin) ? $CountIzin : 0 ?></h1>
                 <div class="mb-0">
                   <a href="<?= base_url('izin')?>">lihat pengajuan <i class="fa fa-angles-right"></i></a>
                 </div>
@@ -165,7 +153,7 @@
                     </div>
                   </div>
                 </div>
-                <h1 class="mt-1 mb-3"><?= $CountCuti ?></h1>
+                <h1 class="mt-1 mb-3"><?= isset($CountCuti) ? $CountCuti : 0 ?></h1>
                 <div class="mb-0">
                   <a href="<?= base_url('cuti')?>">lihat pengajuan <i class="fa fa-angles-right"></i></a>
                 </div>
@@ -186,7 +174,7 @@
                     </div>
                   </div>
                 </div>
-                <h1 class="mt-1 mb-3"><?= $CountTugas ?></h1>
+                <h1 class="mt-1 mb-3"><?= isset($CountTugas) ? $CountTugas : 0 ?></h1>
                 <div class="mb-0">
                   <a href="<?= base_url('tugas')?>">lihat pengajuan <i class="fa fa-angles-right"></i></a>
                 </div>
@@ -205,7 +193,7 @@
                     </div>
                   </div>
                 </div>
-                <h1 class="mt-1 mb-3"><?= $CountIzinHarian ?></h1>
+                <h1 class="mt-1 mb-3"><?= isset($CountIzinHarian) ? $CountIzinHarian : 0 ?></h1>
                 <div class="mb-0">
                   <a href="<?= base_url('izin-harian')?>">lihat pengajuan <i class="fa fa-angles-right"></i></a>
                 </div>
@@ -318,25 +306,24 @@
   <?php } ?>
 <?php } ?>
 
-
+<!-- CHART.JS -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script>
   $.ajax({
   type : "GET",
   dataType : "JSON",
   url :  "<?= base_url(); ?>user/getChart",
   success : result => {
-    const penambahan = result.penambahanKaryawan;
-    const pengurangan = result.penguranganKaryawan;
-    chart(penambahan, pengurangan);
-  }
-  });
+    const Datapenambahan = result.penambahanKaryawan;
+    const Datapengurangan = result.penguranganKaryawan;
 
-  function chart(penambahan, pengurangan){
     // setup 
     const data = {
       datasets: [{
         label: 'Penambahan Karyawan '+<?=DATE('Y')?>,
-        data: penambahan,
+        data: Datapenambahan,
         backgroundColor: [
           'rgb(28,187,140,0.2)',
         ],
@@ -347,7 +334,7 @@
       },
       {
         label: 'Pengurangan Karyawan '+<?=DATE('Y')?>,
-        data: pengurangan,
+        data: Datapengurangan,
         backgroundColor: [
           'rgb(220,53,69,0.2)',
         ],
@@ -383,5 +370,6 @@
       config
     );
   }
+  });
 </script>
 

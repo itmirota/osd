@@ -24,7 +24,6 @@
             <th>No</th>
             <th>Nama Bagian</th>  
             <th>Divisi</th>
-            <th>Kepala Bagian</th>
             <th class="text-center">Jumlah Pegawai</th>
             <th class="text-center">#</th>
           </tr>
@@ -42,7 +41,6 @@
             <td><?= $no++ ?></td>
             <td><?= $data->nama_bagian ?></td>
             <td><?= $data->nama_divisi ?></td>
-            <td><?= $data->nama_pegawai ?></td>
             <td class="text-center"><?= $data->jml_pegawai ?> pegawai</td>
             <td class="text-center">
             <div class="btn-group">

@@ -7,19 +7,33 @@ class Pegawai_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
-    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
-    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->where('a.status','aktif');
     $query = $this->db->get();
     return $query->result();
+  }
+
+  public function showDataRow($where)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_pegawai a');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->where($where);
+    $query = $this->db->get();
+    return $query->row();
   }
 
   public function showDataWhere($params, $where, $orderparam, $orderby, $group)
   {
     $this->db->select($params);
     $this->db->from('tbl_pegawai a');
-    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
-    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->where($where);
 
     if(isset($orderby)){
@@ -38,8 +52,9 @@ class Pegawai_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
-    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
-    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->where('a.status','tidak');
     $query = $this->db->get();
     return $query->result();
@@ -47,10 +62,11 @@ class Pegawai_model extends CI_Model
 
   public function TotalPegawai($where)
   {
-    $this->db->select('manager_id, COUNT(case when jenis_kelamin="L"  then id_pegawai end) as laki, COUNT(case when jenis_kelamin="P" then id_pegawai end) as perempuan, COUNT(id_pegawai) as total_pegawai');
+    $this->db->select('COUNT(case when jenis_kelamin="L"  then id_pegawai end) as laki, COUNT(case when jenis_kelamin="P" then id_pegawai end) as perempuan, COUNT(id_pegawai) as total_pegawai');
     $this->db->from('tbl_pegawai a');
-    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
-    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->where($where);
     $query = $this->db->get();
     return $query->row();
@@ -86,20 +102,21 @@ class Pegawai_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
-    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
-    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->join('tbl_jabatan d','d.id_jabatan = a.jabatan_id');
     $this->db->where('id_pegawai',$id);
     $query = $this->db->get();
     return $query->row();
   }
 
-  public function getPegawaibyDivisi($id, $id_pegawai)
+  public function getPegawaibyBagian($id, $id_pegawai)
   {
     $this->db->select('id_pegawai, nama_pegawai, status');
     $this->db->from('tbl_pegawai a');
-    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
-    $this->db->where('divisi_id',$id);
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->where('bagian',$id);
     $this->db->where('id_pegawai !=',$id_pegawai);
     $this->db->where('a.status','aktif');
     $query = $this->db->get();
@@ -131,6 +148,31 @@ class Pegawai_model extends CI_Model
   public function getPegawainonAktif()
   {
     $this->db->select('tgl_keluar as x, COUNT(id_pegawai) as y');
+    $this->db->from('tbl_pegawai');
+    $this->db->where('status','tidak');
+    $this->db->where('YEAR(tgl_keluar)',DATE('Y'));
+    $this->db->group_by('MONTH(tgl_keluar)');
+    $this->db->order_by('tgl_keluar','ASC');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+    public function getPenambahanKaryawan()
+  {
+    $this->db->select('tgl_masuk as tanggal,COUNT(id_pegawai) as jumlah_karyawan');
+    $this->db->from('tbl_pegawai');
+    $this->db->where('YEAR(tgl_masuk)',DATE('Y'));
+    $this->db->group_by('MONTH(tgl_masuk)');
+    $this->db->order_by('tgl_masuk','ASC');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function getPenguranganKaryawan()
+  {
+    $this->db->select('tgl_keluar as tanggal,COUNT(id_pegawai) as jumlah_karyawan');
     $this->db->from('tbl_pegawai');
     $this->db->where('status','tidak');
     $this->db->where('YEAR(tgl_keluar)',DATE('Y'));

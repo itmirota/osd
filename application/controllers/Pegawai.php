@@ -63,37 +63,40 @@ class Pegawai extends BaseController
     $role = $this->role;
     $divisi = $this->divisi_id;
 
-    if($role == ROLE_KABAG){
-      $pegawai_id = $this->pegawai_id;
-      $list_data = $this->pegawai_model->showDataWhere('*',['kadiv_id' => $pegawai_id,'status' => 'aktif'],NULL,NULL,NULL);
-      $whereTotalPegawai = array(
-        'divisi_id' => $divisi,
-        'status' => "aktif"
-      );
-    }elseif($role == ROLE_MANAGER){
-      $pegawai_id = $this->pegawai_id;
+    // if($role == ROLE_KABAG){
+    //   $pegawai_id = $this->pegawai_id;
+    //   $list_data = $this->pegawai_model->showDataWhere('*',['kadiv_id' => $pegawai_id,'status' => 'aktif'],NULL,NULL,NULL);
+    //   $whereTotalPegawai = array(
+    //     'divisi_id' => $divisi,
+    //     'status' => "aktif"
+    //   );
+    // }elseif($role == ROLE_MANAGER){
+    //   $pegawai_id = $this->pegawai_id;
       
-      $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $pegawai_id, 'status' => 'aktif'],NULL,NULL,NULL);
+    //   $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $pegawai_id, 'status' => 'aktif'],NULL,NULL,NULL);
 
-      $whereTotalPegawai = array(
-        'manager_id' => $pegawai_id,
-        'status' => "aktif"
-      );
-    }else{
-      $list_data = $this->pegawai_model->showData();
+    //   $whereTotalPegawai = array(
+    //     'manager_id' => $pegawai_id,
+    //     'status' => "aktif"
+    //   );
+    // }else{
+    //   $list_data = $this->pegawai_model->showData();
       
-      $whereTotalPegawai = array(
-        'status' => "aktif"
-      );
-    }
+    //   $whereTotalPegawai = array(
+    //     'status' => "aktif"
+    //   );
+    // }
+
+    $list_data = $this->pegawai_model->showData();
 
     $data = array(
       'list_data' => $list_data,
       'provinsi' => $this->crud_model->lihatdata('reg_provinces'),
       'mendekati_habis_kontrak' => $this->pegawai_model->showDataWhere('COUNT(id_pegawai) as pegawai, MONTH(tgl_selesai) as bulan', $where,'tgl_selesai','ASC','MONTH(tgl_selesai)'),
       'departement' => $this->crud_model->lihatdata('tbl_departement'),
-      'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai($whereTotalPegawai),
+      'total_pegawai_aktif' => $this->pegawai_model->TotalPegawai(['status' => "aktif"]),
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
+      'bagian' => $this->crud_model->lihatdata('tbl_bagian'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
       'list_role' => $this->crud_model->GetDataByWhere('roleId > 1','tbl_roles'),
       'maxNIP' => $this->pegawai_model->showMaxNIP()->nip
@@ -206,13 +209,12 @@ class Pegawai extends BaseController
     $nama_pegawai = $this->input->post('nama_pegawai');
     $nip = $this->input->post('nip');
     $jabatan_id = $this->input->post('jabatan_id');
-    $divisi_id = $this->input->post('divisi_id');
+    $bagian_id = $this->input->post('bagian_id');
     $status_pegawai = $this->input->post('status_pegawai'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
     $tgl_lahir = $this->input->post('tgl_lahir');    
     $shio = shio($tgl_lahir);    
     $zodiak = zodiak($tgl_lahir);    
-    // $weton = " ";
     $weton = weton($tgl_lahir);    
     $jenis_kelamin = $this->input->post('jenis_kelamin');    
     $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');    
@@ -234,7 +236,7 @@ class Pegawai extends BaseController
     $kontak_pegawai = $this->input->post('kontak_pegawai');
     $no_kk = $this->input->post('no_kk');    
     $no_ktp = $this->input->post('no_ktp');    
-    $no_bpjsKesehatan = $this->input->post('no_bpjsKesehatan');    
+    $no_jamsostek = $this->input->post('no_jamsostek');    
     $no_npwp = $this->input->post('no_npwp');
     $tgl_masuk = $this->input->post('tgl_masuk');    
     $durasi_kontrak = $this->input->post('durasi_kontrak');
@@ -258,7 +260,7 @@ class Pegawai extends BaseController
       'nip' => $nip,
       'nama_pegawai' => $nama_pegawai,
       'jabatan_id' => $jabatan_id,
-      'divisi_id' => $divisi_id,
+      'bagian_id' => $bagian_id,
       'status_pegawai' => $status_pegawai,
       'tempat_lahir' => $tempat_lahir,
       'tgl_lahir' => $tgl_lahir,
@@ -285,7 +287,7 @@ class Pegawai extends BaseController
       'kontak_pegawai' => $kontak_pegawai,
       'no_kk' => $no_kk,
       'no_ktp' => $no_ktp,
-      'no_bpjsKesehatan' => $no_bpjsKesehatan,
+      'no_jamsostek' => $no_jamsostek,
       'no_npwp' => $no_npwp,
       'tgl_masuk' => $tgl_masuk,
       'tgl_selesai' => $tgl_selesai,
@@ -427,7 +429,8 @@ class Pegawai extends BaseController
 
   public function detailpegawai($id){
 
-    $pegawai = $this->crud_model->GetRowById('id_pegawai ='.$id,'tbl_pegawai');
+    // $pegawai = $this->crud_model->GetRowById('id_pegawai ='.$id,'tbl_pegawai');
+    $pegawai = $this->pegawai_model->showDataRow(['id_pegawai' => $id]);
 
     $nip = $pegawai->nip;
     $user = $this->crud_model->GetRowById('nip ='.$nip,'tbl_users');
@@ -447,9 +450,8 @@ class Pegawai extends BaseController
     $nama_pegawai = $this->input->post('nama_pegawai');
     $nip = $this->input->post('nip');
     $jabatan_id = $this->input->post('jabatan_id');
-    $divisi_id = $this->input->post('divisi_id');
+    $bagian_id = $this->input->post('bagian_id');
     $status_pegawai = $this->input->post('status_pegawai'); 
-    $kuota_cuti = $this->input->post('kuota_cuti'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
     $tgl_lahir = $this->input->post('tgl_lahir');        
     $jenis_kelamin = $this->input->post('jenis_kelamin');    
@@ -462,7 +464,7 @@ class Pegawai extends BaseController
     $kontak_pegawai = $this->input->post('kontak_pegawai');
     $no_kk = $this->input->post('no_kk');    
     $no_ktp = $this->input->post('no_ktp');    
-    $no_bpjsKesehatan = $this->input->post('no_bpjsKesehatan');    
+    $no_jamsostek = $this->input->post('no_jamsostek');    
     $no_npwp = $this->input->post('no_npwp');   
     $tgl_masuk = $this->input->post('tgl_masuk');   
     $tgl_selesai = $this->input->post('tgl_selesai');   
@@ -479,9 +481,8 @@ class Pegawai extends BaseController
       'nip' => $nip,
       'nama_pegawai' => $nama_pegawai,
       'jabatan_id' => $jabatan_id,
-      'divisi_id' => $divisi_id,
+      'bagian_id' => $bagian_id,
       'status_pegawai' => $status_pegawai,
-      'kuota_cuti' => $kuota_cuti,
       'tempat_lahir' => $tempat_lahir,
       'tgl_lahir' => $tgl_lahir,
       'jenis_kelamin' => $jenis_kelamin,
@@ -494,11 +495,12 @@ class Pegawai extends BaseController
       'kontak_pegawai' => $kontak_pegawai,
       'no_kk' => $no_kk,
       'no_ktp' => $no_ktp,
-      'no_bpjsKesehatan' => $no_bpjsKesehatan,
+      'no_jamsostek' => $no_jamsostek,
       'no_npwp' => $no_npwp,
       'tgl_masuk' => $tgl_masuk,
       'tgl_selesai' => $tgl_selesai,
       'durasi_kontrak' => $durasi_kontrak,
+      'kuota_cuti' => $kuota_cuti,
       'email_pegawai' => $email_pegawai,
       'status_pernikahan' => $status_pernikahan,
       'nama_ibu' => $nama_ibu,
@@ -740,13 +742,30 @@ class Pegawai extends BaseController
       $data=array();
       for ($i=1; $i < $sheetcount; $i++) {         
         $nip=$sheetdata[$i][0];
-        $durasi_kontrak=$sheetdata[$i][1];
-        $kuota_cuti=$sheetdata[$i][2];
+        $jabatan_id=$sheetdata[$i][1];
+        // $no_npwp=$sheetdata[$i][2];
+        // $email_pegawai=$sheetdata[$i][3];
+        // $email_kantor=$sheetdata[$i][4];
+        // $alamat_ktp=$sheetdata[$i][5];
+        // $alamat_domisili=$sheetdata[$i][6];
+        // $no_hp=$sheetdata[$i][7];
+        // $no_ktp=$sheetdata[$i][8];
+        // $no_kk=$sheetdata[$i][9];
+        // $kontak_pasangan=$sheetdata[$i][10];
+
 
         $data[]=array(
           'nip'=> $nip,
-          'durasi_kontrak'=>$durasi_kontrak,
-          'kuota_cuti'=>$kuota_cuti,
+          'jabatan_id'=> $jabatan_id,
+          // 'no_npwp'=>$no_npwp,
+          // 'email_pegawai'=>$email_pegawai,
+          // 'email_kantor'=>$email_kantor,
+          // 'alamat_ktp'=>$alamat_ktp,
+          // 'alamat_domisili'=>$alamat_domisili,
+          // 'kontak_pegawai'=>$no_hp,
+          // 'no_ktp'=>$no_ktp,
+          // 'no_kk'=>$no_kk,
+          // 'kontak_pasangan'=>$kontak_pasangan,
         );
       }
     
@@ -1079,7 +1098,7 @@ class Pegawai extends BaseController
     $numrow = 6;
     foreach ($list_data as $ld) {
       $sheet->setCellValue('B'.$numrow, $no);
-      $sheet->setCellValue('C'.$numrow, $ld->no_ktp);
+      $sheet->setCellValue('C'.$numrow, $ld->nip);
       $sheet->setCellValue('D'.$numrow, $ld->nama_pegawai);
       $sheet->setCellValue('E'.$numrow, $ld->nama_departement);
       $sheet->setCellValue('F'.$numrow, $ld->nama_divisi);

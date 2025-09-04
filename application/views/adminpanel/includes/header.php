@@ -47,16 +47,14 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  
-  <!-- CHART.JS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Summernote --> 
-  <link href="<?php echo base_url(); ?>assets/dist/summernote-0.9.0/summernote-bs5.min.css" rel="stylesheet">
+  <link href="<?=base_url(); ?>assets/dist/summernote-0.9.0/summernote-bs5.min.css" rel="stylesheet">
 
+  <!-- jQuery 3 -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <style>
     #load{
       width: 100%;

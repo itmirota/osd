@@ -32,9 +32,6 @@ if(isset($name)){ ?>
 </div>
 
 
-	<!-- jQuery 3 -->
-	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
 	<!-- Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 	

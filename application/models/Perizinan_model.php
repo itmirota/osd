@@ -13,17 +13,17 @@ public function getData(){
   return $query->result();
 }
 
-public function getDatabyApproval($id){
-  $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
-  $this->db->from('tbl_perizinan_cuti a');
-  $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-  $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
-  $this->db->where('c.kadiv_id', $id);
-  $this->db->or_where('c.manager_id', $id);
-  $this->db->order_by('id_cuti','DESC');
-  $query = $this->db->get();
-  return $query->result();
-}
+// public function getDatabyApproval($id){
+//   $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
+//   $this->db->from('tbl_perizinan_cuti a');
+//   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
+//   $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+//   $this->db->where('c.kadiv_id', $id);
+//   $this->db->or_where('c.manager_id', $id);
+//   $this->db->order_by('id_cuti','DESC');
+//   $query = $this->db->get();
+//   return $query->result();
+// }
 
 public function GetDataByWhere($id){
   $this->db->select('*, DATE(datecreated) as tgl_pengajuan, DATEDIFF(tgl_akhir,tgl_mulai) as selisih');

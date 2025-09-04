@@ -10,11 +10,11 @@ class Login_model extends CI_Model
      */
     function loginMe($username, $password)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.divisi_id, pegawai.id_pegawai as pegawai_id, pegawai.jabatan_id as jabatan_id, divisi.nama_divisi');
+        $this->db->select('BaseTbl.userId, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.bagian_id, pegawai.id_pegawai as pegawai_id, pegawai.jabatan_id as jabatan_id, divisi.nama_divisi');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->join('tbl_pegawai as pegawai','pegawai.nip = BaseTbl.nip');
-        $this->db->join('tbl_divisi as divisi','divisi.id_divisi = pegawai.divisi_id');
+        $this->db->join('tbl_bagian as bagian','bagian.id_bagian = pegawai.bagian_id');
         $this->db->where('BaseTbl.username', $username);
         $query = $this->db->get();
 
@@ -33,11 +33,11 @@ class Login_model extends CI_Model
 
     function loginAdmin($username, $password)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.divisi_id, pegawai.id_pegawai as pegawai_id, pegawai.jabatan_id as jabatan_id, divisi.nama_divisi');
+        $this->db->select('BaseTbl.userId, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.bagian_id, pegawai.id_pegawai as pegawai_id, pegawai.jabatan_id as jabatan_id, bagian.nama_bagian');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->join('tbl_pegawai as pegawai','pegawai.nip = BaseTbl.nip');
-        $this->db->join('tbl_divisi as divisi','divisi.id_divisi = pegawai.divisi_id');
+        $this->db->join('tbl_bagian as bagian','bagian.id_bagian = pegawai.bagian_id');
         $this->db->where('BaseTbl.roleId !=', 8);
         $this->db->where('BaseTbl.username', $username);
 

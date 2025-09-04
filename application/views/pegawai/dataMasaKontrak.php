@@ -593,7 +593,7 @@
         document.getElementById("nip").value = pegawai.nip;
         document.getElementById("nama_pegawai").value = pegawai.nama_pegawai;
         document.getElementById("jabatan_id").value = pegawai.jabatan_id;
-        document.getElementById("divisi_id").value = pegawai.divisi_id;
+        document.getElementById("divisi_id").value = pegawai.bagian_id;
         document.getElementById("status_pegawai").value = pegawai.status_pegawai;
         document.getElementById("kuota_cuti").value = pegawai.kuota_cuti;
         document.getElementById("tempat_lahir").value = pegawai.tempat_lahir;

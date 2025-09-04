@@ -58,7 +58,7 @@ class Bagian extends BaseController
     $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
 
-    $this->loadViews("divisi/data", $this->global, $data, NULL);
+    $this->loadViews("bagian/data", $this->global, $data, NULL);
   }
 
   public function save(){
@@ -133,9 +133,9 @@ class Bagian extends BaseController
     redirect('bagian');
   }
 
-  public function getBagianByDivisi($id_divisi){
+  public function getBagianByDiv($id){
 
-    $bagian = $this->crud_model->GetDataByWhere(['divisi_id' => $id_divisi],'tbl_bagian');
+    $bagian = $this->crud_model->GetDataByWhere(['divisi_id' => $id],'tbl_bagian');
 
     echo json_encode($bagian);
   }

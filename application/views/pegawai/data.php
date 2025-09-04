@@ -4,6 +4,7 @@
     <a href="<?= base_url('pegawai/excel_pegawai')?>" class="btn btn-primary me-2"><i class="fa fa-download"></i> Export Karyawan</a>
     <?php if($role == ROLE_SUPERADMIN){?>
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#importCsv"><i class="fa fa-file"></i> Import CSV</button>
+    <button class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#updateCsv"><i class="fa fa-file"></i> Update from CSV</button>
     <div class="form-group">
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exportUser">
@@ -21,7 +22,7 @@
             <div class="modal-body">
               <div class="mb-3">
                 <label for="divisi" class="form-label">Departement</label>
-                <select class="form-select" id="departement_id" onchange="getDivisiByDept()" required>
+                <select class="form-select" id="departement" onchange="getDivisiByDept()" required>
                   <option>--- pilih departement ---</option>
                   <?php foreach($departement as $data){?>
                   <option value=<?= $data->id_departement ?>><?= $data->nama_departement ?></option>
@@ -90,14 +91,14 @@
         <table id="dataTableScrollX" class="table table-hover">
           <thead>
           <tr>
-            <th>No</th>
+            <th width="3vh">No</th>
             <th width="20vh">Nama Karyawan</th>
             <th width="40px">Usia</th>
-            <th width="15vh">Masa Kerja</th>
+            <th class="text-center">Masa Kerja</th>
             <th>Status</th>
-            <th class="text-end" width="10vh">Durasi Kontrak</th>
-            <th class="text-end" width="10vh">Kuota Cuti</th>
-            <th class="text-end" width="15vh">Sisa Cuti Tahun Lalu</th>
+            <th class="text-end" width="8vh">Durasi Kontrak</th>
+            <th class="text-end" width="8vh">Kuota Cuti</th>
+            <th class="text-end" width="12vh">Sisa Cuti Tahun Lalu</th>
             <th class="text-end" width="10vh">Surat Peringatan</th>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
@@ -118,7 +119,7 @@
             <td><?= $no++ ?></td>
             <td>
               <a href="" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $data->id_pegawai?>)"><strong><?= $data->nama_pegawai ?></strong></a>
-              <hr class="m-0">
+              <hr class="m-0"> 
               <span style="font-size:12px"><strong><?= $data->nama_departement ?>/<?= $data->nama_divisi ?></strong></span><br>
               <!-- <span style="font-size:12px"><strong>Area: KANTOR</strong></span><br> -->
               <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span>
@@ -320,7 +321,35 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Update Excel-->
+<div class="modal fade" id="updateCsv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="<?=base_url('pegawai/spreadsheet_update_import')?>" role="form" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="titleAddPegawai">Update CSV File</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <label for="nip" class="form-label">File :</label>
+          <input type="file" name="upload_file" id="upload_file" class="form-control">
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+          <div class="p-2">
+            <a href="<?=base_url('pegawai/format_excel')?>" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i> unduh template</a>
+          </div>
+          <div class="p-2">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Add pegawai-->
 <div class="modal fade" id="addPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -352,14 +381,24 @@
                 </select>
               </div> 
               <div class="col-md-10">
-                <label for="divisi_id" class="form-label">Divisi</label>
-                <select name="divisi_id" class="form-select tabel-PR" required>
-                  <option>----- pilih Divisi ---</option>
-                  <?php foreach($divisi as $d): ?>
-                  <option value="<?= $d->id_divisi?>"><?=$d->nama_divisi?></option>
+                <label for="departement_add" class="form-label">Departement</label>
+                <select class="form-select tabel-PR" id="departement_add" onchange="getDivisiByDept()">
+                  <option>----- pilih Departement ---</option>
+                  <?php foreach($departement as $d): ?>
+                  <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
                   <?php endforeach; ?>
                 </select>
               </div>  
+              <div class="col-md-10">
+                <label for="divisi_add" class="form-label">Divisi</label>
+                <select id="divisi_add" class="form-select tabel-PR" onchange="getBagianByDiv()">
+                </select>
+              </div>  
+              <div class="col-md-10">
+                <label for="bagian_add" class="form-label">Bagian</label>
+                <select name="bagian_add" id="bagian_add" class="form-select tabel-PR">
+                </select>
+              </div> 
               <div class="col-md-10">
                 <label for="status_pegawai" class="form-label">Status Kerja</label>
                 <select name="status_pegawai"  id="AddStatus" class="form-select tabel-PR" required>
@@ -505,12 +544,8 @@
                 <input type="text" name="no_ktp" placeholder="tulis nomor KTP disini" class="form-control tabel-PR"/>
               </div>
               <div class="col-md-10">
-                <label for="no_jamsostek" class="form-label">Nomor Jamsostek</label>
+                <label for="no_jamsostek" class="form-label">Nomor Bpjs Kesehatan</label>
                 <input type="text" name="no_jamsostek" placeholder="tulis nomor Jamsostek disini" class="form-control tabel-PR" />
-              </div>
-              <div class="col-md-10">
-                <label for="no_bpjsKesehatan" class="form-label">Nomor Bpjs Kesehatan</label>
-                <input type="text" name="no_bpjsKesehatan" placeholder="tulis nomor BPJS disini" class="form-control tabel-PR" />
               </div>
               <div class="col-md-10">
                 <label for="no_npwp" class="form-label">Nomor NPWP</label>
@@ -662,13 +697,29 @@
                 </select>
               </div> 
               <div class="col-md-10">
-                <label for="divisi_id" class="form-label">Departement</label>
+                <label for="departement_id" class="form-label">Departement</label>
+                <select name="departement_id" id="departement_id" class="form-select tabel-PR">
+                  <?php foreach($departement as $d): ?>
+                  <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>  
+              <div class="col-md-10">
+                <label for="divisi_id" class="form-label">Divisi</label>
                 <select name="divisi_id" id="divisi_id" class="form-select tabel-PR">
                   <?php foreach($divisi as $d): ?>
                   <option value="<?= $d->id_divisi?>"><?=$d->nama_divisi?></option>
                   <?php endforeach; ?>
                 </select>
-              </div>  
+              </div>
+              <div class="col-md-10">
+                <label for="bagian_id" class="form-label">Bagian</label>
+                <select name="bagian_id" id="bagian_id" class="form-select tabel-PR">
+                  <?php foreach($bagian as $d): ?>
+                  <option value="<?= $d->id_bagian?>"><?=$d->nama_bagian?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>    
               <div class="col-md-10">
                 <label for="status_pegawai" class="form-label">Status Kerja</label>
                 <select name="status_pegawai"  id="status_pegawai" class="form-select tabel-PR">
@@ -814,12 +865,8 @@
                 <input type="text" name="no_ktp" id="no_ktp" placeholder="tulis nomor KTP disini" class="form-control tabel-PR"/>
               </div>
               <div class="col-md-10">
-                <label for="no_jamsostek" class="form-label">Nomor Jamsostek</label>
+                <label for="no_jamsostek" class="form-label">Nomor Bpjs Kesehatan</label>
                 <input type="text" name="no_jamsostek" id="no_jamsostek" placeholder="tulis nomor Jamsostek disini" class="form-control tabel-PR"/>
-              </div>
-              <div class="col-md-10">
-                <label for="no_bpjsKesehatan" class="form-label">Nomor Bpjs Kesehatan</label>
-                <input type="text" name="no_bpjsKesehatan" id="no_bpjsKesehatan" placeholder="tulis nomor BPJS disini" class="form-control tabel-PR"/>
               </div>
               <div class="col-md-10">
                 <label for="no_npwp" class="form-label">Nomor NPWP</label>
@@ -1267,13 +1314,14 @@
       dataType:"JSON",
       type: "get",
       success:function(hasil){
-
         const pegawai = hasil.pegawai;
 
         document.getElementById("nip").value = pegawai.nip;
         document.getElementById("nama_pegawai").value = pegawai.nama_pegawai;
         document.getElementById("jabatan_id").value = pegawai.jabatan_id;
+        document.getElementById("departement_id").value = pegawai.departement_id;
         document.getElementById("divisi_id").value = pegawai.divisi_id;
+        document.getElementById("bagian_id").value = pegawai.bagian_id;
         document.getElementById("status_pegawai").value = pegawai.status_pegawai;
         document.getElementById("kuota_cuti").value = pegawai.kuota_cuti;
         document.getElementById("tempat_lahir").value = pegawai.tempat_lahir;
@@ -1289,7 +1337,6 @@
         document.getElementById("no_kk").value = pegawai.no_kk;
         document.getElementById("no_ktp").value = pegawai.no_ktp;
         document.getElementById("no_jamsostek").value = pegawai.no_jamsostek;
-        document.getElementById("no_bpjsKesehatan").value = pegawai.no_bpjsKesehatan;
         document.getElementById("no_npwp").value = pegawai.no_npwp;
         document.getElementById("tgl_masuk").value = pegawai.tgl_masuk;
         document.getElementById("tgl_selesai").value = pegawai.tgl_selesai;
@@ -1672,7 +1719,7 @@
   }
   
   function getDivisiByDept(){
-    let departement = $("#departement_id").val();
+    let departement = $("#departement_add").val();
     $.ajax({
       type : "POST",
       dataType : "JSON",
@@ -1689,7 +1736,30 @@
             '<option value="'+ data[i].id_divisi +'">'+ data[i].nama_divisi +'</option>';
         }
 
-        $("#divisi").html(html);
+        $("#divisi_add").html(html);
+      }
+    });
+  }
+
+  function getBagianByDiv(){
+    let divisi = $("#divisi_add").val();
+    $.ajax({
+      type : "POST",
+      dataType : "JSON",
+      url:"<?php echo site_url("bagian/getBagianByDiv")?>/"+divisi,
+      success : function(data){
+
+        let html = ' ';
+        let i;
+
+        html += 
+            '<option>---pilih bagian---</option>';
+        for ( i=0; i < data.length ; i++){
+            html += 
+            '<option value="'+ data[i].id_bagian +'">'+ data[i].nama_bagian +'</option>';
+        }
+
+        $("#bagian_add").html(html);
       }
     });
   }
