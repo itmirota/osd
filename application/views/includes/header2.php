@@ -29,8 +29,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
 
-  <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
-
   <!-- Adminkit -->
 	<link href="<?= base_url(); ?>assets/adminkit/css/app.css" rel="stylesheet">
 
@@ -52,6 +50,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	
+  <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
 	<script src="<?php echo base_url(); ?>assets/dist/js/register.js"></script>
 </head>
 
