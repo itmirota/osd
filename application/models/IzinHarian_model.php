@@ -7,7 +7,9 @@ class IzinHarian_model extends CI_Model
     $this->db->select('*, TIME_FORMAT(waktu_mulai , "%H:%i") as waktu_mulai, TIME_FORMAT(waktu_akhir , "%H:%i") as waktu_akhir');
     $this->db->from('tbl_perizinan_harian a');
     $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
     $this->db->order_by('id_perizinan_harian','DESC');
     $query = $this->db->get();
     return $query->result();
@@ -17,7 +19,9 @@ class IzinHarian_model extends CI_Model
     $this->db->select('*, TIME_FORMAT(waktu_mulai , "%H:%i") as waktu_mulai, TIME_FORMAT(waktu_akhir , "%H:%i") as waktu_akhir');
     $this->db->from('tbl_perizinan_harian a');
     $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
     $this->db->order_by('id_perizinan_harian','DESC');
     $this->db->where($where);
     $query = $this->db->get();

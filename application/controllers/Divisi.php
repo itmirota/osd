@@ -55,6 +55,7 @@ class Divisi extends BaseController
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
 
+
     $this->loadViews("divisi/data", $this->global, $data, NULL);
   }
 

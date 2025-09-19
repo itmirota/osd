@@ -10,6 +10,7 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id');
     $this->db->where('a.status','aktif');
     $query = $this->db->get();
     return $query->result();
@@ -22,6 +23,7 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id');
     $this->db->where($where);
     $query = $this->db->get();
     return $query->row();
@@ -34,6 +36,7 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id');
     $this->db->where($where);
 
     if(isset($orderby)){
@@ -55,6 +58,7 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id');
     $this->db->where('a.status','tidak');
     $query = $this->db->get();
     return $query->result();
@@ -106,6 +110,7 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
+    $this->db->join('tbl_areakerja f','f.id_areakerja = a.penempatan_id');
     $this->db->where('id_pegawai',$id);
     $query = $this->db->get();
     return $query->row();
@@ -116,7 +121,7 @@ class Pegawai_model extends CI_Model
     $this->db->select('id_pegawai, nama_pegawai, status');
     $this->db->from('tbl_pegawai a');
     $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
-    $this->db->where('bagian',$id);
+    $this->db->where('bagian_id',$id);
     $this->db->where('id_pegawai !=',$id_pegawai);
     $this->db->where('a.status','aktif');
     $query = $this->db->get();

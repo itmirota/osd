@@ -93,8 +93,8 @@
   }
 
   .sidebar-content{
-    background: rgb(31,182,245);
-    background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+    background: #6D79FC;
+    background: linear-gradient(59deg,rgba(109, 121, 252, 1) 0%, rgba(121, 196, 252, 1) 20%, rgba(84, 149, 247, 1) 54%, rgba(121, 196, 252, 1) 72%, rgba(162, 185, 228, 1) 88%, rgba(148, 187, 233, 1) 100%);
   }
 
   .sidebar-nav{
@@ -117,8 +117,7 @@
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgb(31,182,245);
-    background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+    background: rgb(119, 194, 252, 0.8);
     border-radius: 10px;
   }
 
@@ -127,14 +126,22 @@
     background: rgb(6, 71, 145); 
   }
 
+  .sidebar-link{
+    color:red;
+  }
+
   a.sidebar-link{
-    background-color:rgba(28,136,227,0.2);
+    background-color:rgb(255, 255, 255, 0.1);
+    color:#ffff;
   }
 
   a.sidebar-link:hover{
-    background-color:rgba(28,136,227,0.8);
+    background-color:rgb(19, 95, 194, 0.8);
   }
 
+  a.sidebar-link i{
+    color:#ffff;
+  }
 
   .bg-pattern{
     background: rgb(31,182,245);

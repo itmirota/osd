@@ -1,4 +1,5 @@
 <div class="row">
+  <?php if($this->uri->segment(1) != 'pegawai'){?>
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
     <a href="<?= base_url('pegawai/excel_pegawai')?>" class="btn btn-primary me-2"><i class="fa fa-download"></i> Export Karyawan</a>
@@ -56,6 +57,9 @@
     </div>
   </div>
   <?php } ?>
+  <?php }else{ ?>
+    <a href="<?= base_url('bagian/'.$bagian_id)?>" class="mb-4"><i class="fa fa-solid fa-angles-left"></i> kembali</a>
+  <?php } ?>
 
   <div class="col-md-12">
     <div class="card card-primary">
@@ -63,8 +67,8 @@
           <h3 class="card-title">Data Karyawan</h3>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
+        <?php if($this->uri->segment(1) != 'pegawai'){?>
         <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
-        <div class="d-flex">
           <div class="flex-fill pegawai-aktif">
             <div class="mb-1 row">
               <label for="no_polisi" class="col-sm-4 col-form-label">Karyawan aktif</label>
@@ -85,9 +89,9 @@
               </div>
             </div>
           </div>
-        </div>
         <hr>
         <?php }?>
+        <?php } ?>
         <table id="dataTableScrollX" class="table table-hover">
           <thead>
           <tr>
@@ -104,7 +108,9 @@
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
+            <?php if($this->uri->segment(1) != 'pegawai'){?>
             <th class="text-center" width="10px">#</th>
+            <?php } ?>
             <?php } ?>
           </tr>
           </thead>
@@ -122,7 +128,8 @@
               <hr class="m-0"> 
               <span style="font-size:12px"><strong><?= $data->nama_departement ?>/<?= $data->nama_divisi ?></strong></span><br>
               <!-- <span style="font-size:12px"><strong>Area: KANTOR</strong></span><br> -->
-              <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span>
+              <span style="font-size:12px">NIK: MRT<?= $data->nip ?></span><br>
+              <span style="font-size:12px">AREA: <?= $data->nama_areakerja ?></span>
             </td>
             <td><?php
               $date1=date_create($data->tgl_lahir);
@@ -163,6 +170,7 @@
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
             {
             ?>
+            <?php if($this->uri->segment(1) != 'pegawai'){?>
             <td class="text-center">
             <div class="btn-group">
               <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -180,6 +188,7 @@
               </ul>
             </div>
             </td>
+            <?php }?>
             <!-- <td class="text-center">
               <?php
               if($data->status_pegawai == "kontrak"){?>
@@ -198,6 +207,8 @@
       </div><!-- /.box-body -->
     </div><!-- /.box -->
   </div>
+</div>
+</div>
 </div>
 
 <!-- Modal Perpanjangan Kontrak-->

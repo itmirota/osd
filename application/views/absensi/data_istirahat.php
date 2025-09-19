@@ -1,3 +1,4 @@
+<main class="p-3">
 <div class="container main-page">
   <a href="<?= base_url('dashboardUser')?>"  class="caption-text"> <i class="fas fa-angles-left"></i> kembali ke dashboard</a>
   <div class="mt-2 mb-2">
@@ -76,7 +77,7 @@
     </div>
   </div>
 </div>
-
+</main>
 <!-- jQuery 3 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>

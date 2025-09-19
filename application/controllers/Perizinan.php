@@ -26,7 +26,9 @@ class Perizinan extends BaseController
     $this->global['pageHeader'] = 'Perizinan Manual Karyawan ';
 
     $id_pegawai = $this->global ['pegawai_id'];
-    $divisi_id = $this->divisi_id;
+    $bagian_id = $this->bagian_id;
+
+    // var_dump($this->global ['pegawai_id']);
 
     $data = array(
       'totalCuti' => $this->perizinan_model->HitungTotalCuti($id_pegawai),
@@ -37,7 +39,7 @@ class Perizinan extends BaseController
       'list_tugas' => $this->perizinan_model->getTugasbyPegawai($id_pegawai),
       'list_izinHarian' => $this->izinHarian_model->getDatabyPegawai($id_pegawai),
       'list_izin' => $this->izin_model->getDatabyPegawai($id_pegawai),
-      'pengganti' => $this->pegawai_model->getPegawaibyDivisi($divisi_id, $id_pegawai),
+      'pengganti' => $this->pegawai_model->getPegawaibyBagian($bagian_id, $id_pegawai),
       'approval_pengganti' => $this->perizinan_model->getDatabyPengganti($id_pegawai),
       'kuota_cuti' => $this->perizinan_model->cekKuotaCuti($id_pegawai)->kuota_cuti
     );

@@ -1,3 +1,4 @@
+<main class="p-3">
 <div class="d-flex flex-wrap justify-content-center">
 <div class="col-10">
   <div class="card">
@@ -65,6 +66,7 @@
   </div>
 </div>
 </div>
+</main>
 
 
 <script>

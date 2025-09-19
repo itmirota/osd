@@ -43,7 +43,7 @@ class Kebersihan extends BaseController
     $this->global['pageHeader'] = 'OSD | Data Kebersihan';
 
     $data = array(
-      'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' => 7),'tbl_pegawai'),
+      'pegawai' => $this->crud_model->GetDataByWhere(['bagian_id' => 60, 'status' => 'aktif'],'tbl_pegawai'),
       'ruangan' => $this->crud_model->lihatdata('tbl_ruangan')
     );
 
@@ -96,6 +96,11 @@ class Kebersihan extends BaseController
 
     $res = $this->crud_model->input($data,'tbl_perawatan_ruangan');
     echo json_encode($res);
+  }
+
+  public function showImage($id){
+    $data = $this->crud_model->getdataRowbyWhere('bukti_perawatan', 'id_perawatan_ruangan ='.$id, 'tbl_perawatan_ruangan');
+    echo json_encode($data);
   }
   
   // Admin Panel

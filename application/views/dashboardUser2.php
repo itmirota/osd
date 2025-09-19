@@ -36,7 +36,7 @@
   /* width: 10px; */
 }
 </style>
-
+<main class="p-3">
 <div class="container main-page">
   <h4 class="font-dark"><strong>Selamat <?=nama_waktu(DATE('H'))?>, <?=$name?> !</strong></h4>
   <div class="row">
@@ -44,19 +44,20 @@
       <div class="card card-dashboard2">
         <div class="card-body">
           <div class="d-flex flex-wrap justify-content-between">
-            <div class="p-2">
+            <div class="p-1">
               <div class="d-flex">
-                <div class="flex-grow-1 ms-3">
+                <div class="flex-grow-1">
                   <h4 class="font-light"><strong><?= $name ?></strong></h4>
-                  <p class="font-light m-0"><?= $pegawai->nama_divisi ?></p>
+                  <p class="font-light m-0"><?= $pegawai->nama_divisi." / ".$pegawai->nama_bagian ?></p>
+                  <p class="font-light m-0"><?= $pegawai->nama_areakerja ?></p>
                 </div>
               </div>
             </div>
-            <div class="p-2">
+            <div class="p-1">
               <div class="d-flex">
-                <div class="flex-grow-1 ms-3">
+                <div class="flex-grow-1">
                   <h4 class="font-light"><strong>Kuota Cuti</strong></h4>
-                  <p class="font-light m-0">0</p>
+                  <p class="font-light m-0"><strong><?= $pegawai->kuota_cuti ?></strong></p>
                 </div>
               </div>
             </div>
@@ -133,7 +134,7 @@
           </div>
         </a>
       </div>
-      <?php if($divisi_id >= 16 && $divisi_id <= 31){ ?>
+      <?php if($penempatan_id != 1){ ?>
       <div class="col-3">
         <a href="<?= base_url('Absensi-visit') ?>">
           <div class="d-flex flex-column">
@@ -246,6 +247,7 @@
     </div> -->
   </div>
 </div>
+</main>
 
 <!-- MODAL DAFTAR HADIR -->
 <!-- Modal -->

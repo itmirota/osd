@@ -3,6 +3,7 @@
     display:none;
   }
 </style>
+<main class="p-3">
 <div class="container main-page">
 <div class="d-none d-md-block d-lg-block d-xl-block">
 <a href="<?= base_url('dashboardUser')?>"  class="caption-text"> <i class="fas fa-angles-left"></i> kembali ke dashboard</a>
@@ -153,7 +154,7 @@
                     <span class="badge text-bg-warning"> Menunggu persetujuan pengganti</span>
                   <?php break;?>
                   <?php case("Y,N,N"):?>
-                    <span class="badge text-bg-warning"> Menunggu persetujuan Kabag</span>
+                    <span class="badge text-bg-warning"> Menunggu persetujuan atasan</span>
                   <?php break;?>
                   <?php case("Y,Y,N"):?>
                     <span class="badge text-bg-warning"> Menunggu persetujuan manager</span>
@@ -378,8 +379,11 @@
               <td><?= $ap->nama_pegawai ?></td>
               <td class="text-center">
               <?php if($ap->approval === "N,N,N"){?>
-              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> approve</a>  
-              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i> tolak</a></td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>  
+              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i></a>
+              </div>
+              </td>
               <?php }else{?>
               <span class="badge text-bg-success"> <i class="fa fa-check"></i></span>
               <?php } ?>
@@ -765,8 +769,7 @@
     </div>
   </div>
 </div>
-
-
+</main>
 
 <script>
 // CUTI
@@ -806,7 +809,6 @@
 
     });
   };
-
 
 // TUGAS 
   function listApprovalTugas($id){ 
@@ -946,7 +948,6 @@
 
     });
   };
-
 
 // tabs 
   function openTabs(evt, cityName) {

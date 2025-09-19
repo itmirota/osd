@@ -53,23 +53,36 @@ class Bagian extends BaseController
 
     $id = $this->uri->segment(2);
 
+    $divisi = $this->crud_model->GetDataRowByWhere('divisi_id',['id_bagian' => $id],'tbl_bagian');
+
     $data['list_data']= $this->bagian_model->GetBagianByDivisiWithCountEmployee($id);
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
     $data['divisi']= $this->crud_model->lihatdata('tbl_divisi');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
+    $data['id_divisi']= $divisi->divisi_id;
 
     $this->loadViews("bagian/data", $this->global, $data, NULL);
+  }
+
+  public function pegawaiByBagian($id){
+    $this->global['pageTitle'] = 'Admin Panel : Data Pegawai';
+
+    $data['list_data']= $this->pegawai_model->showDataWhere('*', ['bagian_id' => $id, 'status' => 'aktif'], NULL, NULL, NULL);
+    $data['bagian_id']= $this->crud_model->GetDataRowByWhere('divisi_id',['id_bagian' => $id],'tbl_bagian')->divisi_id;
+
+    $this->loadViews("pegawai/data", $this->global, $data, NULL);
   }
 
   public function save(){
     $nama_bagian = $this->input->post('nama_bagian');
     $divisi_id = $this->input->post('divisi_id');
-    $kabag_id = $this->input->post('kabag_id');
+    $atasan1 = $this->input->post('atasan1');
+    $atasan2 = $this->input->post('atasan2');
 
     $data = array(
       'nama_bagian' => $nama_bagian,
-      'divisi_id' => $divisi_id,
-      'kabag_id' => $kabag_id,
+      'atasan1' => $atasan1,
+      'atasan2' => $atasan2
     );
 
     $sql = $this->crud_model->input($data,'tbl_bagian');
@@ -85,24 +98,19 @@ class Bagian extends BaseController
 
   public function detailbagian($id) {
 
-    $where = array(
-      'id_bagian' => $id
-    );
+    $bagian = $this->bagian_model->GetBagianById($id);
 
-    $bagian = $this->crud_model->GetDataByWhere($where,'tbl_bagian');
-    
-    $data = array(
-      'bagian' => $bagian[0]
-    );
-
-    echo json_encode($data);
+    echo json_encode($bagian);
   }
 
   public function update(){
+    $id = $this->input->get('id');
+
     $id_bagian = $this->input->post('id_bagian');
     $divisi_id = $this->input->post('divisi_id');
     $nama_bagian = $this->input->post('nama_bagian');
-    $kabag_id = $this->input->post('kabag_id');
+    $atasan1 = $this->input->post('atasan1');
+    $atasan2 = $this->input->post('atasan2');
 
     $where = array(
       'id_bagian' => $id_bagian
@@ -111,14 +119,15 @@ class Bagian extends BaseController
     $data = array(
       'nama_bagian' => $nama_bagian,
       'divisi_id' => $divisi_id,
-      'kabag_id' => $kabag_id,
+      'atasan1' => $atasan1,
+      'atasan2' => $atasan2
     );
 
     $sql = $this->crud_model->update($where, $data,'tbl_bagian');
 
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Diubah');
 
-    redirect('bagian');
+    redirect('bagian/'.$id);
   }
 
   public function delete(){

@@ -63,13 +63,11 @@ class Bagian_model extends CI_Model
     return $query->result();
   }
   public function GetBagianById($id){
-    $this->db->select('a.id_bagian, a.nama_bagian, b.nama_divisi, d.nama_pegawai, COUNT(d.id_pegawai) as jml_pegawai');
+    $this->db->select('a.id_bagian, a.nama_bagian, b.id_divisi, c.id_departement, a.atasan1, a.atasan2');
     $this->db->from('tbl_bagian a');
-    $this->db->join('tbl_divisi_new b','b.id_divisi = a.divisi_id');
-    $this->db->join('tbl_pegawai c','c.id_pegawai = a.kabag_id');
-    $this->db->join('tbl_pegawai d','d.bagian_id = a.id_bagian');
+    $this->db->join('tbl_divisi b','b.id_divisi = a.divisi_id');
+    $this->db->join('tbl_departement c','c.id_departement = b.departement_id');
     $this->db->where('a.id_bagian',$id);
-    $this->db->group_by('id_bagian');
     $query = $this->db->get();
 
     return $query->row();

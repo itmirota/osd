@@ -7,7 +7,9 @@ class Izin_model extends CI_Model
     $this->db->select('*, DATEDIFF(tgl_akhir,tgl_mulai) as selisih');
     $this->db->from('tbl_perizinan_izin a');
     $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+    $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
     $this->db->order_by('id_izin','DESC');
     $query = $this->db->get();
     return $query->result();
@@ -18,7 +20,9 @@ public function getDatabyApproval($id){
   $this->db->from('tbl_perizinan_izin a');
   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
   $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.pemberi_izin');
-  $this->db->join('tbl_divisi d', 'd.id_divisi = b.divisi_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = b.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
+  $this->db->join('tbl_jabatan f','f.id_jabatan = a.jabatan_id');
   $this->db->where('pemberi_izin', $id);
   $this->db->order_by('id_izin','DESC');
 

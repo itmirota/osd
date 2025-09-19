@@ -1,3 +1,4 @@
+<main class="p-3">
 <div class="container main-page">
   <!-- <div class="d-flex flex-row justify-content-center">
     <div class="col-3 m-1">
@@ -93,4 +94,5 @@
     </div>
   </div>
 </div>
+</main>
 <!-- Menu -->

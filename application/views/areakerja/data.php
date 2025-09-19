@@ -23,7 +23,6 @@
           <tr>
             <th>No</th>
             <th>Area Kerja</th>  
-            <th>SPV Area</th>  
             <th class="text-center">#</th>
           </tr>
           </thead>
@@ -39,7 +38,6 @@
           <tr>
             <td><?= $no++ ?></td>
             <td><?= $data->nama_areakerja ?></td>
-            <td><?= $data->nama_pegawai ?></td>
             <td class="text-center">
             <div class="btn-group">
               <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

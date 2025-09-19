@@ -87,6 +87,7 @@ class Login extends BaseController
               'name'=>$res->name,
               'bagian_id'=>$res->bagian_id,
               'jabatan_id'=>$res->jabatan_id,
+              'penempatan_id'=>$res->penempatan_id,
               'bagian'=>$res->nama_bagian,
               'loginType'=>'user',
               'isLoggedIn' => TRUE
@@ -144,6 +145,7 @@ class Login extends BaseController
               'name'=>$res->name,
               'bagian_id'=>$res->bagian_id,
               'jabatan_id'=>$res->jabatan_id,
+              'penempatan_id'=>$res->penempatan_id,
               'bagian'=>$res->nama_bagian,
               'loginType'=>'admin',
               'isLoggedIn' => TRUE
@@ -330,6 +332,7 @@ class Login extends BaseController
         'name'=>$row->name,
         'bagian_id'=>$row->bagian_id,
         'jabatan_id'=>$row->jabatan_id,
+        'penempatan_id'=>$res->penempatan_id,
         'bagian'=>$row->nama_bagian,
         'loginType'=>'user',
         'isLoggedIn' => TRUE
@@ -360,6 +363,7 @@ class Login extends BaseController
         'name'=>$row->name,
         'bagian_id'=>$row->bagian_id,
         'jabatan_id'=>$row->jabatan_id,
+        'penempatan_id'=>$res->penempatan_id,
         'bagian'=>$row->nama_bagian,
         'loginType'=>'admin',
         'isLoggedIn' => TRUE

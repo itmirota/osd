@@ -58,7 +58,10 @@
 <!-- <body class="sidebar-mini skin-black-light"> -->
 <body class="theme-white">
 <div>
-  <?php if (isset($name)){?>
+  <?php 
+  $cek = $this->uri->segment(1);
+
+  if ($cek != "login" && isset($cek)){?>
   <!-- Up Navbar -->
   <nav class="navbar navbar-dark bg-navbar navbar-expand mb-4">
     <div class="container">
@@ -70,6 +73,7 @@
     <ul class="navbar-nav justify-content-end w-25 d-none d-md-block d-lg-block d-xl-block">
       <li class="nav-item">
         <div class="btn-group p-2">
+          <?php if (isset($name)){?>
 					<button type="button" class="btn login-button dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
 					<i class="fa-solid fa-circle-user"></i> Hi, <?= $name ?>
 					</button>
@@ -78,12 +82,13 @@
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?= base_url('logout')?>">Keluar</a></li>
 					</ul>
+          <?php } ?>
 				</div>
       </li>
     </ul>
     </div>
   </nav>
-
+  <?php if (isset($name)){?>
   <!-- Bottom Navbar -->
   <nav class="navbar navbar-dark bg-navbar navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none">
     <ul class="navbar-nav nav-justified w-100">
@@ -134,167 +139,166 @@
     </ul>
   </nav>
   <?php } ?>
-  
-  <?php if($this->uri->segment(1) == 'satpam' | $this->uri->segment(1) == 'kebersihan' | $this->uri->segment(1) == 'PHL'){?>
-  <?php } ?>
-  <div class="container" style="min-height:105vh">
+  <!-- <div class="container" style="min-height:105vh"> -->
+  <?php }?>
 
 
-<!-- Modal Detail Pegawai-->
-<div class="modal fade" id="detailPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pegawai</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-6">
-            <div class="mb-3 row">
-              <label for="tempat_tglLahir" class="col-sm-4 col-form-label">Tempat, Tanggal Lahir</label>
-              <div class="col-sm-8">
-                <input type="text" id="tempat_tglLahir" readonly class="form-control-plaintext">
+  <!-- Modal Detail Pegawai-->
+  <div class="modal fade" id="detailPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pegawai</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3 row">
+                <label for="tempat_tglLahir" class="col-sm-4 col-form-label">Tempat, Tanggal Lahir</label>
+                <div class="col-sm-8">
+                  <input type="text" id="tempat_tglLahir" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="shio" class="col-sm-4 col-form-label">Shio</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_shio" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="zodiak" class="col-sm-4 col-form-label">Zodiak</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_zodiak" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_weton" class="col-sm-4 col-form-label">Weton</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_weton" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_jenis_kelamin" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_jenis_kelamin" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_pendidikan_terakhir" class="col-sm-4 col-form-label">Pendidikan Terakhir</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_pendidikan_terakhir" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_golongan_darah" class="col-sm-4 col-form-label">Golongan Darah</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_golongan_darah" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_agama" class="col-sm-4 col-form-label">Agama</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_agama" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_alamat_ktp" class="col-sm-4 col-form-label">Alamat KTP</label>
+                <div class="col-sm-8">
+                  <textarea id="info_alamat_ktp" readonly class="form-control-plaintext"></textarea>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_alamat_domisili" class="col-sm-4 col-form-label">Alamat domisili</label>
+                <div class="col-sm-8">
+                  <textarea id="info_alamat_domisili" readonly class="form-control-plaintext"></textarea>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_kontak" class="col-sm-4 col-form-label">Nomor</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_kontak" readonly class="form-control-plaintext">
+                </div>
               </div>
             </div>
-            <div class="mb-3 row">
-              <label for="shio" class="col-sm-4 col-form-label">Shio</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_shio" readonly class="form-control-plaintext">
+            <div class="col-6">
+              <div class="mb-3 row">
+                <label for="info_ktp" class="col-sm-4 col-form-label">Nomor KTP</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_ktp" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="zodiak" class="col-sm-4 col-form-label">Zodiak</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_zodiak" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_kk" class="col-sm-4 col-form-label">Nomor KK</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_kk" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_weton" class="col-sm-4 col-form-label">Weton</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_weton" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_jamsostek" class="col-sm-4 col-form-label">Nomor Jamsostek</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_jamsostek" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_jenis_kelamin" class="col-sm-4 col-form-label">Jenis Kelamin</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_jenis_kelamin" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_bpjsKesehatan" class="col-sm-4 col-form-label">Nomor Bpjs Kesehatan</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_bpjsKesehatan" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_pendidikan_terakhir" class="col-sm-4 col-form-label">Pendidikan Terakhir</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_pendidikan_terakhir" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_npwp" class="col-sm-4 col-form-label">Nomor NPWP</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_npwp" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_golongan_darah" class="col-sm-4 col-form-label">Golongan Darah</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_golongan_darah" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Masuk</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_tgl_masuk" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_agama" class="col-sm-4 col-form-label">Agama</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_agama" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Selesai Kontrak</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_tgl_selesai" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_alamat_ktp" class="col-sm-4 col-form-label">Alamat KTP</label>
-              <div class="col-sm-8">
-                <textarea id="info_alamat_ktp" readonly class="form-control-plaintext"></textarea>
+              <div class="mb-3 row">
+                <label for="info_durasi_kontrak" class="col-sm-4 col-form-label">Durasi Kontrak</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_durasi_kontrak" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_alamat_domisili" class="col-sm-4 col-form-label">Alamat domisili</label>
-              <div class="col-sm-8">
-                <textarea id="info_alamat_domisili" readonly class="form-control-plaintext"></textarea>
+              <div class="mb-3 row">
+                <label for="info_email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_email" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_kontak" class="col-sm-4 col-form-label">Nomor</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_kontak" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_ibu" class="col-sm-4 col-form-label">Nama Ibu</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_ibu" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="mb-3 row">
-              <label for="info_ktp" class="col-sm-4 col-form-label">Nomor KTP</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_ktp" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_ayah" class="col-sm-4 col-form-label">Nama ayah</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_ayah" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_kk" class="col-sm-4 col-form-label">Nomor KK</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_kk" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_pasangan" class="col-sm-4 col-form-label">Nama Pasangan</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_pasangan" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_jamsostek" class="col-sm-4 col-form-label">Nomor Jamsostek</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_jamsostek" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_bpjsKesehatan" class="col-sm-4 col-form-label">Nomor Bpjs Kesehatan</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_bpjsKesehatan" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_npwp" class="col-sm-4 col-form-label">Nomor NPWP</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_npwp" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Masuk</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_tgl_masuk" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Selesai Kontrak</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_tgl_selesai" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_durasi_kontrak" class="col-sm-4 col-form-label">Durasi Kontrak</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_durasi_kontrak" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_email" class="col-sm-4 col-form-label">Email</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_email" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_ibu" class="col-sm-4 col-form-label">Nama Ibu</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_ibu" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_ayah" class="col-sm-4 col-form-label">Nama ayah</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_ayah" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_pasangan" class="col-sm-4 col-form-label">Nama Pasangan</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_pasangan" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_anak" class="col-sm-4 col-form-label">Nama anak</label>
-              <div class="col-sm-8">
-                <textarea id="info_anak" readonly class="form-control-plaintext"></textarea>
+              <div class="mb-3 row">
+                <label for="info_anak" class="col-sm-4 col-form-label">Nama anak</label>
+                <div class="col-sm-8">
+                  <textarea id="info_anak" readonly class="form-control-plaintext"></textarea>
+                </div>
               </div>
             </div>
           </div>
@@ -302,7 +306,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 

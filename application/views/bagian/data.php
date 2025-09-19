@@ -6,7 +6,7 @@
   </div>
   <?php }else{ ?> 
     <div class="d-flex justify-content-between mb-4">
-      <a href="<?= base_url('Datadepartement')?>" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
+      <a href="<?= base_url('divisi/'.$id_divisi)?>" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartement"><i class="fa fa-plus"></i> Tambah Data</button>
     </div>
   <?php } ?>
@@ -41,7 +41,7 @@
             <td><?= $no++ ?></td>
             <td><?= $data->nama_bagian ?></td>
             <td><?= $data->nama_divisi ?></td>
-            <td class="text-center"><?= $data->jml_pegawai ?> pegawai</td>
+            <td class="text-center"><a href="<?= base_url('pegawai/'.$data->id_bagian)?>"><?= $data->jml_pegawai ?> pegawai</a></td>
             <td class="text-center">
             <div class="btn-group">
               <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -99,14 +99,23 @@
               </select>
             </div>
             <div class="col-md-12">
-              <label for="kabag_id" class="form-label">Kepala Bagian</label>
-              <select class="form-select" name="kabag_id" id="kabag_select2" style="width:100%">
-                <option readonly>-- kepala bagian --</option>
+              <label for="kabag_id" class="form-label">SPV</label>
+              <select class="form-select js-example-basic-single js-states" name="kabag_id" id="kabag_id" aria-label="Small select example" style="width: 100%">
+                <option value=" ">-- SPV --</option>
                 <?php foreach ($pegawai as $p){ ?>
-                <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
+                <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
                 <?php } ?>
               </select>
-            </div>  
+            </div>      
+            <div class="col-md-12">
+              <label for="manager_id" class="form-label">Manager</label>
+              <select class="form-select js-example-basic-single js-states" name="manager_id" id="manager_id" aria-label="Small select example" style="width: 100%">
+                <option value=" ">-- Manager --</option>
+                <?php foreach ($pegawai as $p){ ?>
+                <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
+                <?php } ?>
+              </select>
+            </div>   
           </div>
         </div>
       </div>
@@ -122,7 +131,7 @@
 <div class="modal fade" id="editData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="<?=base_url('bagian/update')?>" role="form" id="editbagian" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('bagian/update?id='.$this->uri->segment(2))?>" role="form" id="editbagian" method="post" enctype="multipart/form-data">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Edit Data</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -138,21 +147,39 @@
             <div class="col-md-12">
               <label for="divisi_id" class="form-label">Divisi</label>
               <select class="form-select" name="divisi_id" id="divisi_id">
-                <option readonly>-- divisi --</option>
+                <option value="0" readonly>-- divisi --</option>
                 <?php foreach ($divisi as $d){ ?>
                 <option value="<?= $d->id_divisi?>"><?=$d->nama_divisi?></option>
                 <?php } ?>
               </select>
             </div>
             <div class="col-md-12">
-              <label for="kabag_id" class="form-label">Kepala Bagian</label>
-              <select class="form-select js-example-basic-single js-states" name="kabag_id" id="kabag_id" aria-label="Small select example" style="width: 100%">
-                <option value=" ">-- Kepala Bagian --</option>
+              <label for="divisi_id" class="form-label">Departement</label>
+              <select class="form-select" name="departement_id" id="departement_id">
+                <option value="0" readonly>-- departement --</option>
+                <?php foreach ($departement as $d){ ?>
+                <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label for="kabag_id" class="form-label">Atasan 1</label>
+              <select class="form-select js-example-basic-single js-states" name="atasan1" id="atasan1" aria-label="Small select example" style="width: 100%">
+                <option value="0">-- Atasan 1 --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
                 <?php } ?>
               </select>
-            </div>       
+            </div>      
+            <div class="col-md-12">
+              <label for="manager_id" class="form-label">Atasan 2</label>
+              <select class="form-select js-example-basic-single js-states" name="atasan2" id="atasan2" aria-label="Small select example" style="width: 100%">
+                <option value="0">-- Atasan 2 --</option>
+                <?php foreach ($pegawai as $p){ ?>
+                <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
+                <?php } ?>
+              </select>
+            </div> 
           </div>
         </div>
       </div>
@@ -173,11 +200,15 @@
       dataType:"JSON",
       type: "get",
       success:function(hasil){
-        const bagian = hasil.bagian;
-        document.getElementById("id_bagian").value = bagian.id_bagian;
-        document.getElementById("divisi_id").value = bagian.divisi_id;
-        document.getElementById("nama_bagian").value = bagian.nama_bagian;
-        document.getElementById("kabag_id").value = bagian.kabag_id;
+
+        
+        document.getElementById("id_bagian").value = hasil.id_bagian;
+        document.getElementById("nama_bagian").value = hasil.nama_bagian;
+        document.getElementById("divisi_id").value = hasil.id_divisi;
+        document.getElementById("departement_id").value = hasil.id_departement;
+        document.getElementById("atasan1").value = hasil.atasan1;
+        const x = document.getElementById("atasan2").value = hasil.atasan2;
+        console.log(x);
       }
     });
   }

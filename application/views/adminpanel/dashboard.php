@@ -18,7 +18,7 @@
                   <h5 class="card-title text-light">Karyawan Aktif</h5>
                 </div>
                 <div class="col-auto">
-                  <div class="stat bg-light text-primary">
+                  <div class="stat bg-light text-success">
                   <i class="fa-solid fa-users"></i>
                   </div>
                 </div>
@@ -37,7 +37,7 @@
                   <h5 class="text-light">Karyawan Non-Aktif</h5>
                 </div>
                 <div class="col-auto">
-                  <div class="stat bg-light text-primary">
+                  <div class="stat bg-light text-danger">
                     <i class="fa-solid fa-user-xmark"></i>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <div class="stat bg-light text-primary">
+                  <div class="stat bg-light text-success">
                     <i class="fa-solid fa-user-plus"></i>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="col-auto">
-                  <div class="stat bg-light text-primary">
+                  <div class="stat bg-light text-danger">
                     <i class="fa-solid fa-user-minus"></i>
                   </div>
                 </div>

@@ -85,7 +85,7 @@ if($role != ROLE_STAFF){ ?>
 <div class="wrapper">
   <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-      <a class="sidebar-brand" href="index.html">
+      <a class="sidebar-brand" href="">
         <span class="align-middle">Smart OSD Mirota KSM </span>
       </a>
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -95,7 +95,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <li class="sidebar-item">
           <a href="<?php echo base_url('/dashboard');?>" class="sidebar-link">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+            <i class="fa fa-dashboard" style="color:#fff"></i> <span>Dashboard</span>
           </a>
         </li>
         <!-- MASTER DATA -->
@@ -106,10 +106,10 @@ if($role != ROLE_STAFF){ ?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-roof"></i>
-                <span>Data Departement</span>
+                <span>Struktur Organisasi</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-line"></i>
                 <span>Data Divisi</span>
@@ -120,7 +120,7 @@ if($role != ROLE_STAFF){ ?>
                 <i class="fa-solid fa-people-group"></i>
                 <span>Data Bagian</span>
               </a>
-            </li>
+            </li> -->
             
             <li class="sidebar-item">
               <a href="<?php echo base_url('area-kerja'); ?>" class="sidebar-link">
@@ -407,7 +407,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
 
         <?php
-        if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)
+        if($role == ROLE_SUPERADMIN)
         {
         ?>
         <!-- MENU SAMPLE -->

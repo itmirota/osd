@@ -1,6 +1,6 @@
 
-<div class="d-flex justify-content-center ">
-  <div class="col-md-6">
+<div class="d-flex justify-content-center main-page ">
+  <div class="col-10">
     <div class="card">
 			<div class="card-body">
 				<!-- <h1>Form Registrasi</h1> -->

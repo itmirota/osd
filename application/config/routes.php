@@ -54,6 +54,8 @@ $route['kirimpaket'] = 'pengirimanpaket/save';
 // PEGAWAI
 $route['Datapegawai'] = 'pegawai/listData';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
+$route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
+$route['pegawai/(:num)'] = "bagian/pegawaiByBagian/$1";
 
 $route['api/karyawan'] = 'api/PegawaiController/index';
 $route['api/karyawan/store'] = 'api/PegawaiController/store';

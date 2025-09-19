@@ -96,25 +96,7 @@
                 <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
                 <?php } ?>
               </select>
-            </div>
-            <div class="col-md-12">
-              <label for="kadiv_id" class="form-label">Kepala Divisi</label>
-              <select class="form-select" name="kadiv_id" id="kadiv_select2" style="width:100%">
-                <option readonly>-- kepala divisi --</option>
-                <?php foreach ($pegawai as $p){ ?>
-                <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
-                <?php } ?>
-              </select>
             </div>  
-            <div class="col-md-12">
-              <label for="manager_id" class="form-label">Manager</label>
-              <select class="form-select" name="manager_id" id="manager_select2"  style="width:100%">
-                <option readonly>-- manager divisi --</option>
-                <?php foreach ($pegawai as $p){ ?>
-                <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
-                <?php } ?>
-              </select>
-            </div>   
           </div>
         </div>
       </div>
@@ -151,25 +133,7 @@
                 <option value="<?= $d->id_departement?>"><?=$d->nama_departement?></option>
                 <?php } ?>
               </select>
-            </div>
-            <div class="col-md-12">
-              <label for="kadiv_id" class="form-label">Kepala Divisi</label>
-              <select class="form-select js-example-basic-single js-states" name="kadiv_id" id="kadiv_id" aria-label="Small select example" style="width: 100%">
-                <option value=" ">-- Kepala divisi --</option>
-                <?php foreach ($pegawai as $p){ ?>
-                <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
-                <?php } ?>
-              </select>
-            </div>  
-            <div class="col-md-12">
-              <label for="manager_id" class="form-label">Manager</label>
-              <select class="form-select" name="manager_id" id="manager_id" aria-label="Small select example" style="width: 100%">
-                <option>-- Manager divisi --</option>
-                <?php foreach ($pegawai as $p){ ?>
-                <option value="<?= $p->id_pegawai?>"><?=$p->nip?> | <?=$p->nama_pegawai?></option>
-                <?php } ?>
-              </select>
-            </div>       
+            </div>    
           </div>
         </div>
       </div>

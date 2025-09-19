@@ -1,3 +1,4 @@
+<main class="p-3">
 <div class="row">
   <div class="col-md-12">
     <div class="card card-primary">
@@ -27,8 +28,10 @@
             <td><?php echo $no++ ?></td>
             <td><?php echo mediumdate_indo($data->date) ?></td>
             <td><?php echo $data->detail_perawatan ?></td>
-            <td>
-              <img src="<?= base_url('assets/images/kebersihan/'.$data->bukti_perawatan)?>" width="200px"></td>
+            <td><a href="#" onclick="image_preview(<?= $data->id_perawatan_ruangan?>)" data-bs-toggle="modal" data-bs-target="#bukti_perawatan"><i class="fa fa-solid fa-eye" ></i> lihat bukti</a></td>
+            <!-- <td>
+              <img src="<?= base_url('assets/images/kebersihan/'.$data->bukti_perawatan)?>" width="200px">
+            </td> -->
           </tr>
           <?php
             endforeach;
@@ -40,6 +43,7 @@
     </div>
   </div>
 </div>
+</main>
 
 <!-- Modal -->
 <div class="modal fade" id="addPengirimanPaket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,6 +68,18 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal" id="bukti_perawatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">              
+      <div class="modal-body">
+          <img src='' id="foto_bukti"  style="width: 100%;" >
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -114,4 +130,17 @@
       });
     }
   });
+
+  function image_preview($id){
+    $.ajax({
+      url:"<?php echo site_url("kebersihan/showImage")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        const url = "<?= base_url('assets/images/kebersihan')?>/"+hasil.bukti_perawatan;
+
+        document.getElementById('foto_bukti').src = url;
+      }
+    });
+  }
 </script>

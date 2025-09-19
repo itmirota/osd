@@ -1,3 +1,4 @@
+<main class="p-3">
 <div class="container main-page">
   <div class="d-none d-md-block d-lg-block d-xl-block">
   <a href="<?= base_url('dashboardUser')?>"  class="caption-text"> <i class="fas fa-angles-left"></i> kembali ke dashboard</a>
@@ -39,7 +40,7 @@
     </div>
   </div>
 </div>
-
+</main>
 
 <script>
 function getLocationIn() {
