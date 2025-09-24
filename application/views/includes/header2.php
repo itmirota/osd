@@ -152,6 +152,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="d-flex justify-content-end mb-4">
+            <a href="<?= base_url('pegawai/editData/'.$pegawai_id)?>" class="btn btn-md btn-primary"><i class="fa-solid fa-pencil"></i> ubah data</a>
+          </div>
           <div class="row">
             <div class="col-6">
               <div class="mb-3 row">

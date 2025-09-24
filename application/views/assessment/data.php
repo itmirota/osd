@@ -60,9 +60,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Tambah Data Assessment</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <form action="<?= base_url('assessment/spreadsheet_import') ?>" method="post" enctype="multipart/form-data">
               <div class="modal-body">

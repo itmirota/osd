@@ -74,7 +74,7 @@ class AbsensiTokoManual extends BaseController
       'periodeAwal' => $periodeAwal,
       'periodeAkhir' => $periodeAkhir,
       'list_data' => $this->absensi_model->ReportAbsenToko($id, $where),
-      'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' >= 16),'tbl_pegawai'),
+      // 'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' >= 16),'tbl_pegawai'),
     );
 
     $this->loadViews("absensitokomanual/laporan", $this->global, $data, NULL);

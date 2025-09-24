@@ -54,7 +54,9 @@ class Absensi_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_absensi a');
     $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+    $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+    $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
     // $this->db->order_by('id_absensi','ASC');
     $this->db->group_by('a.date','a.pegawai_id');
     $query = $this->db->get();
@@ -64,8 +66,9 @@ class Absensi_model extends CI_Model
   public function showReportById($id){
     $this->db->select('id_absensi, pegawai_id, date, time_in, time_out, nama_pegawai, nama_divisi');
     $this->db->from('tbl_absensi a');
-    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    $this->db->join('tbl_bagian b','b.id_bagian = b.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = c.divisi_id');
+    $this->db->join('tbl_departement d','d.id_departement = d.departement_id');
     $this->db->where('pegawai_id',$id);
     $this->db->order_by('id_absensi','ASC');
     $query = $this->db->get();
@@ -98,7 +101,9 @@ public function showDataAbsenToko(){
   $this->db->select('*');
   $this->db->from('tbl_absen_toko a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
 
   $query = $this->db->get();
   return $query->result();
@@ -108,7 +113,9 @@ public function showDataAbsenTokoByWhere($where){
   $this->db->select('*');
   $this->db->from('tbl_absen_toko a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
   $this->db->where($where);
 
   $query = $this->db->get();
@@ -116,10 +123,12 @@ public function showDataAbsenTokoByWhere($where){
 }
 
 public function ReportAbsenToko($id, $where){
-  $this->db->select('*');
+  $this->db->select('a.id_absen_toko, a.pegawai_id, a.tgl_awal, a.tgl_akhir, a.bukti_absensi_toko, a.datecreated, b.nama_pegawai, c.nama_bagian, d.nama_divisi, e.nama_departement');
   $this->db->from('tbl_absen_toko a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
   if ($id != 0){
     $this->db->where('pegawai_id',$id);
   }
@@ -139,8 +148,9 @@ public function getDataIstirahat(){
   $this->db->select('*');
   $this->db->from('tbl_absensi_istirahat a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
   $this->db->order_by('id_absensi_istirahat','DESC');
 
   $query = $this->db->get();
@@ -159,13 +169,14 @@ public function getDataRowIstirahat($id){
   return $query->row();
 }
 
-public function getDataIstirahatByDivisi($divisi){
+public function getDataIstirahatByBagian($bagian){
   $this->db->select('*');
   $this->db->from('tbl_absensi_istirahat a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
-  $this->db->where('b.divisi_id',$divisi);
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
+  $this->db->where('b.bagian_id',$bagian);
   $this->db->order_by('id_absensi_istirahat','DESC');
 
   $query = $this->db->get();
@@ -177,9 +188,10 @@ public function getDataIstirahatByManager($id){
   $this->db->select('*');
   $this->db->from('tbl_absensi_istirahat a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
-  $this->db->where('c.manager_id',$id);
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
+  $this->db->where('b.atasan2_id',$id);
   $this->db->order_by('id_absensi_istirahat','DESC');
 
   $query = $this->db->get();
@@ -191,8 +203,9 @@ public function ReportAbsenIstirahat($where){
   $this->db->select('*');
   $this->db->from('tbl_absensi_istirahat a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
   
   $this->db->where($where);
   $this->db->order_by('id_absensi_istirahat','DESC');
@@ -207,8 +220,9 @@ public function getPegawaiTerlambat($where){
   $this->db->select('*');
   $this->db->from('tbl_absensi_terlambat a');
   $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
-  $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-  $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+  $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+  $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
 
   if(isset($where)){
   $this->db->where($where);

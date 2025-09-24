@@ -35,6 +35,18 @@ class Assessment extends BaseController
     $this->loadViews("assessment/data", $this->global, $data, NULL);
   }
 
+  public function UserPage(){
+    $this->global['pageTitle'] = 'Assessment';
+    $this->global['pageHeader'] = 'Assessment Karyawan ';
+    $pegawai_id = $this->global['pegawai_id'];
+    $role = $this->global['role'];
+
+    $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
+    $data['role'] = $role;
+
+    $this->loadViews("assessment/data", $this->global, $data, NULL);
+  }
+
   public function save(){
     $pegawai_id = $this->input->post('pegawai_id');
     $tgl_assessment = $this->input->post('tgl_assessment');

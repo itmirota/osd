@@ -446,6 +446,19 @@ class Pegawai extends BaseController
     echo json_encode($data);
   }
 
+  public function editData($id){
+    $this->global['pageTitle'] = "Edit Data Karyawan";
+
+    $data['list_data'] = $this->pegawai_model->showDataRow(['id_pegawai' => $id]);
+    $data['provinsi'] = $this->crud_model->lihatdata('reg_provinces');
+    $data['departement'] = $this->crud_model->lihatdata('tbl_departement');
+    $data['divisi'] = $this->crud_model->lihatdata('tbl_divisi');
+    $data['bagian'] = $this->crud_model->lihatdata('tbl_bagian');
+    $data['jabatan'] = $this->crud_model->lihatdata('tbl_jabatan');
+
+    $this->loadViewsUser("pegawai/editdata", $this->global, $data, NULL);
+  }
+
   public function update(){
     $nama_pegawai = $this->input->post('nama_pegawai');
     $nip = $this->input->post('nip');

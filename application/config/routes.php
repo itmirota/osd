@@ -205,6 +205,11 @@ $route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
 /*********** EVALUASI PROMOSI DEFINED ROUTES *******************/
 
 
+/*********** ASSESSMENT DEFINED ROUTES *******************/
+$route['DataAssessment'] = 'assessment';
+$route['assessment360'] = 'assessment/UserPage';
+/*********** ASSESSMENT DEFINED ROUTES *******************/
+
 //SAMPLE
 $route['sample-masuk'] = 'sample/listdata';
 $route['sample-masuk/(:any)/(:any)'] = 'sample/updateStatus/$1/$2';

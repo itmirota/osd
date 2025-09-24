@@ -255,6 +255,18 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU EVALUASI -->
 
+        <!-- MENU ASSESSMENT -->
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP){?>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('DataAssessment'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>Asseement360</span>
+          </a>
+        </li>
+        <?php } ?>
+        <!-- /MENU ASSESSMENT -->
+
+
         <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('pelanggaran-karyawan'); ?>" class="sidebar-link">
