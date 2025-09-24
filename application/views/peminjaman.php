@@ -1,4 +1,5 @@
-<div class="container">
+<main class="p-3">
+<div class="container main-page">
   <!-- <div class="d-flex flex-row justify-content-center">
     <div class="col-3 m-1">
       <a href="<?= base_url('Pinjamruangan')?>">
@@ -49,7 +50,13 @@
       </a>
     </div>
   </div> -->
-
+  <div class="d-none d-md-block d-lg-block d-xl-block">
+  <a href="<?= base_url('dashboardUser')?>"  class="caption-text"> <i class="fas fa-angles-left"></i> kembali ke dashboard</a>
+  </div>
+  <div class="mt-2 mb-2">
+    <h3 class="m-0 font-dark">Menu Peminjaman</h3>
+    <p class="m-0">ajukan peminjamanmu disini</p>
+  </div>
   <div class="row">
     <div class="col-md-6">
       <a href="<?= base_url('Pinjambarang')?>">
@@ -60,8 +67,8 @@
               <img class="img-menu" src="<?= base_url('assets/images/equipment.png')?>">
             </div>
             <div class="flex-grow-1 ms-3">
-              <h3 class="m-0"><strong>Peminjaman Barang</strong></h3>
-              <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan peminjaman barang</p>
+              <h3 class="m-0 font-dark"><strong>Peminjaman Barang</strong></h3>
+              <p class="m-0 caption-text">Menu ini digunakan untuk melakukan pengajuan peminjaman barang</p>
             </div>
           </div>
         </div>
@@ -77,8 +84,8 @@
               <img class="img-menu" src="<?= base_url('assets/images/meeting-room.png')?>">
             </div>
             <div class="flex-grow-1 ms-3">
-              <h3 class="m-0"><strong>Peminjaman Ruangan</strong></h3>
-              <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan peminjaman ruangan</p>
+              <h3 class="m-0 font-dark"><strong>Peminjaman Ruangan</strong></h3>
+              <p class="m-0 caption-text">Menu ini digunakan untuk melakukan pengajuan peminjaman ruangan</p>
             </div>
           </div>
         </div>
@@ -87,4 +94,5 @@
     </div>
   </div>
 </div>
+</main>
 <!-- Menu -->

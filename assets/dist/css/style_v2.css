@@ -1,0 +1,352 @@
+  .select-plaintext{
+    background-color:transparent;
+    border-color:transparent; 
+    --bs-form-select-bg-img:none; 
+    padding:0;
+  }
+
+  .font-light{
+    color: rgb(252, 248, 248);
+  }
+
+  .font-dark{
+    color: rgba(0,50,101,1);
+  }
+
+  .item{
+    background-color: #003265;
+    height: 200px;
+    color: #ddd9d9;
+  }
+
+  .menu{
+    border-radius: 15px;
+    border-style: solid;
+    box-shadow: 1px 1px 10px #888888;
+  }
+
+  .menu:hover{
+    box-shadow: 1px 1px 10px rgba(0,50,101,1);
+  }
+  
+  .card-home-user{
+    background-color: rgba(99,92,99,0.28);
+  }
+
+  .btn{
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 2px rgba(99,92,99,0.28);
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.875rem, 1vw, 1.25rem);
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .main-page{
+    min-height:80dvh;
+  }
+
+  .navbar-logo{
+    width:10em;
+    height:auto;
+  }
+
+  .svg-menu {
+     fill :#003366;
+     width:8dvh;
+     height:8dvh;
+  }
+
+  @media (max-width:576px){
+    .navbar-logo{
+      width:6em;
+      height:auto;
+    }
+  }
+
+  h1{
+    font-size: 4em;
+  }
+
+  h3{
+    font-size: 1.5em;
+    font-weight:bold;
+  }
+
+  h4{
+    font-size: 1.125em;
+  }
+
+  .caption-text{
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  .bg-navbar{
+    background-color: rgba(0,50,101,1);
+  }
+
+  a{
+    color: #003265;
+  }
+
+  a:hover{
+    text-decoration:none;
+    color:red;
+  }
+
+  .sidebar li .submenu{ 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    padding-left: 1rem; 
+    /* padding-right: 1rem; */
+  }
+
+  .card{
+    border-radius:15px;
+    /* background-color: #003265; */
+  }
+
+  .card-header{
+    border-radius:15px;
+  }
+
+  .sidebar-content{
+    background: rgb(31,182,245);
+    background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+  }
+
+  .sidebar-nav{
+    height: 10px;
+    overflow: auto;
+    margin-right: 10px;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(85, 82, 82); 
+    background: rgb(255, 255, 255); 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(31,182,245);
+    background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(6, 71, 145); 
+  }
+
+  a.sidebar-link{
+    background-color:rgba(28,136,227,0.2);
+  }
+
+  a.sidebar-link:hover{
+    background-color:rgba(28,136,227,0.8);
+  }
+
+
+  .bg-pattern{
+    background: rgb(31,182,245);
+    background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgba(8,84,173,1) 100%);
+  }
+
+  .theme-white{
+    background: rgb(240, 240, 240);
+  }
+
+  .theme-login{
+    background: #6D79FC;
+    background: linear-gradient(59deg,rgba(109, 121, 252, 1) 0%, rgba(121, 196, 252, 1) 20%, rgba(84, 149, 247, 1) 54%, rgba(121, 196, 252, 1) 72%, rgba(162, 185, 228, 1) 88%, rgba(148, 187, 233, 1) 100%);
+  }
+
+  .card-dashboard2{
+    background: rgb(31,182,245);
+    background: linear-gradient(65deg, rgba(0,50,101,1) 0%, rgba(8,84,173,1) 100%);
+    color: rgb(189, 188, 188);
+  }
+
+  .box{
+    padding:5vh 0 5vh 0;
+    background-image: linear-gradient( 96.5deg,  rgba(39,103,187,1) 10.4%, rgba(16,72,144,1) 87.7% );
+    border-radius:0 0 15% 15%;
+    box-shadow: 2px 2px 10px 4px rgb(30, 82, 150);
+    color:#fff;
+  }
+
+  .imageheader{
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .login-button{
+    color:#fff;
+    text-decoration:none;
+  }
+
+  .login-button:hover{
+    color:red;
+    text-decoration:none;
+  }
+
+  .text-header{
+    color:#ffffff;
+    /* font-family: 'Tilt Warp', sans-serif; */
+  }
+
+  .container-body{
+    margin-top:-10px;
+  }
+
+  @media (max-width:440px){
+    .text-header{
+      text-align:center;
+    }
+
+    .container-body{
+    margin-top:-10%;
+    }
+
+    .container-body{
+    margin-top:-20%;
+    margin-bottom:50%;
+    }
+  }
+
+  .card-divisi h2{
+    font-family: 'Tilt Warp', sans-serif;
+  }
+
+  .card-divisi p{
+    font-size:50px;
+    color:  rgb(0,50,101,0.20);
+  }
+
+  .card-menu{
+    background-color:transparent;
+    border-radius:15px;
+    max-width:150px;
+  }
+
+  .card-menu:hover{
+    box-shadow: 2px 2px 10px 2px rgba(99,92,99,0.28);
+    background-color:rgb(59, 184, 241);
+    margin-top:-10px;
+  }
+
+  .card-menu p{
+    font-size:50px;
+    color:  rgb(0,50,101,0.20);
+  }
+
+  .card-dashboard{
+    min-height:200px;
+  }
+
+  .header-dashboard{
+    font-family: "Tilt Warp", sans-serif;
+  }
+
+  label{
+    font-weight:bold;
+    margin-top:5px; 
+  }
+
+  /* Style the tab */
+.tab {
+  background: rgb(20, 146, 201);
+  /* background: radial-gradient(circle, rgba(31,182,245,1) 0%, rgb(32, 138, 236) 100%); */
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  border: none;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background: rgb(254, 255, 255);
+  color:rgb(31,182,245);
+  border-radius: 0 0 15px 15px;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background: rgb(255, 255, 255);
+  color:rgb(31,182,245);
+  border-radius: 0 0 15px 15px;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.img-menu{
+  max-width: 15dvh;
+  width: 80%;
+  height: auto;
+  padding:1rem;
+  border-radius:15%;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 19%, rgba(235,235,235,1) 71%);
+}
+
+.img-menu:hover{
+  background: rgb(13,103,187,0.1);
+}
+
+.img-judul{
+  width:5vh;
+}
+
+.text-judul h3, .text-date{
+  color:#fff;
+  font-weight:bold;
+}
+
+.text-judul p{
+  color:#ddd9d9;
+}
+
+/* IMAGE MODAL */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+  

@@ -73,30 +73,19 @@
                             $file = substr($ld->bukti_absensi_toko,-3);
                             ?>
                             <?php if($file == 'pdf'){?>
-                              <a href="#" data-bs-toggle="modal" data-bs-target="#absenToko" onclick= "showDokumen(<?= $ld->id_absen_toko ?>)"><i class="fa-solid fa-file-pdf"></i></a>
+                              <a href="#" id="showDokumen" data-bs-toggle="modal" data-bs-target="#absenToko" data-jenis="pdf" onclick= "showDokumen(<?= $ld->id_absen_toko ?>)"><i class="fa-solid fa-file-pdf"></i> lihat dokumen</a>
                             <?php }else{ ?>
-                                <a href="#" class="pop">
+                                <!-- <a href="#" class="pop">
                                 <img src="<?= base_url('assets/dokumen_absen_toko/'.$ld->bukti_absensi_toko)?>" width="100px" style="border-radius:5px">
-                                </a>
+                                </a> -->
+
+                                <a href="#" id="showDokumen" data-bs-toggle="modal" data-bs-target="#absenToko" data-jenis="gambar" onclick= "showDokumen(<?= $ld->id_absen_toko ?>)"><i class="fa fa-solid fa-image"></i> lihat gambar</a>
                             <?php } ?>
                             </td>
                         </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">              
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="" class="imagepreview" style="width: 100%;" >
-                </div>
             </div>
         </div>
     </div>
@@ -124,22 +113,23 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
-$(function() {
-    $('.pop').on('click', function() {
-        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
-        $('#imagemodal').modal('show');   
-    });		
-});
-
 function showDokumen($id){
+    const jenis = $('#showDokumen').data('jenis');
     $.ajax({
       url:"<?php echo site_url("AbsensiTokoManual/getDokumen")?>/" + $id,
       dataType:"JSON",
       type: "get",
       success:function(hasil){
         console.log(hasil)
+        
         const file = "<?= site_url("assets/dokumen_absen_toko")?>/" + hasil.bukti_absensi_toko;
+        
+        if (jenis == 'pdf'){
         document.getElementById("dokumen").innerHTML = '<iframe src="'+ file + '" frameborder="0" style="width:100%; height:400px;" "></iframe>';
+        }else{
+          document.getElementById("dokumen").innerHTML = '<img src="'+ file +'" width="100%">';
+        }
+        
       }
     });
   };

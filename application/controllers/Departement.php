@@ -27,7 +27,7 @@ class Departement extends BaseController
       
     // $data['list_data']= $this->crud_model->lihatdata('tbl_departement');
 
-    $data['list_data']= $this->departement_model->GetDepartementWithCountDivisi();
+    $data['list_data']= $this->departement_model->GetDepartement();
 
 
     $this->loadViews("departement/data", $this->global, $data, NULL);

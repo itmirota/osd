@@ -48,18 +48,20 @@ class BaseController extends CI_Controller {
 			$this->pegawai_id = $this->session->userdata ( 'pegawai_id' );
 			$this->vendorId = $this->session->userdata ( 'pegawai_id' );
 			$this->name = $this->session->userdata ( 'name' );
-			$this->divisi_id = $this->session->userdata ( 'divisi_id' );
+			$this->bagian_id = $this->session->userdata ( 'bagian_id' );
 			$this->jabatan_id = $this->session->userdata ( 'jabatan_id' );
-			$this->divisi = $this->session->userdata ( 'divisi' );
+			$this->bagian = $this->session->userdata ( 'bagian' );
+			$this->penempatan_id = $this->session->userdata ( 'penempatan_id' );
 			$this->loginType = $this->session->userdata ( 'loginType' );
 			$this->roleText = $this->session->userdata ( 'roleText' );
 			
 			$this->global ['userId'] = $this->vendorId;
 			$this->global ['pegawai_id'] = $this->pegawai_id;
 			$this->global ['name'] = $this->name;
-			$this->global ['divisi_id'] = $this->divisi_id;
-			$this->global ['divisiName'] = $this->divisi;
+			$this->global ['bagian_id'] = $this->bagian_id;
+			// $this->global ['bagianName'] = $this->nama_bagian;
 			$this->global ['jabatan_id'] = $this->jabatan_id;
+			$this->global ['penempatan_id'] = $this->penempatan_id;
 			$this->global ['role'] = $this->role;
 			$this->global ['loginType'] = $this->loginType;
 			$this->global ['role_text'] = $this->roleText;
@@ -114,13 +116,14 @@ class BaseController extends CI_Controller {
 
 	function loadViewsLogin($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
 
-        $this->load->view('includes/header', $headerInfo);
+        $this->load->view('includes/header2', $headerInfo);
         $this->load->view($viewName, $pageInfo);
         $this->load->view('includes/footer', $footerInfo);
     }
 
 	function loadViewsUser($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
-		$this->load->view('includes/header', $headerInfo);
+
+		$this->load->view('includes/header2', $headerInfo);
 		$this->load->view($viewName, $pageInfo);
 		$this->load->view('includes/footer', $footerInfo);
 	}

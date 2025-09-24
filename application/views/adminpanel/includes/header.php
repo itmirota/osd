@@ -19,6 +19,9 @@
 
 	<title><?= $pageTitle ?></title>
 
+  <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
+  <script src="<?php echo base_url(); ?>assets/dist/js/register.js"></script>
+
   <!-- Bootstrap 5 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
@@ -47,13 +50,15 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  
-  <!-- CHART.JS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- Summernote --> 
+  <link href="<?=base_url(); ?>assets/dist/summernote-0.9.0/summernote-bs5.min.css" rel="stylesheet">
+
+
+  <!-- jQuery 3 -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <style>
     #load{
       width: 100%;
@@ -80,7 +85,7 @@ if($role != ROLE_STAFF){ ?>
 <div class="wrapper">
   <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-      <a class="sidebar-brand" href="index.html">
+      <a class="sidebar-brand" href="">
         <span class="align-middle">Smart OSD Mirota KSM </span>
       </a>
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -90,7 +95,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <li class="sidebar-item">
           <a href="<?php echo base_url('/dashboard');?>" class="sidebar-link">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+            <i class="fa fa-dashboard" style="color:#fff"></i> <span>Dashboard</span>
           </a>
         </li>
         <!-- MASTER DATA -->
@@ -101,15 +106,22 @@ if($role != ROLE_STAFF){ ?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-roof"></i>
-                <span>Data Departement</span>
+                <span>Struktur Organisasi</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-line"></i>
                 <span>Data Divisi</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('Databagian'); ?>" class="sidebar-link">
+                <i class="fa-solid fa-people-group"></i>
+                <span>Data Bagian</span>
+              </a>
+            </li> -->
+            
             <li class="sidebar-item">
               <a href="<?php echo base_url('area-kerja'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-line"></i>
@@ -279,6 +291,18 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU EVALUASI -->
 
+        <!-- MENU ASSESSMENT -->
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP){?>
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('DataAssessment'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>Asseement360</span>
+          </a>
+        </li>
+        <?php } ?>
+        <!-- /MENU ASSESSMENT -->
+
+
         <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('pelanggaran-karyawan'); ?>" class="sidebar-link">
@@ -431,7 +455,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
 
         <?php
-        if($role == ROLE_SUPERADMIN | $divisi_id == 5 | $divisi_id == 11)
+        if($role == ROLE_SUPERADMIN)
         {
         ?>
         <!-- MENU SAMPLE -->

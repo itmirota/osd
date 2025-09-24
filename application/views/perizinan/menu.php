@@ -3,9 +3,13 @@
     display:none;
   }
 </style>
-<div class="container">
-<div class="text-judul mt-2 mb-2">
-  <h3 class="m-0">Menu Perizinan</h3>
+<main class="p-3">
+<div class="container main-page">
+<div class="d-none d-md-block d-lg-block d-xl-block">
+<a href="<?= base_url('dashboardUser')?>"  class="caption-text"> <i class="fas fa-angles-left"></i> kembali ke dashboard</a>
+</div>
+<div class="mt-2 mb-2">
+  <h3 class="m-0 font-dark">Menu Perizinan</h3>
   <p class="m-0">ajukan perizinanmu disini</p>
 </div>
 
@@ -19,7 +23,7 @@
             <img class="img-menu" src="<?= base_url('assets/images/leave.png')?>">
           </div>
           <div class="flex-grow-1 ms-3">
-            <h3 class="m-0"><strong>Pengajuan Cuti</strong></h3>
+            <h3 class="m-0 font-dark"><strong>Pengajuan Cuti</strong></h3>
             <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan cuti</p>
           </div>
         </div>
@@ -36,7 +40,7 @@
             <img class="img-menu" src="<?= base_url('assets/images/assignment.png')?>">
           </div>
           <div class="flex-grow-1 ms-3">
-            <h3 class="m-0"><strong>Pengajuan Penugasan</strong></h3>
+            <h3 class="m-0 font-dark"><strong>Pengajuan Penugasan</strong></h3>
             <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan penginputan surat penugasan</p>
           </div>
         </div>
@@ -53,7 +57,7 @@
             <img class="img-menu" src="<?= base_url('assets/images/izin-1.png')?>">
           </div>
           <div class="flex-grow-1 ms-3">
-            <h3 class="m-0"><strong>Pengajuan Izin kuang dari 1 Hari</strong></h3>
+            <h3 class="m-0 font-dark"><strong>Pengajuan Izin kuang dari 1 Hari</strong></h3>
             <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan izin tidak lebih dari 1 hari</p>
           </div>
         </div>
@@ -70,7 +74,7 @@
             <img class="img-menu" src="<?= base_url('assets/images/izin.png')?>">
           </div>
           <div class="flex-grow-1 ms-3">
-            <h3 class="m-0"><strong>Pengajuan Izin</strong></h3>
+            <h3 class="m-0 font-dark"><strong>Pengajuan Izin</strong></h3>
             <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan izin satu hai penuh atau lebih</p>
           </div>
         </div>
@@ -82,8 +86,8 @@
 
 <div class="row">
   <div class="col-md-8">
-    <div class="text-judul mt-2 mb-4">
-      <h3 class="m-0">List Perizinan</h3>
+    <div class="font-dark mt-2 mb-4">
+      <h3 class="m-0 font-dark">List Perizinan</h3>
       <p class="m-0">menampilkan histori perizinan</p>
     </div>
     <div class="card">
@@ -150,7 +154,7 @@
                     <span class="badge text-bg-warning"> Menunggu persetujuan pengganti</span>
                   <?php break;?>
                   <?php case("Y,N,N"):?>
-                    <span class="badge text-bg-warning"> Menunggu persetujuan Kabag</span>
+                    <span class="badge text-bg-warning"> Menunggu persetujuan atasan</span>
                   <?php break;?>
                   <?php case("Y,Y,N"):?>
                     <span class="badge text-bg-warning"> Menunggu persetujuan manager</span>
@@ -346,8 +350,8 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="text-judul mt-2 mb-4">
-      <h3 class="m-0">Approval Cuti</h3>
+    <div class="font-dark mt-2 mb-4">
+      <h3 class="m-0 font-dark">Approval Cuti</h3>
       <p class="m-0">menampilkan list cuti yang membutuhkan persetujuanmu</p>
     </div>
     <div class="card">
@@ -375,8 +379,11 @@
               <td><?= $ap->nama_pegawai ?></td>
               <td class="text-center">
               <?php if($ap->approval === "N,N,N"){?>
-              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> approve</a>  
-              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i> tolak</a></td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>  
+              <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i></a>
+              </div>
+              </td>
               <?php }else{?>
               <span class="badge text-bg-success"> <i class="fa fa-check"></i></span>
               <?php } ?>
@@ -762,8 +769,7 @@
     </div>
   </div>
 </div>
-
-
+</main>
 
 <script>
 // CUTI
@@ -803,7 +809,6 @@
 
     });
   };
-
 
 // TUGAS 
   function listApprovalTugas($id){ 
@@ -943,7 +948,6 @@
 
     });
   };
-
 
 // tabs 
   function openTabs(evt, cityName) {

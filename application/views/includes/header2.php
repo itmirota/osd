@@ -29,12 +29,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
 
-  <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
   <!-- Adminkit -->
 	<link href="<?= base_url(); ?>assets/adminkit/css/app.css" rel="stylesheet">
 
 	<!-- Style.css -->
-	<link href="<?= base_url(); ?>assets/dist/css/style.css" rel="stylesheet">
+	<link href="<?= base_url(); ?>assets/dist/css/style_v2.css" rel="stylesheet">
   
   <!-- FullCalendar -->
   <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
@@ -51,13 +50,18 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	
+  <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
 	<script src="<?php echo base_url(); ?>assets/dist/js/register.js"></script>
 </head>
 
 <!-- <body class="sidebar-mini skin-black-light"> -->
 <body class="theme-white">
 <div>
-  <?php if (isset($name)){?>
+  <?php 
+  $cek = $this->uri->segment(1);
+
+  if ($cek != "login" && isset($cek)){?>
   <!-- Up Navbar -->
   <nav class="navbar navbar-dark bg-navbar navbar-expand mb-4">
     <div class="container">
@@ -66,9 +70,10 @@
         <img class="navbar-logo" src="<?= base_url('assets/dist/img/mirota.png')?>" alt="Logo" class="d-inline-block align-text-top">
       </a>
     </ul>
-    <ul class="navbar-nav justify-content-end w-25">
+    <ul class="navbar-nav justify-content-end w-25 d-none d-md-block d-lg-block d-xl-block">
       <li class="nav-item">
         <div class="btn-group p-2">
+          <?php if (isset($name)){?>
 					<button type="button" class="btn login-button dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
 					<i class="fa-solid fa-circle-user"></i> Hi, <?= $name ?>
 					</button>
@@ -77,12 +82,13 @@
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?= base_url('logout')?>">Keluar</a></li>
 					</ul>
+          <?php } ?>
 				</div>
       </li>
     </ul>
     </div>
   </nav>
-
+  <?php if (isset($name)){?>
   <!-- Bottom Navbar -->
   <nav class="navbar navbar-dark bg-navbar navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none">
     <ul class="navbar-nav nav-justified w-100">
@@ -95,7 +101,7 @@
         </a>
         <span class="text-light">Home</span>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="#" class="nav-link">
           <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
@@ -103,8 +109,8 @@
           </svg>
         </a>
         <span class="text-light">Pinjam</span>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a href="#" class="nav-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-fingerprint" viewBox="0 0 16 16">
             <path d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z"/>
@@ -115,194 +121,187 @@
           </svg>
         </a>
         <span class="text-light">Kehadiran</span>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a href="#" class="nav-link">
-          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-          </svg>
-        </a>
-        <span class="text-light">Like</span>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#detailPegawai" onclick="detailPegawai(<?= $pegawai_id?>)">
           <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
           </svg>
         </a>
-        <span class="text-light">User</span>
+        <span class="text-light">info User</span>
+      </li>
+      <li class="nav-item">
+        <a href="<?= base_url('logout')?>" class="nav-link">
+          <svg width="1.5em" height="1.5em" viewBox="-2.6 -2.6 25.20 25.20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="0.48"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="currentColor" d="M10.2392344,0 C13.3845587,0 16.2966635,1.39466883 18.2279685,3.74426305 C18.4595621,4.02601608 18.4134356,4.43777922 18.124942,4.66396176 C17.8364485,4.89014431 17.4148346,4.84509553 17.183241,4.5633425 C15.5035716,2.51988396 12.9739849,1.30841121 10.2392344,1.30841121 C5.32416443,1.30841121 1.33971292,5.19976806 1.33971292,10 C1.33971292,14.8002319 5.32416443,18.6915888 10.2392344,18.6915888 C13.0144533,18.6915888 15.5774656,17.443711 17.2546848,15.3485857 C17.4825482,15.0639465 17.9035339,15.0136047 18.1949827,15.2361442 C18.4864315,15.4586837 18.5379776,15.8698333 18.3101142,16.1544725 C16.3816305,18.5634688 13.4311435,20 10.2392344,20 C4.58426141,20 8.8817842e-14,15.5228475 8.8817842e-14,10 C8.8817842e-14,4.4771525 4.58426141,0 10.2392344,0 Z M17.0978642,7.15999289 L19.804493,9.86662172 C20.0660882,10.1282169 20.071043,10.5473918 19.8155599,10.802875 L17.17217,13.4462648 C16.9166868,13.701748 16.497512,13.6967932 16.2359168,13.435198 C15.9743215,13.1736028 15.9693667,12.7544279 16.2248499,12.4989447 L17.7715361,10.9515085 L7.46239261,10.9518011 C7.0924411,10.9518011 6.79253615,10.6589032 6.79253615,10.2975954 C6.79253615,9.93628766 7.0924411,9.64338984 7.46239261,9.64338984 L17.7305361,9.64250854 L16.1726778,8.08517933 C15.9110825,7.82358411 15.9061278,7.40440925 16.1616109,7.14892607 C16.4170941,6.89344289 16.836269,6.89839767 17.0978642,7.15999289 Z"></path> </g></svg>
+        </a>
+        <span class="text-light">Logout</span>
       </li>
     </ul>
   </nav>
   <?php } ?>
-  
-  <?php if($this->uri->segment(1) == 'satpam' | $this->uri->segment(1) == 'kebersihan' | $this->uri->segment(1) == 'PHL'){?>
-  <div class="header" style="padding:10vh 0 0 0">
-    <div class="container">
-      <div class="d-flex justify-content-center">
-        <img class="imageheader" src="<?= base_url('assets/dist/img/mirotaksm.png')?>" alt="" srcset="">
-      </div>
-    </div>
-  </div>
-  <?php } ?>
-  <div class="container" style="min-height:80vh">
+  <!-- <div class="container" style="min-height:105vh"> -->
+  <?php }?>
 
 
-<!-- Modal Detail Pegawai-->
-<div class="modal fade" id="detailPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pegawai</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-6">
-            <div class="mb-3 row">
-              <label for="tempat_tglLahir" class="col-sm-4 col-form-label">Tempat, Tanggal Lahir</label>
-              <div class="col-sm-8">
-                <input type="text" id="tempat_tglLahir" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="shio" class="col-sm-4 col-form-label">Shio</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_shio" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="zodiak" class="col-sm-4 col-form-label">Zodiak</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_zodiak" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_weton" class="col-sm-4 col-form-label">Weton</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_weton" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_jenis_kelamin" class="col-sm-4 col-form-label">Jenis Kelamin</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_jenis_kelamin" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_pendidikan_terakhir" class="col-sm-4 col-form-label">Pendidikan Terakhir</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_pendidikan_terakhir" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_golongan_darah" class="col-sm-4 col-form-label">Golongan Darah</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_golongan_darah" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_agama" class="col-sm-4 col-form-label">Agama</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_agama" readonly class="form-control-plaintext">
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_alamat_ktp" class="col-sm-4 col-form-label">Alamat KTP</label>
-              <div class="col-sm-8">
-                <textarea id="info_alamat_ktp" readonly class="form-control-plaintext"></textarea>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_alamat_domisili" class="col-sm-4 col-form-label">Alamat domisili</label>
-              <div class="col-sm-8">
-                <textarea id="info_alamat_domisili" readonly class="form-control-plaintext"></textarea>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_kontak" class="col-sm-4 col-form-label">Nomor</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_kontak" readonly class="form-control-plaintext">
-              </div>
-            </div>
+  <!-- Modal Detail Pegawai-->
+  <div class="modal fade" id="detailPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pegawai</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-end mb-4">
+            <a href="<?= base_url('pegawai/editData/'.$pegawai_id)?>" class="btn btn-md btn-primary"><i class="fa-solid fa-pencil"></i> ubah data</a>
           </div>
-          <div class="col-6">
-            <div class="mb-3 row">
-              <label for="info_ktp" class="col-sm-4 col-form-label">Nomor KTP</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_ktp" readonly class="form-control-plaintext">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3 row">
+                <label for="tempat_tglLahir" class="col-sm-4 col-form-label">Tempat, Tanggal Lahir</label>
+                <div class="col-sm-8">
+                  <input type="text" id="tempat_tglLahir" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="shio" class="col-sm-4 col-form-label">Shio</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_shio" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="zodiak" class="col-sm-4 col-form-label">Zodiak</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_zodiak" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_weton" class="col-sm-4 col-form-label">Weton</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_weton" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_jenis_kelamin" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_jenis_kelamin" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_pendidikan_terakhir" class="col-sm-4 col-form-label">Pendidikan Terakhir</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_pendidikan_terakhir" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_golongan_darah" class="col-sm-4 col-form-label">Golongan Darah</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_golongan_darah" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_agama" class="col-sm-4 col-form-label">Agama</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_agama" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_alamat_ktp" class="col-sm-4 col-form-label">Alamat KTP</label>
+                <div class="col-sm-8">
+                  <textarea id="info_alamat_ktp" readonly class="form-control-plaintext"></textarea>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_alamat_domisili" class="col-sm-4 col-form-label">Alamat domisili</label>
+                <div class="col-sm-8">
+                  <textarea id="info_alamat_domisili" readonly class="form-control-plaintext"></textarea>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_kontak" class="col-sm-4 col-form-label">Nomor</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_kontak" readonly class="form-control-plaintext">
+                </div>
               </div>
             </div>
-            <div class="mb-3 row">
-              <label for="info_kk" class="col-sm-4 col-form-label">Nomor KK</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_kk" readonly class="form-control-plaintext">
+            <div class="col-6">
+              <div class="mb-3 row">
+                <label for="info_ktp" class="col-sm-4 col-form-label">Nomor KTP</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_ktp" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_jamsostek" class="col-sm-4 col-form-label">Nomor Jamsostek</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_jamsostek" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_kk" class="col-sm-4 col-form-label">Nomor KK</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_kk" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_bpjsKesehatan" class="col-sm-4 col-form-label">Nomor Bpjs Kesehatan</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_bpjsKesehatan" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_jamsostek" class="col-sm-4 col-form-label">Nomor Jamsostek</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_jamsostek" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_npwp" class="col-sm-4 col-form-label">Nomor NPWP</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_npwp" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_bpjsKesehatan" class="col-sm-4 col-form-label">Nomor Bpjs Kesehatan</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_bpjsKesehatan" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Masuk</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_tgl_masuk" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_npwp" class="col-sm-4 col-form-label">Nomor NPWP</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_npwp" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Selesai Kontrak</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_tgl_selesai" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Masuk</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_tgl_masuk" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_durasi_kontrak" class="col-sm-4 col-form-label">Durasi Kontrak</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_durasi_kontrak" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_tgl_masuk" class="col-sm-4 col-form-label">Tanggal Selesai Kontrak</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_tgl_selesai" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_email" class="col-sm-4 col-form-label">Email</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_email" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_durasi_kontrak" class="col-sm-4 col-form-label">Durasi Kontrak</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_durasi_kontrak" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_ibu" class="col-sm-4 col-form-label">Nama Ibu</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_ibu" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_email" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_ayah" class="col-sm-4 col-form-label">Nama ayah</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_ayah" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_ibu" class="col-sm-4 col-form-label">Nama Ibu</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_ibu" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_pasangan" class="col-sm-4 col-form-label">Nama Pasangan</label>
-              <div class="col-sm-8">
-                <input type="text" id="info_pasangan" readonly class="form-control-plaintext">
+              <div class="mb-3 row">
+                <label for="info_ayah" class="col-sm-4 col-form-label">Nama ayah</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_ayah" readonly class="form-control-plaintext">
+                </div>
               </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="info_anak" class="col-sm-4 col-form-label">Nama anak</label>
-              <div class="col-sm-8">
-                <textarea id="info_anak" readonly class="form-control-plaintext"></textarea>
+              <div class="mb-3 row">
+                <label for="info_pasangan" class="col-sm-4 col-form-label">Nama Pasangan</label>
+                <div class="col-sm-8">
+                  <input type="text" id="info_pasangan" readonly class="form-control-plaintext">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="info_anak" class="col-sm-4 col-form-label">Nama anak</label>
+                <div class="col-sm-8">
+                  <textarea id="info_anak" readonly class="form-control-plaintext"></textarea>
+                </div>
               </div>
             </div>
           </div>
@@ -310,7 +309,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 

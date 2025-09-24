@@ -43,7 +43,6 @@ class AbsensiTokoManual extends BaseController
     $periode = $this->input->post('periode');
     $datenow = DATE('Y-m');
 
-
     if (!empty($periode)){
       $periodeAkhir = $periode.'-20';
       $date = date_create($periode);
@@ -52,7 +51,9 @@ class AbsensiTokoManual extends BaseController
       $date = date_create($datenow);
     }
 
-    if ($bulanNow = 1){
+    $bulanNow = date_format($date,'m');
+
+    if ($bulanNow == 1){
       $bulan = 12;
       $tahun = date_format($date,'Y')-1;
     }else{
@@ -60,7 +61,9 @@ class AbsensiTokoManual extends BaseController
       $tahun = date_format($date,'Y');
     }
 
+
     $periodeAwal = $tahun.'-'.$bulan.'-21';
+
 
     $where = array(
       'tgl_awal >=' => $periodeAwal,
@@ -71,7 +74,7 @@ class AbsensiTokoManual extends BaseController
       'periodeAwal' => $periodeAwal,
       'periodeAkhir' => $periodeAkhir,
       'list_data' => $this->absensi_model->ReportAbsenToko($id, $where),
-      'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' >= 16),'tbl_pegawai'),
+      // 'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' >= 16),'tbl_pegawai'),
     );
 
     $this->loadViews("absensitokomanual/laporan", $this->global, $data, NULL);

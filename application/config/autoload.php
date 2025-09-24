@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session','user_agent');
+$autoload['libraries'] = array('database', 'session','user_agent','userlogin');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('form','url','file','cias_helper','tgl_indo_helper',
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('google_auth');
 
 
 /*

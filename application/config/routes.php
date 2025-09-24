@@ -54,6 +54,8 @@ $route['kirimpaket'] = 'pengirimanpaket/save';
 // PEGAWAI
 $route['Datapegawai'] = 'pegawai/listData';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
+$route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
+$route['pegawai/(:num)'] = "bagian/pegawaiByBagian/$1";
 
 $route['api/karyawan'] = 'api/PegawaiController/index';
 $route['api/karyawan/store'] = 'api/PegawaiController/store';
@@ -81,6 +83,11 @@ $route['divisi/(:num)'] = 'divisi/divisiByDept/$1';
 $route['Datadivisi'] = 'divisi';
 $route['Subdivisi/(:num)'] = 'divisi/getSubDivisi/$1';
 $route['deletedivisi/(:num)'] = "divisi/delete/$1";
+
+// BAGIAN
+$route['Databagian'] = 'bagian';
+$route['bagian/(:num)'] = 'bagian/bagianByDivisi/$1';
+$route['deletebagian/(:num)'] = "bagian/delete/$1";
 
 // BARANG
 $route['Databarang'] = 'barang';
@@ -201,6 +208,11 @@ $route['penilaian-promosi-v3/(:any)'] = 'evaluasiPromosi/penilaian_v3/$1';
 $route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
 /*********** EVALUASI PROMOSI DEFINED ROUTES *******************/
 
+
+/*********** ASSESSMENT DEFINED ROUTES *******************/
+$route['DataAssessment'] = 'assessment';
+$route['assessment360'] = 'assessment/UserPage';
+/*********** ASSESSMENT DEFINED ROUTES *******************/
 
 //SAMPLE
 $route['sample-masuk'] = 'sample/listdata';

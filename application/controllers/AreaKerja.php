@@ -26,8 +26,7 @@ class areakerja extends BaseController
   public function index(){
     $this->global['pageTitle'] = 'Admin Panel : Data areakerja';
     
-    $data['list_data']= $this->master_model->getAreaKerja();
-    $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
+    $data['list_data']= $this->crud_model->lihatdata('tbl_areakerja');
 
     $this->loadViews("areakerja/data", $this->global, $data, NULL);
   }

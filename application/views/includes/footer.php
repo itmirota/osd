@@ -68,6 +68,7 @@ if(isset($name)){ ?>
 
 <script>
 	$(document).ready(function() {
+	  $("#formLogin").hide();
 		$("#durasi_kontrak").hide();
 		$("#infobarang").hide();
 		$("#kendaraan_id").hide();

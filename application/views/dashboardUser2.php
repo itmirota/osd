@@ -36,30 +36,28 @@
   /* width: 10px; */
 }
 </style>
-
-<div class="container">
+<main class="p-3">
+<div class="container main-page">
   <h4 class="font-dark"><strong>Selamat <?=nama_waktu(DATE('H'))?>, <?=$name?> !</strong></h4>
   <div class="row">
     <div class="col-12">
       <div class="card card-dashboard2">
         <div class="card-body">
-          <div class="row">
-            <div class="col-8">
+          <div class="d-flex flex-wrap justify-content-between">
+            <div class="p-1">
               <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <p class="font-light" style="font-size:20px"><i class="fa fa-solid fa-user"></i></p>
-                </div>
-                <div class="flex-grow-1 ms-3">
+                <div class="flex-grow-1">
                   <h4 class="font-light"><strong><?= $name ?></strong></h4>
-                  <h6 class="font-light"><?= $pegawai->nama_divisi ?></h6>
+                  <p class="font-light m-0"><?= $pegawai->nama_divisi." / ".$pegawai->nama_bagian ?></p>
+                  <p class="font-light m-0"><?= $pegawai->nama_areakerja ?></p>
                 </div>
               </div>
             </div>
-            <div class="col-4">
+            <div class="p-1">
               <div class="d-flex">
-                <div class="flex-grow-1 ms-3">
-                  <h4 class="font-light"><strong>Kuota Cuti</strong></h4>
-                  <h6 class="font-light">0</h6>
+                <div class="flex-grow-1">
+                  <!-- <h4 class="font-light"><strong>Kuota Cuti</strong></h4>
+                  <p class="font-light m-0"><strong><?= $pegawai->kuota_cuti ?></strong></p> -->
                 </div>
               </div>
             </div>
@@ -67,7 +65,158 @@
         </div>
       </div>
     </div>
-    <h3 class="font-dark"><strong>Info Mirota</strong></h3>
+
+
+
+    <!-- OLD MENU -->
+    <!-- <h3 class="font-dark">Menu</h3>
+    <div class="col-12">
+      <div class="row" >
+        <div class="col-3">
+          <a href="<?= base_url('peminjaman') ?>">
+          <div class="card menu">
+            <div class="card-body">
+              <img class="mb-2" width="40" height="40" src="<?= base_url('assets/images/process.png')?>">
+              <h4 class="font-dark m-0"><strong>peminjaman</strong></h4>
+            </div> 
+          </div>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="<?= base_url('peminjaman') ?>">
+          <div class="card menu">
+            <div class="card-body">
+              <img class="mb-2" width="40" height="40" src="<?= base_url('assets/images/camera.png')?>">
+              <h4 class="font-dark m-0"><strong>Presensi</strong></h4>
+            </div> 
+          </div>
+          </a>
+        </div>
+        <div class="col-3">      
+          <div class="card menu">
+            <div class="card-body">
+              <img class="mb-2" width="40" height="40" src="<?= base_url('assets/images/rest.png')?>">
+              <h4 class="font-dark m-0"><strong>Istirahat</strong></h4>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- OLD MENU -->
+
+    <!-- Menu -->
+    <div class="mt-2 mb-2">
+      <h3 class="font-dark"> Layanan OSD</h3>
+      <p class="mt-1 font-dark">Layanan yang bisa kamu manfaatkan, seperti pengajuan izin, peminjaman, absensi</p>
+    </div>
+    <div class="d-flex flex-wrap flex-row">
+      <div class="col-3">
+        <a href="<?= base_url('peminjaman') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/process.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Peminjaman
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- <div class="col-3">
+        <a href="<?= base_url('perizinan') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Perizinan
+            </p>
+          </div>
+        </a>
+      </div> -->
+      <div class="col-3">
+        <a href="" data-bs-toggle="modal" data-bs-target="#addPengirimanPaket">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/truck.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Pengiriman Paket
+            </p>
+          </div>
+        </a>
+      </div>
+      <?php if($penempatan_id != 1){ ?>
+      <div class="col-3">
+        <a href="<?= base_url('Absensi-visit') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Absen Visit
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-3">
+        <a href="<?= base_url('absen-toko') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Absen Toko Manual
+            </p>
+          </div>
+        </a>
+      </div>
+      <?php }else{?>
+      <div class="col-3">
+        <a href="<?= base_url('absensi') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Absen Online
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-3">
+        <a href="<?= base_url('istirahat') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/rest.png')?>">
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Absen Istirahat
+            </p>
+          </div>
+        </a>
+      </div>
+      <?php } ?>
+      
+    </div>
+    <!-- <div class="d-flex flex-row justify-content-start">
+      <div class="col-3 m-1">
+        <a data-bs-toggle="modal" data-bs-target="#DaftarHadir">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <img class="img-menu" src="<?= base_url('assets/images/logo51.png')?>">
+            </div>
+            <div class="d-flex justify-content-center text-header">
+              HUT 51 MIROTA
+            </div>
+          </div>
+        </a>
+      </div>
+    </div> -->
+    <!-- Menu -->
+    <!-- <h3 class="font-dark">Info Mirota</h3>
     <div class="col-12">
       <div class="loop owl-carousel owl-theme">
         <div class="item">
@@ -107,152 +256,10 @@
           <h4>12</h4>
         </div>
       </div>
-    </div>
-    <h3 class="font-dark"><strong>Menu</strong></h3>
-    <div class="col-12">
-      <div class="row">
-        <div class="col-6">
-          <a href="<?= base_url('peminjaman') ?>">
-          <div class="card menu">
-            <div class="card-body">
-              <img class="mb-2" width="40" height="40" src="<?= base_url('assets/images/process.png')?>">
-              <h4 class="font-dark m-0"><strong>peminjaman</strong></h4>
-            </div> 
-          </div>
-          </a>
-        </div>
-        <div class="col-6">
-          <a href="<?= base_url('peminjaman') ?>">
-          <div class="card menu">
-            <div class="card-body">
-              <img class="mb-2" width="40" height="40" src="<?= base_url('assets/images/camera.png')?>">
-              <h4 class="font-dark m-0"><strong>Presensi</strong></h4>
-            </div> 
-          </div>
-          </a>
-        </div>
-        <div class="col-6">      
-          <div class="card menu">
-            <div class="card-body">
-              <img class="mb-2" width="40" height="40" src="<?= base_url('assets/images/rest.png')?>">
-              <h4 class="font-dark m-0"><strong>Istirahat</strong></h4>
-            </div> 
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- <div class="col-12">
-      <h4 class="font-dark"><strong>Info Mirota</strong></h4>
-      <div class="card" style="background-color:grey; height:100px"></div>
     </div> -->
   </div>
-
-  <!-- Menu -->
-  <div class="text-judul mt-2 mb-2">
-    <h3 class="m-0"> Layanan OSD</h3>
-    <p style="font-size:12px" class="m-0 mt-1">Layanan yang bisa kamu manfaatkan, seperti pengajuan izin, peminjaman, absensi</p>
-  </div>
-  <div class="d-flex flex-row justify-content-center p-4 pb-1">
-    <div class="col-3 m-1">
-      <a href="<?= base_url('peminjaman') ?>">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/process.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            Peminjaman
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- <div class="col-3 m-1">
-      <a href="<?= base_url('perizinan') ?>">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            Perizinan
-          </div>
-        </div>
-      </a>
-    </div> -->
-
-    <?php if($divisi_id >= 16 && $divisi_id <= 31){ ?>
-    <div class="col-3 m-1">
-      <a href="<?= base_url('Absensi-visit') ?>">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            Absensi Visit
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-3 m-1">
-      <a href="<?= base_url('absen-toko') ?>">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/take_picture.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            Absen Manual Toko
-          </div>
-        </div>
-      </a>
-    </div>
-    <?php }else{?>
-    <div class="col-3 m-1">
-      <a href="<?= base_url('absensi') ?>">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/camera.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            Absensi Online
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-3 m-1">
-      <a href="<?= base_url('istirahat') ?>">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/rest.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            Absensi Istirahat
-          </div>
-        </div>
-      </a>
-    </div>
-    <?php } ?>
-    
-  </div>
-
-  <!-- <div class="d-flex flex-row justify-content-start">
-    <div class="col-3 m-1">
-      <a data-bs-toggle="modal" data-bs-target="#DaftarHadir">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-center mb-2">
-            <img class="img-menu" src="<?= base_url('assets/images/logo51.png')?>">
-          </div>
-          <div class="d-flex justify-content-center text-header">
-            HUT 51 MIROTA
-          </div>
-        </div>
-      </a>
-    </div>
-  </div> -->
-  <!-- Menu -->
 </div>
+</main>
 
 <!-- MODAL DAFTAR HADIR -->
 <!-- Modal -->
@@ -310,6 +317,48 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addPengirimanPaket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="<?=base_url('kirimpaket')?>" role="form" id="addPengirimanPaket" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h1 class="modal-title fs-3" id="exampleModalLabel">Formulir Tambah Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="tgl_kirim" class="form-label">tanggal pengiriman</label>
+              <input type="date" name="tgl_kirim" class="form-control tabel-PR" required/>
+            </div> 
+            <div class="col-md-12">
+              <label for="deskripsi_paket" class="form-label">Deskripsi Paket</label>
+              <textarea  class="form-control tabel-PR" name="deskripsi_paket" cols="30" rows="5" required></textarea>
+            </div> 
+            <div class="col-md-12">
+              <label for="nama_penerima" class="form-label">Nama Penerima</label>
+              <input type="text" name="nama_penerima" placeholder="Nama penerima" class="form-control tabel-PR" required />
+            </div>
+            <div class="col-md-12">
+              <label for="ekspedisi" class="form-label">Nama Ekspedisi</label>
+              <input type="text" name="ekspedisi" placeholder="Nama Ekspedisi" class="form-control tabel-PR" required />
+            </div>
+            <div class="col-md-12">
+              <label for="alamat_penerima" class="form-label">Alamat Penerima</label>
+              <textarea  class="form-control tabel-PR" name="alamat_penerima" cols="30" rows="5" required></textarea>
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+      </form>
     </div>
   </div>
 </div>

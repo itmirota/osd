@@ -43,7 +43,7 @@ class Kebersihan extends BaseController
     $this->global['pageHeader'] = 'OSD | Data Kebersihan';
 
     $data = array(
-      'pegawai' => $this->crud_model->GetDataByWhere(array('divisi_id' => 7),'tbl_pegawai'),
+      'pegawai' => $this->crud_model->GetDataByWhere(['bagian_id' => 60, 'status' => 'aktif'],'tbl_pegawai'),
       'ruangan' => $this->crud_model->lihatdata('tbl_ruangan')
     );
 
@@ -97,14 +97,30 @@ class Kebersihan extends BaseController
     $res = $this->crud_model->input($data,'tbl_perawatan_ruangan');
     echo json_encode($res);
   }
+
+  public function showImage($id){
+    $data = $this->crud_model->getdataRowbyWhere('bukti_perawatan', 'id_perawatan_ruangan ='.$id, 'tbl_perawatan_ruangan');
+    echo json_encode($data);
+  }
   
   // Admin Panel
   public function report(){
     $this->global['pageTitle'] = 'Tim Kebersihan';
     $this->global['pageHeader'] = 'OSD | Data Kebersihan';
-    
+    $periode = $this->input->post('periode');
+    $bulan = DATE('m');
+    $tahun = DATE('Y');
+
+    $explode = explode("-",$periode);
+
+    if (!empty($periode)){
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $explode[1],'YEAR(tgl_perawatan)' => $explode[0]],'"id_perawatan_ruangan","DESC"');
+    }else{
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun],'"id_perawatan_ruangan","DESC"');
+    }
+
     $data = array(
-      'list_data' => $this->master_model->getPerawatanRuangan()
+      'list_data' => $list_data
     );
 
     $this->loadViews("kebersihan/report", $this->global, $data, NULL);
@@ -145,7 +161,7 @@ class Kebersihan extends BaseController
     if(empty($tgl_mulai)){
       $list_data = $this->master_model->getPerawatanRuangan();
     }else{
-      $list_data = $this->master_model->getPerawatanRuanganbyWhere($where);
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere($where,'"id_perawatan_ruangan","DESC"');
     }
 
     $spreadsheet = new Spreadsheet();

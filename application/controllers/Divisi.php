@@ -48,14 +48,13 @@ class Divisi extends BaseController
     $this->loadViews("divisi/data", $this->global, $data, NULL);
   }
 
-  public function divisiByDept(){
+  public function divisiByDept($id){
     $this->global['pageTitle'] = 'Admin Panel : Divisi';
-
-    $id = $this->uri->segment(2);
 
     $data['list_data']= $this->divisi_model->GetDivisiByDeptWithCountEmployee($id);
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
     $data['departement']= $this->crud_model->lihatdata('tbl_departement');
+
 
     $this->loadViews("divisi/data", $this->global, $data, NULL);
   }

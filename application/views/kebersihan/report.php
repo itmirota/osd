@@ -4,8 +4,12 @@
     <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Export Excel
     </button>
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#HapusLaporan">
+    <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#HapusLaporan">
       hapus data
+    </button>
+
+    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#filter">
+    Filter
     </button>
 
     <!-- Modal -->
@@ -64,6 +68,29 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-danger">Hapus</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Filter -->
+    <div class="modal fade" id="filter" tabindex="-1" aria-labelledby="filterLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="<?=base_url('laporan-kebersihan')?>" role="form" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="periode" class="form-label">Periode</label>
+                <input type="month" class="form-control" name="periode">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Input</button>
             </div>
           </form>
         </div>

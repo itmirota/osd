@@ -6,24 +6,26 @@ class Perizinan_model extends CI_Model
 public function getData(){
   $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
   $this->db->from('tbl_perizinan_cuti a');
-  $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-  $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+  $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+  $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+  $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
+  $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
   $this->db->order_by('id_cuti','DESC');
   $query = $this->db->get();
   return $query->result();
 }
 
-public function getDatabyApproval($id){
-  $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
-  $this->db->from('tbl_perizinan_cuti a');
-  $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-  $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
-  $this->db->where('c.kadiv_id', $id);
-  $this->db->or_where('c.manager_id', $id);
-  $this->db->order_by('id_cuti','DESC');
-  $query = $this->db->get();
-  return $query->result();
-}
+// public function getDatabyApproval($id){
+//   $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
+//   $this->db->from('tbl_perizinan_cuti a');
+//   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
+//   $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+//   $this->db->where('c.kadiv_id', $id);
+//   $this->db->or_where('c.manager_id', $id);
+//   $this->db->order_by('id_cuti','DESC');
+//   $query = $this->db->get();
+//   return $query->result();
+// }
 
 public function GetDataByWhere($id){
   $this->db->select('*, DATE(datecreated) as tgl_pengajuan, DATEDIFF(tgl_akhir,tgl_mulai) as selisih');
@@ -103,23 +105,23 @@ public function cekApprovalbyPegawai($id, $id_cuti)
 }
 
 public function getTugas(){
-  $this->db->select('a.id_tugas, a.kendaraan_id, d.merek_kendaraan, d.nomor_polisi, a.approval, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, DATE(tgl_kembali) as tgl_kembali, TIME(tgl_kembali) as waktu_kembali, a.tempat_tugas, a.rincian_tugas, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_divisi');
+  $this->db->select('a.id_tugas, a.kendaraan_id, d.merek_kendaraan, d.nomor_polisi, a.approval, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, DATE(tgl_kembali) as tgl_kembali, TIME(tgl_kembali) as waktu_kembali, a.tempat_tugas, a.rincian_tugas, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_bagian');
   $this->db->from('tbl_perizinan_tugas a');
   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
   $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.penugasan_id');
   $this->db->join('tbl_kendaraan d', 'd.id_kendaraan = a.kendaraan_id');
-  $this->db->join('tbl_divisi e', 'e.id_divisi = b.divisi_id');
+  $this->db->join('tbl_bagian e', 'e.id_bagian = b.bagian_id');
   $this->db->order_by('id_tugas', 'DESC');
   $query = $this->db->get();
   return $query->result();
 }
 
 public function getTugasWhere($where){
-  $this->db->select('a.id_tugas, a.kendaraan_id, a.approval, a.pegawai_id, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, DATE(tgl_kembali) as tgl_kembali, TIME(tgl_kembali) as waktu_kembali, a.tempat_tugas, a.rincian_tugas, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_divisi');
+  $this->db->select('a.id_tugas, a.kendaraan_id, a.approval, a.pegawai_id, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, DATE(tgl_kembali) as tgl_kembali, TIME(tgl_kembali) as waktu_kembali, a.tempat_tugas, a.rincian_tugas, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_bagian');
   $this->db->from('tbl_perizinan_tugas a');
   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
   $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.penugasan_id');
-  $this->db->join('tbl_divisi e', 'e.id_divisi = b.divisi_id');
+  $this->db->join('tbl_bagian e', 'e.id_bagian = b.bagian_id');
   $this->db->where($where);
   $this->db->order_by('id_tugas', 'DESC');
   $query = $this->db->get();
@@ -127,12 +129,12 @@ public function getTugasWhere($where){
 }
 
 public function getTugasbyPegawai($id){
-  $this->db->select('a.id_tugas, a.kendaraan_id, d.merek_kendaraan, d.nomor_polisi, a.approval, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, DATE(tgl_kembali) as tgl_kembali, TIME(tgl_kembali) as waktu_kembali, a.tempat_tugas, a.rincian_tugas, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_divisi');
+  $this->db->select('a.id_tugas, a.kendaraan_id, d.merek_kendaraan, d.nomor_polisi, a.approval, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, DATE(tgl_kembali) as tgl_kembali, TIME(tgl_kembali) as waktu_kembali, a.tempat_tugas, a.rincian_tugas, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_bagian');
   $this->db->from('tbl_perizinan_tugas a');
   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
   $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.penugasan_id');
   $this->db->join('tbl_kendaraan d', 'd.id_kendaraan = a.kendaraan_id');
-  $this->db->join('tbl_divisi e', 'e.id_divisi = b.divisi_id');
+  $this->db->join('tbl_bagian e', 'e.id_bagian = b.bagian_id');
   $this->db->where('pegawai_id',$id);
   $this->db->order_by('id_tugas', 'DESC');
   $query = $this->db->get();
@@ -140,12 +142,12 @@ public function getTugasbyPegawai($id){
 }
 
 public function getTugasbyApproval($id){
-  $this->db->select('a.id_tugas, a.kendaraan_id, a.approval, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, a.tempat_tugas, a.rincian_tugas, d.merek_kendaraan, d.nomor_polisi, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_divisi');
+  $this->db->select('a.id_tugas, a.kendaraan_id, a.approval, b.nama_pegawai as nama_pegawai, c.nama_pegawai as penugasan, DATE(tgl_tugas) as tgl_tugas, TIME(tgl_tugas) as waktu_tugas, a.tempat_tugas, a.rincian_tugas, d.merek_kendaraan, d.nomor_polisi, DATE(datecreated) as datecreated, TIME(datecreated) as timecreated, e.nama_bagian');
   $this->db->from('tbl_perizinan_tugas a');
   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
   $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.penugasan_id');
   $this->db->join('tbl_kendaraan d', 'd.id_kendaraan = a.kendaraan_id');
-  $this->db->join('tbl_divisi e', 'e.id_divisi = b.divisi_id');
+  $this->db->join('tbl_bagian e', 'e.id_bagian = b.bagian_id');
   $this->db->where('a.penugasan_id', $id);
   $this->db->order_by('id_tugas', 'DESC');
   $query = $this->db->get();
