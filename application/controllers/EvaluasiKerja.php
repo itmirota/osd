@@ -96,6 +96,8 @@ class evaluasiKerja extends BaseController
     $bobot21 = $this->input->post('bobot21');
     $target22 = $this->input->post('target22');
     $bobot22 = $this->input->post('bobot22');
+    $target23 = $this->input->post('target23');
+    $bobot23 = $this->input->post('bobot23');
     
     
 
@@ -152,6 +154,8 @@ class evaluasiKerja extends BaseController
       'bobot21' => $bobot21,
       'target22' => $target22,
       'bobot22' => $bobot22,
+      'target23' => $target23,
+      'bobot23' => $bobot23,
     );
 
     $query = $this->crud_model->input($data, 'tbl_evaluasikerja');
@@ -301,12 +305,13 @@ class evaluasiKerja extends BaseController
     $parameter14 = $this->input->post('parameter14');
     $parameter15 = $this->input->post('parameter15');
     $parameter16 = $this->input->post('parameter16');
-    // $parameter17 = $this->input->post('parameter17');
-    // $parameter18 = $this->input->post('parameter18');
-    // $parameter19 = $this->input->post('parameter19');
-    // $parameter20 = $this->input->post('parameter20');
-    // $parameter21 = $this->input->post('parameter21');
-    // $parameter22 = $this->input->post('parameter22');
+    $parameter17 = $this->input->post('parameter17');
+    $parameter18 = $this->input->post('parameter18');
+    $parameter19 = $this->input->post('parameter19');
+    $parameter20 = $this->input->post('parameter20');
+    $parameter21 = $this->input->post('parameter21');
+    $parameter22 = $this->input->post('parameter22');
+    $parameter23 = $this->input->post('parameter23');
     $kelebihan = $this->input->post('kelebihan');
     $kekurangan = $this->input->post('kekurangan');
     $rekomendasi = $this->input->post('rekomendasi');
@@ -347,12 +352,13 @@ class evaluasiKerja extends BaseController
       'parameter14' => $parameter14.'|'.$keterangan14,
       'parameter15' => $parameter15.'|'.$keterangan15,
       'parameter16' => $parameter16.'|'.$keterangan16,
-      // 'parameter17' => $parameter17.'|'.$keterangan17,
-      // 'parameter18' => $parameter18.'|'.$keterangan18,
-      // 'parameter19' => $parameter19.'|'.$keterangan19,
-      // 'parameter20' => $parameter20.'|'.$keterangan20,
-      // 'parameter21' => $parameter21.'|'.$keterangan21,
-      // 'parameter22' => $parameter22.'|'.$keterangan22,
+      'parameter17' => $parameter17.'|'.$keterangan17,
+      'parameter18' => $parameter18.'|'.$keterangan18,
+      'parameter19' => $parameter19.'|'.$keterangan19,
+      'parameter20' => $parameter20.'|'.$keterangan20,
+      'parameter21' => $parameter21.'|'.$keterangan21,
+      'parameter22' => $parameter22.'|'.$keterangan22,
+      'parameter23' => $parameter23.'|'.$keterangan23,
       'kelebihan' => $kelebihan,
       'kekurangan' => $kekurangan,
       'rekomendasi' => $rekomendasi,
