@@ -161,7 +161,7 @@ class Master_model extends CI_Model
     $this->db->from('tbl_pinjam_barang a');
     $this->db->join('tbl_barang b', 'b.id_barang = a.barang_id');
     $this->db->join('tbl_pegawai c', 'c.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi d', 'd.id_divisi = c.divisi_id');
+    $this->db->join('tbl_bagian d', 'd.id_bagian = c.bagian_id');
 
     if($divisi > 0){
     $this->db->where('b.divisi_id', $divisi);
