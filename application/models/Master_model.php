@@ -72,12 +72,12 @@ class Master_model extends CI_Model
     return $query->result();
   }
 
-  function getPerawatanRuanganbyWhere($where,$orderby){
+  function getPerawatanRuanganbyWhere($where){
     $this->db->select('*,DATE(tgl_perawatan) as date, TIME(tgl_perawatan) as time');
     $this->db->from('tbl_perawatan_ruangan a');
     $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
     $this->db->where($where);
-    $this->db->order_by($orderby);
+    $this->db->order_by('id_perawatan_ruangan','DESC');
     $query = $this->db->get();
 
     return $query->result();

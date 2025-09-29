@@ -24,7 +24,7 @@
         <div class="d-flex justify-content-center mb-2">
           <img class="img-menu" src="<?= base_url('assets/images/cleaning.png')?>">
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center font-dark">
           Laporan Kebersihan
         </div>
       </div>

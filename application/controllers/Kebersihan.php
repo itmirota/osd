@@ -114,9 +114,9 @@ class Kebersihan extends BaseController
     $explode = explode("-",$periode);
 
     if (!empty($periode)){
-      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $explode[1],'YEAR(tgl_perawatan)' => $explode[0]],'"id_perawatan_ruangan","DESC"');
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $explode[1],'YEAR(tgl_perawatan)' => $explode[0]]);
     }else{
-      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun],'"id_perawatan_ruangan","DESC"');
+      $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun]);
     }
 
     $data = array(
