@@ -5,18 +5,16 @@
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">
       <?php if ($role == ROLE_HRBP | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN){ ?>
-      <div class="d-flex justify-content-between mb-4">
-        <button class="btn btn-warning" onclick="refresh()"><i class="fa fa-rotate"></i> Refresh</button>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddDataEvaluasi"><i class="fa fa-plus"></i> Tambah Data</button>
+      <div class="d-flex justify-content-end mb-4">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddDataKategori"><i class="fa fa-plus"></i> Tambah Data</button>
       </div>
       <?php } ?>
         <table id="dataTable" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
+            <th>Nama Kategori</th>
             <th>Soal</th>
-            <th>Target</th>
-            <th>Bobot</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -26,13 +24,12 @@
             foreach ($list_data as $d) { ?>
               <tr>
                 <td><?= $no?></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><?= $d->nama_evaluasi_jenis?></td>
+                <td><a href="<?= base_url('list-soal-evaluasi?k='.$d->id_evaluasi_jenis)?>"><i class="fa fa-eye"></i> lihat</a></td>
                 <td class="text-center">
                 </td>
               </tr>
-            <?php } ?>
+            <?php $no++; } ?>
           </tbody>
         </table>
       </div><!-- /.box-body -->
@@ -41,23 +38,19 @@
 </div>
 
 <!-- MODAL ADD -->
-<div class="modal fade" id="AddDataEvaluasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddDataKategori" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Evaluasi</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="<?=base_url('evaluasiKerja/saveJadwal?page=')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('evaluasiKerja/saveKategori')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label for="kategori_id" class="form-label">Kategori Evaluasi</label>
-              <input type="text" class="form-control">
-          </div>
-          <div class="col-md-6">
-            <label for="tgl_evaluasi" class="form-label">Tanggal Evaluasi</label>
-              <input type="date" class="form-control" name="tgl_evaluasi">
+              <input type="text" class="form-control" name="nama_evaluasi_jenis">
           </div>
         </div>
       </div>

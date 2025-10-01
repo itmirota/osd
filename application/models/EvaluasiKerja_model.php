@@ -55,6 +55,14 @@ class EvaluasiKerja_model extends CI_Model
     return $query->result();
   }
 
+  function getDataKategori(){
+    $this->db->select('*');
+    $this->db->from('tbl_evaluasi_jenis');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
   function getDataRowEvaluasi($id){
     $this->db->select('*');
     $this->db->from('tbl_evaluasikerja');

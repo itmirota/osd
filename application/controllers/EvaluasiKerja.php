@@ -99,6 +99,29 @@ class evaluasiKerja extends BaseController
     redirect("evaluasi/".$kategori);
   }
 
+  public function list_kategori(){
+    $this->global['pageTitle'] = 'Evaluasi Mirota KSM';
+    $this->global['pageHeader'] = 'Kategori Evaluasi Mirota KSM';
+
+    $data['list_data'] = $this->evaluasiKerja_model->getDataKategori();
+
+    $this->loadViews("evaluasi/data_kategori", $this->global, $data, NULL);
+  }
+
+  public function saveKategori(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    
+    $nama_evaluasi_jenis = $this->input->post('nama_evaluasi_jenis');
+
+    $data = array (
+      'nama_evaluasi_jenis' => $nama_evaluasi_jenis,
+    );
+
+    $sql = $this->crud_model->input($data,'tbl_evaluasi_jenis');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+
+    redirect("soal-evaluasi");
+  }
 
   public function list_soal(){
     $this->global['pageTitle'] = 'Soal Evaluasi Mirota KSM';

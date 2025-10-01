@@ -170,7 +170,8 @@ $route['pengajuanIzin'] = 'izin/listPengajuanIzin';
 
 // EVALUASI
 $route['evaluasi/(:any)'] = 'evaluasiKerja/list_evaluasi/$1';
-$route['soal-evaluasi'] = 'evaluasiKerja/list_soal';
+$route['soal-evaluasi'] = 'evaluasiKerja/list_kategori';
+$route['list-soal-evaluasi'] = 'evaluasiKerja/list_soal';
 
 /*********** EVALUASI KINERJA DEFINED ROUTES *******************/
 $route['addJadwalEvaluasi'] = 'evaluasiKerja/jadwalEvaluasiKerja';
