@@ -1,9 +1,10 @@
-
-<div class="row">
+<main class="main-page">
+<div class="row px-4">
   <div class="col-md-12">
     <div class="card">
     <div class="card-body">
-    <div class="d-flex justify-content-end mb-4">
+    <div class="d-flex justify-content-between mb-4">
+      <a href="<?= base_url('dashboardUser')?>"  class="caption-text"> <i class="fas fa-angles-left"></i> kembali ke dashboard</a>
       <button class="btn btn-primary " type="button" data-bs-toggle="modal" data-bs-target="#AddPeminjamanBarang"><i class="fa-solid fa-plus"></i> Pinjam Barang</button>
     </div>
     <div class="calendar" id='calendar'></div>
@@ -100,6 +101,7 @@ if($page != 'Pinjambarang'){ ?>
 
 </div>
 <?php } ?>
+</main>
 
 <!-- Modal -->
 <div class="modal fade" id="AddPeminjamanBarang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

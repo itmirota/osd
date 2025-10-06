@@ -102,7 +102,7 @@ class Pegawai_model extends CI_Model
     return $query->row();
   }
 
-  public function getPegawaibyId($id)
+  public function getPegawaibyId($pegawai_id)
   {
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
@@ -111,7 +111,7 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
     $this->db->join('tbl_areakerja f','f.id_areakerja = a.penempatan_id');
-    $this->db->where('id_pegawai',$id);
+    $this->db->where('id_pegawai',$pegawai_id);
     $query = $this->db->get();
     return $query->row();
   }

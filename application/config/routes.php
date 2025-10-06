@@ -237,6 +237,9 @@ $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
 
+$route['authGoogle'] = "login/authgoogle";
+$route['authGoogleAdmin'] = "login/authgoogleAdmin";
+
 $route['addNew'] = "user/addNew";
 $route['addNewUser'] = "user/addNewUser";
 $route['editOld'] = "user/editOld";

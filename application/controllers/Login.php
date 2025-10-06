@@ -332,7 +332,7 @@ class Login extends BaseController
         'name'=>$row->name,
         'bagian_id'=>$row->bagian_id,
         'jabatan_id'=>$row->jabatan_id,
-        'penempatan_id'=>$res->penempatan_id,
+        'penempatan_id'=>$row->penempatan_id,
         'bagian'=>$row->nama_bagian,
         'loginType'=>'user',
         'isLoggedIn' => TRUE
@@ -363,7 +363,7 @@ class Login extends BaseController
         'name'=>$row->name,
         'bagian_id'=>$row->bagian_id,
         'jabatan_id'=>$row->jabatan_id,
-        'penempatan_id'=>$res->penempatan_id,
+        'penempatan_id'=>$row->penempatan_id,
         'bagian'=>$row->nama_bagian,
         'loginType'=>'admin',
         'isLoggedIn' => TRUE

@@ -91,7 +91,7 @@
           <tr>
             <th>No</th>
             <th>Nama</th>
-            <th class="text-center">Divisi</th>
+            <th class="text-center">Bagian</th>
             <th class="text-center">Tanggal</th>
             <th class="text-center">Kehadiran</th>
             <th class="text-center">Pulang</th>
@@ -107,7 +107,7 @@
             <tr>
               <td><?= $no++?></td>
               <td><a href="<?= base_url('absensi/laporanDetail/'.$ld->id_pegawai)?>"><?= $ld->nama_pegawai?></td>
-              <td class="text-center"><?= $ld->nama_divisi?></td>
+              <td class="text-center"><?= $ld->nama_bagian?></td>
               <td class="text-center"><?= mediumdate_indo($ld->date)?></td>
               <td>
                 <a href="#" class="pop">

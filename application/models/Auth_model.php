@@ -158,7 +158,7 @@ class Auth_model extends CI_Model
 	}
 
     function authgoogle($email=false){
-        $this->db->select('BaseTbl.userId, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.bagian_id, pegawai.id_pegawai as pegawai_id, pegawai.jabatan_id as jabatan_id, bagian.nama_bagian');
+        $this->db->select('BaseTbl.userId, BaseTbl.password, pegawai.nama_pegawai as name, BaseTbl.roleId, Roles.role, pegawai.bagian_id, pegawai.id_pegawai as pegawai_id, pegawai.penempatan_id as penempatan_id, pegawai.jabatan_id as jabatan_id, bagian.id_bagian as bagian_id, bagian.nama_bagian as nama bagian');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->join('tbl_pegawai as pegawai','pegawai.nip = BaseTbl.nip');

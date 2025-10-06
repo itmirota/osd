@@ -6,8 +6,9 @@ class Pelanggaran_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_pelanggaran a');
     $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-    $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+    $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+    $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+    $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
     $query = $this->db->get();
 
     return $query->result();
@@ -17,8 +18,9 @@ class Pelanggaran_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_pelanggaran a');
     $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
-    $this->db->join('tbl_divisi c','b.divisi_id = c.id_divisi');
-    $this->db->join('tbl_departement d','c.departement_id = d.id_departement');
+    $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
+    $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+    $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
     $this->db->where($where);
     $query = $this->db->get();
 

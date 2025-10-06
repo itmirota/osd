@@ -35,7 +35,7 @@
             <!-- target & bobot 1 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Manajemen Limbah & Lingkungan (Environmental Management)</label>
+                <label class="form-label">WAREHOUSE & LOGICTIC </label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target1" class="form-label">Target</label>
@@ -55,7 +55,7 @@
             <!-- target & bobot 2 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Manajemen Proyek (terkait Kualitas)</label>
+                <label class="form-label">SUPPLY CHAIN MANAGEMENT</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target2" class="form-label">Target</label>
@@ -73,7 +73,7 @@
             <!-- target & bobot 3 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">ERP (Enterprise Resource Planning)</label>
+                <label class="form-label">PROJECT MANAGEMENT</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target3" class="form-label">Target</label>
@@ -91,7 +91,7 @@
             <!-- target & bobot 4 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Manajemen Hubungan Vendor</label>
+                <label class="form-label">INVENTORY CONTROL</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target4" class="form-label">Target</label>
@@ -109,7 +109,7 @@
             <!-- target & bobot 5 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Prinsip Lean Manufacturing & Six Sigma</label>
+                <label class="form-label">REVERSE LOGISTIC MANAGEMENT</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target5" class="form-label">Target</label>
@@ -127,7 +127,7 @@
             <!-- target & bobot 6 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Manajemen Risiko Kualitas</label>
+                <label class="form-label">WAREHOUSE ADMINISTRATIVE</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target6" class="form-label">Target</label>
@@ -145,7 +145,7 @@
             <!-- target & bobot 7 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Production Process FMCG</label>
+                <label class="form-label">QUALITY MANAGEMENT</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target7" class="form-label">Target</label>
@@ -164,7 +164,7 @@
              
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Sistem K3</label>
+                <label class="form-label">Knowledge of warehouse policies and procedures</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target8" class="form-label">Target</label>
@@ -182,7 +182,7 @@
             <!-- target & bobot 9 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Regulasi & Hukum</label>
+                <label class="form-label">5R</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target9" class="form-label">Target</label>
@@ -200,7 +200,7 @@
             <!-- target & bobot 10 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Achievement and Action</label>
+                <label class="form-label">Manajemen Rantai Pasok</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target10" class="form-label">Target</label>
@@ -218,7 +218,7 @@
             <!-- target & bobot 11 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Problem Solving</label>
+                <label class="form-label">Inventory Management</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target11" class="form-label">Target</label>
@@ -236,7 +236,7 @@
             <!-- target & bobot 12 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Business Orientation</label>
+                <label class="form-label">Quality Management System (QMS)</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target12" class="form-label">Target</label>
@@ -254,7 +254,7 @@
             <!-- target & bobot 13 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Initiative</label>
+                <label class="form-label">Prinsip Lean Manufacturing & Six Sigma </label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target13" class="form-label">Target</label>
@@ -272,7 +272,7 @@
             <!-- target & bobot 14 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Impact and Influence</label>
+                <label class="form-label">Sistem K3</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target14" class="form-label">Target</label>
@@ -290,7 +290,7 @@
             <!-- target & bobot 15 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Relationship Building</label>
+                <label class="form-label">Jenis Bahan Baku & Bahan Kemas FMCG</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target15" class="form-label">Target</label>
@@ -308,7 +308,7 @@
             <!-- target & bobot 16 -->
             <div class="card">
               <div class="card-body">
-                <label class="form-label">Communication</label>
+                <label class="form-label">Leadership</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target16" class="form-label">Target</label>
@@ -324,9 +324,9 @@
             <!-- target & bobot 16 -->
 
             <!-- target & bobot 17 -->
-            <!-- <div class="card">
+            <div class="card">
               <div class="card-body">
-                <label class="form-label">Problem Solving</label>
+                <label class="form-label">Achievement and Action</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target17" class="form-label">Target</label>
@@ -338,13 +338,13 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- target & bobot 17 -->
 
             <!-- target & bobot 18 -->
-            <!-- <div class="card">
+            <div class="card">
               <div class="card-body">
-                <label class="form-label">Business Orientation</label>
+                <label class="form-label">Problem Solving</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target18" class="form-label">Target</label>
@@ -356,13 +356,13 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- target & bobot 18 -->
 
             <!-- target & bobot 19 -->
-            <!-- <div class="card">
+            <div class="card">
               <div class="card-body">
-                <label class="form-label">Initiative</label>
+                <label class="form-label">Business Orientation</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target19" class="form-label">Target</label>
@@ -374,13 +374,13 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- target & bobot 19 -->
 
             <!-- target & bobot 20 -->   
-            <!-- <div class="card">
+            <div class="card">
               <div class="card-body">
-                <label class="form-label">Impact and Influence</label>
+                <label class="form-label">Desicion Making</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target20" class="form-label">Target</label>
@@ -392,13 +392,13 @@
                   </div>
                 </div>
               </div>
-            </div>  -->
+            </div> 
             <!-- target & bobot 20 -->
 
             <!-- target & bobot 21 -->
-            <!-- <div class="card">
+            <div class="card">
               <div class="card-body">
-                <label class="form-label">Relationship Building</label>
+                <label class="form-label">Initiative</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target21" class="form-label">Target</label>
@@ -410,13 +410,13 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- target & bobot 21 -->
 
             <!-- target & bobot 22 -->
-            <!-- <div class="card">
+            <div class="card">
               <div class="card-body">
-                <label class="form-label">Communication</label>
+                <label class="form-label">Impact and Influence</label>
                 <div class="row">
                   <div class="col-md-6">
                     <label for="target22" class="form-label">Target</label>
@@ -428,8 +428,80 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
             <!-- target & bobot 22 -->
+
+            <!-- target & bobot 23 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Relationship Building</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target23" class="form-label">Target</label>
+                    <input type="text" name="target23" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot23" class="form-label">Bobot</label>
+                    <input type="text" name="bobot23" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 23 -->  
+
+            <!-- target & bobot 24 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Analytical Thinking</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target24" class="form-label">Target</label>
+                    <input type="text" name="target24" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot24" class="form-label">Bobot</label>
+                    <input type="text" name="bobot24" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 24 -->
+             
+            <!-- target & bobot 25 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Conceptual Thinking</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target25" class="form-label">Target</label>
+                    <input type="text" name="target25" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot25" class="form-label">Bobot</label>
+                    <input type="text" name="bobot25" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 25 -->    
+            
+            <!-- target & bobot 26 -->
+            <div class="card">
+              <div class="card-body">
+                <label class="form-label">Communication</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="target26" class="form-label">Target</label>
+                    <input type="text" name="target26" class="form-control tabel-PR" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bobot26" class="form-label">Bobot</label>
+                    <input type="text" name="bobot26" class="form-control tabel-PR" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- target & bobot 26 -->   
           </div>
         </div>
     </div>
