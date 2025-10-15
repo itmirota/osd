@@ -5,7 +5,7 @@ class Assessment_model extends CI_Model
   public function getAssessment($id){
     $this->db->select('id_assessment,pegawai_id,nama_pegawai,nilai');
     $this->db->from('tbl_assessment a');
-    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_id');
     $this->db->where('penilai_id',$id);
     $query = $this->db->get();
 
@@ -15,7 +15,7 @@ class Assessment_model extends CI_Model
   public function getHasilAssessment($id){
     $this->db->select('id_assessment,nama_pegawai,nilai,tgl_assessment,nama_assessment_tingkatan');
     $this->db->from('tbl_assessment a');
-    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_id');
     $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
     $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
     $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
