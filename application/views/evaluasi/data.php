@@ -41,7 +41,7 @@
                   <a type="button" onclick="ShowData(<?= $d->id_evaluasi?>)" data-bs-toggle="modal" data-bs-target="#EditDataEvaluasi"><i class="fa fa-solid fa-edit"></i></a>
                   <a href="<?= base_url('EvaluasiKerja/deleteJadwal/'.$d->id_evaluasi.'/'.$d->kategori_evaluasi)?>"><i class="fa fa-solid fa-trash"></i></a>
                 </td>
-                <td class="text-center"><a href="http://"><i class="fa fa-solid fa-eye"></i></a></td>
+                <td class="text-center"><a href="<?= base_url('EvaluasiKerja/Hasil/'.$d->id_evaluasi)?>"><i class="fa fa-solid fa-eye"></i></a></td>
                 <td class="text-center"><a href="<?= base_url('penilaian-evaluasi/'.$d->id_evaluasi)?>"><i class="fa fa-solid fa-pencil"></i> mulai</a></td>
               </tr>
             <?php } ?>

@@ -258,7 +258,7 @@ if($role != ROLE_STAFF){ ?>
           <ul class="submenu collapse">
             <li class="sidebar-item">
               <a href="<?php echo base_url('jenis-evaluasi'); ?>" class="sidebar-link">
-                <span>Jenis Evaluasi</span>
+                <span>Soal Evaluasi</span>
               </a>
             </li>
             <?php 
@@ -295,7 +295,7 @@ if($role != ROLE_STAFF){ ?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('DataAssessment'); ?>" class="sidebar-link">
             <i class="fa-solid fa-clipboard-list"></i>
-            <span>Asseement360</span>
+            <span>Assesment360</span>
           </a>
         </li>
         <?php } ?>

@@ -46,6 +46,21 @@ class EvaluasiKerja_model extends CI_Model
     return $query->result();
   }
 
+  function getHasilEvaluasi($id){
+    $this->db->select('a.nilai as hasil_nilai, a.tgl_evaluasi as tgl_penilaian, b.tgl_evaluasi as tgl_jadwal, b.pegawai_id as id_dievaluasi, c.nama_pegawai as nama_dievaluasi, d.nama_pegawai as nama_penilai, b.jenis_evaluasi, f.nama_evaluasi_kategori');
+    $this->db->from('tbl_evaluasi_hasil a');
+    $this->db->join('tbl_evaluasi b','a.evaluasi_id = b.id_evaluasi');
+    $this->db->join('tbl_pegawai c','a.pegawai_id = c.id_pegawai');
+    $this->db->join('tbl_pegawai d','a.penilai_id = d.id_pegawai');
+    $this->db->join('tbl_evaluasi_jenis e','b.jenis_evaluasi = e.id_evaluasi_jenis');
+    $this->db->join('tbl_evaluasi_kategori f','b.kategori_evaluasi = f.id_evaluasi_kategori');
+    
+    $this->db->where('evaluasi_id', $id);
+    $query = $this->db->get();
+    
+    return $query;
+  }
+
   function getDataEvaluasi($id){
     $this->db->select('*');
     $this->db->from('tbl_evaluasikerja');

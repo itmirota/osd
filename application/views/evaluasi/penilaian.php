@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center">
 <div class="col-md-12">
-  <form action="<?= base_url('evaluasiKerja/saveNilai')?>" role="form" method="post" enctype="multipart/form-data">
+  <form action="<?= base_url('evaluasiKerja/saveNilai/'.$list_data->id_evaluasi)?>" role="form" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id_evaluasi" class="form-control-plaintext tabel-PR" value="<?= $list_data->id_evaluasi?>" readonly>
   <div class="card p-2">
     <div class="card-body">
         <div class="form-group">
