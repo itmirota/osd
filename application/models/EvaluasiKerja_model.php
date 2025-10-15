@@ -13,11 +13,11 @@ class EvaluasiKerja_model extends CI_Model
   }
 
   function getDataWhere($where){
-    $this->db->select('a.id_evaluasi, a.tgl_evaluasi, a.kategori_evaluasi, a.jenis_evaluasi, a.pegawai_id, b.nama_pegawai, c.nama_evaluasi_kategori as kategori, d.nama_evaluasi_jenis as jenis');
+    $this->db->select('a.id_evaluasi, a.tgl_evaluasi, a.kategori_evaluasi, a.pegawai_id, b.nama_pegawai, c.nama_evaluasi_kategori as kategori, d.id_evaluasi_jenis as jenis, d.nama_evaluasi_jenis as nama_jenis');
     $this->db->from('tbl_evaluasi a');
     $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
     $this->db->join('tbl_evaluasi_kategori c', 'a.kategori_evaluasi = c.id_evaluasi_kategori');
-    $this->db->join('tbl_evaluasi_jenis d','a.jenis_evaluasi = d.id_evaluasi_jenis');
+    $this->db->join('tbl_evaluasi_jenis d', 'a.jenis_evaluasi = d.id_evaluasi_jenis');
     $this->db->where($where);
     $query = $this->db->get();
 
@@ -25,11 +25,11 @@ class EvaluasiKerja_model extends CI_Model
   }
 
   function getDataRow($where){
-    $this->db->select('a.id_evaluasi, a.tgl_evaluasi, a.kategori_evaluasi, a.jenis_evaluasi, a.pegawai_id, b.nama_pegawai, c.nama_evaluasi_kategori as kategori, d.nama_evaluasi_jenis as jenis');
+    $this->db->select('a.id_evaluasi, a.tgl_evaluasi, a.kategori_evaluasi, a.pegawai_id, b.nama_pegawai, c.nama_evaluasi_kategori as kategori, d.id_evaluasi_jenis as jenis, d.nama_evaluasi_jenis as nama_jenis');
     $this->db->from('tbl_evaluasi a');
     $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
     $this->db->join('tbl_evaluasi_kategori c', 'a.kategori_evaluasi = c.id_evaluasi_kategori');
-    $this->db->join('tbl_evaluasi_jenis d','a.jenis_evaluasi = d.id_evaluasi_jenis');
+    $this->db->join('tbl_evaluasi_jenis d', 'a.jenis_evaluasi = d.id_evaluasi_jenis');
     $this->db->where($where);
     $query = $this->db->get();
 
@@ -50,14 +50,6 @@ class EvaluasiKerja_model extends CI_Model
     $this->db->select('*');
     $this->db->from('tbl_evaluasikerja');
     $this->db->where('id_evaluasiKerja', $id);
-    $query = $this->db->get();
-
-    return $query->result();
-  }
-
-  function getDataKategori(){
-    $this->db->select('*');
-    $this->db->from('tbl_evaluasi_jenis');
     $query = $this->db->get();
 
     return $query->result();

@@ -18,7 +18,7 @@
             <th>Nama Karyawan</th>
             <!-- <th>Kategori Evaluasi</th> -->
             <?php if ($role == ROLE_HRBP | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN){ ?>
-            <th>Parameter Evaluasi</th>
+            <th>Jenis Evaluasi</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Hasil</th>
             <?php } ?>
@@ -36,13 +36,13 @@
                   <p><?= $d->nama_pegawai?></p>
                 </td>
                 <!-- <td><?= $d->kategori?></td> -->
-                <td><?= $d->jenis?></td>
+                <td><?= $d->nama_jenis?></td>
                 <td class="text-center">
                   <a type="button" onclick="ShowData(<?= $d->id_evaluasi?>)" data-bs-toggle="modal" data-bs-target="#EditDataEvaluasi"><i class="fa fa-solid fa-edit"></i></a>
                   <a href="<?= base_url('EvaluasiKerja/deleteJadwal/'.$d->id_evaluasi.'/'.$d->kategori_evaluasi)?>"><i class="fa fa-solid fa-trash"></i></a>
                 </td>
                 <td class="text-center"><a href="http://"><i class="fa fa-solid fa-eye"></i></a></td>
-                <td class="text-center"><a href="http://"><i class="fa fa-solid fa-pencil"></i> mulai</a></td>
+                <td class="text-center"><a href="<?= base_url('penilaian-evaluasi/'.$d->id_evaluasi)?>"><i class="fa fa-solid fa-pencil"></i> mulai</a></td>
               </tr>
             <?php } ?>
           </tbody>
@@ -165,7 +165,7 @@
         document.getElementById("id_evaluasi").value = hasil.id_evaluasi;
         document.getElementById("pegawai_edit").value = hasil.pegawai_id;
         document.getElementById("kategori_id").value = hasil.kategori_evaluasi;
-        document.getElementById("jenis_evaluasi").value = hasil.jenis_evaluasi;
+        document.getElementById("jenis_evaluasi").value = hasil.jenis;
         document.getElementById("kategori_nama").value = hasil.kategori;
         document.getElementById("tgl_evaluasi").value = hasil.tgl_evaluasi;
       }

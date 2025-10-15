@@ -257,11 +257,13 @@ if($role != ROLE_STAFF){ ?>
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
             <li class="sidebar-item">
-              <a href="<?php echo base_url('soal-evaluasi'); ?>" class="sidebar-link">
-                <span>Soal Evaluasi</span>
+              <a href="<?php echo base_url('jenis-evaluasi'); ?>" class="sidebar-link">
+                <span>Jenis Evaluasi</span>
               </a>
             </li>
-            <?php foreach ($kategori as $k) { ?>
+            <?php 
+            $kategori = $this->global['kategori'] = $this->crud_model->lihatdata('tbl_evaluasi_kategori');
+            foreach ($kategori as $k) { ?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('evaluasi/'.$k->nama_evaluasi_kategori); ?>" class="sidebar-link">
                 <span>Evaluasi <?= $k->nama_evaluasi_kategori?></span>

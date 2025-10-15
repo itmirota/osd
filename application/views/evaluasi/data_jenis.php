@@ -13,7 +13,7 @@
           <thead>
           <tr>
             <th>No</th>
-            <th>Nama Kategori</th>
+            <th>Jenis Soal</th>
             <th>Soal</th>
             <th>Action</th>
           </tr>
@@ -25,8 +25,10 @@
               <tr>
                 <td><?= $no?></td>
                 <td><?= $d->nama_evaluasi_jenis?></td>
-                <td><a href="<?= base_url('list-soal-evaluasi?k='.$d->id_evaluasi_jenis)?>"><i class="fa fa-eye"></i> lihat</a></td>
+                <td><a href="<?= base_url('soal-evaluasi?j='.$d->id_evaluasi_jenis)?>"><i class="fa fa-eye"></i> lihat</a></td>
                 <td class="text-center">
+                  <a href="" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#EditDataEvaluasi" onclick="ShowData(<?= $d->id_evaluasi_jenis?>)"><i class="fa fa-edit"></i></a>
+                  <a href="<?= base_url('evaluasiKerja/deleteJenis/'.$d->id_evaluasi_jenis)?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             <?php $no++; } ?>
@@ -45,11 +47,11 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Evaluasi</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="<?=base_url('evaluasiKerja/saveKategori')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('evaluasiKerja/saveJenis')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <label for="kategori_id" class="form-label">Kategori Evaluasi</label>
+            <label for="jenis_id" class="form-label">Jenis Evaluasi</label>
               <input type="text" class="form-control" name="nama_evaluasi_jenis">
           </div>
         </div>
@@ -68,21 +70,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Evaluasi <?= $kategori->nama_evaluasi_kategori?></h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jenis Evaluasi</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="<?=base_url('evaluasiKerja/updateJadwal?page=')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('evaluasiKerja/updateJenis')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
-            <label for="kategori_id" class="form-label">Kategori Evaluasi</label>id_evaluasi
-              <input type="hidden" class="form-control-plaintext" id="kategori_id" name="kategori_id" readonly>
-              <input type="hidden" class="form-control-plaintext" id="id_evaluasi"  name="id_evaluasi" readonly>
-              <input type="text" class="form-control-plaintext" id="kategori_nama" readonly>
-          </div>
-          <div class="col-md-6">
-            <label for="tgl_evaluasi" class="form-label">Tanggal Evaluasi</label>
-              <input type="date" class="form-control" name="tgl_evaluasi" id="tgl_evaluasi">
+          <div class="col-md-12">
+            <label for="jenis_id" class="form-label">Jenis Evaluasi</label>
+              <input type="hidden" class="form-control" name="id_evaluasi_jenis" id="id_evaluasi_jenis">
+              <input type="text" class="form-control" name="nama_evaluasi_jenis" id="nama_evaluasi_jenis">
           </div>
         </div>
       </div>
@@ -101,17 +98,13 @@
 
   function ShowData($id){
     $.ajax({
-      url:"<?php echo site_url("EvaluasiKerja/ShowDataJson")?>/" + $id,
+      url:"<?php echo site_url("EvaluasiKerja/DataJenisJson")?>/" + $id,
       dataType:"JSON",
       type: "get",
       success:function(hasil){
         console.log(hasil);
-        document.getElementById("id_evaluasi").value = hasil.id_evaluasi;
-        document.getElementById("pegawai_edit").value = hasil.pegawai_id;
-        document.getElementById("kategori_id").value = hasil.kategori_evaluasi;
-        document.getElementById("jenis_evaluasi").value = hasil.jenis_evaluasi;
-        document.getElementById("kategori_nama").value = hasil.kategori;
-        document.getElementById("tgl_evaluasi").value = hasil.tgl_evaluasi;
+        document.getElementById("id_evaluasi_jenis").value = hasil.id_evaluasi_jenis;
+        document.getElementById("nama_evaluasi_jenis").value = hasil.nama_evaluasi_jenis;
       }
     });
   }

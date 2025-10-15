@@ -36,7 +36,7 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'Admin Panel : Dashboard';
-
+        
         $id = $this->global ['pegawai_id'];
         $role = $this->global ['role'];
         $loginType = $this->global ['loginType'];
@@ -81,8 +81,9 @@ class User extends BaseController
             // 'CountIzinHarian' => $CountIzinHarian,
             // 'CountTugas' => $CountTugas,
             'ruangan' => $this->master_model->getDataRuanganLimit(),
-            'barang' => $this->master_model->getDataBarangLimit($this->divisi_id)
+            'barang' => $this->master_model->getDataBarangLimit($this->divisi_id),
         );
+        
         $this->loadViews("adminpanel/dashboard", $this->global, $data, NULL);
     }
 

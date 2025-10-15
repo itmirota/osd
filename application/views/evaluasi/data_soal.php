@@ -1,23 +1,25 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h3><?= $pageHeader ?></h3>
+    <h3><?= $pageHeader ?> <?= $jenis->nama_evaluasi_jenis?></h3>
     <div class="card card-primary">
       <div class="card-body table-responsive no-padding">
       <?php if ($role == ROLE_HRBP | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN){ ?>
       <div class="d-flex justify-content-between mb-4">
-        <button class="btn btn-warning" onclick="refresh()"><i class="fa fa-rotate"></i> Refresh</button>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddDataEvaluasi"><i class="fa fa-plus"></i> Tambah Data</button>
+        <a href="<?= base_url('jenis-evaluasi')?>" class="btn btn-secondary"><i class="fa fa-angles-left"></i> Kembali</a>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddDataEvaluasi"><i class="fa fa-plus"></i> Tambah Soal</button>
       </div>
       <?php } ?>
         <table id="dataTable" class="table table-hover">
           <thead>
           <tr>
             <th>No</th>
-            <th>Soal</th>
+            <th>parameter</th>
+            <th>Judul</th>
+            <th>Deskripsi</th>
             <th>Target</th>
             <th>Bobot</th>
-            <th>Action</th>
+            <th class="text-center">Action</th>
           </tr>
           </thead>
           <tbody>
@@ -26,13 +28,17 @@
             foreach ($list_data as $d) { ?>
               <tr>
                 <td><?= $no?></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><?= $d->parameter?></td>
+                <td><?= $d->judul?></p></td>
+                <td><?= $d->deskripsi?></td>
+                <td><?= $d->target?></td>
+                <td><?= $d->bobot?></td>
                 <td class="text-center">
+                  <a href="" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#EditDataEvaluasi" onclick="ShowData(<?= $d->id_evaluasi_soal?>)"><i class="fa fa-edit"></i></a>
+                  <a href="<?= base_url('evaluasiKerja/deleteSoal/'.$d->id_evaluasi_soal.'?j='.$d->jenis_evaluasi_id)?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
-            <?php } ?>
+            <?php $no++; } ?>
           </tbody>
         </table>
       </div><!-- /.box-body -->
@@ -45,19 +51,31 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Evaluasi</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Soal <?= $jenis->nama_evaluasi_jenis?></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="<?=base_url('evaluasiKerja/saveJadwal?page=')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('evaluasiKerja/saveSoal?j='.$jenis->id_evaluasi_jenis)?>" role="form" method="post" enctype="multipart/form-data">
       <div class="modal-body">
+        <div class="col-md-12">
+          <label for="parameter" class="form-label">parameter</label>
+            <input type="text" class="form-control" name="parameter" placeholder="isi parameter disini">
+        </div>
+        <div class="col-md-12">
+          <label for="judul" class="form-label">judul</label>
+            <input type="text" class="form-control" name="judul"  placeholder="isi judul disini">
+        </div>
+        <div class="col-md-12">
+          <label for="deskripsi" class="form-label">deskripsi</label>
+            <input type="text" class="form-control" name="deskripsi"  placeholder="isi deskripsi disini">
+        </div>        
         <div class="row">
           <div class="col-md-6">
-            <label for="kategori_id" class="form-label">Kategori Evaluasi</label>
-              <input type="text" class="form-control">
+            <label for="target" class="form-label">Target</label>
+              <input type="text" class="form-control" name="target" required>
           </div>
           <div class="col-md-6">
-            <label for="tgl_evaluasi" class="form-label">Tanggal Evaluasi</label>
-              <input type="date" class="form-control" name="tgl_evaluasi">
+            <label for="bobot" class="form-label">Bobot</label>
+              <input type="text" class="form-control" name="bobot" required>
           </div>
         </div>
       </div>
@@ -75,21 +93,32 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Evaluasi <?= $kategori->nama_evaluasi_kategori?></h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Soal <?= $jenis->nama_evaluasi_jenis?></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="<?=base_url('evaluasiKerja/updateJadwal?page=')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('evaluasiKerja/updateSoal?j='.$jenis->id_evaluasi_jenis)?>" role="form" method="post" enctype="multipart/form-data">
+      <input type="hidden" class="form-control" name="id_evaluasi_soal" id="id_evaluasi_soal">
       <div class="modal-body">
+        <div class="col-md-12">
+          <label for="parameter" class="form-label">parameter</label>
+            <input type="text" class="form-control" name="parameter" id="parameter" placeholder="isi parameter disini">
+        </div>
+        <div class="col-md-12">
+          <label for="judul" class="form-label">judul</label>
+            <input type="text" class="form-control" name="judul" id="judul" placeholder="isi judul disini">
+        </div>
+        <div class="col-md-12">
+          <label for="deskripsi" class="form-label">deskripsi</label>
+            <input type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="isi deskripsi disini">
+        </div>        
         <div class="row">
           <div class="col-md-6">
-            <label for="kategori_id" class="form-label">Kategori Evaluasi</label>id_evaluasi
-              <input type="hidden" class="form-control-plaintext" id="kategori_id" name="kategori_id" readonly>
-              <input type="hidden" class="form-control-plaintext" id="id_evaluasi"  name="id_evaluasi" readonly>
-              <input type="text" class="form-control-plaintext" id="kategori_nama" readonly>
+            <label for="target" class="form-label">Target</label>
+              <input type="text" class="form-control" name="target" id="target">
           </div>
           <div class="col-md-6">
-            <label for="tgl_evaluasi" class="form-label">Tanggal Evaluasi</label>
-              <input type="date" class="form-control" name="tgl_evaluasi" id="tgl_evaluasi">
+            <label for="bobot" class="form-label">Bobot</label>
+              <input type="text" class="form-control" name="bobot" id="bobot">
           </div>
         </div>
       </div>
@@ -108,17 +137,18 @@
 
   function ShowData($id){
     $.ajax({
-      url:"<?php echo site_url("EvaluasiKerja/ShowDataJson")?>/" + $id,
+      url:"<?php echo site_url("EvaluasiKerja/ShowDataSoalJson")?>/" + $id,
       dataType:"JSON",
       type: "get",
       success:function(hasil){
         console.log(hasil);
-        document.getElementById("id_evaluasi").value = hasil.id_evaluasi;
-        document.getElementById("pegawai_edit").value = hasil.pegawai_id;
-        document.getElementById("kategori_id").value = hasil.kategori_evaluasi;
-        document.getElementById("jenis_evaluasi").value = hasil.jenis_evaluasi;
-        document.getElementById("kategori_nama").value = hasil.kategori;
-        document.getElementById("tgl_evaluasi").value = hasil.tgl_evaluasi;
+        document.getElementById("id_evaluasi_soal").value = hasil.id_evaluasi_soal;
+        // document.getElementById("jenis_evaluasi_id").value = hasil.jenis_evaluasi_id;
+        document.getElementById("judul").value = hasil.judul;
+        document.getElementById("parameter").value = hasil.parameter;
+        document.getElementById("deskripsi").value = hasil.deskripsi;
+        document.getElementById("target").value = hasil.target;
+        document.getElementById("bobot").value = hasil.bobot;
       }
     });
   }
