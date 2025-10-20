@@ -407,7 +407,7 @@
               </div>  
               <div class="col-md-10">
                 <label for="bagian_id" class="form-label">Bagian</label>
-                <select name="bagian_id" class="form-select tabel-PR">
+                <select name="bagian_id" id="bagian_add" class="form-select tabel-PR">
                 </select>
               </div>
               <div class="col-md-10">
