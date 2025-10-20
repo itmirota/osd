@@ -256,14 +256,12 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU EVALUASI -->
 
         <!-- MENU ASSESSMENT -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP){?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('DataAssessment'); ?>" class="sidebar-link">
             <i class="fa-solid fa-clipboard-list"></i>
             <span>Asseement360</span>
           </a>
         </li>
-        <?php } ?>
         <!-- /MENU ASSESSMENT -->
 
 

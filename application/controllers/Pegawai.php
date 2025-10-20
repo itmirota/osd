@@ -98,6 +98,7 @@ class Pegawai extends BaseController
       'divisi' => $this->crud_model->lihatdata('tbl_divisi'),
       'bagian' => $this->crud_model->lihatdata('tbl_bagian'),
       'jabatan' => $this->crud_model->lihatdata('tbl_jabatan'),
+      'areakerja' => $this->crud_model->lihatdata('tbl_areakerja'),
       'list_role' => $this->crud_model->GetDataByWhere('roleId > 1','tbl_roles'),
       'maxNIP' => $this->pegawai_model->showMaxNIP()->nip
     );
@@ -210,6 +211,7 @@ class Pegawai extends BaseController
     $nip = $this->input->post('nip');
     $jabatan_id = $this->input->post('jabatan_id');
     $bagian_id = $this->input->post('bagian_id');
+    $areakerja_id = $this->input->post('areakerja');
     $status_pegawai = $this->input->post('status_pegawai'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
     $tgl_lahir = $this->input->post('tgl_lahir');    
@@ -261,6 +263,7 @@ class Pegawai extends BaseController
       'nama_pegawai' => $nama_pegawai,
       'jabatan_id' => $jabatan_id,
       'bagian_id' => $bagian_id,
+      'areakerja_id' => $areakerja_id,
       'status_pegawai' => $status_pegawai,
       'tempat_lahir' => $tempat_lahir,
       'tgl_lahir' => $tgl_lahir,

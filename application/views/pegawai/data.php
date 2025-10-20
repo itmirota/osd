@@ -406,10 +406,19 @@
                 </select>
               </div>  
               <div class="col-md-10">
-                <label for="bagian_add" class="form-label">Bagian</label>
-                <select name="bagian_add" id="bagian_add" class="form-select tabel-PR">
+                <label for="bagian_id" class="form-label">Bagian</label>
+                <select name="bagian_id" class="form-select tabel-PR">
                 </select>
-              </div> 
+              </div>
+              <div class="col-md-10">
+                <label for="areakerja" class="form-label">Are Kerja</label>
+                <select class="form-select tabel-PR" id="areakerja_id">
+                  <option>----- pilih Area Kerja ---</option>
+                  <?php foreach($areakerja as $a): ?>
+                  <option value="<?= $a->id_areakerja?>"><?=$a->nama_areakerja?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>  
               <div class="col-md-10">
                 <label for="status_pegawai" class="form-label">Status Kerja</label>
                 <select name="status_pegawai"  id="AddStatus" class="form-select tabel-PR" required>
