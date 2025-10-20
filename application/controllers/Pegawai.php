@@ -263,7 +263,7 @@ class Pegawai extends BaseController
       'nama_pegawai' => $nama_pegawai,
       'jabatan_id' => $jabatan_id,
       'bagian_id' => $bagian_id,
-      'areakerja_id' => $areakerja_id,
+      'penempatan_id' => $areakerja_id,
       'status_pegawai' => $status_pegawai,
       'tempat_lahir' => $tempat_lahir,
       'tgl_lahir' => $tgl_lahir,
