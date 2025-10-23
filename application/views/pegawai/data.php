@@ -148,23 +148,7 @@
             <td  class="text-center"><?= $data->kuota_cuti ?></td>
             <td  class="text-center"><?= $data->sisa_cuti ?></td>
             <td  class="text-center">
-            <?php switch ($data->tingkat_peringatan) {
-              case 3 : ?>
-                <span class="badge bg-danger">SP <?= $data->tingkat_peringatan ?></span>
-            <?php break; ?>
-
-            <?php case 2 : ?>
-              <span class="badge bg-warning">SP <?= $data->tingkat_peringatan ?></span>
-            <?php break; ?>
-
-            <?php case 1 : ?>
-              <span class="badge bg-success">SP <?= $data->tingkat_peringatan ?></span>
-            <?php break; ?>
-              
-            <?php default: ?>
-                -
-            <?php break; ?>
-            <?php } ?>
+              <?= $data->sanksi ?>
             </td>
             <?php
             if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
