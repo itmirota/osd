@@ -144,6 +144,10 @@ $route['deletepelanggaran/(:num)'] = 'pelanggaran/delete/$1';
 
 $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
 
+// KECELAKAAN KERJA
+$route['formulir-kecelakaan'] = 'kecelakaanKerja/form_kecelakaan';
+
+
 /*********** PERIZINAN DEFINED ROUTES *******************/
 
 // CUTI

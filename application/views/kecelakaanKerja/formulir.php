@@ -68,7 +68,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="saksi1" class="form-label">Nama Saksi 1</label>
-                <select class="form-select" name="saksi1">
+                <select class="form-select saksi" name="saksi1" onchange="getSaksi()">
                   <option selected>pilih pegawai</option>
                   <?php foreach($pegawai as $p):?>
                   <option value="<?= $p->id_pegawai?>"><?= $p->nama_pegawai?></option>
@@ -77,13 +77,13 @@
               </div>
               <div class="col-md-6">
                 <label for="jabatan_saksi1" class="form-label">Jabatan</label>
-                <input type="text" class="form-control-plaintext" readonly>
+                <input type="text" id="jabatan_saksi1" class="form-control-plaintext" readonly>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <label for="saksi1" class="form-label">Nama Saksi 2</label>
-                <select class="form-select" name="saksi2">
+                <select class="form-select saksi" name="saksi2"  onchange="getSaksi()">
                   <option selected>pilih pegawai</option>
                   <?php foreach($pegawai as $p):?>
                   <option value="<?= $p->id_pegawai?>"><?= $p->nama_pegawai?></option>
@@ -102,7 +102,7 @@
 
 
 <script>
-  function getPelapor($id){
+  function getPelapor(){
     let id = $("#pegawai").val();
     $.ajax({
       url:"<?php echo site_url("kecelakaanKerja/getPelapor")?>/" + id,
@@ -117,6 +117,19 @@
         document.getElementById("bagian").value = hasil.bagian;
         document.getElementById("jabatan").value = hasil.jabatan;
         document.getElementById("no_hp").value = hasil.no_hp;
+      }
+    });
+  }
+
+  function getSaksi(){
+    let id = $(".saksi").val();
+    $.ajax({
+      url:"<?php echo site_url("kecelakaanKerja/getSaksi")?>/" + id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        console.log(hasil);
+        document.getElementById("jabatan_saksi1").value = hasil.jabatan;
       }
     });
   }
