@@ -73,6 +73,7 @@
             <div class="col-md-10">
               <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
               <select name="jenis_kelamin" id="jenis_kelamin" class="form-select tabel-PR" required>
+                <option <?= empty($list_data->jenis_kelamin) ? " selected" : ""?>> pilih jenis kelamin</option>
                 <option value="L" <?= $list_data->jenis_kelamin == "L" ? " selected" : ""?>> Laki - laki</option>
                 <option value="P" <?= $list_data->jenis_kelamin == "P" ? " selected" : ""?>> Perempuan</option>
               </select>
@@ -88,6 +89,7 @@
             <div class="col-md-10">
               <label for="golongan_darah" class="form-label">Golongan Darah</label>
               <select name="golongan_darah" id="golongan_darah"  class="form-select tabel-PR">
+                <option <?= empty($list_data->golongan_darah) ? " selected" : ""?>> pilih golongan darah</option>
                 <option value="A" <?= $list_data->golongan_darah == "A" ? " selected" : ""?>> AB</option>
                 <option value="B" <?= $list_data->golongan_darah == "B" ? " selected" : ""?>> B</option>
                 <option value="AB" <?= $list_data->golongan_darah == "AB" ? " selected" : ""?>> AB</option>
@@ -214,6 +216,7 @@
             <div class="col-md-10">
               <label for="durasi_kontrak" class="form-label">Durasi Kerja</label>
               <select name="durasi_kontrak" id="lama_kontrak" class="form-select tabel-PR">
+                <option <?= empty($list_data->durasi_kontrak) ? " selected" : ""?>> pilih durasi</option>
                 <option value="0" <?= $list_data->durasi_kontrak == "0" ? " selected" : ""?>> karyawan tetap</option>
                 <option value="3" <?= $list_data->durasi_kontrak == "3" ? " selected" : ""?>> 3 Bulan</option>
                 <option value="6" <?= $list_data->durasi_kontrak == "6" ? " selected" : ""?>> 6 Bulan</option>
