@@ -51,8 +51,61 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
+<style>
+  /* Gaya dasar untuk Pop-up Instalasi */
+  .install-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .install-popup {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 300px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .install-popup button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+      font-weight: bold;
+  }
+  #installAppButton {
+      background-color: #2196F3;
+      color: white;
+  }
+  #laterButton {
+      background-color: #eee;
+      color: #333;
+  }
+</style>
+
 <!-- <body class="sidebar-mini skin-black-light"> -->
 <body class="bg-pattern">
+<div id="customInstallPrompt" class="install-popup-overlay" style="display:none;">
+    <div class="install-popup">
+        <h4>Install Eduprima Tutor</h4>
+        <p>Akses lebih cepat dan mudah sebagai aplikasi</p>
+        <p>
+            <span style="font-weight: bold;">Akses langsung</span> dari home screen<br>
+            <span style="font-weight: bold;">Bekerja offline</span> untuk beberapa fitur<br>
+            <span style="font-weight: bold;">Notifikasi penting</span> langsung ke device
+        </p>
+        <button id="laterButton">Nanti Saja</button>
+        <button id="installAppButton">Install App</button>
+    </div>
+</div>
 <div>
   <?php if (isset($name)){?>
   <div class="box" style="margin-bottom:10vh">
@@ -357,5 +410,53 @@
       }
     });
   }
+
+  		// --- Logika Pop-up Instalasi Kustom ---
+    let deferredPrompt;
+    const customPrompt = document.getElementById('customInstallPrompt');
+    const installButton = document.getElementById('installAppButton');
+    const laterButton = document.getElementById('laterButton');
+
+    // 2. Menangkap Event beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Mencegah prompt otomatis browser
+      e.preventDefault();
+      
+      // Menyimpan event
+      deferredPrompt = e;
+      
+      // Menampilkan pop-up kustom Anda
+      customPrompt.style.display = 'flex';
+    });
+
+    // 3. Memicu Instalasi ketika tombol diklik
+    if (installButton) {
+        installButton.addEventListener('click', () => {
+            // Sembunyikan pop-up kustom
+            customPrompt.style.display = 'none';
+
+            // Panggil prompt instalasi native
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                
+                // Cek hasil pilihan pengguna
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null; // Event sudah digunakan
+                });
+            }
+        });
+    }
+    
+    // Logika tombol "Nanti Saja" (hanya menyembunyikan pop-up kustom)
+    if (laterButton) {
+        laterButton.addEventListener('click', () => {
+            customPrompt.style.display = 'none';
+        });
+    }
 
 </script>

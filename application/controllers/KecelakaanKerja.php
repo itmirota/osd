@@ -23,7 +23,10 @@ class KecelakaanKerja extends BaseController
     $this->global['pageTitle'] = 'Formulir Kecelakaan Kerja';
     $this->isLoggedIn();
 
+    $id = $this->global ['pegawai_id'];
+
     $data['pegawai'] = $this->crud_model->lihatdata('tbl_pegawai');
+    $data['pelapor'] = $this->pegawai_model->showDataRow(['id_pegawai' => $id]);
 
     $this->loadViews("kecelakaanKerja/formulir", $this->global, $data, NULL);
   }
@@ -76,44 +79,34 @@ class KecelakaanKerja extends BaseController
 
     $pegawai_id = $this->input->post('pegawai_id');
     $tgl_kejadian = $this->input->post('tgl_kejadian');
-    $waktu_kejadian = $this->input->post('waktu_kejadian');
-    $jenis_kecelakaan = $this->input->post('jenis_kecelakaan');
-    $lokasi_kejadian = $this->input->post('lokasi_kejadian');
-    $penyebab_kecelakaan = $this->input->post('penyebab_kecelakaan');
-    $kronologi = $this->input->post('kronologi');
-    $dampak_kecelakaan = $this->input->post('dampak_kecelakaan');
-    $tindakan_diambil = $this->input->post('tindakan_diambil');
-    $pelapor = $this->input->post('pelapor');
-    $ttd_pelapor = $this->input->post('ttd_pelapor');
     $saksi1 = $this->input->post('saksi1');
-    $ttd_saksi1 = $this->input->post('ttd_saksi1');
     $saksi2 = $this->input->post('saksi2');
-    $ttd_saksi2 = $this->input->post('ttd_saksi2');
-    $mengetahui = $this->input->post('mengetahui');
-    $ttd_mengetahui = $this->input->post('ttd_mengetahui');
-    $catatan_tambahan = $this->input->post('catatan_tambahan');
+    $kategori_insiden = $this->input->post('kategori_insiden');
+    $pengobatan_cedera = $this->input->post('pengobatan_cedera');
+    $deskripsi_cedera = $this->input->post('deskripsi_cedera');
+    $deskripsi_pertolongan = $this->input->post('deskripsi_pertolongan');
+    $kronologi_kejadian = $this->input->post('kronologi_kejadian');
+    $penyebab_insiden = $this->input->post('penyebab_insiden');
+    $akibat_insiden = $this->input->post('akibat_insiden');
+    $langkah_perbaikan = $this->input->post('langkah_perbaikan');
+    $pelapor_id = $this->global['pegawai_id'];
 
     $data = array(
       'pegawai_id' => $pegawai_id,
       'tgl_kejadian' => $tgl_kejadian,
-      'waktu_kejadian' => $waktu_kejadian,
-      'jenis_kecelakaan' => $jenis_kecelakaan,
-      'lokasi_kejadian' => $lokasi_kejadian,
-      'penyebab_kecelakaan' => $penyebab_kecelakaan,
-      'kronologi' => $kronologi,
-      'dampak_kecelakaan' => $dampak_kecelakaan,
-      'tindakan_diambil' => $tindakan_diambil,
-      'pelapor' => $pelapor,
-      'ttd_pelapor' => $ttd_pelapor,
-      'saksi1' => $saksi1,
-      'ttd_saksi1' => $ttd_saksi1,
-      'saksi2' => $saksi2,
-      'ttd_saksi2' => $ttd_saksi2,
-      'mengetahui' => $mengetahui,
-      'ttd_mengetahui' => $ttd_mengetahui,
-      'catatan_tambahan' => $catatan_tambahan,
-      'datecreated' => DATE('Y-m-d H:i:s')
-      );
+      'pelapor_id' => $pelapor_id,
+      'saksi1_id' => $saksi1,
+      'saksi2_id' => $saksi2,
+      'kategori_insiden' => $kategori_insiden,
+      'pengobatan_cedera' => $pengobatan_cedera,
+      'deskripsi_cedera' => $deskripsi_cedera,
+      'deskripsi_pertolongan' => $deskripsi_pertolongan,
+      'kronologi_kejadian' => $kronologi_kejadian,
+      'penyebab_insiden' => $penyebab_insiden,
+      'akibat_insiden' => $akibat_insiden,
+      'langkah_perbaikan' => $langkah_perbaikan,
+      'created_at' => date('Y-m-d H:i:s'),
+    );
 
     $query = $this->crud_model->input($data, 'tbl_kecelakaan_kerja');
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');

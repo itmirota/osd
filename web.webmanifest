@@ -28,7 +28,7 @@
         "purpose": "any maskable"
       }
     ],
-    "start_url": "https://osd.mirota.id",
+    "start_url": "http://localhost:90/osd",
     "display": "fullscreen",
     "theme_color": "#0956AF",
     "background_color": "#fff"

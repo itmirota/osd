@@ -26,5 +26,8 @@ function ubahNilai($nilai,$target,$bobot) {
   }
 
   return $hasil;
+
+
+  // penilaian versi mbak idah rata-rata total nilai
   
 }
