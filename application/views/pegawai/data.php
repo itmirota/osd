@@ -105,7 +105,7 @@
             <th class="text-end" width="12vh">Sisa Cuti Tahun Lalu</th>
             <th class="text-end" width="10vh">Surat Peringatan</th>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
             {
             ?>
             <?php if($this->uri->segment(1) != 'pegawai'){?>
