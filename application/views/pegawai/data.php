@@ -151,7 +151,7 @@
               <?= $data->sanksi ?>
             </td>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
             {
             ?>
             <?php if($this->uri->segment(1) != 'pegawai'){?>
