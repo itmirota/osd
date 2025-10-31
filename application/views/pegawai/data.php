@@ -166,7 +166,7 @@
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)">Perpanjang Kontrak</a></li>
                 <?php } ?>
                 <li><a class="dropdown-item suratPeringatan" href="#" data-bs-toggle="modal" data-bs-target="#addNewWarningLetter" onclick="suratPeringatan(<?= $data->id_pegawai?>)">Surat Peringatan</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
+                <li><a class="dropdown-item"href="<?= base_url('pegawai/editData/'.$data->id_pegawai)?>">Edit Data</a></li>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAkun" onclick="editAkun(<?= $data->id_pegawai?>)">Edit Akun</a></li>
                 <li><a class="dropdown-item" href="#"  onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
               </ul>

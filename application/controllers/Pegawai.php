@@ -459,7 +459,7 @@ class Pegawai extends BaseController
     $data['bagian'] = $this->crud_model->lihatdata('tbl_bagian');
     $data['jabatan'] = $this->crud_model->lihatdata('tbl_jabatan');
 
-    $this->loadViewsUser("pegawai/editdata", $this->global, $data, NULL);
+    $this->loadViews("pegawai/editdata", $this->global, $data, NULL);
   }
 
   public function update(){
@@ -485,6 +485,7 @@ class Pegawai extends BaseController
     $tgl_masuk = $this->input->post('tgl_masuk');   
     $tgl_selesai = $this->input->post('tgl_selesai');   
     $durasi_kontrak = $this->input->post('durasi_kontrak');   
+    $kuota_cuti = $this->input->post('kuota_cuti');   
     $email_pegawai = $this->input->post('email_pegawai');  
     $status_pernikahan = $this->input->post('status_pernikahan');    
     $nama_ibu = $this->input->post('nama_ibu');    
@@ -492,6 +493,12 @@ class Pegawai extends BaseController
     $nama_pasangan = $this->input->post('nama_pasangan');
     $nama_anak = $this->input->post('nama_anak');    
     $role_id = $this->input->post('role_id');   
+
+    var_dump($tgl_selesai);
+
+    if(empty($tgl_selesai)){
+      $tgl_selesai = NULL;
+    }
 
     $data = array(
       'nip' => $nip,
