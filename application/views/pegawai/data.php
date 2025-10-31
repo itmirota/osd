@@ -396,7 +396,7 @@
               </div>
               <div class="col-md-10">
                 <label for="areakerja" class="form-label">Are Kerja</label>
-                <select class="form-select tabel-PR" id="areakerja_id">
+                <select class="form-select tabel-PR" name="areakerja_id" id="areakerja_id">
                   <option>----- pilih Area Kerja ---</option>
                   <?php foreach($areakerja as $a): ?>
                   <option value="<?= $a->id_areakerja?>"><?=$a->nama_areakerja?></option>
