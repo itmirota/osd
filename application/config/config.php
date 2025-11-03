@@ -16,10 +16,17 @@ date_default_timezone_set("Asia/Jakarta");
 | environments.
 |
 */
-$base = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https": "http");
-$base .= "://".$_SERVER['HTTP_HOST'];
-$base .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-$config['base_url'] = $base;
+if (isset($_SERVER['HTTP_HOST'])) {
+    $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https" : "http");
+    $base_url .= "://" . $_SERVER['HTTP_HOST'];
+    $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
+} else {
+    // Ini adalah nilai default ketika dijalankan melalui CLI (seperti PHPUnit)
+    // Ganti 'http://localhost/' jika Anda menggunakan base_url lain untuk testing.
+    $base_url = 'http://localhost:90/'; 
+}
+
+$config['base_url'] = $base_url;
 
 /*
 |--------------------------------------------------------------------------

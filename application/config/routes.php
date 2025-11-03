@@ -56,6 +56,7 @@ $route['Datapegawai'] = 'pegawai/listData';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 $route['pegawai/(:num)'] = "bagian/pegawaiByBagian/$1";
+$route['editdata/(:num)'] = "pegawai/editPegawai/$1";
 
 $route['api/karyawan'] = 'api/PegawaiController/index';
 $route['api/karyawan/store'] = 'api/PegawaiController/store';

@@ -1,6 +1,7 @@
 <main class="container">
 <div class="card">
   <form action="<?=base_url('pegawai/update')?>" role="form" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="page" value="<?=$page?>"/>
     <div class="card-header">
       <h3 id="examplecardLabel">Formulir Edit Data</h3>
     </div>
@@ -18,7 +19,7 @@
             </div>
             <div class="col-md-10">
               <label for="jabatan_id" class="form-label">Jabatan</label>
-              <select name="jabatan_id" id="jabatan_id" class="form-select tabel-PR">
+              <select name="jabatan_id" id="jabatan_id" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <?php foreach($jabatan as $j): ?>
                 <option value="<?= $j->id_jabatan?>" <?= $list_data->jabatan_id == $j->id_jabatan ? " selected" : ""?>><?=$j->nama_jabatan?></option>
                 <?php endforeach; ?>
@@ -26,7 +27,7 @@
             </div> 
             <div class="col-md-10">
               <label for="departement_id" class="form-label">Departement</label>
-              <select name="departement_id" id="departement_id" class="form-select tabel-PR">
+              <select name="departement_id" id="departement_id" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <?php foreach($departement as $d): ?>
                 <option value="<?= $d->id_departement?>" <?= $list_data->departement_id == $d->id_departement ? " selected" : ""?>
                 ><?=$d->nama_departement?></option>
@@ -35,7 +36,7 @@
             </div>  
             <div class="col-md-10">
               <label for="divisi_id" class="form-label">Divisi</label>
-              <select name="divisi_id" id="divisi_id" class="form-select tabel-PR">
+              <select name="divisi_id" id="divisi_id" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <?php foreach($divisi as $d): ?>
                 <option value="<?= $d->id_divisi?>" <?= $list_data->divisi_id == $d->id_divisi ? " selected" : ""?>><?=$d->nama_divisi?></option>
                 <?php endforeach; ?>
@@ -43,7 +44,7 @@
             </div>
             <div class="col-md-10">
               <label for="bagian_id" class="form-label">Bagian</label>
-              <select name="bagian_id" id="bagian_id" class="form-select tabel-PR">
+              <select name="bagian_id" id="bagian_id" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <?php foreach($bagian as $d): ?>
                 <option value="<?= $d->id_bagian?>" <?= $list_data->bagian_id == $d->id_bagian ? " selected" : ""?>
                 ><?=$d->nama_bagian?></option>
@@ -52,7 +53,7 @@
             </div>    
             <div class="col-md-10">
               <label for="status_pegawai" class="form-label">Status Kerja</label>
-              <select name="status_pegawai"  id="status_pegawai" class="form-select tabel-PR">
+              <select name="status_pegawai"  id="status_pegawai" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <option value="tetap" <?= $list_data->status_pegawai == "tetap" ? " selected" : ""?>> PKWTT</option>
                 <option value="kontrak"<?= $list_data->status_pegawai == "kontrak" ? " selected" : ""?>> PKWT</option>
               </select>
@@ -60,7 +61,7 @@
             <div class="col-md-10">
               <label for="kuota_cuti" class="form-label">Kuota Cuti</label>
               <input type="text-plaintext" name="kuota_cuti" id="kuota_cuti" value="<?=$list_data->kuota_cuti?>"
-              readonly class="form-control tabel-PR"/>
+              <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?> class="<?= $this->uri->segment(1) == 'editdata' ? 'form-control-plaintext' : 'form-control'?> tabel-PR"/>
             </div>
             <div class="col-md-10">
               <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
@@ -165,7 +166,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <label for="kecamatandomisili_id" class="form-label">Kecamatan</label>
-                  <select name="kecamatandomisili_id" id="kecamatandomisili_edit_id" onchange="Kelurahandomisili_edit()" class="form-select tabel-PR">
+                  <select name="kecamatandomisili_id" id="kecamatandomisili_edit_id" onchange="Kelurahandomisili_edit()"class="form-select tabel-PR">
                   </select>
                 </div>
                 <div class="col-md-6">
@@ -207,15 +208,15 @@
             </div>
             <div class="col-md-10">
               <label for="tgl_masuk" class="form-label">Tanggal Masuk</label>
-              <input type="date" name="tgl_masuk" id="tgl_masuk" value="<?=$list_data->tgl_masuk?>" class="form-control tabel-PR"/>
+              <input type="date" name="tgl_masuk" id="tgl_masuk" value="<?=$list_data->tgl_masuk?>" class="form-control tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>/>
             </div> 
             <div class="col-md-10">
               <label for="tgl_masuk" class="form-label">Tanggal Selesai Kontrak</label>
-              <input type="date" name="tgl_selesai" id="tgl_selesai" value="<?=$list_data->tgl_selesai?>" class="form-control tabel-PR"/>
+              <input type="date" name="tgl_selesai" id="tgl_selesai" value="<?=$list_data->tgl_selesai?>" class="form-control tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>/>
             </div> 
             <div class="col-md-10">
               <label for="durasi_kontrak" class="form-label">Durasi Kerja</label>
-              <select name="durasi_kontrak" id="lama_kontrak" class="form-select tabel-PR">
+              <select name="durasi_kontrak" id="lama_kontrak" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <option <?= empty($list_data->durasi_kontrak) ? " selected" : ""?>> pilih durasi</option>
                 <option value="0" <?= $list_data->durasi_kontrak == "0" ? " selected" : ""?>> karyawan tetap</option>
                 <option value="3" <?= $list_data->durasi_kontrak == "3" ? " selected" : ""?>> 3 Bulan</option>
