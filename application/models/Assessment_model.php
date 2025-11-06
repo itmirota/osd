@@ -56,6 +56,7 @@ class Assessment_model extends CI_Model
     $this->db->select('kategori');
     $this->db->from('tbl_assessment_soal');
     $this->db->group_by('kategori');
+    $this->db->order_by('id_assessment_soal','ASC');
     $query = $this->db->get();
 
     return $query;
