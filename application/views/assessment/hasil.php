@@ -1,6 +1,9 @@
 <div class="card">
   <div class="card-body">
-        <table id="dataTable" class="table table-bordered table-striped">
+    <?php
+    if (isset($hasil->nilai)){
+    ?> 
+    <table id="dataTable" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>No</th>
@@ -30,5 +33,12 @@
         endforeach ?>
       </tbody>
     </table>
+    <?php }else{ ?>
+    <tr> 
+      <div class="alert alert-primary" role="alert">
+        belum ada yang memberikan nilai kepada <strong><?= $hasil->nama_pegawai ?></strong>
+      </div>
+    </tr>
+    <?php } ?>
   </div>
 </div>

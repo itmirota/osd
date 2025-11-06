@@ -290,9 +290,9 @@ class Absensi extends BaseController
     header('Content-Type: application/vnd.ms-excel');
 
     if (!empty($periodeAwal) && !empty($periodeAkhir)){
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan" '.$awal.' - '.$akhir.'.xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Absensi Online" '.$awal.' - '.$akhir.'.xlsx');
     }else{
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan".xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Absensi Online".xlsx');
     }
 
     header('Cache-Control: max-age=0');

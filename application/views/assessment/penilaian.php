@@ -23,6 +23,9 @@
   </div>
 </div>
 <?php 
+var_dump($kategori);
+?>
+<?php 
 $no = 1;
 foreach ($kategori as $kategori) {
 $soal = $this->assessment_model->getSoalWhere(['kategori' => $kategori->kategori]);  

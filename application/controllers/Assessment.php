@@ -202,7 +202,7 @@ class Assessment extends BaseController
     $data['soal_value'] = $this->assessment_model->getSoal();
     $data['kategori'] = $this->assessment_model->getKategori()->result();
     $data['id_pegawai'] = $id;
-    $data['pegawai'] =$this->crud_model->getdataRowbyWhere('nama_pegawai', 'id_pegawai ='.$id ,'tbl_pegawai');
+    $data['pegawai'] =$this->crud_model->getdataRowbyWhere('nama_pegawai', 'nip ='.$id ,'tbl_pegawai');
 
     $this->loadViews("assessment/penilaian", $this->global, $data, NULL);
   }
