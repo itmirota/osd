@@ -211,7 +211,7 @@ class Assessment extends BaseController
     $data['id_pegawai'] = $id;
     $data['pegawai'] =$this->crud_model->getdataRowbyWhere('nama_pegawai', 'nip ='.$id ,'tbl_pegawai');
 
-    $this->loadViews("assessment/penilaian", $this->global, $data, NULL);
+    $this->loadViewsUser("assessment/penilaian", $this->global, $data, NULL);
   }
 
   public function save_penilaian($id){

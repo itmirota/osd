@@ -1,7 +1,7 @@
 <div class="container">
   <?php 
   if ($page == 'PenilaianAssessment'){ ?>
-  <div class="row m-3">
+  <div class="row my-3">
     <a href="<?= base_url('dashboardUser')?>"><i class="fa fa-solid fa-angles-left"></i> kembali</a>
   </div>
   <?php } ?>
