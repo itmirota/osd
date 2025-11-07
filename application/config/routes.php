@@ -208,6 +208,7 @@ $route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
 
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 $route['DataAssessment'] = 'assessment';
+$route['PenilaianAssessment'] = 'assessment';
 $route['assessment360'] = 'assessment/UserPage';
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 

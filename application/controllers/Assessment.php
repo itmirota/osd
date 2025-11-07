@@ -26,13 +26,21 @@ class Assessment extends BaseController
   public function index(){
     $this->global['pageTitle'] = 'Assessment';
     $this->global['pageHeader'] = 'Assessment Karyawan ';
+
+    $page = $this->uri->segment(1);
     $pegawai_id = $this->global['pegawai_id'];
     $role = $this->global['role'];
 
-    $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
     $data['role'] = $role;
+    $data['page'] = $page;
 
-    $this->loadViews("assessment/data", $this->global, $data, NULL);
+    if ($page == 'DataAssessment'){
+      $data['list_data']= $this->assessment_model->getAssessmentAll();
+      $this->loadViews("assessment/data", $this->global, $data, NULL);
+    }else{
+      $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
+      $this->loadViewsUser("assessment/data", $this->global, $data, NULL);
+    }
   }
 
   public function UserPage(){
@@ -49,15 +57,14 @@ class Assessment extends BaseController
 
   public function save(){
     $pegawai_id = $this->input->post('pegawai_id');
-    $tgl_assessment = $this->input->post('tgl_assessment');
-    $nilai = $this->input->post('nilai');
-    $keterangan = $this->input->post('keterangan');
+    $penilai_id = $this->input->post('penilai_id');
+    $assessment_tingkatan_id = $this->input->post('assessment_tingkatan_id');
+    
 
     $data = array(
       'pegawai_id' => $pegawai_id,
-      'tgl_assessment' => $tgl_assessment,
-      'nilai' => $nilai,
-      'keterangan' => $keterangan,
+      'penilai_id' => $penilai_id,
+      'assessment_tingkatan_id' => $assessment_tingkatan_id
     );
 
     $sql = $this->crud_model->input($data,'tbl_assessment');
@@ -68,7 +75,7 @@ class Assessment extends BaseController
       $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
     }
 
-    redirect('assessment');
+    redirect('DataAssessment');
   }
 
   public function detailAssessment($id) {
@@ -249,11 +256,8 @@ class Assessment extends BaseController
     $this->global['pageTitle'] = 'Assessment';
 
     $ids = $this->uri->segment(3);
-    var_dump($ids);
-    var_dump($id);
 
     $hasil = $this->assessment_model->getHasilAssessment($id);
-    var_dump($hasil);
     $explode_hasil = explode(',',$hasil->nilai);
 
     $data['explode_hasil'] = $explode_hasil;

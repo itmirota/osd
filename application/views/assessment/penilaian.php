@@ -42,7 +42,7 @@ foreach ($value as $v) { ?>
 </div>
 
 <div class="card">
-  <div class="card-body">
+  <div class="card-body"  style="background-color:#dedee3">
     <p>Score untuk value <strong><?= $kategori->kategori ?></strong></p>
     <div class="form-group">
       <div class="form-check form-check-inline">
@@ -89,7 +89,7 @@ $no_value++;
 $no_aspek=1;
 $aspek = $this->assessment_model->getSoalWhere(['kategori' => $kategori->kategori,'jenis_soal' => 'aspek' ])->result();  
 foreach ($aspek as $s) { ?>
-<div class="card">
+<div class="card"  style="background-color:#dedee3">
   <div class="card-body"> 
     <div class="form-group">
       <p><?= $s->soal ?></p>
