@@ -53,7 +53,7 @@
                 <!-- <a href="<?= base_url('assessment/delete/'.$ld->pegawai_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                     <i class="fas fa-trash"></i> Hapus
                 </a> -->
-                <a href="<?= base_url('assessment/hasilAssessment/').$ld->pegawai_id?>" class="btn btn-primary btn-sm">
+                <a href="<?= base_url('assessment/hasilAssessment/').$ld->id_assessment?>" class="btn btn-primary btn-sm">
                   <i class="fas fa-eye"></i> Hasil
                 </a>
             </td>

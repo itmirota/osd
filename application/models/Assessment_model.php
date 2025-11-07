@@ -20,7 +20,7 @@ class Assessment_model extends CI_Model
     $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
     $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
     $this->db->join('tbl_assessment_tingkatan f','f.id_assessment_tingkatan = a.assessment_tingkatan_id');
-    $this->db->where('a.pegawai_id',$id);
+    $this->db->where('a.id_assessment',$id);
     $query = $this->db->get();
 
     return $query->row();
