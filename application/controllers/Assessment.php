@@ -248,6 +248,10 @@ class Assessment extends BaseController
   public function hasilAssessment($id){
     $this->global['pageTitle'] = 'Assessment';
 
+    $ids = $this->uri->segment(3);
+    var_dump($ids);
+    var_dump($id);
+
     $hasil = $this->assessment_model->getHasilAssessment($id);
     $explode_hasil = explode(',',$hasil->nilai);
 

@@ -1,7 +1,6 @@
 <div class="card">
   <div class="card-body">
     <?php
-    var_dump($hasil->nilai);
     if (isset($hasil->nilai)){
     ?> 
     <table id="dataTable" class="table table-bordered table-striped">
