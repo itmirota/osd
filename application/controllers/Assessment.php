@@ -253,6 +253,7 @@ class Assessment extends BaseController
     var_dump($id);
 
     $hasil = $this->assessment_model->getHasilAssessment($id);
+    var_dump($hasil);
     $explode_hasil = explode(',',$hasil->nilai);
 
     $data['explode_hasil'] = $explode_hasil;
