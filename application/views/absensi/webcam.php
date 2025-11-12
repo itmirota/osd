@@ -3,7 +3,6 @@
   <div class="col-10">
     <div class="card">
 			<div class="card-body">
-				<!-- <h1>Form Registrasi</h1> -->
 				<form id="register">
 					<input type="hidden" class="form-control" name="id_pegawai" id="id_pegawai" value="<?= $id_pegawai?>">
 					<input type="hidden" class="form-control" id="jenis_absen" value="<?= $jenis_absen ?>">
@@ -48,15 +47,43 @@
 
 			function getLocation(data_uri){
 				if ('geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition(position => {
-				lat = position.coords.latitude;
-				lon = position.coords.longitude;
-				detailLocation(data_uri,lat,lon);
-				// save(data_uri,lat,lon);
-				console.log('geolocation available');
-				});
+					navigator.geolocation.getCurrentPosition(position => {
+						lat = position.coords.latitude;
+						lon = position.coords.longitude;
+						detailLocation(data_uri,lat,lon);
+						// save(data_uri,lat,lon);
+						console.log('geolocation available');
+					}, showError);
 				} else {
 					console.log('geolocation not available');
+				}
+			}
+
+			function showError(error) {
+				// Lokasi ditolak atau terjadi error lain, tampilkan alert
+				switch(error.code) {
+					case error.PERMISSION_DENIED:
+						Swal.fire({
+							title: "Izin Akses Lokasi anda belum diaktifkan",
+							text: "masuk ke pengaturan dan izinkan akses lokasi untuk aplikasi ini",
+							icon: "info",
+							showCancelButton: false,
+							showCloseButton: false,
+							showConfirmButton: false,
+						})
+						break;
+					case error.POSITION_UNAVAILABLE:
+						alert("Informasi lokasi tidak tersedia.");
+						// document.getElementById("location_status").value = "unavailable";
+						break;
+					case error.TIMEOUT:
+						alert("Waktu permintaan lokasi habis.");
+						// document.getElementById("location_status").value = "timeout";
+						break;
+					case error.UNKNOWN_ERROR:
+						alert("Terjadi kesalahan tidak dikenal.");
+						// document.getElementById("location_status").value = "unknown_error";
+						break;
 				}
 			}
 
@@ -69,6 +96,14 @@
 					console.log(result.address);
 					wilayah = result.address.city_district;
 					kota = result.address.city;
+
+					if (typeof myVariable === "undefined") {
+						wilayah = result.address.village;
+						kota = result.address.county;
+					} else {
+						wilayah = result.address.city_district;
+						kota = result.address.city;
+					}
 
 					save(data_uri,lat,lon,wilayah,kota);
 

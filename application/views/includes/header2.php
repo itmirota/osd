@@ -66,7 +66,7 @@
   <nav class="navbar navbar-dark bg-navbar navbar-expand mb-4">
     <div class="container">
     <ul class="navbar-nav justify-content-start w-100">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<?= base_url('dashboardUser')?>">
         <img class="navbar-logo" src="<?= base_url('assets/dist/img/mirota.png')?>" alt="Logo" class="d-inline-block align-text-top">
       </a>
     </ul>
