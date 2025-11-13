@@ -5,10 +5,36 @@
   if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER){?>
     <h1 class="h3 mb-3"><strong>Info</strong> Perusahaan</h1>
     <div class="row">
-      <!-- <div class="col-xl-6 col-xxl-5 d-flex">
-        <canvas id="myChart"></canvas>  
-      </div> -->
-      <div class="row">
+      <div class="col-md-6">
+        <div class="my-4" id="chartContainer" style="height: 250px; width: 100%;"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Data Karyawan</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label for="disabledTextInput" class="form-label">Karyawan Aktif</label>
+                <input type="text" class="form-control-plaintext" value="<?= $CountPegawaiAktif ?> orang">
+              </div>
+              <div class="col-6 mb-3">
+                <label for="disabledTextInput" class="form-label">Karyawan Tidak Aktif</label>
+                <input type="text" class="form-control-plaintext" value="<?= $CountPegawaiNonAktif ?> orang">
+              </div>
+              <div class="col-6 mb-3">
+                <label for="disabledTextInput" class="form-label">Penambahan karyawan pada tahun <?= DATE('Y')?></label>
+                <input type="text" class="form-control-plaintext" value="<?= $penambahanKaryawan ?> orang">
+              </div>
+              <div class="col-6 mb-3">
+                <label for="disabledTextInput" class="form-label">Pengurangan karyawan pada tahun <?= DATE('Y')?></label>
+                <input type="text" class="form-control-plaintext" value="<?= $penguranganKaryawan ?> orang">
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- <div class="row">
         <div class="col-md-6">
           <a href="<?= base_url('Datapegawai')?>">
           <div class="card bg-success">
@@ -103,7 +129,7 @@
           </div>
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
   <?php } ?>
 
@@ -310,66 +336,117 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="<?=base_url()?>assets/dist/js/jquery.canvasjs.min.js"></script>
+
 <script>
-  $.ajax({
+$.ajax({
   type : "GET",
   dataType : "JSON",
-  url :  "<?= base_url(); ?>user/getChart",
+  url :  "<?= base_url(); ?>user/getChart2",
   success : result => {
+
     const Datapenambahan = result.penambahanKaryawan;
     const Datapengurangan = result.penguranganKaryawan;
 
-    // setup 
-    const data = {
-      datasets: [{
-        label: 'Penambahan Karyawan '+<?=DATE('Y')?>,
-        data: Datapenambahan,
-        backgroundColor: [
-          'rgb(28,187,140,0.2)',
-        ],
-        borderColor: [
-          'rgb(28,187,140,1)',
-        ],
-        borderWidth: 1
+    let pengurangan = []
+    Datapengurangan.map( Datapengurangan => {
+
+      const dateString = Datapengurangan.x;
+      // Pisahkan string menjadi bagian-bagian
+      const parts = dateString.split('-');
+
+      const year = parseInt(parts[0]);
+      const month = parseInt(parts[1]) - 1;
+      const day = parseInt(parts[2]); 
+      const date = new Date(year, month, day);
+
+      pengurangan.push({ x: date, y: Datapengurangan.y })
+    });
+
+    let penambahan = []
+    Datapenambahan.map( Datapenambahan => {
+
+      const dateString = Datapenambahan.x;
+      // Pisahkan string menjadi bagian-bagian
+      const parts = dateString.split('-');
+
+      const year = parseInt(parts[0]);
+      const month = parseInt(parts[1]) - 1;
+      const day = parseInt(parts[2]); 
+      const date = new Date(year, month, day);
+
+      penambahan.push({ x: date, y: Datapenambahan.y })
+    });
+
+    const d = new Date(); 
+    let year = d.getFullYear();
+
+
+
+    var options = {
+      exportEnabled: false,
+      animationEnabled: true,
+      title:{
+        text: "karyawan masuk VS keluar "+year
+      },
+      // subtitles: [{
+      //   text: "Click Legend to Hide or Unhide Data Series"
+      // }],
+      axisX: {
+        title: "bulan"
+      },
+      axisY: {
+        title: "Penambahan Karyawan",
+        titleFontColor: "#4F81BC",
+        lineColor: "#4F81BC",
+        labelFontColor: "#4F81BC",
+        interval: 2,
+        tickColor: "#4F81BC"
+      },
+      axisY2: {
+        title: "Pengurangan Karyawan",
+        titleFontColor: "#C0504E",
+        lineColor: "#C0504E",
+        labelFontColor: "#C0504E",
+        tickColor: "#C0504E",
+        interval: 2
+      },
+      toolTip: {
+        shared: true
+      },
+      legend: {
+        cursor: "pointer",
+        itemclick: toggleDataSeries
+      },
+      data: [{
+        type: "line",
+        name: "penambahan karyawan",
+        showInLegend: true,
+        xValueFormatString: "MMM YYYY",
+        yValueFormatString: "#,##0 orang",
+        dataPoints: penambahan
       },
       {
-        label: 'Pengurangan Karyawan '+<?=DATE('Y')?>,
-        data: Datapengurangan,
-        backgroundColor: [
-          'rgb(220,53,69,0.2)',
-        ],
-        borderColor: [
-          'rgb(220,53,69,1)',
-        ],
-        borderWidth: 1
+        type: "line",
+        name: "pengurangan karyawan",
+        axisYType: "secondary",
+        showInLegend: true,
+        xValueFormatString: "MMM YYYY",
+        yValueFormatString: "#,##0 orang",
+        dataPoints: pengurangan
       }]
     };
+    $("#chartContainer").CanvasJSChart(options);
 
-    // config 
-    const config = {
-      type: 'line',
-      data,
-      options: {
-        scales: {
-          x: {
-            type:'time',
-            time:{
-              unit:'month'
-            }
-          },
-          y: {
-            beginAtZero: true
-          }
-        }
+    function toggleDataSeries(e) {
+      if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      } else {
+        e.dataSeries.visible = true;
       }
-    };
-
-    // render init block
-    const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
+      e.chart.render();
+    }
   }
-  });
+});
 </script>
 
