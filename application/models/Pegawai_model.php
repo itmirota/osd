@@ -3,7 +3,7 @@
 class Pegawai_model extends CI_Model
 {
 
-  public function showData()
+  public function showData($id = null)
   {
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
@@ -14,6 +14,11 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_pelanggaran f','f.pegawai_id = a.id_pegawai','left');
     $this->db->group_by('a.id_pegawai');
     $this->db->where('a.status','aktif');
+
+    if (isset($id)) {
+      $this->db->where('id_pegawai', $id);
+    }
+    
     $query = $this->db->get();
     return $query->result();
   }

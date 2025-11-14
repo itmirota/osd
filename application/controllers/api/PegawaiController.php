@@ -17,8 +17,14 @@ class PegawaiController extends RestController
 
     public function index_get()
     {
-        $pegawai = $this->pegawai_model->showData();
-        $this->response($pegawai,200);
+        $id = $this->get('id'); 
+        $pegawai = $this->pegawai_model->showData($id);
+
+        $this->response([
+            'status' => true,
+            'message' => 'Data Berhasil ditampilkan',
+            'data' => $pegawai
+        ], RestController::HTTP_OK);
     }
 
     public function store_post()
