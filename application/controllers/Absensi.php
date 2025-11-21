@@ -124,6 +124,7 @@ class Absensi extends BaseController
     $id = $this->input->post('id_pegawai');
     $periode = $this->input->post('periode');
     $datenow = DATE('Y-m');
+    $tanggal = DATE('d');
 
     if (!empty($periode)){
       $periodeAkhir = $periode.'-20';
@@ -143,9 +144,12 @@ class Absensi extends BaseController
       $tahun = date_format($date,'Y');
     }
 
-
+    if($tanggal >= 21 && $tanggal <= 31){
+      $bulan = $bulan + 1;
+      $periodeAwal = $tahun.'-'.$bulan.'-21';
+    }else{
     $periodeAwal = $tahun.'-'.$bulan.'-21';
-
+    }
 
     $where = array(
       'date >=' => $periodeAwal,

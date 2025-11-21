@@ -406,5 +406,5 @@ if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER || $role == ROLE_ADMIN || $
       config
     );
   }
-  </script>
+</script>
 

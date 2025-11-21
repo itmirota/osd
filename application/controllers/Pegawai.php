@@ -211,7 +211,7 @@ class Pegawai extends BaseController
     $nip = $this->input->post('nip');
     $jabatan_id = $this->input->post('jabatan_id');
     $bagian_id = $this->input->post('bagian_id');
-    $areakerja_id = $this->input->post('areakerja');
+    $areakerja_id = $this->input->post('areakerja_id');
     $status_pegawai = $this->input->post('status_pegawai'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
     $tgl_lahir = $this->input->post('tgl_lahir');    

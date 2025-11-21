@@ -57,7 +57,7 @@
                     <?php } ?>
                     <?php } ?>
                     <?php if ($page == 'DataAssessment'){ ?>
-                    <a href="<?= base_url('assessment/hasilAssessment/').$ld->id_assessment?>" class="btn btn-primary btn-sm">
+                    <a style="display:<?= is_null($ld->nilai) ? 'none' : ''?>" href="<?= base_url('assessment/hasilAssessment/').$ld->id_assessment?>" class="btn btn-sm">
                       <i class="fas fa-eye"></i> Hasil
                     </a>
                     <?php } ?>

@@ -6,7 +6,15 @@
     <h1 class="h3 mb-3"><strong>Info</strong> Perusahaan</h1>
     <div class="row">
       <div class="col-md-6">
-        <div class="my-4" id="chartContainer" style="height: 250px; width: 100%;"></div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Data Karyawan masuk vs keluar <?= DATE('Y')?></h3>
+          </div>
+          <div class="card-body">
+            <!-- <div id="chartContainer" style="height: 250px; width: 100%;"></div> -->
+            <div id="chart"></div>
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="card">
@@ -334,9 +342,8 @@
 
 <!-- CHART.JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="<?=base_url()?>assets/dist/js/jquery.canvasjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
 $.ajax({
@@ -386,9 +393,9 @@ $.ajax({
     var options = {
       exportEnabled: false,
       animationEnabled: true,
-      title:{
-        text: "karyawan masuk VS keluar "+year
-      },
+      // title:{
+      //   text: "karyawan masuk VS keluar "+year
+      // },
       // subtitles: [{
       //   text: "Click Legend to Hide or Unhide Data Series"
       // }],
@@ -446,6 +453,82 @@ $.ajax({
       }
       e.chart.render();
     }
+  }
+});
+</script>
+
+<script>
+$.ajax({
+  type : "GET",
+  dataType : "JSON",
+  url :  "<?= base_url(); ?>user/getChart2",
+  success : result => {
+
+    const Datapenambahan = result.penambahanKaryawan;
+    const Datapengurangan = result.penguranganKaryawan;
+
+    let pengurangan = []
+    Datapengurangan.map( Datapengurangan => {
+
+      const dateString = Datapengurangan.x;
+      // Pisahkan string menjadi bagian-bagian
+      const parts = dateString.split('-');
+
+      const year = parseInt(parts[0]);
+      const month = parseInt(parts[1]) - 1;
+      const day = parseInt(parts[2]); 
+      const date = new Date(year, month, day);
+
+      pengurangan.push({ x: date, y: Datapengurangan.y })
+    });
+
+    let penambahan = []
+    Datapenambahan.map( Datapenambahan => {
+
+      const dateString = Datapenambahan.x;
+      // Pisahkan string menjadi bagian-bagian
+      const parts = dateString.split('-');
+
+      const year = parseInt(parts[0]);
+      const month = parseInt(parts[1]) - 1;
+      const day = parseInt(parts[2]); 
+      const date = new Date(year, month, day);
+
+      penambahan.push({ x: date, y: Datapenambahan.y })
+    });
+    const options = {
+      chart: {
+        type: 'line',
+        height: 250,
+        zoom: {
+          enabled: false  
+        }
+      },
+      colors: ['#ff0033', '#0ec244'],
+      series: [
+        {
+        name: 'pengurangan karyawan',
+        data: pengurangan
+        }, 
+        {
+        name: 'penambahan karyawan',
+        data: penambahan
+        }
+        
+      ], 
+      xaxis: {
+        type: 'datetime',
+      },
+      yaxis:{
+        tickAmount: 4,
+        min: 1
+      }
+
+    }
+
+    const chart = new ApexCharts(document.querySelector("#chart"), options);
+
+    chart.render();
   }
 });
 </script>
