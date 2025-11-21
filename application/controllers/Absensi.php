@@ -145,10 +145,13 @@ class Absensi extends BaseController
     }
 
     if($tanggal >= 21 && $tanggal <= 31){
-      $bulan = $bulan + 1;
-      $periodeAwal = $tahun.'-'.$bulan.'-21';
+      $bulanAwal = $bulan + 1;
+      $bulanAkhir = $bulanAwal + 1;
+
+      $periodeAwal = $tahun.'-'.$bulanAwal.'-21';
+      $periodeAkhir = $tahun.'-'.$bulanAkhir.'-20';
     }else{
-    $periodeAwal = $tahun.'-'.$bulan.'-21';
+      $periodeAwal = $tahun.'-'.$bulan.'-21';
     }
 
     $where = array(
