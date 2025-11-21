@@ -61,15 +61,8 @@ class AbsensiTokoManual extends BaseController
       $tahun = date_format($date,'Y');
     }
 
-
-    if($tanggal >= 21 && $tanggal <= 31){
-      $bulan = $bulan + 1;
-      $periodeAwal = $tahun.'-'.$bulan.'-21';
-    }else{
     $periodeAwal = $tahun.'-'.$bulan.'-21';
-    }
-
-
+    
     $where = array(
       'tgl_awal >=' => $periodeAwal,
       'tgl_akhir <=' => $periodeAkhir,
