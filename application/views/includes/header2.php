@@ -53,10 +53,42 @@
 	
   <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
 	<script src="<?php echo base_url(); ?>assets/dist/js/register.js"></script>
-</head>
 
+  <style>
+    .overlay{
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background: rgba(255,255,255,0.8) center no-repeat;
+    }
+    /* Turn off scrollbar when body element has the loading class */
+    body.loading{
+        overflow: hidden;   
+    }
+    /* Make spinner image visible when body element has the loading class */
+    body.loading .overlay{
+        display: block;
+    }
+  </style>
+  <script>
+  // Add remove loading class on body element based on Ajax request status
+  $(document).on({
+      ajaxStart: function(){
+          $("body").addClass("loading"); 
+      },
+      ajaxStop: function(){ 
+          $("body").removeClass("loading"); 
+      }    
+  });
+  </script>
+</head>
 <!-- <body class="sidebar-mini skin-black-light"> -->
 <body class="theme-white">
+<div class="overlay"></div>
 <div>
   <?php 
   $cek = $this->uri->segment(1);
