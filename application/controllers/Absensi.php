@@ -124,6 +124,7 @@ class Absensi extends BaseController
     $id = $this->input->post('id_pegawai');
     $periode = $this->input->post('periode');
     $datenow = DATE('Y-m');
+    $tanggal = DATE('d');
 
     if (!empty($periode)){
       $periodeAkhir = $periode.'-20';
@@ -143,9 +144,17 @@ class Absensi extends BaseController
       $tahun = date_format($date,'Y');
     }
 
-
-    $periodeAwal = $tahun.'-'.$bulan.'-21';
-
+    if($tanggal >= 21 && $tanggal <= 31){
+      $bulanAwal = $bulan + 1;
+      $bulanAwal == 13 ? $bulanAwal = 1 : $bulanAwal;
+      $bulanAkhir = $bulanAwal + 1;
+      $bulanAkhir == 13 ? $bulanAkhir = 1 : $bulanAkhir;
+      
+      $periodeAwal = $tahun.'-'.$bulanAwal.'-21';
+      $periodeAkhir = $tahun.'-'.$bulanAkhir.'-20';
+    }else{
+      $periodeAwal = $tahun.'-'.$bulan.'-21';
+    }
 
     $where = array(
       'date >=' => $periodeAwal,
@@ -290,9 +299,9 @@ class Absensi extends BaseController
     header('Content-Type: application/vnd.ms-excel');
 
     if (!empty($periodeAwal) && !empty($periodeAkhir)){
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan" '.$awal.' - '.$akhir.'.xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Absensi Online" '.$awal.' - '.$akhir.'.xlsx');
     }else{
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan".xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Absensi Online".xlsx');
     }
 
     header('Cache-Control: max-age=0');

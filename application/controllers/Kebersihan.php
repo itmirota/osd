@@ -108,12 +108,13 @@ class Kebersihan extends BaseController
     $this->global['pageTitle'] = 'Tim Kebersihan';
     $this->global['pageHeader'] = 'OSD | Data Kebersihan';
     $periode = $this->input->post('periode');
+
     $bulan = DATE('m');
     $tahun = DATE('Y');
 
-    $explode = explode("-",$periode);
 
-    if (!empty($periode)){
+    if (isset($periode)){
+      $explode = explode("-",$periode);
       $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $explode[1],'YEAR(tgl_perawatan)' => $explode[0]]);
     }else{
       $list_data = $this->master_model->getPerawatanRuanganbyWhere(['MONTH(tgl_perawatan)' => $bulan,'YEAR(tgl_perawatan)' => $tahun]);

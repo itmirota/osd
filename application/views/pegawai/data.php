@@ -105,7 +105,7 @@
             <th class="text-end" width="12vh">Sisa Cuti Tahun Lalu</th>
             <th class="text-end" width="10vh">Surat Peringatan</th>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
             {
             ?>
             <?php if($this->uri->segment(1) != 'pegawai'){?>
@@ -148,26 +148,10 @@
             <td  class="text-center"><?= $data->kuota_cuti ?></td>
             <td  class="text-center"><?= $data->sisa_cuti ?></td>
             <td  class="text-center">
-            <?php switch ($data->tingkat_peringatan) {
-              case 3 : ?>
-                <span class="badge bg-danger">SP <?= $data->tingkat_peringatan ?></span>
-            <?php break; ?>
-
-            <?php case 2 : ?>
-              <span class="badge bg-warning">SP <?= $data->tingkat_peringatan ?></span>
-            <?php break; ?>
-
-            <?php case 1 : ?>
-              <span class="badge bg-success">SP <?= $data->tingkat_peringatan ?></span>
-            <?php break; ?>
-              
-            <?php default: ?>
-                -
-            <?php break; ?>
-            <?php } ?>
+              <?= $data->sanksi ?>
             </td>
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA)
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP)
             {
             ?>
             <?php if($this->uri->segment(1) != 'pegawai'){?>
@@ -182,7 +166,7 @@
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewKontrak" onclick="perpanjanganKontrak(<?= $data->id_pegawai?>)">Perpanjang Kontrak</a></li>
                 <?php } ?>
                 <li><a class="dropdown-item suratPeringatan" href="#" data-bs-toggle="modal" data-bs-target="#addNewWarningLetter" onclick="suratPeringatan(<?= $data->id_pegawai?>)">Surat Peringatan</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editData" onclick="editData(<?= $data->id_pegawai?>)">Edit Data</a></li>
+                <li><a class="dropdown-item"href="<?= base_url('pegawai/editData/'.$data->id_pegawai)?>">Edit Data</a></li>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAkun" onclick="editAkun(<?= $data->id_pegawai?>)">Edit Akun</a></li>
                 <li><a class="dropdown-item" href="#"  onclick="deletePegawai(<?= $data->id_pegawai?>)">Hapus Data</a></li>
               </ul>
@@ -406,10 +390,19 @@
                 </select>
               </div>  
               <div class="col-md-10">
-                <label for="bagian_add" class="form-label">Bagian</label>
-                <select name="bagian_add" id="bagian_add" class="form-select tabel-PR">
+                <label for="bagian_id" class="form-label">Bagian</label>
+                <select name="bagian_id" id="bagian_add" class="form-select tabel-PR">
                 </select>
-              </div> 
+              </div>
+              <div class="col-md-10">
+                <label for="areakerja" class="form-label">Are Kerja</label>
+                <select class="form-select tabel-PR" name="areakerja_id" id="areakerja_id">
+                  <option>----- pilih Area Kerja ---</option>
+                  <?php foreach($areakerja as $a): ?>
+                  <option value="<?= $a->id_areakerja?>"><?=$a->nama_areakerja?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>  
               <div class="col-md-10">
                 <label for="status_pegawai" class="form-label">Status Kerja</label>
                 <select name="status_pegawai"  id="AddStatus" class="form-select tabel-PR" required>

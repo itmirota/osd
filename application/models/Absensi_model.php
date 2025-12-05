@@ -17,7 +17,7 @@ class Absensi_model extends CI_Model
   public function getDataAbsenById($id){
     $this->db->select('*');
     $this->db->from('tbl_absensi a');
-    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_id');
     $this->db->where('pegawai_id',$id);
     $this->db->order_by('id_absensi','DESC');
     $query = $this->db->get();
@@ -39,6 +39,8 @@ class Absensi_model extends CI_Model
     $this->db->from('tbl_absensi a');
     $this->db->join('tbl_pegawai b','a.pegawai_id = b.id_pegawai');
     $this->db->join('tbl_bagian c','b.bagian_id = c.id_bagian');
+    $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+    $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
     
     if ($id != 0){
       $this->db->where('pegawai_id',$id);

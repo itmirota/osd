@@ -56,6 +56,7 @@ $route['Datapegawai'] = 'pegawai/listData';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 $route['pegawai/(:num)'] = "bagian/pegawaiByBagian/$1";
+$route['editdata/(:num)'] = "pegawai/editPegawai/$1";
 
 $route['api/karyawan'] = 'api/PegawaiController/index';
 $route['api/karyawan/store'] = 'api/PegawaiController/store';
@@ -214,6 +215,7 @@ $route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
 
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 $route['DataAssessment'] = 'assessment';
+$route['PenilaianAssessment'] = 'assessment';
 $route['assessment360'] = 'assessment/UserPage';
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 

@@ -1,3 +1,6 @@
+<div class="row my-3">
+  <a href="<?= base_url('DataAssessment')?>"><i class="fa fa-solid fa-angles-left"></i> kembali</a>
+</div>
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
     <h3 class="card-title">Data Soal Assessment</h3>

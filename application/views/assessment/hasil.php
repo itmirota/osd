@@ -1,6 +1,27 @@
+<div class="row my-3">
+  <a href="<?= base_url('DataAssessment')?>"><i class="fa fa-solid fa-angles-left"></i> kembali</a>
+</div>
 <div class="card">
+    <div class="card-header">
+    <h3 class="card-title">Hasil Penilaian Assessment</h3>
+    <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Nama Karyawan</label>
+      <div class="col-sm-10">
+        <input type="text" readonly class="form-control-plaintext" value=": <?= $hasil->nama_pegawai ?>">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Nama Penilai</label>
+      <div class="col-sm-10">
+        <input type="text" readonly class="form-control-plaintext" value=": <?= $hasil->nama_penilai ?>">
+      </div>
+    </div>
+  </div>
   <div class="card-body">
-        <table id="dataTable" class="table table-bordered table-striped">
+    <?php
+    if (isset($hasil->nilai)){
+    ?> 
+    <table id="dataTable" class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>No</th>
@@ -30,5 +51,12 @@
         endforeach ?>
       </tbody>
     </table>
+    <?php }else{ ?>
+    <tr> 
+      <div class="alert alert-primary" role="alert">
+        <strong>penilai belum melakukan penilaian</strong>
+      </div>
+    </tr>
+    <?php } ?>
   </div>
 </div>

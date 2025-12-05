@@ -106,8 +106,8 @@ class User extends BaseController
         header('Content-Type: application/json');
 
         // Ambil data dari model
-        $data_penambahan = $this->user_model->getPenambahanKaryawan(); 
-        $data_pengurangan = $this->user_model->getPenguranganKaryawan();
+        $data_penambahan = $this->pegawai_model->getPenambahanKaryawan(); 
+        $data_pengurangan = $this->pegawai_model->getPenguranganKaryawan();
 
         // Pastikan data selalu dalam format array yang benar
         $penambahan_formatted = [];
