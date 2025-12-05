@@ -16,12 +16,45 @@
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?=$list_data->nama_dievaluasi?>">
               </div>
             </div>
+            <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Divisi/Bagian</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?= $detail_pegawai->nama_divisi.' / '.$detail_pegawai->nama_bagian?>">
+              </div>
+            </div>
             <!-- <div class="mb-3 row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Divisi</label>
               <div class="col-sm-8">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
               </div>
             </div> -->
+          </div>
+          <div class="col sm-6">
+            <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Total Nilai</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?=$nilai?>">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Kesimpulan</label>
+              <div class="col-sm-8">
+                <?php 
+                switch ($nilai) {
+                  case ($nilai <= 100 && $nilai >= 91):?>
+                    <span class="badge text-bg-success">Baik</span> <span class="badge text-bg-success"> 1 Tahun</span> 
+                  <?php  break;
+                  case ($nilai <= 90 && $nilai >= 71) ?>
+                    <span class="badge text-bg-warning">Cukup</span> <span class="badge text-bg-success"> 6 Bulan</span> 
+                  <?php break; 
+                  case ($nilai <= 70 && $nilai >= 50) ?>
+                    <span class="badge text-bg-danger">Kurang</span> <span class="badge text-bg-warning"> 3 Bulan</span> 
+                  <?php break;
+                  default:?>
+                    <span class="badge text-bg-danger">Kurang sekali</span>
+                  <?php } ?>
+              </div>
+            </div>  
           </div>
         </div>
       <hr></hr>

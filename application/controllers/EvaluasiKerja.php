@@ -253,7 +253,7 @@ class evaluasiKerja extends BaseController
     $this->loadViews("evaluasi/penilaian", $this->global, $data, NULL);
   }
 
-    public function saveNilai($id){
+  public function saveNilai($id){
     $penilai_id = $this->global['pegawai_id'];
     $evaluasi = $this->evaluasiKerja_model->getDataRow(['id_evaluasi' => $id]);
     $soal = $this->evaluasiKerja_model->getDataSoalWhere(['jenis_evaluasi_id' => $evaluasi->jenis]);
@@ -266,7 +266,6 @@ class evaluasiKerja extends BaseController
 
     $jawaban = implode(',', $jawaban);
 
-    var_dump($jawaban);
     $data = array(
       'evaluasi_id' => $id,
       'pegawai_id' => $evaluasi->pegawai_id,
@@ -288,11 +287,35 @@ class evaluasiKerja extends BaseController
 
     $evaluasi = $this->evaluasiKerja_model->getHasilEvaluasi($id)->result();
     $list_data = $this->evaluasiKerja_model->getHasilEvaluasi($id)->row();
+    $detail_pegawai = $this->pegawai_model->showDataRow(['id_pegawai' => $list_data->id_dievaluasi]);
     $soal = $this->evaluasiKerja_model->getDataSoalWhere(['jenis_evaluasi_id' => $list_data->jenis_evaluasi]);
+
+    $total = 0;
+    foreach ($evaluasi as $eval) {
+      // var_dump($eval->hasil_nilai);
+      $explode_hasil = explode(',', $eval->hasil_nilai);
+
+      $count =  COUNT($explode_hasil);
+      $jumlah_nilai = 0;
+      for($i=0; $i < $count; $i++){
+        $explode_nilai[$i] = explode(':',$explode_hasil[$i]);
+        $jumlah_nilai += $explode_nilai[$i][1];
+      }
+
+      $nilai = round($jumlah_nilai/$count);
+
+      $total += $nilai;
+    }
+
+
+    $hasil = $total / COUNT($evaluasi);
+
 
     $data['hasil'] = $evaluasi;
     $data['list_data'] = $list_data;
+    $data['detail_pegawai'] = $detail_pegawai;
     $data['soal'] = $soal;
+    $data['nilai'] = $hasil;
 
     $this->loadViews("evaluasi/laporan", $this->global, $data, NULL);
   }
