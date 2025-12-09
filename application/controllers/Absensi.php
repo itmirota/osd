@@ -364,58 +364,101 @@ class Absensi extends BaseController
 	}
 
   public function saveWebcam(){
-		$id_pegawai = $this->input->post('id');
-		$jenis_absen = $this->input->post('jenis_absen');
-		$image = $this->input->post('imagecam');
-		$lat = $this->input->post('lat');
-		$lon = $this->input->post('lon');
-		$wilayah = $this->input->post('wilayah');
-		$kota = $this->input->post('kota');
+    $input = json_decode($this->input->raw_input_stream, true);
 
-    if (is_null($wilayah)) {
-      $wilayah = "";
-      $kota = "";
+    $id           = $input['id'];
+    $jenis_absen  = $input['jenis_absen'];
+    $imagecam     = $input['imagecam'];
+    $lat          = $input['lat'];
+    $lon          = $input['lon'];
+    $wilayah      = $input['wilayah'];
+    $kota         = $input['kota'];
+
+    // ==============================
+    // VALIDASI DATA WAJIB
+    // ==============================
+    if (!$id || !$jenis_absen || !$imagecam) {
+        echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+        return;
     }
 
-		$image = str_replace('[removed]','', $image);
-		$image = base64_decode($image);
-		$filename = 'image_'.time().'.jpg';
-		file_put_contents(FCPATH.'/assets/images/absensi/'.$filename,$image);
+    // ==============================
+    // DECODE FOTO
+    // ==============================
+    $imagecam = str_replace("data:image/jpeg;base64,", "", $imagecam);
+    $imagecam = base64_decode($imagecam);
 
-    if($jenis_absen == 'masuk'){
-      $data = array(
-        'pegawai_id' => $id_pegawai,
-        'latitude_in' => $lat,
-        'longitude_in' => $lon,
-        'wilayah_in' => $wilayah,
-        'kota_in' => $kota,
-        'bukti_absensi_in' => $filename,
-        'date' => DATE('Y-m-d'),
-        'time_in' => DATE('H:i:s')
-      );
-  
-      $res = $this->crud_model->input($data,'tbl_absensi');
-    }else{
-      $id = $this->absensi_model->getDataAbsenById($id_pegawai)->id_absensi;
-      $where = array(
-        'id_absensi' => $id,
-        'pegawai_id' => $id_pegawai,
-        'DATE(date)' => DATE('Y-m-d'),
-      );
+    $folder = FCPATH . 'assets/images/absensi/';
+    if (!is_dir($folder)) mkdir($folder, 0777, true);
 
-      $data = array(
-        'time_out' => DATE('H:i:s'),
-        'latitude_out' => $lat,
-        'longitude_out' => $lon,
-        'wilayah_out' => $wilayah,
-        'kota_out' => $kota,
-        'bukti_absensi_out' => $filename
-      );
-  
-      $res = $this->crud_model->update($where,$data,'tbl_absensi');
+    $filename = "absen_" . $id . "_" . time() . ".jpg";
+
+    if (!file_put_contents($folder . $filename, $imagecam)) {
+        echo json_encode(["status" => "error", "msg" => "Gagal menyimpan foto"]);
+        return;
     }
-		echo json_encode($res);
-	}
+
+    // ==============================
+    // ABSEN MASUK
+    // ==============================
+    if ($jenis_absen == "masuk") {
+
+        // Cek apakah sudah absen masuk hari ini
+        $cek = $this->absensi_model->cekMasukHariIni($id);
+
+        if ($cek) {
+            echo json_encode(["status" => "error", "msg" => "Anda sudah absen masuk hari ini"]);
+            return;
+        }
+
+        $data = [
+            "pegawai_id"      => $id,
+            "date"            => date('Y-m-d'),
+            "time_in"         => date('H:i:s'),
+            "latitude_in"     => $lat,
+            "longitude_in"    => $lon,
+            "wilayah_in"      => $wilayah,
+            "kota_in"         => $kota,
+            "bukti_absensi_in"=> $filename
+        ];
+
+        $this->db->insert("tbl_absensi", $data);
+
+        echo json_encode(["status" => "ok"]);
+        return;
+    }
+
+    // ==============================
+    // ABSEN PULANG
+    // ==============================
+    $absen = $this->absensi_model->getAbsenMasukHariIni($id);
+
+    if (!$absen) {
+        echo json_encode(["status" => "error", "msg" => "Anda belum absen masuk"]);
+        return;
+    }
+
+    // Cek apakah sudah absen pulang
+    if ($absen->time_out != NULL) {
+        echo json_encode(["status" => "error", "msg" => "Anda sudah absen pulang"]);
+        return;
+    }
+
+    // Update data pulang
+    $data = [
+        "time_out"          => date("H:i:s"),
+        "latitude_out"      => $lat,
+        "longitude_out"     => $lon,
+        "wilayah_out"       => $wilayah,
+        "kota_out"          => $kota,
+        "bukti_absensi_out" => $filename
+    ];
+
+    $this->db->where("id_absensi", $absen->id_absensi);
+    $this->db->update("tbl_absensi", $data);
+
+    echo json_encode(["status" => "ok"]);
+  }
 
 
   // ABSENSI ISTIRAHAT

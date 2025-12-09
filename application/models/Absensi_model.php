@@ -2,7 +2,30 @@
 
 class Absensi_model extends CI_Model
 {
-// AMBSENSI ONLINE
+// ABSENSI ONLINE
+
+  // Mengecek apakah user sudah absen masuk hari ini (return true/false)
+  public function cekMasukHariIni($id_pegawai)
+  {
+    $today = date('Y-m-d');
+    $this->db->where('pegawai_id', $id_pegawai);
+    $this->db->where('date', $today);
+
+    $query = $this->db->get('tbl_absensi');
+    return $query->num_rows() > 0;
+  }
+
+  // Mengambil data absen masuk hari ini (return data row)
+  public function getAbsenMasukHariIni($id_pegawai)
+  {
+    $today = date('Y-m-d');
+    $this->db->where('pegawai_id', $id_pegawai);
+    $this->db->where('date', $today);
+
+    $query = $this->db->get('tbl_absensi');
+    return $query->row(); // return 1 row data
+  }
+
   public function showData($id){
     $this->db->select('*');
     $this->db->from('tbl_absensi a');

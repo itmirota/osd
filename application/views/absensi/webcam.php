@@ -24,8 +24,8 @@
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-	
-	<script language="JavaScript">
+
+	<script>
 		Webcam.set({
 			width: 240,
 			height: 320,
@@ -33,110 +33,149 @@
 			jpeg_quality: 50
 		});
 		Webcam.attach( '#my_camera' );
-	</script>
-	<!-- Code to handle taking the snapshot and displaying it locally -->
-	<script type="text/javascript">
-		$('#register').on('submit', function (event) {
-			event.preventDefault();
 
-			Webcam.snap( function(data_uri) {
+		document.getElementById("register").addEventListener("submit", function(e) {
+			e.preventDefault();
+
+			// Ambil foto webcam
+			Webcam.snap(async function(data_uri) {
+
+				// Tampilkan preview foto
 				document.getElementById("result").innerHTML = '<img src="'+ data_uri + '"/>';
-				$("#my_camera").hide();
-				getLocation(data_uri);
+				document.getElementById("my_camera").style.display = "none";
+
+				// Jalankan proses absen
+				await prosesAbsen(data_uri);
+			});
+		});
+
+		// ======================
+		// MAIN FUNCTION
+		// ======================
+		async function prosesAbsen(fotoBase64) {
+
+			// Tampilkan loading
+			Swal.fire({
+					title: "Mengirim data...",
+					text: "Mohon tunggu sebentar",
+					didOpen: () => Swal.showLoading(),
+					allowOutsideClick: false
 			});
 
-			function getLocation(data_uri){
-				if ('geolocation' in navigator) {
-					navigator.geolocation.getCurrentPosition(position => {
-						lat = position.coords.latitude;
-						lon = position.coords.longitude;
-						detailLocation(data_uri,lat,lon);
-						// save(data_uri,lat,lon);
-						console.log('geolocation available');
-					}, showError);
-				} else {
-					console.log('geolocation not available');
-				}
-			}
+			try {
+					// 1. Ambil koordinat GPS
+					const posisi = await getGPS();
+					const lat = posisi.coords.latitude;
+					const lon = posisi.coords.longitude;
 
-			function showError(error) {
-				// Lokasi ditolak atau terjadi error lain, tampilkan alert
-				switch(error.code) {
-					case error.PERMISSION_DENIED:
-						Swal.fire({
-							title: "Izin Akses Lokasi anda belum diaktifkan",
-							text: "masuk ke pengaturan dan izinkan akses lokasi untuk aplikasi ini",
-							icon: "info",
-							showCancelButton: false,
-							showCloseButton: false,
-							showConfirmButton: false,
-						})
-						break;
-					case error.POSITION_UNAVAILABLE:
-						alert("Informasi lokasi tidak tersedia.");
-						// document.getElementById("location_status").value = "unavailable";
-						break;
-					case error.TIMEOUT:
-						alert("Waktu permintaan lokasi habis.");
-						// document.getElementById("location_status").value = "timeout";
-						break;
-					case error.UNKNOWN_ERROR:
-						alert("Terjadi kesalahan tidak dikenal.");
-						// document.getElementById("location_status").value = "unknown_error";
-						break;
-				}
-			}
+					// 2. Reverse geocoding LocationIQ
+					const lokasi = await getLocationName(lat, lon);
 
-			function detailLocation(data_uri,lat,lon){
-				API_URL = "https://us1.locationiq.com/v1/reverse?key=pk.37bf22c2eeccf7da7a41e58485f2b6ea&lat=" + lat + "&lon=" + lon + "&format=json"
-				$.ajax({
-				type:'GET', //mostly here for readability; is default for ajax
-				url:API_URL,
-				}).done(function(result){
-					console.log(result.address);
-					wilayah = result.address.city_district;
-					kota = result.address.city;
+					// 3. Simpan ke server CI3
+					const hasil = await kirimKeServer(fotoBase64, lat, lon, lokasi.wilayah, lokasi.kota);
 
-					if (typeof myVariable === "undefined") {
-						wilayah = result.address.village;
-						kota = result.address.county;
+					Swal.close(); // Tutup loading
+
+					if (hasil.status === "ok") {
+
+							await Swal.fire({
+									icon: "success",
+									title: "Berhasil!",
+									text: hasil.msg || "Absensi berhasil disimpan"
+							});
+
+							// Redirect hanya jika sukses
+							window.location.href = "<?= base_url('Absensi'); ?>";
+
 					} else {
-						wilayah = result.address.city_district;
-						kota = result.address.city;
+							Swal.fire({
+									icon: "error",
+									title: "Gagal",
+									text: hasil.msg || "Terjadi kesalahan"
+							});
 					}
 
-					save(data_uri,lat,lon,wilayah,kota);
+			} catch (error) {
+					Swal.close();
 
-				}).always(function(result, status){
-					console.log(status);
-				});
+					Swal.fire({
+							icon: "error",
+							title: "Kesalahan",
+							text: error.message || error
+					});
 			}
+		}
 
-			function save(data_uri,lat,lon,wilayah,kota){
-				let id_pegawai = document.getElementById("id_pegawai").value;
-				let jenis_absen = document.getElementById("jenis_absen").value;
-				$.ajax({
-					url: '<?php echo site_url("absensi/saveWebcam");?>',
-					type: 'POST',
-					dataType: 'json',
-					data: {id:id_pegawai,jenis_absen:jenis_absen,imagecam:data_uri,lat:lat,lon:lon,wilayah:wilayah,kota:kota},
-				})
-				.done(function(data) {
-					if (data > 0) {
-						window.location.href="<?php echo base_url(); ?>Absensi";
-						alert('insert data sukses');
-					}
-				})
-				.fail(function() {
-					console.log("error");
-				})
-				.always(function() {
-					window.location.href="<?php echo base_url(); ?>Absensi";
-					console.log("complete");
+		// ======================
+		// GET GPS (Promise)
+		// ======================
+		function getGPS() {
+			return new Promise((resolve, reject) => {
+				if (!navigator.geolocation) {
+					reject("Browser tidak mendukung GPS.");
+				}
+
+				navigator.geolocation.getCurrentPosition(resolve, () => {
+					reject("Tidak mendapatkan izin GPS.");
 				});
+			});
+		}
+
+		// ======================
+		// GET LOCATION NAME DENGAN LOCATIONIQ
+		// ======================
+		async function getLocationName(lat, lon) {
+			const apiKey = "pk.37bf22c2eeccf7da7a41e58485f2b6ea";
+			const url = `https://us1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${lat}&lon=${lon}&format=json`;
+
+			try {
+					const response = await fetch(url);
+					const data = await response.json();
+
+					const address = data.address || {};
+
+					// Ambil wilayah
+					const wilayah = 
+							address.city_district ||
+							address.village ||
+							address.suburb ||
+							address.town ||
+							"-";
+
+					// Ambil kota
+					const kota = 
+							address.city ||
+							address.county ||
+							address.state ||
+							"-";
+
+					return { wilayah, kota };
+
+			} catch (e) {
+					return { wilayah: "-", kota: "-" };
 			}
-			
-		});
+		}
+
+		// ======================
+		// SIMPAN KE SERVER (CI3)
+		// ======================
+		async function kirimKeServer(foto, lat, lon, wilayah, kota) {
+			const payload = {
+				id: document.getElementById("id_pegawai").value,
+				jenis_absen: document.getElementById("jenis_absen").value,
+				imagecam: foto,
+				lat: lat,
+				lon: lon,
+				wilayah: wilayah,
+				kota: kota
+			};
+
+			const response = await fetch("<?= site_url('absensi/saveWebcam'); ?>", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(payload)
+			});
+
+			return await response.json();
+		}
 	</script>
-</body>
-</html>
