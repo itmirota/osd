@@ -26,6 +26,39 @@ class Absensi_model extends CI_Model
     return $query->row(); // return 1 row data
   }
 
+  public function getAbsenVisitHariIni($id){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi_visit a');
+    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->where('pegawai_id',$id);
+    $this->db->where('date',DATE('Y-m-d'));
+    $this->db->order_by('id_absensi_visit','DESC');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function getLaporanAbsenVisit($where){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi_visit a');
+    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->where($where);
+    $this->db->order_by('id_absensi_visit','DESC');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  // Mengambil data absen masuk hari ini (return data row)
+  public function getVisitMasukHariIni($id_pegawai)
+  {
+    $today = date('Y-m-d');
+    $this->db->where('pegawai_id', $id_pegawai);
+    $this->db->where('date', $today);
+    $this->db->order_by('id_absensi_visit','DESC');
+
+    $query = $this->db->get('tbl_absensi_visit');
+    return $query->row(); // return 1 row data
+  }
+
   public function showData($id){
     $this->db->select('*');
     $this->db->from('tbl_absensi a');

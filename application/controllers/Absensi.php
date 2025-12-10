@@ -47,11 +47,11 @@ class Absensi extends BaseController
   }
 
   public function absensi_visit(){
-    $this->global['pageTitle'] = 'Absensi Manual Mirota KSM';
-    $this->global['pageHeader'] = 'Absensi Manual Karyawan ';
+    $this->global['pageTitle'] = 'Absensi Visit Mirota KSM';
+    $this->global['pageHeader'] = 'Absensi Visit Karyawan ';
     $pegawai_id = $this->global ['pegawai_id'];
 
-    $data['list_data']= $this->absensi_model->showData($pegawai_id);
+    $data['list_data']= $this->absensi_model->getAbsenVisitHariIni($pegawai_id);
     $data['datenow']= DATE('d M Y');
 
     $this->loadViewsUser("absensi/data_visit", $this->global, $data, NULL);
@@ -349,20 +349,6 @@ class Absensi extends BaseController
     $this->loadViewsUser("absensi/webcam", $this->global, $data, NULL);
 	}
 
-  public function Webcam_visit()
-	{
-    $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
-    $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
-
-    $data = array(
-      'id_pegawai' => $this->pegawai_id,
-      'nama_pegawai' => $this->name,
-      'jenis_absen' => $this->uri->segment(2)
-    );
-
-    $this->loadViewsUser("absensi/webcam_visit", $this->global, $data, NULL);
-	}
-
   public function saveWebcam(){
     $input = json_decode($this->input->raw_input_stream, true);
 
@@ -419,6 +405,7 @@ class Absensi extends BaseController
             "longitude_in"    => $lon,
             "wilayah_in"      => $wilayah,
             "kota_in"         => $kota,
+            "kode_in"         => $kodeRandom,
             "bukti_absensi_in"=> $filename
         ];
 
@@ -451,13 +438,216 @@ class Absensi extends BaseController
         "longitude_out"     => $lon,
         "wilayah_out"       => $wilayah,
         "kota_out"          => $kota,
-        "bukti_absensi_out" => $filename
+        "bukti_absensi_out" => $filename,
     ];
 
     $this->db->where("id_absensi", $absen->id_absensi);
     $this->db->update("tbl_absensi", $data);
 
     echo json_encode(["status" => "ok"]);
+  }
+
+  public function Webcam_visit()
+	{
+    $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
+    $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
+
+    $absen = $this->absensi_model->getVisitMasukHariIni($this->pegawai_id);
+
+    $data = array(
+      'id_pegawai' => $this->pegawai_id,
+      'nama_pegawai' => $this->name,
+      'jenis_absen' => $this->uri->segment(2),
+      'list_absen' => $absen
+    );
+
+    $this->loadViewsUser("absensi/webcam_visit", $this->global, $data, NULL);
+	}
+
+  public function saveWebcamVisit(){
+    $input = json_decode($this->input->raw_input_stream, true);
+
+    $id           = $input['id'];
+    $jenis_absen  = $input['jenis_absen'];
+    $imagecam     = $input['imagecam'];
+    $nama_toko    = $input['nama_toko'];
+    $keterangan   = $input['keterangan'];
+    $lat          = $input['lat'];
+    $lon          = $input['lon'];
+    $wilayah      = $input['wilayah'];
+    $kota         = $input['kota'];
+    $kodeRandom   = $input['kodeRandom'];
+
+    // ==============================
+    // VALIDASI DATA WAJIB
+    // ==============================
+    if (!$id || !$jenis_absen || !$imagecam) {
+        echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+        return;
+    }
+
+    // ==============================
+    // DECODE FOTO
+    // ==============================
+    $imagecam = str_replace("data:image/jpeg;base64,", "", $imagecam);
+    $imagecam = base64_decode($imagecam);
+
+    $folder = FCPATH . 'assets/images/absensi/';
+    if (!is_dir($folder)) mkdir($folder, 0777, true);
+
+    $filename = "absen_" . $id . "_" . time() . ".jpg";
+
+    if (!file_put_contents($folder . $filename, $imagecam)) {
+        echo json_encode(["status" => "error", "msg" => "Gagal menyimpan foto"]);
+        return;
+    }
+
+    // ==============================
+    // ABSEN MASUK
+    // ==============================
+    if ($jenis_absen == "masuk") {
+
+        // Cek apakah sudah absen masuk hari ini
+        // $cek = $this->absensi_model->cekMasukHariIni($id);
+
+        // if ($cek) {
+        //     echo json_encode(["status" => "error", "msg" => "Anda sudah absen masuk hari ini"]);
+        //     return;
+        // }
+
+        $data = [
+            "pegawai_id"      => $id,
+            "date"            => date('Y-m-d'),
+            "time_in"         => date('H:i:s'),
+            "nama_toko"       => $nama_toko,
+            "latitude_in"     => $lat,
+            "longitude_in"    => $lon,
+            "wilayah_in"      => $wilayah,
+            "kota_in"         => $kota,
+            "kode_in"         => $kodeRandom,
+            "bukti_absensi_in"=> $filename
+        ];
+
+        $this->db->insert("tbl_absensi_visit", $data);
+
+        echo json_encode(["status" => "ok"]);
+        return;
+    }
+
+    // ==============================
+    // ABSEN PULANG
+    // ==============================
+    $absen = $this->absensi_model->getVisitMasukHariIni($id);
+
+    if (!$absen) {
+        echo json_encode(["status" => "error", "msg" => "Anda belum absen masuk"]);
+        return;
+    }
+
+    // Cek apakah sudah absen pulang
+    if ($absen->time_out != NULL) {
+        echo json_encode(["status" => "error", "msg" => "Anda sudah absen pulang"]);
+        return;
+    }
+
+    // Update data pulang
+    $data = [
+        "time_out"          => date("H:i:s"),
+        "keterangan"        => $keterangan,
+        "latitude_out"      => $lat,
+        "longitude_out"     => $lon,
+        "wilayah_out"       => $wilayah,
+        "kota_out"          => $kota,
+        "kode_out"          => $kodeRandom,
+        "bukti_absensi_out" => $filename
+    ];
+
+    $this->db->where("id_absensi_visit", $absen->id_absensi_visit);
+    $this->db->update("tbl_absensi_visit", $data);
+
+    echo json_encode(["status" => "ok"]);
+  }
+
+  public function laporanVisit()
+  {
+      $this->global['pageTitle']  = 'Laporan Absensi Visit Mirota KSM';
+      $this->global['pageHeader'] = 'Laporan Absensi Visit Karyawan';
+
+      // Input user
+      $id       = $this->input->post('id_pegawai');
+      $periode  = $this->input->post('periode'); // format Y-m
+      $today    = date('Y-m-d');
+      $tanggal  = date('d');
+      $datenow  = date('Y-m');
+
+      // ================================
+      // 1. Tentukan periode dasar
+      // ================================
+      $periodeDasar = (!empty($periode)) ? $periode : $datenow;
+      $periodeAkhir = $periodeDasar . '-20';
+
+      $dateObj = date_create($periodeDasar);
+      $bulanSekarang = (int) $dateObj->format('m');
+      $tahunSekarang = (int) $dateObj->format('Y');
+
+      // ================================
+      // 2. Hitung bulan sebelumnya
+      // ================================
+      if ($bulanSekarang == 1) {
+          $bulanLalu = 12;
+          $tahunLalu = $tahunSekarang - 1;
+      } else {
+          $bulanLalu = $bulanSekarang - 1;
+          $tahunLalu = $tahunSekarang;
+      }
+
+      // ================================
+      // 3. Hitung Periode Awal – Akhir
+      //    Sistem penggajian 21 – 20
+      // ================================
+      if ($tanggal >= 21) {
+          // Masuk periode bulan berikutnya
+          $bulanAwal  = $bulanSekarang;
+          $bulanAkhir = $bulanSekarang + 1;
+
+          if ($bulanAkhir > 12) { 
+              $bulanAkhir = 1; 
+              $tahunSekarang += 1; 
+          }
+
+          $periodeAwal  = sprintf("%d-%02d-21", $tahunSekarang, $bulanAwal);
+          $periodeAkhir = sprintf("%d-%02d-20", $tahunSekarang, $bulanAkhir);
+
+      } else {
+          // Masuk periode sebelumnya
+          $periodeAwal  = sprintf("%d-%02d-21", $tahunLalu, $bulanLalu);
+          $periodeAkhir = sprintf("%d-%02d-20", $tahunSekarang, $bulanSekarang);
+      }
+
+      // ================================
+      // 4. Buat kondisi query
+      // ================================
+      $where = array(
+          'date >=' => $periodeAwal,
+          'date <=' => $periodeAkhir
+      );
+
+      $id = $id ?? 0;
+
+      // ================================
+      // 5. Siapkan data view
+      // ================================
+      $data = array(
+          'id'           => $id,
+          'periodeAwal'  => $periodeAwal,
+          'periodeAkhir' => $periodeAkhir,
+          'list_data'    => $this->absensi_model->getLaporanAbsenVisit($where),
+      );
+
+      // ================================
+      // 6. Load view
+      // ================================
+      $this->loadViews("absensi/laporan_visit", $this->global, $data, NULL);
   }
 
 
