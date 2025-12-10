@@ -1,0 +1,22 @@
+# Cache CI
+application/cache/*
+!application/cache/index.html
+
+# Logs CI
+application/logs/*
+!application/logs/index.html
+
+# Uploads
+assets/images/absensi/
+uploads/
+files/
+
+# System temp files
+*.log
+*.tmp
+
+# Composer vendor
+/vendor/
+
+# Environment files
+.env
