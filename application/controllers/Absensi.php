@@ -405,7 +405,6 @@ class Absensi extends BaseController
             "longitude_in"    => $lon,
             "wilayah_in"      => $wilayah,
             "kota_in"         => $kota,
-            "kode_in"         => $kodeRandom,
             "bukti_absensi_in"=> $filename
         ];
 
