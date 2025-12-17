@@ -3,10 +3,17 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
 <style>
-		#my_camera { width: 350px; height: 350px;}
-		#map { width: 120px; height: 80px; margin-top: 10px; position: absolute; bottom: 80px; left: 10px;}
-		#ambilFoto { position: absolute; bottom: 80px; right: 10px;}
-		#final_result { width: 350px; margin-top: 15px; }
+		#my_camera { width: 250px; height: 250px; margin: 0 auto;}
+		#map { width: 120px; height: 80px; margin-top: 10px; position: absolute; bottom: 60px; left: 10px;}
+		#ambilFoto { position: absolute; bottom: 60px; right: 10px;}
+
+		@media only screen and (max-width: 300px) {
+		#my_camera { width: 180px; height: 180px; padding: 0 auto;}
+		#map { width: 60px; height: 60px; margin-top: 10px; position: absolute; bottom: 50px; left: 45px;}
+		#ambilFoto { position: absolute; bottom: 50px; right: 45px;}
+		}
+
+		#final_result { width: 180px; margin-top: 15px; }
 		.kamera {position: relative;text-align: center;}
 </style>
 
@@ -22,7 +29,7 @@
 						<div class="kamera">
 							<div id="my_camera"></div>
 							<div id="map"></div>
-							<button class="btn btn-info" type="button" id="ambilFoto">Ambil Foto</button>
+							<button class="btn btn-sm btn-info" type="button" id="ambilFoto">Ambil Foto</button>
 
 							<img id="final_result" />
 							<div class="d-flex justify-content-between">
@@ -73,8 +80,6 @@
 <script>
 /* --- Inisialisasi webcam --- */
 Webcam.set({
-    width: 350,
-    height: 350,
     image_format: 'jpeg',
     jpeg_quality: 90
 });
@@ -90,9 +95,13 @@ Webcam.attach('#my_camera');
 	const kodeRandom = Math.random().toString(36).substring(2, 8).toLowerCase();
 
 	/* --- Buat map TERLEBIH DAHULU (penting) --- */
-	let map = L.map('map').setView([userLat, userLng], 16);
+	let map = L.map('map',{
+    center: [userLat, userLng],
+    zoom: 12,
+		zoomControl:false,
+		attributionControl:false
+		});
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 19,
 			crossOrigin: true
 	}).addTo(map);
 
@@ -103,7 +112,11 @@ Webcam.attach('#my_camera');
 			userLng = pos.coords.longitude;
 
 			// update map view & marker
-			map.setView([userLat, userLng], 17);
+			map.setView([userLat, userLng]);
+			let myIcon = L.icon({
+				iconSize: [38, 95],
+				iconAnchor: [22, 94]
+			});
 			L.marker([userLat, userLng]).addTo(map);
 
 			// dapatkan nama lokasi sekali saja
