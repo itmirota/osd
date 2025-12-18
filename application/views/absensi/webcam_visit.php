@@ -33,12 +33,15 @@
 
 							<img id="final_result" />
 							<div class="d-flex justify-content-between">
-								<button type="button" id="fotoUlang" class="btn btn-warning mt-4" style="display:none">
+								<button type="button" id="fotoUlang" class="btn btn-sm btn-warning mt-4" style="display:none">
 										Foto Ulang
 								</button>
-								<button type="button" id="downloadFoto" class="btn btn-primary mt-4" style="display:none">
-										Download Foto
+								<button type="button" id="shareFoto" class="btn btn-sm btn-success mt-4" style="display:none">
+										Bagikan Foto
 								</button>
+								<!-- <button type="button" id="downloadFoto" class="btn btn-primary mt-4" style="display:none">
+										Download Foto
+								</button> -->
 							</div>
 						</div>
 
@@ -202,7 +205,7 @@ Webcam.attach('#my_camera');
 					document.getElementById("map").style.display = "none";
 					document.getElementById("ambilFoto").style.display = "none";
 					document.getElementById("fotoUlang").style.display = "block";
-					document.getElementById("downloadFoto").style.display = "block";
+					document.getElementById("shareFoto").style.display = "block";
 
 				} catch (e) {
 					console.error("Error saat proses gambar:", e);
@@ -236,6 +239,40 @@ Webcam.attach('#my_camera');
 				map.invalidateSize();
 		}, 300);
 	};
+
+	document.getElementById('shareFoto').onclick = async function () {
+    const imgSrc = document.getElementById('final_result').src;
+
+    if (!imgSrc) {
+        alert("Foto belum tersedia");
+        return;
+    }
+
+    try {
+        // Convert base64 → Blob
+        const res = await fetch(imgSrc);
+        const blob = await res.blob();
+
+        const file = new File([blob], `absensi_${Date.now()}.jpg`, {
+            type: 'image/jpeg'
+        });
+
+        if (navigator.share) {
+            await navigator.share({
+                title: 'Laporan Absensi',
+                text: 'Laporan absensi visit',
+                files: [file]
+            });
+        } else {
+            alert("Browser tidak mendukung fitur share.");
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert("Gagal membagikan foto");
+    }
+	};
+
 
 	document.getElementById('downloadFoto').onclick = function () {
 		const imgData = document.getElementById('final_result').src;
