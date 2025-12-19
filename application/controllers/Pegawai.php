@@ -50,12 +50,6 @@ class Pegawai extends BaseController
     $where = array(
       'status_pegawai' => 'kontrak',
       'MONTH(tgl_selesai) >=' => DATE('m'),
-      'MONTH(tgl_selesai) <=' => DATE('m') + 3
-    );
-
-    $where = array(
-      'status_pegawai' => 'kontrak',
-      'MONTH(tgl_selesai) >=' => DATE('m'),
       'MONTH(tgl_selesai) <=' => DATE('m') + 3,
       'YEAR(tgl_selesai) =' => DATE('Y')
     );
@@ -1022,12 +1016,15 @@ class Pegawai extends BaseController
     $sheet->setCellValue('C5', 'NIK');
     $sheet->setCellValue('D5', 'No KTP');
     $sheet->setCellValue('E5', 'Nama Karyawan');
-    $sheet->setCellValue('F5', 'Departement');
-    $sheet->setCellValue('G5', 'Divisi');
-    $sheet->setCellValue('H5', 'Tanggal Lahir');
-    $sheet->setCellValue('I5', 'Agama');
-    $sheet->setCellValue('J5', 'Alamat');
-    $sheet->setCellValue('K5', 'Pendidikan');
+    $sheet->setCellValue('F5', 'Masa Kerja');
+    $sheet->setCellValue('G5', 'Status');
+    $sheet->setCellValue('H5', 'Departement');
+    $sheet->setCellValue('I5', 'Divisi');
+    $sheet->setCellValue('J5', 'Bagian');
+    $sheet->setCellValue('K5', 'Tanggal Lahir');
+    $sheet->setCellValue('L5', 'Agama');
+    $sheet->setCellValue('M5', 'Alamat');
+    $sheet->setCellValue('N5', 'Pendidikan');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -1039,20 +1036,32 @@ class Pegawai extends BaseController
     $sheet->getStyle('I5')->applyFromArray($style_col);
     $sheet->getStyle('J5')->applyFromArray($style_col);
     $sheet->getStyle('K5')->applyFromArray($style_col);
+    $sheet->getStyle('L5')->applyFromArray($style_col);
+    $sheet->getStyle('M5')->applyFromArray($style_col);
+    $sheet->getStyle('N5')->applyFromArray($style_col);
 
     $no = 1;
     $numrow = 6;
     foreach ($list_data as $ld) {
+
+      $date1=date_create($ld->tgl_masuk);
+      $date2=date_create(DATE('Y-m-d'));
+      $diff=date_diff($date1,$date2);
+      $masa_kerja =  $diff->format("%y th, %m bln");
+
       $sheet->setCellValue('B'.$numrow, $no);
       $sheet->setCellValue('C'.$numrow, 'MRT'.$ld->nip);
       $sheet->setCellValue('D'.$numrow, $ld->no_ktp);
       $sheet->setCellValue('E'.$numrow, $ld->nama_pegawai);
-      $sheet->setCellValue('F'.$numrow, $ld->nama_departement);
-      $sheet->setCellValue('G'.$numrow, $ld->nama_divisi);
-      $sheet->setCellValue('H'.$numrow, $ld->tgl_lahir);
-      $sheet->setCellValue('I'.$numrow, $ld->agama);
-      $sheet->setCellValue('J'.$numrow, $ld->alamat_domisili);
-      $sheet->setCellValue('K'.$numrow, $ld->pendidikan_terakhir.' '.$ld->jurusan);
+      $sheet->setCellValue('F'.$numrow, $masa_kerja);
+      $sheet->setCellValue('G'.$numrow, $ld->status_pegawai == "tetap" ? 'PKWTT':'PKWT');
+      $sheet->setCellValue('H'.$numrow, $ld->nama_departement);
+      $sheet->setCellValue('I'.$numrow, $ld->nama_divisi);
+      $sheet->setCellValue('J'.$numrow, $ld->nama_bagian);
+      $sheet->setCellValue('K'.$numrow, $ld->tgl_lahir);
+      $sheet->setCellValue('L'.$numrow, $ld->agama);
+      $sheet->setCellValue('M'.$numrow, $ld->alamat_domisili);
+      $sheet->setCellValue('N'.$numrow, $ld->pendidikan_terakhir.' '.$ld->jurusan);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
@@ -1063,6 +1072,9 @@ class Pegawai extends BaseController
       $sheet->getColumnDimension('I')->setAutoSize(true);
       $sheet->getColumnDimension('J')->setAutoSize(true);
       $sheet->getColumnDimension('K')->setAutoSize(true);
+      $sheet->getColumnDimension('L')->setAutoSize(true);
+      $sheet->getColumnDimension('M')->setAutoSize(true);
+      $sheet->getColumnDimension('N')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
@@ -1074,6 +1086,9 @@ class Pegawai extends BaseController
       $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('L'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('M'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('N'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;

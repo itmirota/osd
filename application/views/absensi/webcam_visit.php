@@ -274,20 +274,20 @@ Webcam.attach('#my_camera');
 	};
 
 
-	document.getElementById('downloadFoto').onclick = function () {
-		const imgData = document.getElementById('final_result').src;
+	// document.getElementById('downloadFoto').onclick = function () {
+	// 	const imgData = document.getElementById('final_result').src;
 
-		if (!imgData) {
-			alert("Foto belum tersedia");
-			return;
-		}
+	// 	if (!imgData) {
+	// 		alert("Foto belum tersedia");
+	// 		return;
+	// 	}
 
-		// Membuat elemen <a> untuk download
-		const a = document.createElement('a');
-		a.href = imgData;
-		a.download = "absensiVisit"+jenis_absen+"_" + Date.now() + ".jpg";
-		a.click();
-	};
+	// 	// Membuat elemen <a> untuk download
+	// 	const a = document.createElement('a');
+	// 	a.href = imgData;
+	// 	a.download = "absensiVisit"+jenis_absen+"_" + Date.now() + ".jpg";
+	// 	a.click();
+	// };
 
 
 	document.getElementById("register").addEventListener("submit", function(e) {
