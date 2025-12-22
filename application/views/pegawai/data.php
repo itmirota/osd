@@ -52,7 +52,7 @@
     <div class="alert alert-warning" role="alert">
     <h3> Informasi !!!</h3>
     <?php foreach ($mendekati_habis_kontrak as $key) { ?>
-      <a style="color:black" href="<?= base_url('pegawai/listMasaKontrak/'.$key->bulan) ?>"><strong><?= $key->pegawai ?> Karyawan</strong> akan habis kontrak pada bulan <strong><?= bulan($key->bulan).' '.$key->tahun ?></strong></a><br>
+      <a style="color:black" href="<?= base_url('pegawai/listMasaKontrak/'.$key->bulan) ?>"><strong><?= $key->pegawai ?> Karyawan</strong> akan habis kontrak pada bulan <strong><?= bulan($key->bulan)?></strong></a><br>
     <?php } ?>
     </div>
   </div>

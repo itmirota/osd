@@ -126,34 +126,35 @@ class Absensi extends BaseController
     $datenow = DATE('Y-m');
     $tanggal = DATE('d');
 
+    $periodeAkhir = $datenow.'-20';
+    $date = date_create($datenow);
+    
     if (!empty($periode)){
       $periodeAkhir = $periode.'-20';
       $date = date_create($periode);
-    }else{
-      $periodeAkhir = $datenow.'-20';
-      $date = date_create($datenow);
     }
 
     $bulanNow = date_format($date,'m');
 
+    $bulan = date_format($date,'m')-1;
+    $tahun = date_format($date,'Y');
+
     if ($bulanNow == 1){
       $bulan = 12;
       $tahun = date_format($date,'Y')-1;
-    }else{
-      $bulan = date_format($date,'m')-1;
-      $tahun = date_format($date,'Y');
     }
+
+    $periodeAwal = $tahun.'-'.$bulan.'-21';  
 
     if($tanggal >= 21 && $tanggal <= 31){
       $bulanAwal = $bulan + 1;
       $bulanAwal == 13 ? $bulanAwal = 1 : $bulanAwal;
       $bulanAkhir = $bulanAwal + 1;
       $bulanAkhir == 13 ? $bulanAkhir = 1 : $bulanAkhir;
+      $tahunAkhir = $tahun + 1;
       
       $periodeAwal = $tahun.'-'.$bulanAwal.'-21';
-      $periodeAkhir = $tahun.'-'.$bulanAkhir.'-20';
-    }else{
-      $periodeAwal = $tahun.'-'.$bulan.'-21';
+      $periodeAkhir = $tahunAkhir.'-'.$bulanAkhir.'-20';
     }
 
     $where = array(
@@ -610,18 +611,19 @@ class Absensi extends BaseController
           $bulanAkhir = $bulanSekarang + 1;
 
           if ($bulanAkhir > 12) { 
-              $bulanAkhir = 1; 
-              $tahunSekarang += 1; 
+            $bulanAkhir = 1; 
+            $tahunAkhir = $tahunSekarang + 1; 
           }
 
           $periodeAwal  = sprintf("%d-%02d-21", $tahunSekarang, $bulanAwal);
-          $periodeAkhir = sprintf("%d-%02d-20", $tahunSekarang, $bulanAkhir);
+          $periodeAkhir = sprintf("%d-%02d-20", $tahunAkhir, $bulanAkhir);
 
       } else {
           // Masuk periode sebelumnya
           $periodeAwal  = sprintf("%d-%02d-21", $tahunLalu, $bulanLalu);
           $periodeAkhir = sprintf("%d-%02d-20", $tahunSekarang, $bulanSekarang);
       }
+
 
       // ================================
       // 4. Buat kondisi query
@@ -630,6 +632,7 @@ class Absensi extends BaseController
           'date >=' => $periodeAwal,
           'date <=' => $periodeAkhir
       );
+      
 
       $id = $id ?? 0;
 
