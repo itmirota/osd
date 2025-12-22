@@ -126,6 +126,16 @@ class Absensi extends BaseController
     $datenow = DATE('Y-m');
     $tanggal = DATE('d');
 
+    // ================================
+    // 1. Tentukan periode dasar
+    // ================================
+    $periodeDasar = (!empty($periode)) ? $periode : $datenow;
+    $periodeAkhir = $periodeDasar . '-20';
+
+    $dateObj = date_create($periodeDasar);
+    $bulanSekarang = (int) $dateObj->format('m');
+    $tahunSekarang = (int) $dateObj->format('Y');
+
     $periodeAkhir = $datenow.'-20';
     $date = date_create($datenow);
     
@@ -134,14 +144,15 @@ class Absensi extends BaseController
       $date = date_create($periode);
     }
 
-    $bulanNow = date_format($date,'m');
+    $bulanNow = (int) $dateObj->format('m');
+    $tahunNow = (int) $dateObj->format('Y');
 
-    $bulan = date_format($date,'m')-1;
-    $tahun = date_format($date,'Y');
+    $bulan = $bulanNow-1;
+    $tahun = $tahunNow;
 
     if ($bulanNow == 1){
       $bulan = 12;
-      $tahun = date_format($date,'Y')-1;
+      $tahun = $tahunNow-1;
     }
 
     $periodeAwal = $tahun.'-'.$bulan.'-21';  

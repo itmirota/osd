@@ -13,7 +13,7 @@
 		#ambilFoto { position: absolute; bottom: 50px; right: 45px;}
 		}
 
-		#final_result { width: 180px; margin-top: 15px; }
+		#final_result { width: 180px; height: auto; -top: 15px; }
 		.kamera {position: relative;text-align: center;}
 </style>
 
@@ -34,10 +34,10 @@
 							<img id="final_result" />
 							<div class="d-flex justify-content-between">
 								<button type="button" id="fotoUlang" class="btn btn-sm btn-warning mt-4" style="display:none">
-										Foto Ulang
+									Foto Ulang
 								</button>
 								<button type="button" id="shareFoto" class="btn btn-sm btn-success mt-4" style="display:none">
-										Bagikan Foto
+									Bagikan Foto
 								</button>
 								<!-- <button type="button" id="downloadFoto" class="btn btn-primary mt-4" style="display:none">
 										Download Foto
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 
-						<canvas id="canvas" width="720" height="960" style="display:none;"></canvas>
+						<canvas id="canvas" width="640" height="360" style="display:none;"></canvas>
 						</div>
 					</div>
 
