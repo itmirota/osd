@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom:20dvh" >
   <div class="row my-3">
     <a href="<?= base_url('PenilaianAssessment')?>"><i class="fa fa-solid fa-angles-left"></i> kembali</a>
   </div>
@@ -124,11 +124,10 @@
   <?php 
   $no++;
   } ?>
-  <div class="card">
-    <!-- /.card-header -->
+  <!-- <div class="card">
     <div class="card-body">
       <input type="hidden" name="id_pegawai" value="<?= $id_pegawai ?>">
-      <!-- <?php foreach ($soal_value as $soal) : ?>
+      <?php foreach ($soal_value as $soal) : ?>
         <div class="form-group">
           <label><?= $soal->soal ?></label>
           <div class="form-check">
@@ -148,10 +147,12 @@
             <label class="form-check-label">Sangat Setuju</label>
           </div>
         </div>
-      <?php endforeach; ?> -->
+      <?php endforeach; ?>
     </div>
-    <!-- /.card-body -->
+  </div> -->
+
+  <div class="d-flex justify-content-end">
+  <button type="submit" class="btn btn-primary">Simpan Penilaian</button>
   </div>
-    <button type="submit" class="btn btn-primary">Simpan Penilaian</button>
   </form>
 </div>

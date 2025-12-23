@@ -265,4 +265,15 @@ class Assessment extends BaseController
 
     $this->loadViews("assessment/hasil", $this->global, $data, NULL);
   }
+
+  public function hapusAssessment($id){
+    $where = array(
+      'id_assessment' => $id
+    );
+
+    $this->crud_model->delete($where, 'tbl_assessment');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+    redirect('DataAssessment');
+  }
+  
 }
