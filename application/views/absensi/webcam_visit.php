@@ -52,7 +52,18 @@
 					<div class="d-flex flex-wrap justify-content-center">
 						<div class="col-8 mb-3">
 							<label for="nama_toko" class="form-label">Nama Toko</label>
-							<input type="text" class="form-control" id="nama_toko" placeholder="masukkan nama toko" value="<?= $jenis_absen == 'pulang' ? $list_absen->nama_toko : '' ?>">
+							<input type="text" class="form-control" id="nama_toko" placeholder="masukkan nama toko" value="<?= $jenis_absen == 'pulang' ? (isset($list_absen->nama_toko) ? $list_absen->nama_toko : '')  : '' ?>">
+						</div>
+
+						<div class="col-8 mb-3" style="display:<?= $jenis_absen == 'pulang' ? 'block':'none'?>;">
+								<label class="form-label fw-bold">Dokumen Pendukung</label>
+								<input type="file"
+											id="dokumen"
+											class="form-control"
+											accept=".pdf,.jpg,.jpeg,.png">
+								<small class="text-muted">
+										PDF / JPG / PNG (opsional)
+								</small>
 						</div>
 
 						<div class="col-8 mb-3"  style="display:<?= $jenis_absen == 'pulang' ? 'block':'none'?>;">

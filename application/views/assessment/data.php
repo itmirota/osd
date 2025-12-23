@@ -114,7 +114,7 @@
               <select name="pegawai_id" id="pegawai_assessment" class="form-select" style="width: 100%" required>
                 <option value="">Pilih Pegawai</option>
                 <?php foreach ($this->crud_model->lihatdata('tbl_pegawai') as $penilai) { ?>
-                  <option value="<?= $penilai->id_pegawai ?>"><?= $penilai->nama_pegawai ?></option>
+                  <option value="<?= $penilai->nip ?>"><?= $penilai->nama_pegawai ?></option>
                 <?php } ?>
               </select>
             </div>
