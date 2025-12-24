@@ -13,7 +13,7 @@
 		#ambilFoto { position: absolute; bottom: 50px; right: 45px;}
 		}
 
-		#final_result { width: 180px; height: auto; -top: 15px; }
+		#final_result { width: 180px; -top: 15px; }
 		.kamera {position: relative;text-align: center;}
 </style>
 
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 
-						<canvas id="canvas" width="640" height="360" style="display:none;"></canvas>
+						<canvas id="canvas" width="640" height="960" style="display:none;"></canvas>
 						</div>
 					</div>
 
@@ -187,7 +187,7 @@ Webcam.attach('#my_camera');
 
 					// 3. Load logo (served from your domain)
 					const logoImg = await loadImage("<?= base_url('assets/dist/img/logo.png') ?>");
-					ctx.drawImage(logoImg, 720 - 150 - 10, 10, 150, 150); // pojok kanan atas, margin 10
+					ctx.drawImage(logoImg, 640 - 150 - 10, 10, 150, 150); // pojok kanan atas, margin 10
 
 					// 4. Tulis teks (tanggal, lokasi, lat/lng, kode)
 					ctx.font = "24px Arial";
