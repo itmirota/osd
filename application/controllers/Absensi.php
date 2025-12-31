@@ -476,73 +476,59 @@ class Absensi extends BaseController
 	}
 
   public function saveWebcamVisit(){
-    $input = json_decode($this->input->raw_input_stream, true);
 
-    $id           = $input['id'];
-    $jenis_absen  = $input['jenis_absen'];
-    $imagecam     = $input['imagecam'];
-    $nama_toko    = $input['nama_toko'];
-    $keterangan   = $input['keterangan'];
-    $lat          = $input['lat'];
-    $lon          = $input['lon'];
-    $wilayah      = $input['wilayah'];
-    $kota         = $input['kota'];
-    $kodeRandom   = $input['kodeRandom'];
+    $id          = $this->input->post('id');
+    $jenis_absen = $this->input->post('jenis_absen');
+    $nama_toko   = $this->input->post('nama_toko');
+    $keterangan  = $this->input->post('keterangan');
+    $kodeRandom  = $this->input->post('kodeRandom');
+    $lat         = $this->input->post('lat');
+    $lon         = $this->input->post('lon');
+    $wilayah     = $this->input->post('wilayah');
+    $kota        = $this->input->post('kota');
 
-    // ==============================
-    // VALIDASI DATA WAJIB
-    // ==============================
-    if (!$id || !$jenis_absen || !$imagecam) {
-        echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
-        return;
+    // FOTO
+    if (!empty($_FILES['imagecam']['name'])) {
+      $foto = uploadFoto('imagecam', 'absensi');
+    } else {
+      $foto = null;
     }
 
-    // ==============================
-    // DECODE FOTO
-    // ==============================
-    $imagecam = str_replace("data:image/jpeg;base64,", "", $imagecam);
-    $imagecam = base64_decode($imagecam);
-
-    $folder = FCPATH . 'assets/images/absensi/';
-    if (!is_dir($folder)) mkdir($folder, 0777, true);
-
-    $filename = "absen_" . $id . "_" . time() . ".jpg";
-
-    if (!file_put_contents($folder . $filename, $imagecam)) {
-        echo json_encode(["status" => "error", "msg" => "Gagal menyimpan foto"]);
-        return;
+    // === UPLOAD DOKUMEN ===
+    $dokumen = null;
+    if (!empty($_FILES['dokumen']['name'])) {
+      $dokumen = uploadDokumen('dokumen', 'dokumen_visit');
     }
 
     // ==============================
     // ABSEN MASUK
     // ==============================
     if ($jenis_absen == "masuk") {
+      // Cek apakah sudah absen masuk hari ini
+      // $cek = $this->absensi_model->cekMasukHariIni($id);
 
-        // Cek apakah sudah absen masuk hari ini
-        // $cek = $this->absensi_model->cekMasukHariIni($id);
+      // if ($cek) {
+      //     echo json_encode(["status" => "error", "msg" => "Anda sudah absen masuk hari ini"]);
+      //     return;
+      // }
 
-        // if ($cek) {
-        //     echo json_encode(["status" => "error", "msg" => "Anda sudah absen masuk hari ini"]);
-        //     return;
-        // }
+      $data = [
+        "pegawai_id"      => $id,
+        "date"            => date('Y-m-d'),
+        "time_in"         => date('H:i:s'),
+        "nama_toko"       => $nama_toko,
+        "latitude_in"     => $lat,
+        "longitude_in"    => $lon,
+        "wilayah_in"      => $wilayah,
+        "kota_in"         => $kota,
+        "kode_in"         => $kodeRandom,
+        "bukti_absensi_in"=> $foto
+      ];
 
-        $data = [
-            "pegawai_id"      => $id,
-            "date"            => date('Y-m-d'),
-            "time_in"         => date('H:i:s'),
-            "nama_toko"       => $nama_toko,
-            "latitude_in"     => $lat,
-            "longitude_in"    => $lon,
-            "wilayah_in"      => $wilayah,
-            "kota_in"         => $kota,
-            "kode_in"         => $kodeRandom,
-            "bukti_absensi_in"=> $filename
-        ];
+      $this->db->insert("tbl_absensi_visit", $data);
 
-        $this->db->insert("tbl_absensi_visit", $data);
-
-        echo json_encode(["status" => "ok"]);
-        return;
+      echo json_encode(["status" => "ok"]);
+      return;
     }
 
     // ==============================
@@ -570,7 +556,8 @@ class Absensi extends BaseController
         "wilayah_out"       => $wilayah,
         "kota_out"          => $kota,
         "kode_out"          => $kodeRandom,
-        "bukti_absensi_out" => $filename
+        "dokumen"           => $dokumen,
+        "bukti_absensi_out" => $foto
     ];
 
     $this->db->where("id_absensi_visit", $absen->id_absensi_visit);

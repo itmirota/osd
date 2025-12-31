@@ -56,14 +56,9 @@
 						</div>
 
 						<div class="col-8 mb-3" style="display:<?= $jenis_absen == 'pulang' ? 'block':'none'?>;">
-								<label class="form-label fw-bold">Dokumen Pendukung</label>
-								<input type="file"
-											id="dokumen"
-											class="form-control"
-											accept=".pdf,.jpg,.jpeg,.png">
-								<small class="text-muted">
-										PDF / JPG / PNG (opsional)
-								</small>
+								<label class="form-label fw-bold">Dokumen Pendukung <small class="text-muted">(opsional)</small></label>
+								<input type="file" id="dokumen" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+								<small class="text-muted"> format yang diperbolehkan : PDF / JPG / PNG</small>
 						</div>
 
 						<div class="col-8 mb-3"  style="display:<?= $jenis_absen == 'pulang' ? 'block':'none'?>;">
@@ -71,8 +66,6 @@
 							<textarea class="form-control" id="keterangan" rows="3"></textarea>
 						</div>
 					</div>
-
-
 
 					<div class="d-grid gap-2 col-8 mx-auto mb-4">
 						<button type="submit" class="btn btn-<?= ($jenis_absen == "masuk" ? 'success':'danger')?>"> <b><?= $jenis_absen ?></b></button>
@@ -92,26 +85,44 @@
 	
 
 <script>
-/* --- Inisialisasi webcam --- */
-Webcam.set({
-    image_format: 'jpeg',
-    jpeg_quality: 90
-});
-Webcam.attach('#my_camera');
+	/* --- Inisialisasi webcam --- */
+	Webcam.set({
+			image_format: 'jpeg',
+			jpeg_quality: 90
+	});
+	Webcam.attach('#my_camera');
 
 	/* --- Variabel global --- */
 	let userLat = -7.0;
 	let userLng = 111.0;
 	let wilayah = "-";
 	let kota = "-";
-	let jenis_absen = "<?= $jenis_absen ?>";
+	let jenisAbsen = "<?= $jenis_absen ?>";
 
 	const kodeRandom = Math.random().toString(36).substring(2, 8).toLowerCase();
+
+	function getDokumen() {
+    const input = document.getElementById('dokumen');
+
+    if (!input.files || input.files.length === 0) {
+        return null; // dokumen opsional
+    }
+
+    const file = input.files[0];
+
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+        Swal.fire('Ukuran terlalu besar', 'Maksimal 5MB', 'warning');
+        return null;
+    }
+
+    return file;
+	}
 
 	/* --- Buat map TERLEBIH DAHULU (penting) --- */
 	let map = L.map('map',{
     center: [userLat, userLng],
-    zoom: 12,
+    zoom: 18,
 		zoomControl:false,
 		attributionControl:false
 		});
@@ -128,10 +139,15 @@ Webcam.attach('#my_camera');
 			// update map view & marker
 			map.setView([userLat, userLng]);
 			let myIcon = L.icon({
-				iconSize: [38, 95],
-				iconAnchor: [22, 94]
+				iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+				shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+
+				iconSize:     [15, 20], // ⬅️ PERKECIL DI SINI
+				iconAnchor:   [9, 20],  // titik ujung bawah icon
+				popupAnchor:  [0, -28],
+				shadowSize:   [30, 20]
 			});
-			L.marker([userLat, userLng]).addTo(map);
+			L.marker([userLat, userLng], { icon: myIcon }).addTo(map);
 
 			// dapatkan nama lokasi sekali saja
 			try {
@@ -159,6 +175,20 @@ Webcam.attach('#my_camera');
 		});
 	}
 
+	function roundedRect(ctx, x, y, width, height, radius) {
+		ctx.beginPath();
+		ctx.moveTo(x + radius, y);
+		ctx.lineTo(x + width - radius, y);
+		ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+		ctx.lineTo(x + width, y + height - radius);
+		ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+		ctx.lineTo(x + radius, y + height);
+		ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+		ctx.lineTo(x, y + radius);
+		ctx.quadraticCurveTo(x, y, x + radius, y);
+		ctx.closePath();
+	}
+
 	/* --- Ambil Foto (event) --- */
 	document.getElementById('ambilFoto').onclick = function() {
 		Webcam.snap(async function(webcamImg) {
@@ -179,33 +209,89 @@ Webcam.attach('#my_camera');
 
 					// draw foto full area (720x720)
 					ctx.clearRect(0,0,canvas.width, canvas.height);
-					ctx.drawImage(foto, 0, 0, 720, 720);
+					ctx.drawImage(foto, 0, 0, 720, 960);
+
+					const isMasuk = jenisAbsen === "masuk";
+
+					const badgeText  = isMasuk ? "VISIT MASUK" : "VISIT KELUAR";
+					const badgeColor = isMasuk ? "rgba(40, 167, 69, 0.9)" : "rgba(220, 53, 69, 0.9)";
+
+					// posisi badge
+					const bx = 420;
+					const by = 650;
+					const bw = 200;
+					const bh = 46;
+					const radius = 14;
+
+					// background
+					ctx.fillStyle = badgeColor;
+					roundedRect(ctx, bx, by, bw, bh, radius);
+					ctx.fill();
+
+					// text
+					ctx.font = "bold 22px Arial";
+					ctx.fillStyle = "#fff";
+					ctx.textAlign = "center";
+					ctx.textBaseline = "middle";
+					ctx.fillText(badgeText, bx + bw / 2, by + bh / 2);
+
+					// reset align
+					ctx.textAlign = "left";
+					ctx.textBaseline = "alphabetic";
+
+					// === BACKGROUND PANEL TRANSPARAN ===
+					const padding = 20;
+					const panelHeight = 220;
+
+					const panelX = padding;
+					const panelY = canvas.height - panelHeight - padding;
+					const panelWidth = canvas.width - (padding * 2);
+
+					ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+					roundedRect(ctx, panelX, panelY, panelWidth, panelHeight, 16);
+					ctx.fill();
 
 					// 2. Load map thumbnail from mapCanvas
 					const mapImg = await loadImage(mapCanvas.toDataURL(), { crossOrigin: null });
-					ctx.drawImage(mapImg, 20, 740, 260, 200);
+					const mapSize = 180;
+					const mapX = panelX + padding;
+					const mapY = panelY + padding;
+
+					ctx.drawImage(mapImg, mapX, mapY, mapSize, mapSize);
 
 					// 3. Load logo (served from your domain)
 					const logoImg = await loadImage("<?= base_url('assets/dist/img/logo.png') ?>");
 					ctx.drawImage(logoImg, 640 - 150 - 10, 10, 150, 150); // pojok kanan atas, margin 10
 
 					// 4. Tulis teks (tanggal, lokasi, lat/lng, kode)
-					ctx.font = "24px Arial";
+					ctx.font = "20px Arial";
 					ctx.fillStyle = "white";
 					ctx.strokeStyle = "black";
 					ctx.lineWidth = 3;
 
-					const write = (text, y) => {
-							ctx.strokeText(text, 300, y);
-							ctx.fillText(text, 300, y);
+					let textX = mapX + mapSize + padding;
+					let textY = mapY + 28;
+
+					const writeLine = (text) => {
+						ctx.strokeText(text, textX, textY);
+						ctx.fillText(text, textX, textY);
+						textY += 34;
 					};
 
-					const waktu = new Date().toLocaleString("id-ID");
-					write(waktu, 760);
-					write(`${wilayah}, ${kota}`, 800);
-					write("Lat: " + userLat, 840);
-					write("Lng: " + userLng, 880);
-					write("Kode: " + kodeRandom, 920);
+					const waktu = new Date().toLocaleString("id-ID", {
+						day: "2-digit",
+						month: "2-digit",
+						year: "numeric",
+						hour: "2-digit",
+						minute: "2-digit"
+					}).replace(".", ":");
+
+					writeLine(`${waktu}`, 760);
+					writeLine(`${wilayah}, ${kota}`, 800);
+					// writeLine("Lat: " + userLat, 840);
+					// writeLine("Lng: " + userLng, 880);
+					writeLine(`Lat: ${userLat} | Lng: ${userLng}`, 840);
+					writeLine("Kode: " + kodeRandom, 920);
 
 					// 5. Finalize image (dataURL)
 					const finalImage = canvas.toDataURL("image/jpeg", 0.95);
@@ -431,25 +517,38 @@ Webcam.attach('#my_camera');
 	// SIMPAN KE SERVER (CI3)
 	// ======================
 	async function kirimKeServer(foto, lat, lon, wilayah, kota, kodeRandom) {
-		const payload = {
-			id: document.getElementById("id_pegawai").value,
-			jenis_absen: document.getElementById("jenis_absen").value,
-			nama_toko: document.getElementById("nama_toko").value,
-			keterangan: document.getElementById("keterangan").value,
-			kodeRandom: kodeRandom,
-			imagecam: foto,
-			lat: lat,
-			lon: lon,
-			wilayah: wilayah,
-			kota: kota
-		};
+    const formData = new FormData();
 
-		const response = await fetch("<?= site_url('absensi/saveWebcamVisit'); ?>", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(payload)
-		});
+		const res = await fetch(foto);
+    const blob = await res.blob();
 
-		return await response.json();
-	}
+    formData.append("imagecam", blob, "absensi.jpg");
+
+    formData.append("id", document.getElementById("id_pegawai").value);
+    formData.append("jenis_absen", document.getElementById("jenis_absen").value);
+    formData.append("nama_toko", document.getElementById("nama_toko").value);
+    formData.append("keterangan", document.getElementById("keterangan").value);
+    formData.append("kodeRandom", kodeRandom);
+    // formData.append("imagecam", foto);
+    formData.append("lat", lat);
+    formData.append("lon", lon);
+    formData.append("wilayah", wilayah);
+    formData.append("kota", kota);
+
+    // 👇 DOKUMEN
+    const inputDokumen = document.getElementById("dokumen");
+    if (inputDokumen.files.length > 0) {
+        formData.append("dokumen", inputDokumen.files[0]);
+    }
+
+    const response = await fetch(
+        "<?= site_url('absensi/saveWebcamVisit'); ?>",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    return await response.json();
+}
 </script>
