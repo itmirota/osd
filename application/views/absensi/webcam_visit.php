@@ -4,8 +4,8 @@
 
 <style>
 		#my_camera { width: 250px; height: 250px; margin: 0 auto;}
-		#map { width: 80px; height: 80px; margin-top: 10px; position: absolute; bottom: 40px; left: 30px;}
-		#ambilFoto { position: absolute; bottom: 40px; right: 30px;}
+		#map { width: 80px; height: 80px; margin-top: 10px; position: absolute; bottom: 50px; left: 30px;}
+		#ambilFoto { position: absolute; bottom: 50px; right: 30px;}
 
 		@media only screen and (max-width: 300px) {
 		#my_camera { width: 180px; height: 180px; padding: 0 auto;}
