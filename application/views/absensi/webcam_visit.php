@@ -4,8 +4,8 @@
 
 <style>
 		#my_camera { width: 250px; height: 250px; margin: 0 auto;}
-		#map { width: 120px; height: 80px; margin-top: 10px; position: absolute; bottom: 60px; left: 10px;}
-		#ambilFoto { position: absolute; bottom: 60px; right: 10px;}
+		#map { width: 80px; height: 80px; margin-top: 10px; position: absolute; bottom: 60px; left: 10px;}
+		#ambilFoto { position: absolute; bottom: 60px; right: 30px;}
 
 		@media only screen and (max-width: 300px) {
 		#my_camera { width: 180px; height: 180px; padding: 0 auto;}
@@ -122,7 +122,7 @@
 	/* --- Buat map TERLEBIH DAHULU (penting) --- */
 	let map = L.map('map',{
     center: [userLat, userLng],
-    zoom: 18,
+    zoom: 16,
 		zoomControl:false,
 		attributionControl:false
 		});
