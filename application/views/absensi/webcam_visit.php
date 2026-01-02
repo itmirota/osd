@@ -4,13 +4,13 @@
 
 <style>
 		#my_camera { width: 250px; height: 250px; margin: 0 auto;}
-		#map { width: 80px; height: 80px; margin-top: 10px; position: absolute; bottom: 60px; left: 10px;}
-		#ambilFoto { position: absolute; bottom: 60px; right: 30px;}
+		#map { width: 80px; height: 80px; margin-top: 10px; position: absolute; bottom: 40px; left: 30px;}
+		#ambilFoto { position: absolute; bottom: 40px; right: 30px;}
 
 		@media only screen and (max-width: 300px) {
 		#my_camera { width: 180px; height: 180px; padding: 0 auto;}
-		#map { width: 60px; height: 60px; margin-top: 10px; position: absolute; bottom: 50px; left: 45px;}
-		#ambilFoto { position: absolute; bottom: 50px; right: 45px;}
+		#map { width: 60px; height: 60px; margin-top: 10px; position: absolute; bottom: 30px; left: 20px;}
+		#ambilFoto { position: absolute; bottom: 30px; right: 20px;}
 		}
 
 		#final_result { width: 180px; -top: 15px; }
