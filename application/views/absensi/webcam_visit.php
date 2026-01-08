@@ -205,7 +205,12 @@
 					const ctx = canvas.getContext('2d');
 
 					// 1. Load webcam image
-					const foto = await loadImage(webcamImg, { crossOrigin: null }); // webcamImg is dataURL, no CORS
+					const response = await fetch(webcamImg);
+					const blob = await response.blob();
+
+					const bitmap = await createImageBitmap(blob, {
+						imageOrientation: "from-image"
+					});
 
 					// draw foto full area (720x720)
 					ctx.clearRect(0,0,canvas.width, canvas.height);
