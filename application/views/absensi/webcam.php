@@ -85,7 +85,7 @@
 				video.srcObject = videoStream;
 
 				await video.play();
-				
+
 			} catch (err) {
 				alert("Kamera tidak bisa diakses: " + err.message);
 			}
@@ -450,5 +450,6 @@
 			});
 
 			return await response.json();
+			
 		}
 	</script>

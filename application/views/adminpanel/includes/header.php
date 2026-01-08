@@ -410,7 +410,7 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
             <!-- /MENU APPROVAL PERIZINAN -->
 
-            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG | $role == ROLE_ADMIN){?>
             <!-- MENU ABSENSI -->
             <li class="sidebar-item has-submenu">
               <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
