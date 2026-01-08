@@ -347,6 +347,8 @@
 		document.getElementById("map").style.display = "block";
 		document.getElementById("ambilFoto").style.display = "block";
 		document.getElementById("shareFoto").style.display = "none";
+		document.getElementById("canvas").style.display = "none";
+
 
 		// Sembunyikan tombol foto ulang
 		document.getElementById("fotoUlang").style.display = "none";
