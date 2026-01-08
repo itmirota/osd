@@ -371,6 +371,7 @@ class Absensi extends BaseController
     $lon          = $input['lon'];
     $wilayah      = $input['wilayah'];
     $kota         = $input['kota'];
+    $kodeRandom   = $input['kodeRandom'];
 
     // ==============================
     // VALIDASI DATA WAJIB
@@ -417,6 +418,7 @@ class Absensi extends BaseController
             "longitude_in"    => $lon,
             "wilayah_in"      => $wilayah,
             "kota_in"         => $kota,
+            "kode_in"         => $kodeRandom,
             "bukti_absensi_in"=> $filename
         ];
 
@@ -449,6 +451,7 @@ class Absensi extends BaseController
         "longitude_out"     => $lon,
         "wilayah_out"       => $wilayah,
         "kota_out"          => $kota,
+        "kode_out"         => $kodeRandom,
         "bukti_absensi_out" => $filename,
     ];
 

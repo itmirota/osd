@@ -122,7 +122,7 @@
 	/* --- Buat map TERLEBIH DAHULU (penting) --- */
 	let map = L.map('map',{
     center: [userLat, userLng],
-    zoom: 16,
+    zoom: 10,
 		zoomControl:false,
 		attributionControl:false
 		});
