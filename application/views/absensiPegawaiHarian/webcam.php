@@ -131,10 +131,10 @@ startCamera();
 				await Swal.fire({
 					icon: "success",
 					title: "Berhasil!",
-					html: `<img src="${fotoBase64}" style="width:100%;border-radius:10px">`
+					html: `<img src="${fotoBase64}" style="width:50%;border-radius:10px">`
 				});
 
-				window.location.href = "<?= base_url('PHL/Absensi'); ?>";
+				window.location.href = "<?= base_url('PHL/kehadiran'); ?>";
 			}
 
 		} catch (err) {

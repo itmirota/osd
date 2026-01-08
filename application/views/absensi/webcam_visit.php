@@ -27,7 +27,13 @@
 					<input type="hidden" class="form-control" id="jenis_absen" value="<?= $jenis_absen ?>">
 					<div class="d-flex justify-content-center mb-2">
 						<div class="kamera">
-							<div id="my_camera"></div>
+							<video
+							id="camera"
+							autoplay
+							playsinline
+							muted
+							style="width:250px;height:250px;border-radius:12px;object-fit:cover;"
+							></video>
 							<div id="map"></div>
 							<button class="btn btn-sm btn-info" type="button" id="ambilFoto">Ambil Foto</button>
 
@@ -85,13 +91,6 @@
 	
 
 <script>
-	/* --- Inisialisasi webcam --- */
-	Webcam.set({
-			image_format: 'jpeg',
-			jpeg_quality: 90
-	});
-	Webcam.attach('#my_camera');
-
 	/* --- Variabel global --- */
 	let userLat = -7.0;
 	let userLng = 111.0;
@@ -100,6 +99,31 @@
 	let jenisAbsen = "<?= $jenis_absen ?>";
 
 	const kodeRandom = Math.random().toString(36).substring(2, 8).toLowerCase();
+
+	let videoStream = null;
+	const video = document.getElementById("camera");
+
+	async function startCamera() {
+		try {
+			videoStream = await navigator.mediaDevices.getUserMedia({
+				video: {
+					facingMode: "user", // atau "environment"
+					width: { ideal: 1920 },
+					height: { ideal: 1080 }
+				},
+				audio: false
+			});
+
+			video.srcObject = videoStream;
+
+			await video.play();
+			
+		} catch (err) {
+			alert("Kamera tidak bisa diakses: " + err.message);
+		}
+	}
+
+	startCamera();
 
 	function getDokumen() {
     const input = document.getElementById('dokumen');
@@ -191,129 +215,125 @@
 
 	/* --- Ambil Foto (event) --- */
 	document.getElementById('ambilFoto').onclick = function() {
-		Webcam.snap(async function(webcamImg) {
-			// leafletImage signature: leafletImage(map, callback)
-			leafletImage(map, async function(err, mapCanvas) {
-				if (err) {
-					console.error("leafletImage error:", err);
-					alert("Gagal membuat thumbnail peta.");
+		// leafletImage signature: leafletImage(map, callback)
+		leafletImage(map, async function(err, mapCanvas) {
+			if (err) {
+				console.error("leafletImage error:", err);
+				alert("Gagal membuat thumbnail peta.");
+				return;
+			}
+
+			try {
+				if (!video.videoWidth) {
+					alert("Kamera belum siap");
 					return;
 				}
 
-				try {
-					const canvas = document.getElementById('canvas');
-					const ctx = canvas.getContext('2d');
+				const canvas = document.getElementById("canvas");
+				const ctx = canvas.getContext("2d");
 
-					// 1. Load webcam image
-					const response = await fetch(webcamImg);
-					const blob = await response.blob();
+				canvas.width = 720;
+				canvas.height = 960;
 
-					const bitmap = await createImageBitmap(blob, {
-						imageOrientation: "from-image"
-					});
+				ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-					// draw foto full area (720x720)
-					ctx.clearRect(0,0,canvas.width, canvas.height);
-					ctx.drawImage(foto, 0, 0, 720, 960);
+				const isMasuk = jenisAbsen === "masuk";
 
-					const isMasuk = jenisAbsen === "masuk";
+				const badgeText  = isMasuk ? "VISIT MASUK" : "VISIT KELUAR";
+				const badgeColor = isMasuk ? "rgba(40, 167, 69, 0.9)" : "rgba(220, 53, 69, 0.9)";
 
-					const badgeText  = isMasuk ? "VISIT MASUK" : "VISIT KELUAR";
-					const badgeColor = isMasuk ? "rgba(40, 167, 69, 0.9)" : "rgba(220, 53, 69, 0.9)";
+				// posisi badge
+				const bx = 420;
+				const by = 650;
+				const bw = 200;
+				const bh = 46;
+				const radius = 14;
 
-					// posisi badge
-					const bx = 420;
-					const by = 650;
-					const bw = 200;
-					const bh = 46;
-					const radius = 14;
+				// background
+				ctx.fillStyle = badgeColor;
+				roundedRect(ctx, bx, by, bw, bh, radius);
+				ctx.fill();
 
-					// background
-					ctx.fillStyle = badgeColor;
-					roundedRect(ctx, bx, by, bw, bh, radius);
-					ctx.fill();
+				// text
+				ctx.font = "bold 22px Arial";
+				ctx.fillStyle = "#fff";
+				ctx.textAlign = "center";
+				ctx.textBaseline = "middle";
+				ctx.fillText(badgeText, bx + bw / 2, by + bh / 2);
 
-					// text
-					ctx.font = "bold 22px Arial";
-					ctx.fillStyle = "#fff";
-					ctx.textAlign = "center";
-					ctx.textBaseline = "middle";
-					ctx.fillText(badgeText, bx + bw / 2, by + bh / 2);
+				// reset align
+				ctx.textAlign = "left";
+				ctx.textBaseline = "alphabetic";
 
-					// reset align
-					ctx.textAlign = "left";
-					ctx.textBaseline = "alphabetic";
+				// === BACKGROUND PANEL TRANSPARAN ===
+				const padding = 20;
+				const panelHeight = 220;
 
-					// === BACKGROUND PANEL TRANSPARAN ===
-					const padding = 20;
-					const panelHeight = 220;
+				const panelX = padding;
+				const panelY = canvas.height - panelHeight - padding;
+				const panelWidth = canvas.width - (padding * 2);
 
-					const panelX = padding;
-					const panelY = canvas.height - panelHeight - padding;
-					const panelWidth = canvas.width - (padding * 2);
+				ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+				roundedRect(ctx, panelX, panelY, panelWidth, panelHeight, 16);
+				ctx.fill();
 
-					ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
-					roundedRect(ctx, panelX, panelY, panelWidth, panelHeight, 16);
-					ctx.fill();
+				// 2. Load map thumbnail from mapCanvas
+				const mapImg = await loadImage(mapCanvas.toDataURL(), { crossOrigin: null });
+				const mapSize = 180;
+				const mapX = panelX + padding;
+				const mapY = panelY + padding;
 
-					// 2. Load map thumbnail from mapCanvas
-					const mapImg = await loadImage(mapCanvas.toDataURL(), { crossOrigin: null });
-					const mapSize = 180;
-					const mapX = panelX + padding;
-					const mapY = panelY + padding;
+				ctx.drawImage(mapImg, mapX, mapY, mapSize, mapSize);
 
-					ctx.drawImage(mapImg, mapX, mapY, mapSize, mapSize);
+				// 3. Load logo (served from your domain)
+				const logoImg = await loadImage("<?= base_url('assets/dist/img/logo.png') ?>");
+				ctx.drawImage(logoImg, 640 - 150 - 10, 10, 150, 150); // pojok kanan atas, margin 10
 
-					// 3. Load logo (served from your domain)
-					const logoImg = await loadImage("<?= base_url('assets/dist/img/logo.png') ?>");
-					ctx.drawImage(logoImg, 640 - 150 - 10, 10, 150, 150); // pojok kanan atas, margin 10
+				// 4. Tulis teks (tanggal, lokasi, lat/lng, kode)
+				ctx.font = "20px Arial";
+				ctx.fillStyle = "white";
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
 
-					// 4. Tulis teks (tanggal, lokasi, lat/lng, kode)
-					ctx.font = "20px Arial";
-					ctx.fillStyle = "white";
-					ctx.strokeStyle = "black";
-					ctx.lineWidth = 3;
+				let textX = mapX + mapSize + padding;
+				let textY = mapY + 28;
 
-					let textX = mapX + mapSize + padding;
-					let textY = mapY + 28;
+				const writeLine = (text) => {
+					ctx.strokeText(text, textX, textY);
+					ctx.fillText(text, textX, textY);
+					textY += 34;
+				};
 
-					const writeLine = (text) => {
-						ctx.strokeText(text, textX, textY);
-						ctx.fillText(text, textX, textY);
-						textY += 34;
-					};
+				const waktu = new Date().toLocaleString("id-ID", {
+					day: "2-digit",
+					month: "2-digit",
+					year: "numeric",
+					hour: "2-digit",
+					minute: "2-digit"
+				}).replace(".", ":");
 
-					const waktu = new Date().toLocaleString("id-ID", {
-						day: "2-digit",
-						month: "2-digit",
-						year: "numeric",
-						hour: "2-digit",
-						minute: "2-digit"
-					}).replace(".", ":");
+				writeLine(`${waktu}`, 760);
+				writeLine(`${wilayah}, ${kota}`, 800);
+				// writeLine("Lat: " + userLat, 840);
+				// writeLine("Lng: " + userLng, 880);
+				writeLine(`Lat: ${userLat} | Lng: ${userLng}`, 840);
+				writeLine("Kode: " + kodeRandom, 920);
 
-					writeLine(`${waktu}`, 760);
-					writeLine(`${wilayah}, ${kota}`, 800);
-					// writeLine("Lat: " + userLat, 840);
-					// writeLine("Lng: " + userLng, 880);
-					writeLine(`Lat: ${userLat} | Lng: ${userLng}`, 840);
-					writeLine("Kode: " + kodeRandom, 920);
+				// 5. Finalize image (dataURL)
+				const finalImage = canvas.toDataURL("image/jpeg", 0.95);
+				document.getElementById('final_result').src = finalImage;
 
-					// 5. Finalize image (dataURL)
-					const finalImage = canvas.toDataURL("image/jpeg", 0.95);
-					document.getElementById('final_result').src = finalImage;
+				// toggle UI: hide camera/map/ambilFoto, show tombol lain
+				document.getElementById("camera").style.display = "none";
+				document.getElementById("map").style.display = "none";
+				document.getElementById("ambilFoto").style.display = "none";
+				document.getElementById("fotoUlang").style.display = "block";
+				document.getElementById("shareFoto").style.display = "block";
 
-					// toggle UI: hide camera/map/ambilFoto, show tombol lain
-					document.getElementById("my_camera").style.display = "none";
-					document.getElementById("map").style.display = "none";
-					document.getElementById("ambilFoto").style.display = "none";
-					document.getElementById("fotoUlang").style.display = "block";
-					document.getElementById("shareFoto").style.display = "block";
-
-				} catch (e) {
-					console.error("Error saat proses gambar:", e);
-					alert("Terjadi kesalahan saat memproses gambar: " + e.message);
-				}
-			});
+			} catch (e) {
+				console.error("Error saat proses gambar:", e);
+				alert("Terjadi kesalahan saat memproses gambar: " + e.message);
+			}
 		});
 	};
 
@@ -323,18 +343,16 @@
 		document.getElementById('final_result').src = "";
 
 		// Tampilkan kembali kamera, map, tombol ambil foto
-		document.getElementById("my_camera").style.display = "block";
+		document.getElementById("camera").style.display = "block";
 		document.getElementById("map").style.display = "block";
 		document.getElementById("ambilFoto").style.display = "block";
+		document.getElementById("shareFoto").style.display = "none";
 
 		// Sembunyikan tombol foto ulang
 		document.getElementById("fotoUlang").style.display = "none";
 
 		// Sembunyikan tombol download
 		document.getElementById("downloadFoto").style.display = "none";
-
-		// Re-attach webcam (jaga-jaga jika ada HP yang disable kamera setelah hidden)
-		Webcam.attach('#my_camera');
 
 		// Resize ulang map supaya tidak blank
 		setTimeout(() => {
