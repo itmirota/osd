@@ -150,6 +150,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- MASTER DATA -->
 
         <!-- INVENTARIS -->
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-warehouse"></i> Inventaris<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -223,6 +224,7 @@ if($role != ROLE_STAFF){ ?>
             </li>
           </ul>
         </li>
+        <?php } ?>
         <!-- INVENTARIS -->
 
         <!-- MENU EVALUASI -->
@@ -291,12 +293,14 @@ if($role != ROLE_STAFF){ ?>
         <!-- /MENU EVALUASI -->
 
         <!-- MENU ASSESSMENT -->
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('DataAssessment'); ?>" class="sidebar-link">
             <i class="fa-solid fa-clipboard-list"></i>
             <span>Assesment360</span>
           </a>
         </li>
+        <?php }?>
         <!-- /MENU ASSESSMENT -->
 
 
@@ -313,6 +317,7 @@ if($role != ROLE_STAFF){ ?>
         if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
         {
         ?>
+        
         <!-- MENU HRGA -->
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-house-medical"></i> HRGA<i class="fa fa-angle-down" style="float: right;"></i> </a>
@@ -410,7 +415,7 @@ if($role != ROLE_STAFF){ ?>
             <?php } ?>
             <!-- /MENU APPROVAL PERIZINAN -->
 
-            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG | $role == ROLE_ADMIN){?>
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG | $role == ROLE_ADMIN  | $role == ROLE_SPV){?>
             <!-- MENU ABSENSI -->
             <li class="sidebar-item has-submenu">
               <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Laporan Absensi <i class="fa fa-angle-down" style="float: right;"></i> </a>
