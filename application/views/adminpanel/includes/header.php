@@ -319,7 +319,7 @@ if($role != ROLE_STAFF){ ?>
 
 
         <!-- MENU HRGA -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG | $role == ROLE_MANAGER | $role == ROLE_SPV){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-house-medical"></i> HRGA<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
