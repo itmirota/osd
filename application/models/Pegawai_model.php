@@ -45,6 +45,8 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id');
+    $this->db->join('tbl_pelanggaran f','f.pegawai_id = a.id_pegawai','left');
+    // $this->db->join('tbl_bagian g','g.id_bagian = a.bagian_id');
     $this->db->where($where);
 
     if(isset($orderby)){

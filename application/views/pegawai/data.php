@@ -1,5 +1,6 @@
 <div class="row">
   <?php if($this->uri->segment(1) != 'pegawai'){?>
+  <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP){?>
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addPegawai"><i class="fa fa-plus"></i> Tambah Data</button>
     <a href="<?= base_url('pegawai/excel_pegawai')?>" class="btn btn-primary me-2"><i class="fa fa-download"></i> Export Karyawan</a>
@@ -47,7 +48,6 @@
     <?php } ?>
   </div>
 
-  <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP){?>
   <div class="col-md-12">
     <div class="alert alert-warning" role="alert">
     <h3> Informasi !!!</h3>

@@ -54,34 +54,26 @@ class Pegawai extends BaseController
       'YEAR(tgl_selesai) =' => DATE('Y')
     );
 
+    $pegawai_id = $this->pegawai_id;
     $role = $this->role;
-    $divisi = $this->divisi_id;
+    $bagian = $this->bagian_id;
+    $pegawai = $this->pegawai_model->showDataRow(['bagian_id' => $bagian]);
 
-    // if($role == ROLE_KABAG){
-    //   $pegawai_id = $this->pegawai_id;
-    //   $list_data = $this->pegawai_model->showDataWhere('*',['kadiv_id' => $pegawai_id,'status' => 'aktif'],NULL,NULL,NULL);
-    //   $whereTotalPegawai = array(
-    //     'divisi_id' => $divisi,
-    //     'status' => "aktif"
-    //   );
-    // }elseif($role == ROLE_MANAGER){
-    //   $pegawai_id = $this->pegawai_id;
-      
-    //   $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $pegawai_id, 'status' => 'aktif'],NULL,NULL,NULL);
+    switch ($role) {
+      case ROLE_KABAG:
+      case ROLE_SPV:
+        $list_data = $this->pegawai_model->showDataWhere('*',['id_divisi' => $pegawai->id_divisi,'status' => 'aktif'],NULL,NULL,NULL);
+        break;
 
-    //   $whereTotalPegawai = array(
-    //     'manager_id' => $pegawai_id,
-    //     'status' => "aktif"
-    //   );
-    // }else{
-    //   $list_data = $this->pegawai_model->showData();
-      
-    //   $whereTotalPegawai = array(
-    //     'status' => "aktif"
-    //   );
-    // }
+      case ROLE_MANAGER:
+        $list_data = $this->pegawai_model->showDataWhere('*',['id_departement' => $pegawai->id_departement,'status' => 'aktif'],NULL,NULL,NULL);
+        break;
+        
+      default:
+        $list_data = $this->pegawai_model->showData();
+        break;
+    }
 
-    $list_data = $this->pegawai_model->showData();
 
     $data = array(
       'list_data' => $list_data,
