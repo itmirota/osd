@@ -31,6 +31,8 @@
             <tr>
               <th>No</th>
               <th class="text-center">Tanggal</th>
+              <th class="text-center">Toko</th>
+              <th class="text-center">Keterangan</th>
               <th class="text-center">Waktu Masuk</th>
               <th class="text-center">Waktu Keluar</th>
             </tr>
@@ -45,6 +47,8 @@
               <tr>
                 <td><?= $no++?></td>
                 <td class="text-center"><?= mediumdate_indo($ld->date)?></td>
+                <td class="text-center"><?= $ld->nama_toko?>
+                <td class="text-center"><?= $ld->keterangan?>
                 <td class="text-center"><?= $ld->time_in?>
                 </td>
                 <td class="text-center">

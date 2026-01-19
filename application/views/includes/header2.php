@@ -53,10 +53,31 @@
 	
   <link rel="manifest" href="<?= base_url(); ?>/web.webmanifest"/>
 	<script src="<?php echo base_url(); ?>assets/dist/js/register.js"></script>
-</head>
 
+  <style>
+    .overlay{
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background: rgba(255,255,255,0.8) center no-repeat;
+    }
+    /* Turn off scrollbar when body element has the loading class */
+    body.loading{
+        overflow: hidden;   
+    }
+    /* Make spinner image visible when body element has the loading class */
+    body.loading .overlay{
+        display: block;
+    }
+  </style>
+</head>
 <!-- <body class="sidebar-mini skin-black-light"> -->
 <body class="theme-white">
+<div class="overlay"></div>
 <div>
   <?php 
   $cek = $this->uri->segment(1);
@@ -66,7 +87,7 @@
   <nav class="navbar navbar-dark bg-navbar navbar-expand mb-4">
     <div class="container">
     <ul class="navbar-nav justify-content-start w-100">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<?= base_url('dashboardUser')?>">
         <img class="navbar-logo" src="<?= base_url('assets/dist/img/mirota.png')?>" alt="Logo" class="d-inline-block align-text-top">
       </a>
     </ul>
@@ -153,7 +174,7 @@
         </div>
         <div class="modal-body">
           <div class="d-flex justify-content-end mb-4">
-            <a href="<?= base_url('pegawai/editData/'.$pegawai_id)?>" class="btn btn-md btn-primary"><i class="fa-solid fa-pencil"></i> ubah data</a>
+            <a href="<?= base_url('editdata/'.$pegawai_id)?>" class="btn btn-md btn-outline-dark"><i class="fa-solid fa-pencil"></i> ubah data</a>
           </div>
           <div class="row">
             <div class="col-6">

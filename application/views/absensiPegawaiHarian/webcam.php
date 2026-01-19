@@ -31,11 +31,15 @@
 						</div>
 					<?php }?>
 					<div class="d-flex justify-content-center mb-4">
-						<div id="my_camera">
-						</div>
+						<video
+							id="camera"
+							autoplay
+							playsinline
+							muted
+							style="width:250px;height:250px;border-radius:12px;object-fit:cover">
+						</video>
 
-						<div id="result">
-						</div>
+						<canvas id="canvas" width="720" height="960" style="display:none"></canvas>
 					</div>
 					<div class="d-grid gap-2 col-10 mx-auto">
 						<button type="submit" class="btn btn-<?= ($jenis_absen == "masuk" ? 'success':'danger')?>"> <b><?= $jenis_absen ?></b></button>
@@ -47,72 +51,120 @@
 </div>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
 	
-	<script language="JavaScript">
-		Webcam.set({
-			width: 320,
-			height: 240,
-			image_format: 'jpeg',
-			jpeg_quality: 50
+
+<script>
+let videoStream = null;
+const video = document.getElementById("camera");
+
+async function startCamera() {
+	try {
+		videoStream = await navigator.mediaDevices.getUserMedia({
+			video: {
+				facingMode: "user", // atau "environment"
+				width: { ideal: 1920 },
+				height: { ideal: 1080 }
+			},
+			audio: false
 		});
-		Webcam.attach( '#my_camera' );
-	</script>
-	<!-- Code to handle taking the snapshot and displaying it locally -->
-	<script type="text/javascript">
-		$('#register').on('submit', function (event) {
-			event.preventDefault();
 
-			Webcam.snap( function(data_uri) {
-				document.getElementById("result").innerHTML = '<img src="'+ data_uri + '"/>';
-				$("#my_camera").hide();
-				getLocation(data_uri);
-			});
+		video.srcObject = videoStream;
 
-			function getLocation(data_uri){
-				if ('geolocation' in navigator) {
-				console.log('geolocation available');
-				navigator.geolocation.getCurrentPosition(position => {
-				lat = position.coords.latitude;
-				lon = position.coords.longitude;
-				let jenis_absen = document.getElementById("jenis_absen").value;
-				save(data_uri,lat,lon);
+	} catch (err) {
+		alert("Kamera tidak bisa diakses: " + err.message);
+	}
+}
 
+startCamera();
+</script>
+
+<!-- Code to handle taking the snapshot and displaying it locally -->
+<script type="text/javascript">
+
+	// get GPS
+	if ('geolocation' in navigator) {
+		console.log('geolocation available');
+		navigator.geolocation.getCurrentPosition(position => {
+		lat = position.coords.latitude;
+		lon = position.coords.longitude;
+	});
+	} else {
+		console.log('geolocation not available');
+	}
+	// ======================
+
+	document.getElementById("register").addEventListener("submit", async function(e) {
+		e.preventDefault();
+
+		if (!video.videoWidth) {
+			alert("Kamera belum siap");
+			return;
+		}
+
+		const canvas = document.getElementById("canvas");
+		const ctx = canvas.getContext("2d");
+
+		canvas.width = 720;
+		canvas.height = 960;
+
+		ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+		const fotoBase64 = canvas.toDataURL("image/jpeg", 0.95);
+
+		await prosesAbsensiCanvas(fotoBase64);
+	});
+
+	async function prosesAbsensiCanvas(fotoBase64) {
+
+		Swal.fire({
+			title: "Mengirim data...",
+			didOpen: () => Swal.showLoading(),
+			allowOutsideClick: false
+		});
+
+		try {
+			const hasil = await save(fotoBase64, lat, lon);
+
+			Swal.close();
+
+			if (hasil.status === "ok") {
+				await Swal.fire({
+					icon: "success",
+					title: "Berhasil!",
+					html: `<img src="${fotoBase64}" style="width:50%;border-radius:10px">`
 				});
-				} else {
-					console.log('geolocation not available');
-				}
+
+				window.location.href = "<?= base_url('PHL/kehadiran'); ?>";
 			}
 
-			function save(data_uri,lat,lon){
-				let jenis_absen = document.getElementById("jenis_absen").value;
-				let nama = document.getElementById("nama").value;
-				let bagian = document.getElementById("bagian").value;
-				let id_absensi = document.getElementById("id_absensi").value;
+		} catch (err) {
+			Swal.close();
+			alert(err.message);
+		}
+	}
 
-				$.ajax({
-					url: '<?php echo site_url("absensiPegawaiHarian/saveWebcam");?>',
-					type: 'POST',
-					dataType: 'json',
-					data: {id_absensi:id_absensi,nama:nama,bagian:bagian,jenis_absen:jenis_absen,imagecam:data_uri,lat:lat,lon:lon},
-				})
-				.done(function(data) {
-					if (data > 0) {
-						alert('insert data sukses');
-						console.log(data);
-						window.location.href="<?php echo base_url(); ?>PHL/Absensi";
-					}
-				})
-				.fail(function() {
-					console.log("error");
-				})
-				.always(function(data) {
-					console.log(data);
-					window.location.href="<?php echo base_url(); ?>PHL/Absensi";
-				});
-			}
-			
-		});
-	</script>
+async function save(data_uri, lat, lon) {
+  let jenis_absen = document.getElementById("jenis_absen").value;
+  let nama = document.getElementById("nama").value;
+  let bagian = document.getElementById("bagian").value;
+  let id_absensi = document.getElementById("id_absensi").value;
+
+  return $.ajax({
+    url: '<?= site_url("absensiPegawaiHarian/saveWebcam"); ?>',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      id_absensi: id_absensi,
+      nama: nama,
+      bagian: bagian,
+      jenis_absen: jenis_absen,
+      imagecam: data_uri,
+      lat: lat,
+      lon: lon
+    }
+  });
+}
+
+</script>
 </body>
 </html>

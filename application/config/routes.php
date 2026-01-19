@@ -56,6 +56,7 @@ $route['Datapegawai'] = 'pegawai/listData';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 $route['Datapegawainonaktif'] = 'pegawai/listDataNonAktif';
 $route['pegawai/(:num)'] = "bagian/pegawaiByBagian/$1";
+$route['editdata/(:num)'] = "pegawai/editPegawai/$1";
 
 $route['api/karyawan'] = 'api/PegawaiController/index';
 $route['api/karyawan/store'] = 'api/PegawaiController/store';
@@ -110,6 +111,7 @@ $route['deletekendaraan/(:num)'] = "kendaraan/delete/$1";
 $route['Absensi'] = 'absensi';
 $route['Absensi-visit'] = 'absensi/absensi_visit';
 $route['Absensi-visit/(:any)'] = 'absensi/Webcam_visit/$1';
+$route['Laporan-visit'] = 'absensi/laporanVisit';
 $route['export-excel-absensi/(:any)/(:any)/(:any)'] = 'absensi/exportExcel/$1/$2/$3';
 
 $route['kehadiran/(:any)'] = 'absensi/Webcam/$1';
@@ -172,6 +174,13 @@ $route['izin'] = 'izin/listIzin';
 $route['approvalIzin/(:any)/(:any)'] = 'izin/approvalIzin/$1/$2';
 $route['pengajuanIzin'] = 'izin/listPengajuanIzin';
 
+// EVALUASI
+$route['evaluasi/(:any)'] = 'evaluasiKerja/list_evaluasi/$1';
+$route['jenis-evaluasi'] = 'evaluasiKerja/listJenis';
+$route['soal-evaluasi'] = 'evaluasiKerja/list_soal';
+$route['penilaian-evaluasi/(:any)'] = 'evaluasiKerja/penilaian/$1';
+$route['hasil-evaluasi/(:any)'] = 'evaluasiKerja/hasilEvaluasi/$1'; 
+
 /*********** EVALUASI KINERJA DEFINED ROUTES *******************/
 $route['addJadwalEvaluasi'] = 'evaluasiKerja/jadwalEvaluasiKerja';
 $route['penilaianEvaluasi'] = 'evaluasiKerja';
@@ -211,6 +220,7 @@ $route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
 
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 $route['DataAssessment'] = 'assessment';
+$route['PenilaianAssessment'] = 'assessment';
 $route['assessment360'] = 'assessment/UserPage';
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 

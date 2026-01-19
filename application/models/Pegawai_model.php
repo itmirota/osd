@@ -3,7 +3,7 @@
 class Pegawai_model extends CI_Model
 {
 
-  public function showData()
+  public function showData($id = null)
   {
     $this->db->select('*');
     $this->db->from('tbl_pegawai a');
@@ -12,8 +12,14 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id','left');
     $this->db->join('tbl_pelanggaran f','f.pegawai_id = a.id_pegawai','left');
+    $this->db->join('tbl_bagian g','g.id_bagian = a.bagian_id');
     $this->db->group_by('a.id_pegawai');
     $this->db->where('a.status','aktif');
+
+    if (isset($id)) {
+      $this->db->where('id_pegawai', $id);
+    }
+    
     $query = $this->db->get();
     return $query->result();
   }
@@ -40,6 +46,8 @@ class Pegawai_model extends CI_Model
     $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
     $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
     $this->db->join('tbl_areakerja e','e.id_areakerja = a.penempatan_id');
+    $this->db->join('tbl_pelanggaran f','f.pegawai_id = a.id_pegawai','left');
+    // $this->db->join('tbl_bagian g','g.id_bagian = a.bagian_id');
     $this->db->where($where);
 
     if(isset($orderby)){

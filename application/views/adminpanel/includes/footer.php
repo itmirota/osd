@@ -92,6 +92,11 @@ if(isset($name)){ ?>
 				dropdownParent: $('#AddTerlambat')
 			});
 
+			$('#pegawai_assessment, #penilai_assessment').select2({
+			theme: 'bootstrap-5',
+				dropdownParent: $('#add_assessment')
+			});
+
 			$('#kadiv_select2, #manager_select2').select2({
 				theme: 'bootstrap-5',
         		dropdownParent: $('#addDepartement')
@@ -125,6 +130,11 @@ if(isset($name)){ ?>
 			$('#id_pegawai').select2({
 				theme: 'bootstrap-5',
 				dropdownParent: $('#AddPeminjamanBarang')
+			});
+
+			$('#pegawai_id').select2({
+				theme: 'bootstrap-5',
+				dropdownParent: $('#AddDataEvaluasi')
 			});
 
 			const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')

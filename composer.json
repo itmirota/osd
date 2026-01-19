@@ -3,5 +3,9 @@
         "phpoffice/phpspreadsheet": "^1.25",
         "google/apiclient": "^2.14",
         "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "kenjis/ci-phpunit-test": "^3.0"
     }
 }

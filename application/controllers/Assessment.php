@@ -26,38 +26,46 @@ class Assessment extends BaseController
   public function index(){
     $this->global['pageTitle'] = 'Assessment';
     $this->global['pageHeader'] = 'Assessment Karyawan ';
-    $pegawai_id = $this->global['pegawai_id'];
+
+    $page = $this->uri->segment(1);
+    $id = $this->pegawai_id;
+    $nip = $this->crud_model->getdataRowbyWhere('nip', 'id_pegawai ='.$id ,'tbl_pegawai')->nip;
     $role = $this->global['role'];
 
-    $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
     $data['role'] = $role;
+    $data['page'] = $page;
 
-    $this->loadViews("assessment/data", $this->global, $data, NULL);
+    if ($page == 'DataAssessment'){
+      $data['list_data']= $this->assessment_model->getAssessmentAll();
+      $this->loadViews("assessment/data", $this->global, $data, NULL);
+    }else{
+      $data['list_data']= $this->assessment_model->getAssessment($nip);
+      $this->loadViewsUser("assessment/data", $this->global, $data, NULL);
+    }
   }
 
   public function UserPage(){
     $this->global['pageTitle'] = 'Assessment';
     $this->global['pageHeader'] = 'Assessment Karyawan ';
-    $pegawai_id = $this->global['pegawai_id'];
+    $pegawai_nip = $this->global['pegawai_nip'];
     $role = $this->global['role'];
 
-    $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
+    $data['list_data']= $this->assessment_model->getAssessment($pegawai_nip);
     $data['role'] = $role;
 
     $this->loadViews("assessment/data", $this->global, $data, NULL);
   }
 
   public function save(){
-    $pegawai_id = $this->input->post('pegawai_id');
-    $tgl_assessment = $this->input->post('tgl_assessment');
-    $nilai = $this->input->post('nilai');
-    $keterangan = $this->input->post('keterangan');
+    $pegawai_nip = $this->input->post('pegawai_nip');
+    $penilai_nip = $this->input->post('penilai_nip');
+    $assessment_tingkatan_id = $this->input->post('assessment_tingkatan_id');
+    
 
     $data = array(
-      'pegawai_id' => $pegawai_id,
-      'tgl_assessment' => $tgl_assessment,
-      'nilai' => $nilai,
-      'keterangan' => $keterangan,
+      'pegawai_nip' => $pegawai_nip,
+      'penilai_nip' => $penilai_nip,
+      'assessment_tingkatan_id' => $assessment_tingkatan_id
     );
 
     $sql = $this->crud_model->input($data,'tbl_assessment');
@@ -68,7 +76,7 @@ class Assessment extends BaseController
       $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
     }
 
-    redirect('assessment');
+    redirect('DataAssessment');
   }
 
   public function detailAssessment($id) {
@@ -88,7 +96,7 @@ class Assessment extends BaseController
 
   public function update(){
     $id_assessment = $this->input->post('id_assessment');
-    $pegawai_id = $this->input->post('pegawai_id');
+    $pegawai_nip = $this->input->post('pegawai_nip');
     $tgl_assessment = $this->input->post('tgl_assessment');
     $nilai = $this->input->post('nilai');
     $keterangan = $this->input->post('keterangan');
@@ -98,7 +106,7 @@ class Assessment extends BaseController
     );
 
     $data = array(
-      'pegawai_id' => $pegawai_id,
+      'pegawai_nip' => $pegawai_nip,
       'tgl_assessment' => $tgl_assessment,
       'nilai' => $nilai,
       'keterangan' => $keterangan,
@@ -140,14 +148,14 @@ class Assessment extends BaseController
     {
       $data=array();
       for ($i=1; $i < $sheetcount; $i++) {         
-        $pegawai_id=$sheetdata[$i][0];
-        $penilai_id=$sheetdata[$i][1];
+        $pegawai_nip=$sheetdata[$i][0];
+        $penilai_nip=$sheetdata[$i][1];
         $assessment_tingkat_id=$sheetdata[$i][2];
 
 
         $data[]=array(
-          'pegawai_id'=> $pegawai_id,
-          'penilai_id'=>$penilai_id,
+          'pegawai_nip'=> $pegawai_nip,
+          'penilai_nip'=>$penilai_nip,
           'assessment_tingkatan_id'=>$assessment_tingkat_id,
         );
       }
@@ -166,7 +174,7 @@ class Assessment extends BaseController
 
   public function list_soal(){
     $this->global['pageTitle'] = 'Assessment';
-    $pegawai_id = $this->global['pegawai_id'];
+    $pegawai_nip = $this->global['pegawai_nip'];
     $role = $this->global['role'];
 
     $data['list_data']= $this->crud_model->lihatdata('tbl_assessment_soal');
@@ -202,13 +210,13 @@ class Assessment extends BaseController
     $data['soal_value'] = $this->assessment_model->getSoal();
     $data['kategori'] = $this->assessment_model->getKategori()->result();
     $data['id_pegawai'] = $id;
-    $data['pegawai'] =$this->crud_model->getdataRowbyWhere('nama_pegawai', 'id_pegawai ='.$id ,'tbl_pegawai');
+    $data['pegawai'] =$this->crud_model->getdataRowbyWhere('nama_pegawai', 'nip ='.$id ,'tbl_pegawai');
 
-    $this->loadViews("assessment/penilaian", $this->global, $data, NULL);
+    $this->loadViewsUser("assessment/penilaian", $this->global, $data, NULL);
   }
 
   public function save_penilaian($id){
-    $penilai_id = $this->global['pegawai_id'];
+    $penilai_nip = $this->global['pegawai_nip'];
   
     $jml_kategori = $this->assessment_model->getKategori()->num_rows();
     $kategori = $this->assessment_model->getKategori()->result();
@@ -227,15 +235,15 @@ class Assessment extends BaseController
 
     $jawaban = implode(',', $hasil);
     $data = array(
-      'pegawai_id' => $id,
+      'pegawai_nip' => $id,
       'nilai' => $jawaban,
-      'penilai_id' => $penilai_id,
+      'penilai_nip' => $penilai_nip,
       'tgl_assessment' => date('Y-m-d H:i:s')
     );
 
     $where = array (
-      'pegawai_id' => $id,
-      'penilai_id' => $penilai_id
+      'pegawai_nip' => $id,
+      'penilai_nip' => $penilai_nip
     );
  
 
@@ -248,6 +256,8 @@ class Assessment extends BaseController
   public function hasilAssessment($id){
     $this->global['pageTitle'] = 'Assessment';
 
+    $ids = $this->uri->segment(3);
+
     $hasil = $this->assessment_model->getHasilAssessment($id);
     $explode_hasil = explode(',',$hasil->nilai);
 
@@ -256,4 +266,15 @@ class Assessment extends BaseController
 
     $this->loadViews("assessment/hasil", $this->global, $data, NULL);
   }
+
+  public function hapusAssessment($id){
+    $where = array(
+      'id_assessment' => $id
+    );
+
+    $this->crud_model->delete($where, 'tbl_assessment');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+    redirect('DataAssessment');
+  }
+  
 }

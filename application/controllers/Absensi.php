@@ -47,11 +47,11 @@ class Absensi extends BaseController
   }
 
   public function absensi_visit(){
-    $this->global['pageTitle'] = 'Absensi Manual Mirota KSM';
-    $this->global['pageHeader'] = 'Absensi Manual Karyawan ';
+    $this->global['pageTitle'] = 'Absensi Visit Mirota KSM';
+    $this->global['pageHeader'] = 'Absensi Visit Karyawan ';
     $pegawai_id = $this->global ['pegawai_id'];
 
-    $data['list_data']= $this->absensi_model->showData($pegawai_id);
+    $data['list_data']= $this->absensi_model->getAbsenVisitHariIni($pegawai_id);
     $data['datenow']= DATE('d M Y');
 
     $this->loadViewsUser("absensi/data_visit", $this->global, $data, NULL);
@@ -124,28 +124,49 @@ class Absensi extends BaseController
     $id = $this->input->post('id_pegawai');
     $periode = $this->input->post('periode');
     $datenow = DATE('Y-m');
+    $tanggal = DATE('d');
 
+    // ================================
+    // 1. Tentukan periode dasar
+    // ================================
+    $periodeDasar = (!empty($periode)) ? $periode : $datenow;
+    $periodeAkhir = $periodeDasar . '-20';
+
+    $dateObj = date_create($periodeDasar);
+    $bulanSekarang = (int) $dateObj->format('m');
+    $tahunSekarang = (int) $dateObj->format('Y');
+
+    $periodeAkhir = $datenow.'-20';
+    $date = date_create($datenow);
+    
     if (!empty($periode)){
       $periodeAkhir = $periode.'-20';
       $date = date_create($periode);
-    }else{
-      $periodeAkhir = $datenow.'-20';
-      $date = date_create($datenow);
     }
 
-    $bulanNow = date_format($date,'m');
+    $bulanNow = (int) $dateObj->format('m');
+    $tahunNow = (int) $dateObj->format('Y');
+
+    $bulan = $bulanNow-1;
+    $tahun = $tahunNow;
 
     if ($bulanNow == 1){
       $bulan = 12;
-      $tahun = date_format($date,'Y')-1;
-    }else{
-      $bulan = date_format($date,'m')-1;
-      $tahun = date_format($date,'Y');
+      $tahun = $tahunNow-1;
     }
 
+    $periodeAwal = $tahun.'-'.$bulan.'-21';  
 
-    $periodeAwal = $tahun.'-'.$bulan.'-21';
-
+    if($tanggal >= 21 && $tanggal <= 31){
+      $bulanAwal = $bulan + 1;
+      $bulanAwal == 13 ? $bulanAwal = 1 : $bulanAwal;
+      $bulanAkhir = $bulanAwal + 1;
+      $bulanAkhir == 13 ? $bulanAkhir = 1 : $bulanAkhir;
+      $tahunAkhir = $tahun + 1;
+      
+      $periodeAwal = $tahun.'-'.$bulanAwal.'-21';
+      $periodeAkhir = $tahunAkhir.'-'.$bulanAkhir.'-20';
+    }
 
     $where = array(
       'date >=' => $periodeAwal,
@@ -290,9 +311,9 @@ class Absensi extends BaseController
     header('Content-Type: application/vnd.ms-excel');
 
     if (!empty($periodeAwal) && !empty($periodeAkhir)){
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan" '.$awal.' - '.$akhir.'.xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Absensi Online" '.$awal.' - '.$akhir.'.xlsx');
     }else{
-        header('Content-Disposition: attactchment;filename="Laporan Kebersihan".xlsx');
+        header('Content-Disposition: attactchment;filename="Laporan Absensi Online".xlsx');
     }
 
     header('Cache-Control: max-age=0');
@@ -340,73 +361,297 @@ class Absensi extends BaseController
     $this->loadViewsUser("absensi/webcam", $this->global, $data, NULL);
 	}
 
+  public function saveWebcam(){
+    $input = json_decode($this->input->raw_input_stream, true);
+
+    $id           = $input['id'];
+    $jenis_absen  = $input['jenis_absen'];
+    $imagecam     = $input['imagecam'];
+    $lat          = $input['lat'];
+    $lon          = $input['lon'];
+    $wilayah      = $input['wilayah'];
+    $kota         = $input['kota'];
+    $kodeRandom   = $input['kodeRandom'];
+
+    // ==============================
+    // VALIDASI DATA WAJIB
+    // ==============================
+    if (!$id || !$jenis_absen || !$imagecam) {
+        echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+        return;
+    }
+
+    // ==============================
+    // DECODE FOTO
+    // ==============================
+    $imagecam = str_replace("data:image/jpeg;base64,", "", $imagecam);
+    $imagecam = base64_decode($imagecam);
+
+    $folder = FCPATH . 'assets/images/absensi/';
+    if (!is_dir($folder)) mkdir($folder, 0777, true);
+
+    $filename = "absen_" . $id . "_" . time() . ".jpg";
+
+    if (!file_put_contents($folder . $filename, $imagecam)) {
+        echo json_encode(["status" => "error", "msg" => "Gagal menyimpan foto"]);
+        return;
+    }
+
+    // ==============================
+    // ABSEN MASUK
+    // ==============================
+    if ($jenis_absen == "masuk") {
+
+        // Cek apakah sudah absen masuk hari ini
+        $cek = $this->absensi_model->cekMasukHariIni($id);
+
+        if ($cek) {
+            echo json_encode(["status" => "error", "msg" => "Anda sudah absen masuk hari ini"]);
+            return;
+        }
+
+        $data = [
+            "pegawai_id"      => $id,
+            "date"            => date('Y-m-d'),
+            "time_in"         => date('H:i:s'),
+            "latitude_in"     => $lat,
+            "longitude_in"    => $lon,
+            "wilayah_in"      => $wilayah,
+            "kota_in"         => $kota,
+            "kode_in"         => $kodeRandom,
+            "bukti_absensi_in"=> $filename
+        ];
+
+        $this->db->insert("tbl_absensi", $data);
+
+        echo json_encode(["status" => "ok"]);
+        return;
+    }
+
+    // ==============================
+    // ABSEN PULANG
+    // ==============================
+    $absen = $this->absensi_model->getAbsenMasukHariIni($id);
+
+    if (!$absen) {
+        echo json_encode(["status" => "error", "msg" => "Anda belum absen masuk"]);
+        return;
+    }
+
+    // Cek apakah sudah absen pulang
+    if ($absen->time_out != NULL) {
+        echo json_encode(["status" => "error", "msg" => "Anda sudah absen pulang"]);
+        return;
+    }
+
+    // Update data pulang
+    $data = [
+        "time_out"          => date("H:i:s"),
+        "latitude_out"      => $lat,
+        "longitude_out"     => $lon,
+        "wilayah_out"       => $wilayah,
+        "kota_out"          => $kota,
+        "kode_out"         => $kodeRandom,
+        "bukti_absensi_out" => $filename,
+    ];
+
+    $this->db->where("id_absensi", $absen->id_absensi);
+    $this->db->update("tbl_absensi", $data);
+
+    echo json_encode(["status" => "ok"]);
+  }
+
   public function Webcam_visit()
 	{
     $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';
 
+    $absen = $this->absensi_model->getVisitMasukHariIni($this->pegawai_id);
+
     $data = array(
       'id_pegawai' => $this->pegawai_id,
       'nama_pegawai' => $this->name,
-      'jenis_absen' => $this->uri->segment(2)
+      'jenis_absen' => $this->uri->segment(2),
+      'list_absen' => $absen
     );
 
     $this->loadViewsUser("absensi/webcam_visit", $this->global, $data, NULL);
 	}
 
-  public function saveWebcam(){
-		$id_pegawai = $this->input->post('id');
-		$jenis_absen = $this->input->post('jenis_absen');
-		$image = $this->input->post('imagecam');
-		$lat = $this->input->post('lat');
-		$lon = $this->input->post('lon');
-		$wilayah = $this->input->post('wilayah');
-		$kota = $this->input->post('kota');
+  public function saveWebcamVisit(){
 
-    if (is_null($wilayah)) {
-      $wilayah = "";
-      $kota = "";
+    $id          = $this->input->post('id');
+    $jenis_absen = $this->input->post('jenis_absen');
+    $nama_toko   = $this->input->post('nama_toko');
+    $keterangan  = $this->input->post('keterangan');
+    $kodeRandom  = $this->input->post('kodeRandom');
+    $lat         = $this->input->post('lat');
+    $lon         = $this->input->post('lon');
+    $wilayah     = $this->input->post('wilayah');
+    $kota        = $this->input->post('kota');
+
+    // FOTO
+    if (!empty($_FILES['imagecam']['name'])) {
+      $foto = uploadFoto('imagecam', 'absensi');
+    } else {
+      $foto = null;
     }
 
-		$image = str_replace('[removed]','', $image);
-		$image = base64_decode($image);
-		$filename = 'image_'.time().'.jpg';
-		file_put_contents(FCPATH.'/assets/images/absensi/'.$filename,$image);
+    // === UPLOAD DOKUMEN ===
+    $dokumen = null;
+    if (!empty($_FILES['dokumen']['name'])) {
+      $dokumen = uploadDokumen('dokumen', 'dokumen_visit');
+    }
 
-    if($jenis_absen == 'masuk'){
-      $data = array(
-        'pegawai_id' => $id_pegawai,
-        'latitude_in' => $lat,
-        'longitude_in' => $lon,
-        'wilayah_in' => $wilayah,
-        'kota_in' => $kota,
-        'bukti_absensi_in' => $filename,
-        'date' => DATE('Y-m-d'),
-        'time_in' => DATE('H:i:s')
-      );
-  
-      $res = $this->crud_model->input($data,'tbl_absensi');
-    }else{
-      $id = $this->absensi_model->getDataAbsenById($id_pegawai)->id_absensi;
+    // ==============================
+    // ABSEN MASUK
+    // ==============================
+    if ($jenis_absen == "masuk") {
+      // Cek apakah sudah absen masuk hari ini
+      // $cek = $this->absensi_model->cekMasukHariIni($id);
+
+      // if ($cek) {
+      //     echo json_encode(["status" => "error", "msg" => "Anda sudah absen masuk hari ini"]);
+      //     return;
+      // }
+
+      $data = [
+        "pegawai_id"      => $id,
+        "date"            => date('Y-m-d'),
+        "time_in"         => date('H:i:s'),
+        "nama_toko"       => $nama_toko,
+        "latitude_in"     => $lat,
+        "longitude_in"    => $lon,
+        "wilayah_in"      => $wilayah,
+        "kota_in"         => $kota,
+        "kode_in"         => $kodeRandom,
+        "bukti_absensi_in"=> $foto
+      ];
+
+      $this->db->insert("tbl_absensi_visit", $data);
+
+      echo json_encode(["status" => "ok"]);
+      return;
+    }
+
+    // ==============================
+    // ABSEN PULANG
+    // ==============================
+    $absen = $this->absensi_model->getVisitMasukHariIni($id);
+
+    if (!$absen) {
+        echo json_encode(["status" => "error", "msg" => "Anda belum absen masuk"]);
+        return;
+    }
+
+    // Cek apakah sudah absen pulang
+    if ($absen->time_out != NULL) {
+        echo json_encode(["status" => "error", "msg" => "Anda sudah absen pulang"]);
+        return;
+    }
+
+    // Update data pulang
+    $data = [
+        "time_out"          => date("H:i:s"),
+        "keterangan"        => $keterangan,
+        "latitude_out"      => $lat,
+        "longitude_out"     => $lon,
+        "wilayah_out"       => $wilayah,
+        "kota_out"          => $kota,
+        "kode_out"          => $kodeRandom,
+        "dokumen"           => $dokumen,
+        "bukti_absensi_out" => $foto
+    ];
+
+    $this->db->where("id_absensi_visit", $absen->id_absensi_visit);
+    $this->db->update("tbl_absensi_visit", $data);
+
+    echo json_encode(["status" => "ok"]);
+  }
+
+  public function laporanVisit()
+  {
+      $this->global['pageTitle']  = 'Laporan Absensi Visit Mirota KSM';
+      $this->global['pageHeader'] = 'Laporan Absensi Visit Karyawan';
+
+      // Input user
+      $id       = $this->input->post('id_pegawai');
+      $periode  = $this->input->post('periode'); // format Y-m
+      $today    = date('Y-m-d');
+      $tanggal  = date('d');
+      $datenow  = date('Y-m');
+
+      // ================================
+      // 1. Tentukan periode dasar
+      // ================================
+      $periodeDasar = (!empty($periode)) ? $periode : $datenow;
+      $periodeAkhir = $periodeDasar . '-20';
+
+      $dateObj = date_create($periodeDasar);
+      $bulanSekarang = (int) $dateObj->format('m');
+      $tahunSekarang = (int) $dateObj->format('Y');
+
+      // ================================
+      // 2. Hitung bulan sebelumnya
+      // ================================
+      if ($bulanSekarang == 1) {
+          $bulanLalu = 12;
+          $tahunLalu = $tahunSekarang - 1;
+      } else {
+          $bulanLalu = $bulanSekarang - 1;
+          $tahunLalu = $tahunSekarang;
+      }
+
+      // ================================
+      // 3. Hitung Periode Awal – Akhir
+      //    Sistem penggajian 21 – 20
+      // ================================
+      if ($tanggal >= 21) {
+          // Masuk periode bulan berikutnya
+          $bulanAwal  = $bulanSekarang;
+          $bulanAkhir = $bulanSekarang + 1;
+
+          if ($bulanAkhir > 12) { 
+            $bulanAkhir = 1; 
+            $tahunAkhir = $tahunSekarang + 1; 
+          }
+
+          $periodeAwal  = sprintf("%d-%02d-21", $tahunSekarang, $bulanAwal);
+          $periodeAkhir = sprintf("%d-%02d-20", $tahunAkhir, $bulanAkhir);
+
+      } else {
+          // Masuk periode sebelumnya
+          $periodeAwal  = sprintf("%d-%02d-21", $tahunLalu, $bulanLalu);
+          $periodeAkhir = sprintf("%d-%02d-20", $tahunSekarang, $bulanSekarang);
+      }
+
+
+      // ================================
+      // 4. Buat kondisi query
+      // ================================
       $where = array(
-        'id_absensi' => $id,
-        'pegawai_id' => $id_pegawai,
-        'DATE(date)' => DATE('Y-m-d'),
+          'date >=' => $periodeAwal,
+          'date <=' => $periodeAkhir
+      );
+      
+
+      $id = $id ?? 0;
+
+      // ================================
+      // 5. Siapkan data view
+      // ================================
+      $data = array(
+          'id'           => $id,
+          'periodeAwal'  => $periodeAwal,
+          'periodeAkhir' => $periodeAkhir,
+          'list_data'    => $this->absensi_model->getLaporanAbsenVisit($where),
       );
 
-      $data = array(
-        'time_out' => DATE('H:i:s'),
-        'latitude_out' => $lat,
-        'longitude_out' => $lon,
-        'wilayah_out' => $wilayah,
-        'kota_out' => $kota,
-        'bukti_absensi_out' => $filename
-      );
-  
-      $res = $this->crud_model->update($where,$data,'tbl_absensi');
-    }
-		echo json_encode($res);
-	}
+      // ================================
+      // 6. Load view
+      // ================================
+      $this->loadViews("absensi/laporan_visit", $this->global, $data, NULL);
+  }
 
 
   // ABSENSI ISTIRAHAT

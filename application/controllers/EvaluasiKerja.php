@@ -20,6 +20,306 @@ class evaluasiKerja extends BaseController
       $this->isLoggedIn();
   }
 
+  public function ShowDataJson($id){
+    $data = $this->evaluasiKerja_model->getDataWhere(['id_evaluasi' => $id]);
+
+    echo json_encode($data[0]);
+  }
+
+  public function list_evaluasi(){
+    $page = $this->uri->segment(2);
+
+    $this->global['pageTitle'] = 'Evaluasi '.$page.' Mirota KSM';
+    $this->global['pageHeader'] = 'Data Evaluasi '.$page;
+    $kategori = $this->crud_model->getdataRowbyWhere('id_evaluasi_kategori,nama_evaluasi_kategori', ['nama_evaluasi_kategori' => $page], 'tbl_evaluasi_kategori');
+
+    $data['kategori'] = $kategori;
+    $data['jenis'] = $this->crud_model->lihatdata('tbl_evaluasi_jenis');
+    $data['karyawan'] = $this->crud_model->lihatdata('tbl_pegawai');
+    $data['list_data'] = $this->evaluasiKerja_model->getDataWhere(['kategori_evaluasi' => $kategori->id_evaluasi_kategori]);
+
+    $this->loadViews("evaluasi/data", $this->global, $data, NULL);
+  }
+
+  public function saveJadwal(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+
+    $page = $this->input->get('page');
+    
+    $tgl_evaluasi = $this->input->post('tgl_evaluasi');
+    $pegawai_id = $this->input->post('pegawai_id');
+    $kategori_evaluasi = $this->input->post('kategori_id');
+    $jenis_evaluasi = $this->input->post('jenis_evaluasi');
+
+    $data = array (
+      'tgl_evaluasi' => $tgl_evaluasi,
+      'pegawai_id' => $pegawai_id,
+      'kategori_evaluasi' => $kategori_evaluasi,
+      'jenis_evaluasi' => $jenis_evaluasi,
+    );
+
+    $sql = $this->crud_model->input($data,'tbl_evaluasi');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+
+    redirect("evaluasi/".$page);
+  }
+
+  public function updateJadwal(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+
+    $page = $this->input->get('page');
+
+    $id_evaluasi = $this->input->post('id_evaluasi');
+    $tgl_evaluasi = $this->input->post('tgl_evaluasi');
+    $pegawai_id = $this->input->post('pegawai_id');
+    $kategori_evaluasi = $this->input->post('kategori_id');
+    $jenis_evaluasi = $this->input->post('jenis_evaluasi');
+
+    $data = array (
+      'tgl_evaluasi' => $tgl_evaluasi,
+      'pegawai_id' => $pegawai_id,
+      'kategori_evaluasi' => $kategori_evaluasi,
+      'jenis_evaluasi' => $jenis_evaluasi,
+    );
+
+    $sql = $this->crud_model->update(['id_evaluasi' => $id_evaluasi],$data,'tbl_evaluasi');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+
+    redirect("evaluasi/".$page);
+  }
+
+  public function deleteJadwal($id_evaluasi,$kategori){
+
+    $kategori = $this->crud_model->getdataRowbyWhere('id_evaluasi_kategori,nama_evaluasi_kategori', ['id_evaluasi_kategori' => $kategori], 'tbl_evaluasi_kategori');
+    $kategori = $kategori->nama_evaluasi_kategori;
+
+    $sql = $this->crud_model->delete(['id_evaluasi' => $id_evaluasi],'tbl_evaluasi');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+
+    redirect("evaluasi/".$kategori);
+  }
+
+  public function listJenis(){
+    $this->global['pageTitle'] = 'Jenis Evaluasi Mirota KSM';
+    $this->global['pageHeader'] = 'Kategori Jenis Evaluasi Mirota KSM';
+
+    $data['list_data'] = $this->crud_model->lihatdata('tbl_evaluasi_jenis');
+
+    $this->loadViews("evaluasi/data_jenis", $this->global, $data, NULL);
+  }
+
+  public function saveJenis(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    
+    $nama_evaluasi_jenis = $this->input->post('nama_evaluasi_jenis');
+
+    $data = array (
+      'nama_evaluasi_jenis' => $nama_evaluasi_jenis,
+    );
+
+    $sql = $this->crud_model->input($data,'tbl_evaluasi_jenis');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+
+    redirect("jenis-evaluasi");
+  }
+
+  public function DataJenisJson($id){
+    $data = $this->crud_model->getdataRowbyWhere('*',['id_evaluasi_jenis' => $id],'tbl_evaluasi_jenis');
+
+    echo json_encode($data);
+  }
+
+  public function updateJenis(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    
+    $id_evaluasi_jenis = $this->input->post('id_evaluasi_jenis');
+    $nama_evaluasi_jenis = $this->input->post('nama_evaluasi_jenis');
+
+    $data = array (
+      'nama_evaluasi_jenis' => $nama_evaluasi_jenis,
+    );
+
+    $sql = $this->crud_model->update(['id_evaluasi_jenis' => $id_evaluasi_jenis],$data,'tbl_evaluasi_jenis');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+
+    redirect("jenis-evaluasi");
+  }
+
+  public function deleteJenis($id_evaluasi_jenis){
+    $sql = $this->crud_model->delete(['id_evaluasi_jenis' => $id_evaluasi_jenis],'tbl_evaluasi_jenis');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+
+    redirect("jenis-evaluasi");
+  }
+
+  public function list_soal(){
+    $this->global['pageTitle'] = 'Soal Evaluasi Mirota KSM';
+    $this->global['pageHeader'] = 'Soal Evaluasi';
+
+    $id = $this->input->get('j');
+
+    $data = array(
+      'jenis' => $this->crud_model->getdataRowbyWhere('*',['id_evaluasi_jenis' => $id],'tbl_evaluasi_jenis'),
+      'list_data' => $this->evaluasiKerja_model->getDataSoalWhere(['jenis_evaluasi_id' => $id], 'tbl_evaluasi_soal')
+    );
+
+    $this->loadViews("evaluasi/data_soal", $this->global, $data, NULL);
+  }
+
+  public function saveSoal(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    $this->global['pageHeader'] = 'Soal Evaluasi';
+
+    $id = $this->input->get('j');
+    $parameter = $this->input->post('parameter');
+    $judul = $this->input->post('judul');
+    $deskripsi = $this->input->post('deskripsi');
+    $target = $this->input->post('target');
+    $bobot = $this->input->post('bobot');
+
+    $data = array (
+      'jenis_evaluasi_id' => $id,
+      'parameter' => $parameter,
+      'judul' => $judul,
+      'deskripsi' => $deskripsi,
+      'target' => $target,
+      'bobot' => $bobot,
+    );
+
+    $sql = $this->crud_model->input($data,'tbl_evaluasi_soal');
+    
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    redirect('soal-evaluasi?j='.$id);
+  }
+
+    public function ShowDataSoalJson($id){
+    $data = $this->crud_model->getdataRowbyWhere('*',['id_evaluasi_soal' => $id],'tbl_evaluasi_soal');
+
+    echo json_encode($data);
+  }
+
+  public function updateSoal(){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM'; 
+    $this->global['pageHeader'] = 'Soal Evaluasi';
+
+    $id = $this->input->get('j');
+    $id_evaluasi_soal = $this->input->post('id_evaluasi_soal');
+    $parameter = $this->input->post('parameter');
+    $judul = $this->input->post('judul');
+    $deskripsi = $this->input->post('deskripsi');
+    $target = $this->input->post('target');
+    $bobot = $this->input->post('bobot');
+
+    $data = array (
+      'jenis_evaluasi_id' => $id,
+      'parameter' => $parameter,
+      'judul' => $judul,
+      'deskripsi' => $deskripsi,
+      'target' => $target,
+      'bobot' => $bobot,
+    );
+
+    $sql = $this->crud_model->update(['id_evaluasi_soal' => $id_evaluasi_soal],$data,'tbl_evaluasi_soal');
+    
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    redirect('soal-evaluasi?j='.$id);
+  }
+
+  public function deleteSoal($id_evaluasi_soal){
+    $id = $this->input->get('j');
+
+    $sql = $this->crud_model->delete(['id_evaluasi_soal' => $id_evaluasi_soal],'tbl_evaluasi_soal');
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
+
+    redirect('soal-evaluasi?j='.$id);
+  }
+
+
+  public function penilaian($id){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    $this->global['pageHeader'] = 'Formulir Penilaian Karyawan';
+
+    $pegawai_id = $this->pegawai_id;
+    $pegawai = $this->pegawai_model->getPegawaibyId($pegawai_id);
+    $evaluasi_data = $this->evaluasiKerja_model->getDataRow(['id_evaluasi'=>$id]);
+
+    $data = array(
+      'pegawai' => $pegawai,
+      'id' => $id,
+      'list_data' => $evaluasi_data, // Wrap the single row in an array for consistency with other views
+      'soal_evaluasi' => $this->evaluasiKerja_model->getDataSoalWhere(['jenis_evaluasi_id' => $evaluasi_data->jenis])
+    );
+
+    $this->loadViews("evaluasi/penilaian", $this->global, $data, NULL);
+  }
+
+  public function saveNilai($id){
+    $penilai_id = $this->global['pegawai_id'];
+    $evaluasi = $this->evaluasiKerja_model->getDataRow(['id_evaluasi' => $id]);
+    $soal = $this->evaluasiKerja_model->getDataSoalWhere(['jenis_evaluasi_id' => $evaluasi->jenis]);
+    $count_soal = COUNT($soal);
+
+    for ($i=0; $i < $count_soal  ; $i++) { 
+        $jawaban[$i] = $this->input->post('nilai_'.$soal[$i]->id_evaluasi_soal);
+        $jawaban[$i] = $soal[$i]->id_evaluasi_soal.':'.$jawaban[$i];
+    }
+
+    $jawaban = implode(',', $jawaban);
+
+    $data = array(
+      'evaluasi_id' => $id,
+      'pegawai_id' => $evaluasi->pegawai_id,
+      'nilai' => $jawaban,
+      'penilai_id' => $penilai_id,
+      'tgl_evaluasi' => date('Y-m-d H:i:s')
+    );
+ 
+
+    $this->crud_model->input($data, 'tbl_evaluasi_hasil');
+
+    $this->set_notifikasi_swal('success','Berhasil','Penilaian Berhasil Disimpan');
+    redirect('evaluasi/'.$evaluasi->kategori);
+  }
+
+  public function Hasil($id){
+    $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
+    $this->global['pageHeader'] = 'Hasil Penilaian Karyawan';
+
+    $evaluasi = $this->evaluasiKerja_model->getHasilEvaluasi($id)->result();
+    $list_data = $this->evaluasiKerja_model->getHasilEvaluasi($id)->row();
+    $detail_pegawai = $this->pegawai_model->showDataRow(['id_pegawai' => $list_data->id_dievaluasi]);
+    $soal = $this->evaluasiKerja_model->getDataSoalWhere(['jenis_evaluasi_id' => $list_data->jenis_evaluasi]);
+
+    $total = 0;
+    foreach ($evaluasi as $eval) {
+      // var_dump($eval->hasil_nilai);
+      $explode_hasil = explode(',', $eval->hasil_nilai);
+
+      $count =  COUNT($explode_hasil);
+      $jumlah_nilai = 0;
+      for($i=0; $i < $count; $i++){
+        $explode_nilai[$i] = explode(':',$explode_hasil[$i]);
+        $jumlah_nilai += $explode_nilai[$i][1];
+      }
+
+      $nilai = round($jumlah_nilai/$count);
+
+      $total += $nilai;
+    }
+
+
+    $hasil = $total / COUNT($evaluasi);
+
+
+    $data['hasil'] = $evaluasi;
+    $data['list_data'] = $list_data;
+    $data['detail_pegawai'] = $detail_pegawai;
+    $data['soal'] = $soal;
+    $data['nilai'] = $hasil;
+
+    $this->loadViews("evaluasi/laporan", $this->global, $data, NULL);
+  }
+
   public function index(){
     $this->global['pageTitle'] = 'Evaluasi Kerja Mirota KSM';
     $this->global['pageHeader'] = 'Formulir Evaluasi Kerja';

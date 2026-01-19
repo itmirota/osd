@@ -2,7 +2,63 @@
 
 class Absensi_model extends CI_Model
 {
-// AMBSENSI ONLINE
+// ABSENSI ONLINE
+
+  // Mengecek apakah user sudah absen masuk hari ini (return true/false)
+  public function cekMasukHariIni($id_pegawai)
+  {
+    $today = date('Y-m-d');
+    $this->db->where('pegawai_id', $id_pegawai);
+    $this->db->where('date', $today);
+
+    $query = $this->db->get('tbl_absensi');
+    return $query->num_rows() > 0;
+  }
+
+  // Mengambil data absen masuk hari ini (return data row)
+  public function getAbsenMasukHariIni($id_pegawai)
+  {
+    $today = date('Y-m-d');
+    $this->db->where('pegawai_id', $id_pegawai);
+    $this->db->where('date', $today);
+
+    $query = $this->db->get('tbl_absensi');
+    return $query->row(); // return 1 row data
+  }
+
+  public function getAbsenVisitHariIni($id){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi_visit a');
+    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->where('pegawai_id',$id);
+    $this->db->where('date',DATE('Y-m-d'));
+    $this->db->order_by('id_absensi_visit','DESC');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function getLaporanAbsenVisit($where){
+    $this->db->select('*');
+    $this->db->from('tbl_absensi_visit a');
+    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->where($where);
+    $this->db->order_by('id_absensi_visit','DESC');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  // Mengambil data absen masuk hari ini (return data row)
+  public function getVisitMasukHariIni($id_pegawai)
+  {
+    $today = date('Y-m-d');
+    $this->db->where('pegawai_id', $id_pegawai);
+    $this->db->where('date', $today);
+    $this->db->order_by('id_absensi_visit','DESC');
+
+    $query = $this->db->get('tbl_absensi_visit');
+    return $query->row(); // return 1 row data
+  }
+
   public function showData($id){
     $this->db->select('*');
     $this->db->from('tbl_absensi a');
@@ -17,7 +73,7 @@ class Absensi_model extends CI_Model
   public function getDataAbsenById($id){
     $this->db->select('*');
     $this->db->from('tbl_absensi a');
-    $this->db->join('tbl_pegawai b','b.id_pegawai = a.pegawai_id');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_id');
     $this->db->where('pegawai_id',$id);
     $this->db->order_by('id_absensi','DESC');
     $query = $this->db->get();

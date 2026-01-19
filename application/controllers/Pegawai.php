@@ -50,44 +50,30 @@ class Pegawai extends BaseController
     $where = array(
       'status_pegawai' => 'kontrak',
       'MONTH(tgl_selesai) >=' => DATE('m'),
-      'MONTH(tgl_selesai) <=' => DATE('m') + 3
-    );
-
-    $where = array(
-      'status_pegawai' => 'kontrak',
-      'MONTH(tgl_selesai) >=' => DATE('m'),
       'MONTH(tgl_selesai) <=' => DATE('m') + 3,
       'YEAR(tgl_selesai) =' => DATE('Y')
     );
 
+    $pegawai_id = $this->pegawai_id;
     $role = $this->role;
-    $divisi = $this->divisi_id;
+    $bagian = $this->bagian_id;
+    $pegawai = $this->pegawai_model->showDataRow(['bagian_id' => $bagian]);
 
-    // if($role == ROLE_KABAG){
-    //   $pegawai_id = $this->pegawai_id;
-    //   $list_data = $this->pegawai_model->showDataWhere('*',['kadiv_id' => $pegawai_id,'status' => 'aktif'],NULL,NULL,NULL);
-    //   $whereTotalPegawai = array(
-    //     'divisi_id' => $divisi,
-    //     'status' => "aktif"
-    //   );
-    // }elseif($role == ROLE_MANAGER){
-    //   $pegawai_id = $this->pegawai_id;
-      
-    //   $list_data = $this->pegawai_model->showDataWhere('*',['manager_id' => $pegawai_id, 'status' => 'aktif'],NULL,NULL,NULL);
+    switch ($role) {
+      case ROLE_KABAG:
+      case ROLE_SPV:
+        $list_data = $this->pegawai_model->showDataWhere('*',['id_divisi' => $pegawai->id_divisi,'status' => 'aktif'],NULL,NULL,NULL);
+        break;
 
-    //   $whereTotalPegawai = array(
-    //     'manager_id' => $pegawai_id,
-    //     'status' => "aktif"
-    //   );
-    // }else{
-    //   $list_data = $this->pegawai_model->showData();
-      
-    //   $whereTotalPegawai = array(
-    //     'status' => "aktif"
-    //   );
-    // }
+      case ROLE_MANAGER:
+        $list_data = $this->pegawai_model->showDataWhere('*',['id_departement' => $pegawai->id_departement,'status' => 'aktif'],NULL,NULL,NULL);
+        break;
+        
+      default:
+        $list_data = $this->pegawai_model->showData();
+        break;
+    }
 
-    $list_data = $this->pegawai_model->showData();
 
     $data = array(
       'list_data' => $list_data,
@@ -211,7 +197,7 @@ class Pegawai extends BaseController
     $nip = $this->input->post('nip');
     $jabatan_id = $this->input->post('jabatan_id');
     $bagian_id = $this->input->post('bagian_id');
-    $areakerja_id = $this->input->post('areakerja');
+    $areakerja_id = $this->input->post('areakerja_id');
     $status_pegawai = $this->input->post('status_pegawai'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
     $tgl_lahir = $this->input->post('tgl_lahir');    
@@ -458,11 +444,27 @@ class Pegawai extends BaseController
     $data['divisi'] = $this->crud_model->lihatdata('tbl_divisi');
     $data['bagian'] = $this->crud_model->lihatdata('tbl_bagian');
     $data['jabatan'] = $this->crud_model->lihatdata('tbl_jabatan');
+    $data['page'] = $this->uri->segment(1);
+
+    $this->loadViews("pegawai/editdata", $this->global, $data, NULL);
+  }
+
+    public function editPegawai($id){
+    $this->global['pageTitle'] = "Edit Data Karyawan";
+
+    $data['list_data'] = $this->pegawai_model->showDataRow(['id_pegawai' => $id]);
+    $data['provinsi'] = $this->crud_model->lihatdata('reg_provinces');
+    $data['departement'] = $this->crud_model->lihatdata('tbl_departement');
+    $data['divisi'] = $this->crud_model->lihatdata('tbl_divisi');
+    $data['bagian'] = $this->crud_model->lihatdata('tbl_bagian');
+    $data['jabatan'] = $this->crud_model->lihatdata('tbl_jabatan');
+    $data['page'] = $this->uri->segment(1);
 
     $this->loadViewsUser("pegawai/editdata", $this->global, $data, NULL);
   }
 
   public function update(){
+    $page = $this->input->post('page');
     $nama_pegawai = $this->input->post('nama_pegawai');
     $nip = $this->input->post('nip');
     $jabatan_id = $this->input->post('jabatan_id');
@@ -485,13 +487,31 @@ class Pegawai extends BaseController
     $tgl_masuk = $this->input->post('tgl_masuk');   
     $tgl_selesai = $this->input->post('tgl_selesai');   
     $durasi_kontrak = $this->input->post('durasi_kontrak');   
+    $kuota_cuti = $this->input->post('kuota_cuti');   
     $email_pegawai = $this->input->post('email_pegawai');  
     $status_pernikahan = $this->input->post('status_pernikahan');    
     $nama_ibu = $this->input->post('nama_ibu');    
     $nama_ayah = $this->input->post('nama_ayah');    
     $nama_pasangan = $this->input->post('nama_pasangan');
     $nama_anak = $this->input->post('nama_anak');    
-    $role_id = $this->input->post('role_id');   
+    $kontak_pasangan = $this->input->post('kontak_pasangan');
+    $nama_kontakdarurat1 = $this->input->post('nama_kontakdarurat1');    
+    $no_hpdarurat1 = $this->input->post('no_hpdarurat1');    
+    $hubungan_darurat1 = $this->input->post('hubungan_darurat1'); 
+    $nama_kontakdarurat2 = $this->input->post('nama_kontakdarurat2');    
+    $no_hpdarurat2 = $this->input->post('no_hpdarurat2');    
+    $hubungan_darurat2 = $this->input->post('hubungan_darurat2');
+    $updateby = $this->global['pegawai_id'];
+
+
+    if(empty($tgl_selesai)){
+      $tgl_selesai = NULL;
+    }
+
+    if(empty($kuota_cuti)){
+      $kuota_cuti = NULL;
+    }
+
 
     $data = array(
       'nip' => $nip,
@@ -522,7 +542,16 @@ class Pegawai extends BaseController
       'nama_ibu' => $nama_ibu,
       'nama_ayah' => $nama_ayah,
       'nama_pasangan' => $nama_pasangan,
-      'nama_anak' => $nama_anak
+      'nama_anak' => $nama_anak,
+      'kontak_pasangan' => $kontak_pasangan,
+      'nama_kontakdarurat1' => $nama_kontakdarurat1,
+      'no_hpdarurat1' => $no_hpdarurat1,
+      'hubungan_darurat1' => $hubungan_darurat1,
+      'nama_kontakdarurat2' => $nama_kontakdarurat2,
+      'no_hpdarurat2' => $no_hpdarurat2,
+      'hubungan_darurat2' => $hubungan_darurat2,
+      'updatedBy' => $updateby,
+      'updatedDtm' => date('Y-m-d H:i:s')
     );
 
     $where = array(
@@ -536,7 +565,11 @@ class Pegawai extends BaseController
       $this->set_notifikasi_swal('error','Gagal','Data Gagal Disimpan');
     }
 
-    redirect('Datapegawai');
+    if ($page == 'editdata') {
+      redirect('dashboardUser');
+    }else{
+      redirect('Datapegawai');
+    }
   }
 
   public function updateNonAktif(){ 
@@ -975,12 +1008,15 @@ class Pegawai extends BaseController
     $sheet->setCellValue('C5', 'NIK');
     $sheet->setCellValue('D5', 'No KTP');
     $sheet->setCellValue('E5', 'Nama Karyawan');
-    $sheet->setCellValue('F5', 'Departement');
-    $sheet->setCellValue('G5', 'Divisi');
-    $sheet->setCellValue('H5', 'Tanggal Lahir');
-    $sheet->setCellValue('I5', 'Agama');
-    $sheet->setCellValue('J5', 'Alamat');
-    $sheet->setCellValue('K5', 'Pendidikan');
+    $sheet->setCellValue('F5', 'Masa Kerja');
+    $sheet->setCellValue('G5', 'Status');
+    $sheet->setCellValue('H5', 'Departement');
+    $sheet->setCellValue('I5', 'Divisi');
+    $sheet->setCellValue('J5', 'Bagian');
+    $sheet->setCellValue('K5', 'Tanggal Lahir');
+    $sheet->setCellValue('L5', 'Agama');
+    $sheet->setCellValue('M5', 'Alamat');
+    $sheet->setCellValue('N5', 'Pendidikan');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -992,20 +1028,32 @@ class Pegawai extends BaseController
     $sheet->getStyle('I5')->applyFromArray($style_col);
     $sheet->getStyle('J5')->applyFromArray($style_col);
     $sheet->getStyle('K5')->applyFromArray($style_col);
+    $sheet->getStyle('L5')->applyFromArray($style_col);
+    $sheet->getStyle('M5')->applyFromArray($style_col);
+    $sheet->getStyle('N5')->applyFromArray($style_col);
 
     $no = 1;
     $numrow = 6;
     foreach ($list_data as $ld) {
+
+      $date1=date_create($ld->tgl_masuk);
+      $date2=date_create(DATE('Y-m-d'));
+      $diff=date_diff($date1,$date2);
+      $masa_kerja =  $diff->format("%y th, %m bln");
+
       $sheet->setCellValue('B'.$numrow, $no);
       $sheet->setCellValue('C'.$numrow, 'MRT'.$ld->nip);
       $sheet->setCellValue('D'.$numrow, $ld->no_ktp);
       $sheet->setCellValue('E'.$numrow, $ld->nama_pegawai);
-      $sheet->setCellValue('F'.$numrow, $ld->nama_departement);
-      $sheet->setCellValue('G'.$numrow, $ld->nama_divisi);
-      $sheet->setCellValue('H'.$numrow, $ld->tgl_lahir);
-      $sheet->setCellValue('I'.$numrow, $ld->agama);
-      $sheet->setCellValue('J'.$numrow, $ld->alamat_domisili);
-      $sheet->setCellValue('K'.$numrow, $ld->pendidikan_terakhir.' '.$ld->jurusan);
+      $sheet->setCellValue('F'.$numrow, $masa_kerja);
+      $sheet->setCellValue('G'.$numrow, $ld->status_pegawai == "tetap" ? 'PKWTT':'PKWT');
+      $sheet->setCellValue('H'.$numrow, $ld->nama_departement);
+      $sheet->setCellValue('I'.$numrow, $ld->nama_divisi);
+      $sheet->setCellValue('J'.$numrow, $ld->nama_bagian);
+      $sheet->setCellValue('K'.$numrow, $ld->tgl_lahir);
+      $sheet->setCellValue('L'.$numrow, $ld->agama);
+      $sheet->setCellValue('M'.$numrow, $ld->alamat_domisili);
+      $sheet->setCellValue('N'.$numrow, $ld->pendidikan_terakhir.' '.$ld->jurusan);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
@@ -1016,6 +1064,9 @@ class Pegawai extends BaseController
       $sheet->getColumnDimension('I')->setAutoSize(true);
       $sheet->getColumnDimension('J')->setAutoSize(true);
       $sheet->getColumnDimension('K')->setAutoSize(true);
+      $sheet->getColumnDimension('L')->setAutoSize(true);
+      $sheet->getColumnDimension('M')->setAutoSize(true);
+      $sheet->getColumnDimension('N')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
@@ -1027,6 +1078,9 @@ class Pegawai extends BaseController
       $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('L'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('M'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('N'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;

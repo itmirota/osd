@@ -152,7 +152,11 @@ class absensiPegawaiHarian extends BaseController
   
       $res = $this->crud_model->update($where,$data,'tbl_absensi_pegawaiHarian');
     }
-		echo json_encode($res);
+    
+		echo json_encode([
+		'status' => 'ok',
+		'msg' => 'Absensi berhasil disimpan'
+	  ]);
 	}
 
   public function exportExcel(){
