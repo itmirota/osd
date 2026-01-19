@@ -28,7 +28,8 @@ class Assessment extends BaseController
     $this->global['pageHeader'] = 'Assessment Karyawan ';
 
     $page = $this->uri->segment(1);
-    $pegawai_id = $this->global['pegawai_id'];
+    $id = $this->pegawai_id;
+    $nip = $this->crud_model->getdataRowbyWhere('nip', 'id_pegawai ='.$id ,'tbl_pegawai')->nip;
     $role = $this->global['role'];
 
     $data['role'] = $role;
@@ -38,7 +39,7 @@ class Assessment extends BaseController
       $data['list_data']= $this->assessment_model->getAssessmentAll();
       $this->loadViews("assessment/data", $this->global, $data, NULL);
     }else{
-      $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
+      $data['list_data']= $this->assessment_model->getAssessment($nip);
       $this->loadViewsUser("assessment/data", $this->global, $data, NULL);
     }
   }
@@ -46,24 +47,24 @@ class Assessment extends BaseController
   public function UserPage(){
     $this->global['pageTitle'] = 'Assessment';
     $this->global['pageHeader'] = 'Assessment Karyawan ';
-    $pegawai_id = $this->global['pegawai_id'];
+    $pegawai_nip = $this->global['pegawai_nip'];
     $role = $this->global['role'];
 
-    $data['list_data']= $this->assessment_model->getAssessment($pegawai_id);
+    $data['list_data']= $this->assessment_model->getAssessment($pegawai_nip);
     $data['role'] = $role;
 
     $this->loadViews("assessment/data", $this->global, $data, NULL);
   }
 
   public function save(){
-    $pegawai_id = $this->input->post('pegawai_id');
-    $penilai_id = $this->input->post('penilai_id');
+    $pegawai_nip = $this->input->post('pegawai_nip');
+    $penilai_nip = $this->input->post('penilai_nip');
     $assessment_tingkatan_id = $this->input->post('assessment_tingkatan_id');
     
 
     $data = array(
-      'pegawai_id' => $pegawai_id,
-      'penilai_id' => $penilai_id,
+      'pegawai_nip' => $pegawai_nip,
+      'penilai_nip' => $penilai_nip,
       'assessment_tingkatan_id' => $assessment_tingkatan_id
     );
 
@@ -95,7 +96,7 @@ class Assessment extends BaseController
 
   public function update(){
     $id_assessment = $this->input->post('id_assessment');
-    $pegawai_id = $this->input->post('pegawai_id');
+    $pegawai_nip = $this->input->post('pegawai_nip');
     $tgl_assessment = $this->input->post('tgl_assessment');
     $nilai = $this->input->post('nilai');
     $keterangan = $this->input->post('keterangan');
@@ -105,7 +106,7 @@ class Assessment extends BaseController
     );
 
     $data = array(
-      'pegawai_id' => $pegawai_id,
+      'pegawai_nip' => $pegawai_nip,
       'tgl_assessment' => $tgl_assessment,
       'nilai' => $nilai,
       'keterangan' => $keterangan,
@@ -147,14 +148,14 @@ class Assessment extends BaseController
     {
       $data=array();
       for ($i=1; $i < $sheetcount; $i++) {         
-        $pegawai_id=$sheetdata[$i][0];
-        $penilai_id=$sheetdata[$i][1];
+        $pegawai_nip=$sheetdata[$i][0];
+        $penilai_nip=$sheetdata[$i][1];
         $assessment_tingkat_id=$sheetdata[$i][2];
 
 
         $data[]=array(
-          'pegawai_id'=> $pegawai_id,
-          'penilai_id'=>$penilai_id,
+          'pegawai_nip'=> $pegawai_nip,
+          'penilai_nip'=>$penilai_nip,
           'assessment_tingkatan_id'=>$assessment_tingkat_id,
         );
       }
@@ -173,7 +174,7 @@ class Assessment extends BaseController
 
   public function list_soal(){
     $this->global['pageTitle'] = 'Assessment';
-    $pegawai_id = $this->global['pegawai_id'];
+    $pegawai_nip = $this->global['pegawai_nip'];
     $role = $this->global['role'];
 
     $data['list_data']= $this->crud_model->lihatdata('tbl_assessment_soal');
@@ -215,7 +216,7 @@ class Assessment extends BaseController
   }
 
   public function save_penilaian($id){
-    $penilai_id = $this->global['pegawai_id'];
+    $penilai_nip = $this->global['pegawai_nip'];
   
     $jml_kategori = $this->assessment_model->getKategori()->num_rows();
     $kategori = $this->assessment_model->getKategori()->result();
@@ -234,15 +235,15 @@ class Assessment extends BaseController
 
     $jawaban = implode(',', $hasil);
     $data = array(
-      'pegawai_id' => $id,
+      'pegawai_nip' => $id,
       'nilai' => $jawaban,
-      'penilai_id' => $penilai_id,
+      'penilai_nip' => $penilai_nip,
       'tgl_assessment' => date('Y-m-d H:i:s')
     );
 
     $where = array (
-      'pegawai_id' => $id,
-      'penilai_id' => $penilai_id
+      'pegawai_nip' => $id,
+      'penilai_nip' => $penilai_nip
     );
  
 

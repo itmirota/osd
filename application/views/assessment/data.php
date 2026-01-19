@@ -49,7 +49,7 @@
                 <td>
                     <?php if ($page != 'DataAssessment'){ ?>
                     <?php if(is_null($ld->nilai)){ ?>
-                    <a href="<?= base_url('assessment/penilaian/').$ld->pegawai_id?>" class="btn btn-primary btn-sm">
+                    <a href="<?= base_url('assessment/penilaian/').$ld->pegawai_nip?>" class="btn btn-primary btn-sm">
                         <i class="fas fa-pencil"></i> Penilaian
                     </a>
                     <?php }else{ ?>
@@ -85,7 +85,7 @@
           <div class="modal-body">
             <a href="http://">export template</a>
             <div class="form-group">
-              <label for="pegawai_id">File</label>
+              <label for="upload_file">File</label>
               <input type="file" name="upload_file" id="upload_file" class="form-control">
             </div>
           </div>
@@ -110,8 +110,8 @@
         <form id="add-assessment" action="<?= base_url('assessment/save')?>" method="post">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="pegawai_id" class="form-label">Nama pegawai</label>
-              <select name="pegawai_id" id="pegawai_assessment" class="form-select" style="width: 100%" required>
+              <label for="pegawai_nip" class="form-label">Nama pegawai</label>
+              <select name="pegawai_nip" id="pegawai_assessment" class="form-select" style="width: 100%" required>
                 <option value="">Pilih Pegawai</option>
                 <?php foreach ($this->crud_model->lihatdata('tbl_pegawai') as $penilai) { ?>
                   <option value="<?= $penilai->nip ?>"><?= $penilai->nama_pegawai ?></option>
@@ -119,11 +119,11 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for="penilai_id" class="form-label">Nama Penilai</label>
-              <select name="penilai_id" id="penilai_assessment"  style="width: 100%" class="form-select" required>
+              <label for="penilai_nip" class="form-label">Nama Penilai</label>
+              <select name="penilai_nip" id="penilai_assessment"  style="width: 100%" class="form-select" required>
                 <option value="">Pilih Penilai</option>
                 <?php foreach ($this->crud_model->lihatdata('tbl_pegawai') as $penilai) { ?>
-                  <option value="<?= $penilai->id_pegawai ?>"><?= $penilai->nama_pegawai ?></option>
+                  <option value="<?= $penilai->nip ?>"><?= $penilai->nama_pegawai ?></option>
                 <?php } ?>
               </select>
             </div>
