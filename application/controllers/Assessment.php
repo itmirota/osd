@@ -216,7 +216,8 @@ class Assessment extends BaseController
   }
 
   public function save_penilaian($id){
-    $penilai_nip = $this->global['pegawai_nip'];
+    $id_penilai = $this->pegawai_id;
+    $penilai_nip = $this->crud_model->getdataRowbyWhere('nip', 'id_pegawai ='.$id_penilai ,'tbl_pegawai')->nip;
   
     $jml_kategori = $this->assessment_model->getKategori()->num_rows();
     $kategori = $this->assessment_model->getKategori()->result();
