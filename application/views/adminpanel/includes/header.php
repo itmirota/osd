@@ -317,21 +317,6 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php }?>
 
-<<<<<<< HEAD
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('formulir-kecelakaan'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span>Form Kecelakaan</span>
-          </a>
-        </li>
-
-        <?php
-        if($role == ROLE_SUPERADMIN | $role == ROLE_ADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG)
-        {
-        ?>
-=======
-
->>>>>>> 98f2be09916c9c093632ddd45beb66533ad9a402
         <!-- MENU HRGA -->
         <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG | $role == ROLE_MANAGER | $role == ROLE_SPV | $role == ROLE_ADMIN){?>
         <li class="sidebar-item has-submenu">
