@@ -590,6 +590,7 @@ class Absensi extends BaseController
       $dateObj = date_create($periodeDasar);
       $bulanSekarang = (int) $dateObj->format('m');
       $tahunSekarang = (int) $dateObj->format('Y');
+      $tahunAkhir = $tahunSekarang; 
 
       // ================================
       // 2. Hitung bulan sebelumnya
@@ -610,6 +611,7 @@ class Absensi extends BaseController
           // Masuk periode bulan berikutnya
           $bulanAwal  = $bulanSekarang;
           $bulanAkhir = $bulanSekarang + 1;
+
 
           if ($bulanAkhir > 12) { 
             $bulanAkhir = 1; 
