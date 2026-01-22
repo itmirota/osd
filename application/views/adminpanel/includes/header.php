@@ -419,7 +419,7 @@ if($role != ROLE_STAFF){ ?>
                 if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){
                 ?>
                 <li class="sidebar-item">
-                  <a href="<?php echo base_url('laporanAbsensi'); ?>" class="sidebar-link">
+                  <a href="<?php echo base_url('laporan-absensi'); ?>" class="sidebar-link">
                     <span>Absensi Online</span>
                   </a>
                 </li>

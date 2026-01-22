@@ -115,7 +115,7 @@ $route['Laporan-visit'] = 'absensi/laporanVisit';
 $route['export-excel-absensi/(:any)/(:any)/(:any)'] = 'absensi/exportExcel/$1/$2/$3';
 
 $route['kehadiran/(:any)'] = 'absensi/Webcam/$1';
-$route['laporanAbsensi'] = 'absensi/laporan';
+$route['laporan-absensi'] = 'absensi/laporan';
 $route['cekkoordinat/(:any)/(:any)'] = 'absensi/cekkoordinat/$1/$2';
 
 // ABSENSI MESIN
