@@ -111,7 +111,7 @@
               <td class="text-center"><?= mediumdate_indo($ld->date)?></td>
               <td>
                 <a href="#" class="pop">
-                <img src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_in)?>" width="100px" style="border-radius:10px">
+                <img data-src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_in)?>" class="lazy-img" width="70px" style="border-radius:10px">
                 </a><br>
                 <i class="fa fa-clock"></i> <?= $ld->time_in?><br>
                 <a href="<?= base_url('cekkoordinat/masuk/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= !empty($ld->wilayah_in) ? $ld->wilayah_in.','.$ld->kota_in : ' lokasi'?></a>
@@ -119,7 +119,7 @@
               <td>
                 <?php if (isset($ld->time_out)){ ?>
                 <a href="#" class="pop">
-                <img src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_out)?>" width="100px" style="border-radius:10px">
+                <img data-src="<?= base_url('assets/images/absensi/'.$ld->bukti_absensi_in)?>" class="lazy-img" width="70px" style="border-radius:10px">
                 </a><br>
                 <i class="fa fa-clock"></i> <?= $ld->time_out?><br>
                 <a href="<?= base_url('cekkoordinat/pulang/'.$ld->pegawai_id)?>"><i class="fa fa-location-dot"></i> <?= !empty($ld->wilayah_out) ? $ld->wilayah_out.','.$ld->kota_out : ' lokasi'?></a>
@@ -159,6 +159,25 @@ $(function() {
         $('.imagepreview').attr('src', $(this).find('img').attr('src'));
         $('#imagemodal').modal('show');   
     });		
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const imgs = document.querySelectorAll("img.lazy-img");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove("lazy-img");
+        obs.unobserve(img);
+      }
+    });
+  });
+
+  imgs.forEach(img => observer.observe(img));
 });
 </script>
 
