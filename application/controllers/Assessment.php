@@ -20,6 +20,7 @@ class Assessment extends BaseController
       parent::__construct();
       $this->load->model('crud_model');
       $this->load->model('assessment_model');
+      $this->load->model('pegawai_model');
       $this->isLoggedIn();
   }
 
@@ -276,6 +277,79 @@ class Assessment extends BaseController
     $this->crud_model->delete($where, 'tbl_assessment');
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Dihapus');
     redirect('DataAssessment');
+  }
+
+  public function exportAssessment(){
+    $this->global['pageTitle'] = 'Assessment';
+    $pegawai = $this->pegawai_model->showData(113);
+
+    // var_dump($pegawai);
+    // $hasil = $this->assessment_model->getAssessment($data->nip);
+    $total = 0;
+    for ($i=0; $i < count($pegawai) ; $i++) { 
+      // var_dump($pegawai[$i]->nip);
+      $hasil = $this->assessment_model->getHasilAssessmentbyId($pegawai[$i]->nip);
+
+      for ($j=0; $j < count($hasil) ; $j++) { 
+        $explode_hasil[$j] = explode(',',$hasil[$i]->nilai);
+
+        for ($k=0; $k < count($explode_hasil) ; $k++) { 
+          $explode_jawaban = explode(':', $explode_hasil[$j]);
+        }
+      }
+
+        var_dump($explode_hasil[0]);
+    }
+
+    // $total = 0;
+    // foreach ($pegawai as $data ) {
+    //   $hasil = $this->assessment_model->getHasilAssessmentbyId($data->nip);
+    //   $count = COUNT($hasil);
+    //   // $explode_hasil = explode(',',$hasil->nilai);
+
+    //   foreach ($hasil as $h) {
+    //     $explode_hasil = explode(',',$h->nilai);
+
+    //     // $explode_nilai = explode(':',$explode_hasil);
+    //     // var_dump($explode_nilai);
+
+    //     foreach ($explode_hasil as $jwb) {
+    //       $explode_jawaban = explode(':', $jwb);
+    //       // var_dump($explode_jawaban[1]);
+    //       $jawaban = $explode_jawaban[1];
+    //       // var_dump($jawaban);
+
+    //       switch ($jawaban) {
+    //         case 'ss':
+    //           $jawaban = 4;
+    //           break;
+
+    //         case 's':
+    //           $jawaban = 3;
+
+    //           break;
+
+    //         case 'ts':
+    //           $jawaban = 2;
+    //           break;
+
+    //         case 'sts':
+    //           $jawaban = 1;
+    //           break;
+    //       }
+    //       // var_dump("jwb :".$jawaban);
+    //       // var_dump("-----------");
+    //       $total = $total + $jawaban;
+    //     }
+    //       // var_dump("total: ".$total);
+    //   }
+    //   // var_dump(COUNT($hasil));
+    //   var_dump("total: ".$total);
+    //   var_dump("nilai: ".$total/$count);
+    //   // $penilaian = $hasil->nilai;
+    //   // $explode_penilaian = explode(',', $penilaian);
+    //   // var_dump($explode_penilaian);
+    // }
   }
   
 }

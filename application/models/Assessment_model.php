@@ -23,6 +23,32 @@ class Assessment_model extends CI_Model
     return $query->result();
   }
 
+  public function getHasilAssessmentbyId($id){
+    $this->db->select('id_assessment,pegawai_nip,b.nama_pegawai as nama_pegawai,c.nama_pegawai as nama_penilai, nilai');
+    $this->db->from('tbl_assessment a');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_nip');
+    $this->db->join('tbl_pegawai c','c.nip = a.penilai_nip');
+    $this->db->where('pegawai_nip',$id);
+    $this->db->where('nilai is not null');
+    $this->db->order_by('pegawai_nip', 'ASC');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function getHasilAssessmentAll(){
+    $this->db->select('id_assessment,pegawai_nip,b.nama_pegawai as nama_pegawai,c.nama_pegawai as nama_penilai, nilai');
+    $this->db->from('tbl_assessment a');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_nip');
+    $this->db->join('tbl_pegawai c','c.nip = a.penilai_nip');
+    // $this->db->group_by('pegawai_nip');
+    $this->db->order_by('pegawai_nip', 'ASC');
+    
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
   public function getHasilAssessment($id){
     $this->db->select('id_assessment,b.nama_pegawai as nama_pegawai ,nilai,tgl_assessment,nama_assessment_tingkatan, g.nama_pegawai as nama_penilai');
     $this->db->from('tbl_assessment a');
@@ -73,4 +99,5 @@ class Assessment_model extends CI_Model
 
     return $query;
   }
+  
 }
