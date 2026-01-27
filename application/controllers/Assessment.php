@@ -281,25 +281,167 @@ class Assessment extends BaseController
 
   public function exportAssessment(){
     $this->global['pageTitle'] = 'Assessment';
-    $pegawai = $this->pegawai_model->showData(113);
 
-    // var_dump($pegawai);
-    // $hasil = $this->assessment_model->getAssessment($data->nip);
-    $total = 0;
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $style_col = [
+      'font' => ['bold' => true], // Set font nya jadi bold
+      'alignment' => [
+      'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+          'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+          'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+          'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+          'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $styleRight = [
+      'font' => [
+        'bold' => true,
+      ],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+      ],
+      'borders' => [
+        'top' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+    ];
+        
+
+    // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+    $style_row = [
+      'alignment' => [
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+      'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+      'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+      'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+      'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $sheet->setCellValue('B2', 'Laporan Assessment 360 Karyawan PT. Mirota KSM'); // Set kolom A1 Sebagai Header
+
+    // $sheet->mergeCells('B2:E2'); // Set Merge Cell pada kolom A1 sampai E1
+    
+    $sheet->setCellValue('B5', 'No');
+    $sheet->setCellValue('C5', 'Nama Karyawan');
+    $sheet->setCellValue('D5', 'Departement');
+    $sheet->setCellValue('E5', 'Divisi');
+    $sheet->setCellValue('F5', 'Bagian');
+    $sheet->setCellValue('G5', 'Total Penilai');
+    $sheet->setCellValue('H5', 'Jumlah Penilai');
+    $sheet->setCellValue('I5', 'Total Nilai');
+    $sheet->setCellValue('J5', 'Nilai');
+
+
+    $sheet->getStyle('B5')->applyFromArray($style_col);
+    $sheet->getStyle('C5')->applyFromArray($style_col);
+    $sheet->getStyle('D5')->applyFromArray($style_col);
+    $sheet->getStyle('E5')->applyFromArray($style_col);
+    $sheet->getStyle('F5')->applyFromArray($style_col);
+    $sheet->getStyle('G5')->applyFromArray($style_col);
+    $sheet->getStyle('H5')->applyFromArray($style_col);
+    $sheet->getStyle('I5')->applyFromArray($style_col);
+    $sheet->getStyle('J5')->applyFromArray($style_col);
+
+
+    // $pegawai = $this->pegawai_model->showData();
+    $pegawai = $this->assessment_model->getHasilAssessmentbyPegawai();
+
+
+    $no = 1;
+    $numrow = 6;
     for ($i=0; $i < count($pegawai) ; $i++) { 
-      // var_dump($pegawai[$i]->nip);
       $hasil = $this->assessment_model->getHasilAssessmentbyId($pegawai[$i]->nip);
-
+      $total_penilai = $this->assessment_model->getCountTotalPenilaian($pegawai[$i]->nip);
+      $jumlah_penilai = $this->assessment_model->getCountJumlahPenilai($pegawai[$i]->nip);
+      
+      $total = 0;
       for ($j=0; $j < count($hasil) ; $j++) { 
-        $explode_hasil[$j] = explode(',',$hasil[$i]->nilai);
+        $explode_hasil[$j] = explode(',',$hasil[$j]->nilai);
 
-        for ($k=0; $k < count($explode_hasil) ; $k++) { 
-          $explode_jawaban = explode(':', $explode_hasil[$j]);
-        }
+        for ($k=0; $k < count($explode_hasil[$j]) ; $k++) { 
+          $explode_jawaban[$k] = explode(':', $explode_hasil[$j][$k]);
+
+          $jawaban[$k] = $explode_jawaban[$k][1];
+
+          switch ($jawaban[$k]) {
+            case 'ss':
+              $jawaban[$k] = 4;
+              break;
+
+            case 's':
+              $jawaban[$k] = 3;
+
+              break;
+
+            case 'ts':
+              $jawaban[$k] = 2;
+              break;
+
+            case 'sts':
+              $jawaban[$k] = 1;
+              break;
+          }
+
+          $total = $total + (int)$jawaban[$k];
+        }   
+
       }
 
-        var_dump($explode_hasil[0]);
+        $hasilAkhir = $total/count($hasil);
+
+        $sheet->setCellValue('B'.$numrow, $no);
+        $sheet->setCellValue('C'.$numrow, $pegawai[$i]->nama_pegawai);
+        $sheet->setCellValue('D'.$numrow, $pegawai[$i]->nama_departement);
+        $sheet->setCellValue('E'.$numrow, $pegawai[$i]->nama_divisi);
+        $sheet->setCellValue('F'.$numrow, $pegawai[$i]->nama_bagian);
+        $sheet->setCellValue('G'.$numrow, count($total_penilai));
+        $sheet->setCellValue('H'.$numrow, count($jumlah_penilai));
+        $sheet->setCellValue('I'.$numrow, $total);
+        $sheet->setCellValue('J'.$numrow, $hasilAkhir);
+
+
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+        $sheet->getColumnDimension('F')->setAutoSize(true);
+        $sheet->getColumnDimension('G')->setAutoSize(true);
+        $sheet->getColumnDimension('H')->setAutoSize(true);
+        $sheet->getColumnDimension('I')->setAutoSize(true);
+        $sheet->getColumnDimension('J')->setAutoSize(true);
+    
+        $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
+
+        $no++;
+        $numrow++;
     }
+
+    $writer = new Xlsx($spreadsheet);
+    header('Content-Type: application/vnd.ms-excel');
+
+    header('Content-Disposition: attactchment;filename=Laporan Assessment360 Karyawan.xlsx');
+
+    header('Cache-Control: max-age=0');
+    $writer->save("php://output");
+    exit();
+
 
     // $total = 0;
     // foreach ($pegawai as $data ) {

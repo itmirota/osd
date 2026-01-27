@@ -222,6 +222,7 @@ $route['penilaian-promosi-v31/(:any)'] = 'evaluasiPromosi/penilaian_v31/$1';
 $route['DataAssessment'] = 'assessment';
 $route['PenilaianAssessment'] = 'assessment';
 $route['assessment360'] = 'assessment/UserPage';
+$route['export-excel-assessment'] = 'assessment/exportAssessment';
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 
 //SAMPLE

@@ -2,6 +2,7 @@
 
 class Assessment_model extends CI_Model
 {
+  
   public function getAssessment($id){
     $this->db->select('id_assessment,pegawai_nip,b.nama_pegawai as nama_pegawai,c.nama_pegawai as nama_penilai, nilai');
     $this->db->from('tbl_assessment a');
@@ -18,6 +19,43 @@ class Assessment_model extends CI_Model
     $this->db->from('tbl_assessment a');
     $this->db->join('tbl_pegawai b','b.nip = a.pegawai_nip');
     $this->db->join('tbl_pegawai c','c.nip = a.penilai_nip');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function getHasilAssessmentbyPegawai(){
+    $this->db->select('id_pegawai, nama_pegawai,nip,tgl_assessment, c.nama_bagian, d.nama_divisi, e.nama_departement');
+    $this->db->from('tbl_pegawai a');
+    $this->db->join('tbl_assessment b','b.pegawai_nip = a.nip');
+    $this->db->join('tbl_bagian c','c.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
+    $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
+    $this->db->where('tgl_assessment is not null');
+    $this->db->order_by('pegawai_nip', 'ASC');
+    $this->db->group_by('nip');
+
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function getCountTotalPenilaian($id){
+    $this->db->select('id_assessment');
+    $this->db->from('tbl_assessment a');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_nip');
+    $this->db->where('pegawai_nip',$id);
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function getCountJumlahPenilai($id){
+    $this->db->select('id_assessment');
+    $this->db->from('tbl_assessment a');
+    $this->db->join('tbl_pegawai b','b.nip = a.pegawai_nip');
+    $this->db->where('nilai is not null');
+    $this->db->where('pegawai_nip',$id);
     $query = $this->db->get();
 
     return $query->result();
@@ -41,6 +79,7 @@ class Assessment_model extends CI_Model
     $this->db->from('tbl_assessment a');
     $this->db->join('tbl_pegawai b','b.nip = a.pegawai_nip');
     $this->db->join('tbl_pegawai c','c.nip = a.penilai_nip');
+    $this->db->where('nilai is not null');
     // $this->db->group_by('pegawai_nip');
     $this->db->order_by('pegawai_nip', 'ASC');
     

@@ -18,6 +18,7 @@
           <li><a class="dropdown-item" href="<?= base_url('assessment/list_soal')?>"> tambah soal</a></li>
           <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#add_assessment"> tambah assessment</a></li>
           <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal-tambah"> import assessment</a></li>  
+          <li><a class="dropdown-item" href="<?= base_url('export-excel-assessment')?>"> download excel</a></li>  
         </ul>
       </div>
       <?php } ?>
