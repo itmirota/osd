@@ -356,7 +356,6 @@ class Assessment extends BaseController
     // $pegawai = $this->pegawai_model->showData();
     $pegawai = $this->assessment_model->getHasilAssessmentbyPegawai();
 
-
     $no = 1;
     $numrow = 6;
     for ($i=0; $i < count($pegawai) ; $i++) { 

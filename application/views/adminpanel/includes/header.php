@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
 	<!-- FontAwesome -->
-	<script src="https://kit.fontawesome.com/2edfabd55a.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/5e911b9078.js" crossorigin="anonymous"></script>
 
   <!-- DataTables -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
