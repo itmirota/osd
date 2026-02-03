@@ -440,57 +440,210 @@ class Assessment extends BaseController
     header('Cache-Control: max-age=0');
     $writer->save("php://output");
     exit();
+  }
+
+  public function exportAssessmentAll(){
+    $this->global['pageTitle'] = 'Assessment';
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $style_col = [
+      'font' => ['bold' => true], // Set font nya jadi bold
+      'alignment' => [
+      'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+          'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+          'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+          'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+          'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $styleRight = [
+      'font' => [
+        'bold' => true,
+      ],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+      ],
+      'borders' => [
+        'top' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+    ];
+        
+
+    // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+    $style_row = [
+      'alignment' => [
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+      'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+      'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+      'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+      'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $sheet->setCellValue('B2', 'Laporan Assessment 360 Karyawan PT. Mirota KSM'); // Set kolom A1 Sebagai Header
+
+    // $sheet->mergeCells('B2:E2'); // Set Merge Cell pada kolom A1 sampai E1
+    
+    $sheet->setCellValue('B5', 'No');
+    $sheet->setCellValue('C5', 'Nama Karyawan');
+    $sheet->setCellValue('D5', 'Departement');
+    $sheet->setCellValue('E5', 'Divisi');
+    $sheet->setCellValue('F5', 'Bagian');
+    $sheet->setCellValue('G5', 'H');
+    $sheet->setCellValue('H5', '1');
+    $sheet->setCellValue('I5', '2');
+    $sheet->setCellValue('J5', '3');
+    $sheet->setCellValue('K5', 'O');
+    $sheet->setCellValue('L5', '1');
+    $sheet->setCellValue('M5', '2');
+    $sheet->setCellValue('N5', '3');
+    $sheet->setCellValue('O5', 'P');
+    $sheet->setCellValue('P5', '1');
+    $sheet->setCellValue('Q5', '2');
+    $sheet->setCellValue('R5', '3');
+    $sheet->setCellValue('S5', 'E');
+    $sheet->setCellValue('T5', '1');
+    $sheet->setCellValue('U5', '2');
+    $sheet->setCellValue('V5', '3');
+
+    $sheet->getStyle('B5')->applyFromArray($style_col);
+    $sheet->getStyle('C5')->applyFromArray($style_col);
+    $sheet->getStyle('D5')->applyFromArray($style_col);
+    $sheet->getStyle('E5')->applyFromArray($style_col);
+    $sheet->getStyle('F5')->applyFromArray($style_col);
+    $sheet->getStyle('G5')->applyFromArray($style_col);
+    $sheet->getStyle('H5')->applyFromArray($style_col);
+    $sheet->getStyle('I5')->applyFromArray($style_col);
+    $sheet->getStyle('J5')->applyFromArray($style_col);
+    $sheet->getStyle('K5')->applyFromArray($style_col);
+    $sheet->getStyle('L5')->applyFromArray($style_col);
+    $sheet->getStyle('M5')->applyFromArray($style_col);
+    $sheet->getStyle('N5')->applyFromArray($style_col);
+    $sheet->getStyle('O5')->applyFromArray($style_col);
+    $sheet->getStyle('P5')->applyFromArray($style_col);
+    $sheet->getStyle('Q5')->applyFromArray($style_col);
+    $sheet->getStyle('R5')->applyFromArray($style_col);
+    $sheet->getStyle('S5')->applyFromArray($style_col);
+    $sheet->getStyle('T5')->applyFromArray($style_col);
+    $sheet->getStyle('U5')->applyFromArray($style_col);
+    $sheet->getStyle('V5')->applyFromArray($style_col);
 
 
-    // $total = 0;
-    // foreach ($pegawai as $data ) {
-    //   $hasil = $this->assessment_model->getHasilAssessmentbyId($data->nip);
-    //   $count = COUNT($hasil);
-    //   // $explode_hasil = explode(',',$hasil->nilai);
 
-    //   foreach ($hasil as $h) {
-    //     $explode_hasil = explode(',',$h->nilai);
+    // $pegawai = $this->pegawai_model->showData();
+    $pegawai = $this->assessment_model->getHasilAssessmentbyPegawai();
 
-    //     // $explode_nilai = explode(':',$explode_hasil);
-    //     // var_dump($explode_nilai);
+    $no = 1;
+    $numrow = 6;
+    foreach ($pegawai as $p) {
+        $hasil = $this->assessment_model->getHasilAssessmentbyId($p->nip);
+        $sheet->setCellValue('B'.$numrow, $no);
+        $sheet->setCellValue('C'.$numrow, $p->nama_pegawai);
+        $sheet->setCellValue('D'.$numrow, $p->nama_departement);
+        $sheet->setCellValue('E'.$numrow, $p->nama_divisi);
+        $sheet->setCellValue('F'.$numrow, $p->nama_bagian);
+  
+        $abjad = ["G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V"];
+        foreach ($hasil as $h) {
+        $explode_nilai = explode(",",$h->nilai);
+        
+        $coloum = 0;
+        foreach ($explode_nilai as $nilai) {
+          $explode_hasil = explode(":",$nilai);
+          // var_dump($explode_hasil[1]);
+          // var_dump($abjad[$coloum]);
+          $sheet->setCellValue($abjad[$coloum].$numrow, $explode_hasil[1]);
+          $coloum++;
+        }
 
-    //     foreach ($explode_hasil as $jwb) {
-    //       $explode_jawaban = explode(':', $jwb);
-    //       // var_dump($explode_jawaban[1]);
-    //       $jawaban = $explode_jawaban[1];
-    //       // var_dump($jawaban);
+      }
 
-    //       switch ($jawaban) {
-    //         case 'ss':
-    //           $jawaban = 4;
-    //           break;
 
-    //         case 's':
-    //           $jawaban = 3;
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+        $sheet->getColumnDimension('F')->setAutoSize(true);
+        $sheet->getColumnDimension('G')->setAutoSize(true);
+        $sheet->getColumnDimension('H')->setAutoSize(true);
+        $sheet->getColumnDimension('I')->setAutoSize(true);
+        $sheet->getColumnDimension('J')->setAutoSize(true);
+        $sheet->getColumnDimension('K')->setAutoSize(true);
+        $sheet->getColumnDimension('L')->setAutoSize(true);
+        $sheet->getColumnDimension('M')->setAutoSize(true);
+        $sheet->getColumnDimension('N')->setAutoSize(true);
+        $sheet->getColumnDimension('O')->setAutoSize(true);
+        $sheet->getColumnDimension('P')->setAutoSize(true);
+        $sheet->getColumnDimension('Q')->setAutoSize(true);
+        $sheet->getColumnDimension('R')->setAutoSize(true);
+        $sheet->getColumnDimension('S')->setAutoSize(true);
+        $sheet->getColumnDimension('T')->setAutoSize(true);
+        $sheet->getColumnDimension('U')->setAutoSize(true);
+        $sheet->getColumnDimension('V')->setAutoSize(true);
 
-    //           break;
+    
+        $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('L'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('M'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('O'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('P'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('Q'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('R'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('S'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('T'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('U'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('V'.$numrow)->applyFromArray($style_row);
 
-    //         case 'ts':
-    //           $jawaban = 2;
-    //           break;
+        $no++;
+        $numrow++;
+    }
 
-    //         case 'sts':
-    //           $jawaban = 1;
-    //           break;
-    //       }
-    //       // var_dump("jwb :".$jawaban);
-    //       // var_dump("-----------");
-    //       $total = $total + $jawaban;
-    //     }
-    //       // var_dump("total: ".$total);
-    //   }
-    //   // var_dump(COUNT($hasil));
-    //   var_dump("total: ".$total);
-    //   var_dump("nilai: ".$total/$count);
-    //   // $penilaian = $hasil->nilai;
-    //   // $explode_penilaian = explode(',', $penilaian);
-    //   // var_dump($explode_penilaian);
-    // }
+    $writer = new Xlsx($spreadsheet);
+    header('Content-Type: application/vnd.ms-excel');
+
+    header('Content-Disposition: attactchment;filename=Laporan Assessment360 Karyawan.xlsx');
+
+    header('Cache-Control: max-age=0');
+    $writer->save("php://output");
+    exit();
+  }
+
+  public function testing(){
+      $abjad = ["H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W"];
+      $hasil = $this->assessment_model->getHasilAssessmentbyId(113);
+
+      foreach ($hasil as $h) {
+        $explode_nilai = explode(",",$h->nilai);
+        
+        $coloum = 0;
+        foreach ($explode_nilai as $nilai) {
+          $explode_hasil = explode(":",$nilai);
+          var_dump($explode_hasil[1]);
+          var_dump($abjad[$coloum]);
+          $coloum++;
+        }
+
+      }
+
   }
   
 }
