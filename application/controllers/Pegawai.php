@@ -791,9 +791,9 @@ class Pegawai extends BaseController
       $data=array();
       for ($i=1; $i < $sheetcount; $i++) {         
         $nip=$sheetdata[$i][0];
-        $jabatan_id=$sheetdata[$i][1];
-        // $no_npwp=$sheetdata[$i][2];
-        // $email_pegawai=$sheetdata[$i][3];
+        $bagian_id=$sheetdata[$i][1];
+        $nama_ibu=$sheetdata[$i][2];
+        $nama_ayah=$sheetdata[$i][3];
         // $email_kantor=$sheetdata[$i][4];
         // $alamat_ktp=$sheetdata[$i][5];
         // $alamat_domisili=$sheetdata[$i][6];
@@ -805,9 +805,9 @@ class Pegawai extends BaseController
 
         $data[]=array(
           'nip'=> $nip,
-          'jabatan_id'=> $jabatan_id,
-          // 'no_npwp'=>$no_npwp,
-          // 'email_pegawai'=>$email_pegawai,
+          'bagian_id'=> $bagian_id,
+          'nama_ibu'=>$nama_ibu,
+          'nama_ayah'=>$nama_ayah,
           // 'email_kantor'=>$email_kantor,
           // 'alamat_ktp'=>$alamat_ktp,
           // 'alamat_domisili'=>$alamat_domisili,

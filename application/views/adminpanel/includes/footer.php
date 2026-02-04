@@ -92,6 +92,11 @@ if(isset($name)){ ?>
 				dropdownParent: $('#AddTerlambat')
 			});
 
+			$('#pelanggar').select2({
+				theme: 'bootstrap-5',
+				dropdownParent: $('#AddPelanggaran')
+			});
+
 			$('#pegawai_assessment, #penilai_assessment').select2({
 			theme: 'bootstrap-5',
 				dropdownParent: $('#add_assessment')
@@ -132,7 +137,7 @@ if(isset($name)){ ?>
 				dropdownParent: $('#AddPeminjamanBarang')
 			});
 
-			$('#pegawai_id').select2({
+			$('#pegawai').select2({
 				theme: 'bootstrap-5',
 				dropdownParent: $('#AddDataEvaluasi')
 			});

@@ -604,6 +604,7 @@ class Assessment extends BaseController
         $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
         $sheet->getStyle('L'.$numrow)->applyFromArray($style_row);
         $sheet->getStyle('M'.$numrow)->applyFromArray($style_row);
+        $sheet->getStyle('N'.$numrow)->applyFromArray($style_row);
         $sheet->getStyle('O'.$numrow)->applyFromArray($style_row);
         $sheet->getStyle('P'.$numrow)->applyFromArray($style_row);
         $sheet->getStyle('Q'.$numrow)->applyFromArray($style_row);

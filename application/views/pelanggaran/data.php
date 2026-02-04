@@ -2,7 +2,7 @@
 <div class="row">
   <?php if($role == ROLE_HRGA | $role == ROLE_SUPERADMIN){?>
   <div class="d-flex justify-content-end mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addKeterlambatan"><i class="fa fa-plus"></i> Tambah Data</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPelanggaran"><i class="fa fa-plus"></i> Tambah Data</button>
   </div>
   <?php }?>
 
@@ -73,10 +73,10 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="addKeterlambatan" tabindex="-1" aria-labelledby="addKeterlambatanLabel" aria-hidden="true">
+<div class="modal fade" id="AddPelanggaran" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="<?=base_url('pelanggaran/save')?>" role="form" id="addPurchaseRequest" method="post" enctype="multipart/form-data">
+      <form action="<?=base_url('pelanggaran/save')?>" role="form" method="post" enctype="multipart/form-data">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Tambah Data</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -90,7 +90,7 @@
             </div> 
             <div class="col-md-12">
               <label for="pegawai_id" class="form-label">Nama Pegawai</label>
-              <select class="form-select" style="width:100%" id="pegawai_id" name="pegawai_id">
+              <select class="form-select tabel-PR" id="pelanggar" style="width: 100%"  name="pegawai_id">
                 <option readonly>-- nama pegawai --</option>
                 <?php foreach ($pegawai as $p){ ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
@@ -141,7 +141,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-12">
-              <label for="pegawai_id" class="form-label">Nama Pegawai</label>
+              <label for="info_pegawai" class="form-label">Nama Pegawai</label>
               <input type="hidden" name="id_pelanggaran" id="id_pelanggaran" class="form-control tabel-PR"/>
               <select class="form-select" style="width:100%" id="info_pegawai" name="pegawai_id">
                 <option readonly>-- nama pegawai --</option>

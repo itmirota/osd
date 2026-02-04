@@ -23,7 +23,7 @@ class Pelanggaran extends BaseController
 
   // DIVISI
   public function index(){
-    $this->global['pageTitle'] = 'Admin Panel : Data Divisi';
+    $this->global['pageTitle'] = 'Admin Panel : Data Pelanggaran';
 
     $role = $this->role;
     $pegawai_id = $this->pegawai_id;
