@@ -151,6 +151,7 @@
         </div>
       </div>
     </div>
+    <?php if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER || $role == ROLE_HRGA){?>
     <div class="col-xl-6 col-xxl-5 d-flex">
       <div class="w-100">
         <div class="row">
@@ -237,10 +238,12 @@
         </div>
       </div>
     </div>
+    <?php } ?>
+
   </div>
 </div>
 
-<?php if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER || $role == ROLE_ADMIN || $role == ROLE_HRGA){?>
+<?php if($role == ROLE_SUPERADMIN || $role == ROLE_MANAGER || $role == ROLE_HRGA){?>
   <div class="row">
     <div class="col-md-12">
       <div class="card">

@@ -51,6 +51,11 @@ define('ROLE_PAYROLL',                      '10');
 
 define('SEGMENT',								2);
 
+define('MARKETING',           '8');
+define('BPD',                 '53');
+define('PURCHASING',          '55');
+define('PPIC',                '56');
+
 /************************** EMAIL CONSTANTS *****************************/
 
 define('EMAIL_FROM',                            'Your from email');		// e.g. email@example.com

@@ -15,7 +15,7 @@
                   <a href="<?= base_url('export-excel-absensi/'.$id.'/'.$periodeAwal.'/'.$periodeAkhir)?>" type="button" class="btn btn-success me-2">
                   Export Excel
                   </a>
-                  <a href="<?= base_url('laporanAbsensi')?>" type="button" class="btn btn-warning">
+                  <a href="<?= base_url('laporan-absensi')?>" type="button" class="btn btn-warning">
                   Refresh
                   </a>
               </div>
@@ -29,7 +29,7 @@
                           <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
-                      <form action="<?=base_url('laporanAbsensi')?>" role="form" method="post" enctype="multipart/form-data">
+                      <form action="<?=base_url('laporan-absensi')?>" role="form" method="post" enctype="multipart/form-data">
                       <div class="modal-body">
                       <div class="mb-3">
                           <label for="periode" class="form-label">Periode</label>

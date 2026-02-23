@@ -328,7 +328,7 @@
 				document.getElementById("map").style.display = "none";
 				document.getElementById("ambilFoto").style.display = "none";
 				document.getElementById("fotoUlang").style.display = "block";
-				document.getElementById("shareFoto").style.display = "block";
+				// document.getElementById("shareFoto").style.display = "block";
 
 			} catch (e) {
 				console.error("Error saat proses gambar:", e);
@@ -460,10 +460,46 @@
 
 			if (hasil.status === "ok") {
 
+				const isMasuk = jenisAbsen === "masuk";
+				const modaltext  = isMasuk ? "Hai, selamat datang. semangat yaa kerja hari ini :)" : "Kamu Hebat hari ini, sampai ketemu besok :)";
+
 				await Swal.fire({
 					icon: "success",
 					title: "Berhasil!",
-					text: hasil.msg || "Absensi berhasil disimpan"
+					html: `
+						<p>${hasil.msg || modaltext}</p>
+						<div class="mb-4"><img src="${fotoBase64}" style="max-width:50%;border-radius:10px"></div>
+					`,
+					showDenyButton: !!navigator.share,
+					confirmButtonText: "Tutup",
+					denyButtonText: "Bagikan",
+					denyButtonColor: "#25D366",
+					confirmButtonColor: "#3085d6",
+
+					preDeny: async () => {
+						try {
+							// base64 → blob
+							const res = await fetch(fotoBase64);
+							const blob = await res.blob();
+
+							const file = new File(
+								[blob],
+								`absensi_${Date.now()}.jpg`,
+								{ type: "image/jpeg" }
+							);
+
+							await navigator.share({
+								title: "Laporan Absensi Visit",
+								text: `Absensi ${jenisAbsen.toUpperCase()} - ${wilayah}, ${kota}`,
+								files: [file]
+							});
+
+							return false; // jangan tutup alert setelah share
+						} catch (err) {
+							Swal.showValidationMessage("Gagal membagikan foto");
+							return false;
+						}
+					}
 				});
 
 				// Redirect hanya jika sukses
