@@ -137,7 +137,7 @@ if(isset($name)){ ?>
 				dropdownParent: $('#AddPeminjamanBarang')
 			});
 
-			$('#pegawai').select2({
+			$('#pegawai_id').select2({
 				theme: 'bootstrap-5',
 				dropdownParent: $('#AddDataEvaluasi')
 			});

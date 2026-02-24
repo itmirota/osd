@@ -75,7 +75,7 @@
         </div>
         <div class="col-md-12">
           <label for="pegawai_id" class="form-label">Nama Pegawai</label>
-          <select class="form-select" style="width:100%" id="pegawai_id" name="pegawai_id">
+          <select class="form-select tabel-PR" style="width:100%" id="pegawai_id" name="pegawai_id">
             <option readonly>-- nama pegawai --</option>
             <?php foreach ($karyawan as $p){ ?>
             <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
