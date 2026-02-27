@@ -99,7 +99,7 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER){?>
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_MANAGER){?>
         <!-- MASTER DATA -->
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-database"></i> Master Data <i class="fa fa-angle-down" style="float: right;"></i> </a>
