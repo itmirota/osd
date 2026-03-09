@@ -92,22 +92,22 @@
 
     <!-- Modal Detail Hasil Cek-->
     <div class="modal fade" id="absenToko" tabindex="-1" aria-labelledby="absenTokoLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-xl">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="titleAddPegawai">Absen Toko Manual</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-            <div class="col-md-12">
-                <div id="dokumen">
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="titleAddPegawai">Absen Toko Manual</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                <div class="col-md-12">
+                    <div id="dokumen">
+                    </div>
+                </div>
                 </div>
             </div>
             </div>
         </div>
-        </div>
-    </div>
     </div>
 </div>
 

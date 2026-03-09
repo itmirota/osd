@@ -225,6 +225,25 @@ $route['assessment360'] = 'assessment/UserPage';
 $route['export-excel-assessment'] = 'assessment/exportAssessmentAll';
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 
+/*********** ACCURATE DEFINED ROUTES *******************/
+$route['data-supplier'] = 'DataAccurate/DataSupplier';
+$route['simpan-supplier'] = 'DataAccurate/saveSuppier';
+
+$route['data-customer'] = 'DataAccurate/DataCustomer';
+$route['simpan-customer'] = 'DataAccurate/saveCustomer';
+
+$route['data-barangjasa'] = 'DataAccurate/DataBarangJasa';
+$route['simpan-barangjasa'] = 'DataAccurate/saveBarangJasa';
+
+$route['data-penghapusan'] = 'DataAccurate/DataPenghapusan';
+$route['simpan-penghapusan'] = 'DataAccurate/savePenghapusan';
+
+$route['data-penyesuaianharga'] = 'DataAccurate/DataPenyesuaianharga';
+$route['simpan-penyesuaianharga'] = 'DataAccurate/savePenyesuaianharga';
+
+/*********** ACCURATE DEFINED ROUTES *******************/
+
+
 //SAMPLE
 $route['sample-masuk'] = 'sample/listdata';
 $route['sample-masuk/(:any)/(:any)'] = 'sample/updateStatus/$1/$2';

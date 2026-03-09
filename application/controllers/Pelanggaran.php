@@ -28,14 +28,16 @@ class Pelanggaran extends BaseController
     $role = $this->role;
     $pegawai_id = $this->pegawai_id;
 
-    if($role == ROLE_MANAGER){
-      $list_data = $this->pelanggaran_model->GetPelanggaranWhere(['manager_id' => $pegawai_id]);
-    }elseif ($role == ROLE_KABAG){
-      $list_data = $this->pelanggaran_model->GetPelanggaranWhere(['kadiv_id' => $pegawai_id]);
-    }else{
-      $list_data = $this->pelanggaran_model->GetPelanggaran();
-    }
+    // if($role == ROLE_MANAGER){
+    //   $list_data = $this->pelanggaran_model->GetPelanggaranWhere(['manager_id' => $pegawai_id]);
+    // }elseif ($role == ROLE_KABAG){
+    //   $list_data = $this->pelanggaran_model->GetPelanggaranWhere(['kadiv_id' => $pegawai_id]);
+    // }else{
+    //   $list_data = $this->pelanggaran_model->GetPelanggaran();
+    // }
     
+    $list_data = $this->pelanggaran_model->GetPelanggaran();
+
     $data['list_data']= $list_data;
     $data['pegawai']= $this->crud_model->lihatdata('tbl_pegawai');
 

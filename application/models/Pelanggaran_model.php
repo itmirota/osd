@@ -9,6 +9,7 @@ class Pelanggaran_model extends CI_Model
     $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
     $this->db->join('tbl_divisi d','d.id_divisi = c.divisi_id');
     $this->db->join('tbl_departement e','e.id_departement = d.departement_id');
+    $this->db->order_by('id_pelanggaran','DESC');
     $query = $this->db->get();
 
     return $query->result();

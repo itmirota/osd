@@ -99,18 +99,20 @@ if($role != ROLE_STAFF){ ?>
           </a>
         </li>
         
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_MANAGER){?>
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP | $role == ROLE_MANAGER  | $role == ROLE_KABAG){?>
         <!-- MASTER DATA -->
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-database"></i> Master Data <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
             <!-- MENU DEPARTEMENT -->
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP){?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('Datadepartement'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-roof"></i>
                 <span>Struktur Organisasi</span>
               </a>
             </li>
+            <?php } ?>
             <!-- <li class="sidebar-item">
               <a href="<?php echo base_url('Datadivisi'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-line"></i>
@@ -123,13 +125,14 @@ if($role != ROLE_STAFF){ ?>
                 <span>Data Bagian</span>
               </a>
             </li> -->
-            
+            <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_HRBP){?>
             <li class="sidebar-item">
               <a href="<?php echo base_url('area-kerja'); ?>" class="sidebar-link">
                 <i class="fa-solid fa-people-line"></i>
                 <span>Data Area Kerja</span>
               </a>
             </li>
+            <?php } ?>
             <!-- MENU PEGAWAI -->
             <li class="sidebar-item has-submenu">
               <a class="sidebar-link" href="#"><i class="fa-solid fa-users"></i> Data Karyawan <i class="fa fa-angle-down" style="float: right;"></i> </a>
@@ -155,7 +158,7 @@ if($role != ROLE_STAFF){ ?>
         <?php }?>
 
         <!-- INVENTARIS -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
+        <?php if($role == ROLE_SUPERADMIN){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-warehouse"></i> Inventaris<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -233,7 +236,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- INVENTARIS -->
 
         <!-- MENU EVALUASI -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_HRGA | $role == ROLE_KABAG | $role == ROLE_MANAGER){?>
+        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_HRGA){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -308,7 +311,6 @@ if($role != ROLE_STAFF){ ?>
         <?php }?>
         <!-- /MENU ASSESSMENT -->
 
-
         <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | $role == ROLE_KABAG){?>
         <li class="sidebar-item">
           <a href="<?php echo base_url('pelanggaran-karyawan'); ?>" class="sidebar-link">
@@ -349,8 +351,6 @@ if($role != ROLE_STAFF){ ?>
               </ul>
             </li>
             <?php }?>
-
-
             <!-- MENU TRANSAKSI SATPAM -->
 
             <!-- MENU KEBERSIHAN -->
@@ -366,7 +366,7 @@ if($role != ROLE_STAFF){ ?>
 
             <!-- MENU Dokumen -->
             <?php
-            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | ($role == ROLE_ADMIN && $bagian_id == BPD | PURCHASING) )
+            if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_KABAG | ($role == ROLE_ADMIN && $bagian_id == BPD | PURCHASING) )
             {
             ?>
             <li class="sidebar-item">
