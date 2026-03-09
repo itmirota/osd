@@ -464,6 +464,39 @@ if($role != ROLE_STAFF){ ?>
         <?php } ?>
         <!-- /MENU SAMPLE -->
 
+        <!-- MENU ABSENSI -->
+        <li class="sidebar-item has-submenu">
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-file"></i>Data Accurate <i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <ul class="submenu collapse">
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('data-supplier'); ?>" class="sidebar-link">
+                <span>Data Supplier</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('data-customer'); ?>" class="sidebar-link">
+                <span>Data Customer</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('data-barangjasa'); ?>" class="sidebar-link">
+                <span>Data Barang & Jasa</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('data-penghapusan'); ?>" class="sidebar-link">
+                <span>Penghapusan Data</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url('data-penyesuaianharga'); ?>" class="sidebar-link">
+                <span>Penyesuaian Harga</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- /MENU ABSENSI -->
+
         <?php
         if($role == ROLE_SUPERADMIN)
         {
