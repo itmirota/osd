@@ -10,6 +10,20 @@
       <div class="card-body table-responsive no-padding">
         <div class="row">
           <div class="col sm-6">
+            <?php if($page == 'hasil-magang'){?>
+            <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Nama Peserta</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?=$list_data->nama_magang?>">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Bagian</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?=$list_data->bagian?>">
+              </div>
+            </div>
+            <?php }else{ ?> 
             <div class="mb-3 row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Nama Peserta</label>
               <div class="col-sm-8">
@@ -22,12 +36,7 @@
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?= $detail_pegawai->nama_divisi.' / '.$detail_pegawai->nama_bagian?>">
               </div>
             </div>
-            <!-- <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-3 col-form-label">Divisi</label>
-              <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
-              </div>
-            </div> -->
+            <?php } ?>
           </div>
           <div class="col sm-6">
             <div class="mb-3 row">

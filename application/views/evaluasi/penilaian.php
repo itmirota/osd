@@ -9,7 +9,11 @@
             <div class="col-md-12 alert alert-info" role="alert">
                 <div class="col-md-12">
                   <label for="nama_peserta" class="form-label">Nama Pegawai</label>
+                  <?php if($page == 'penilaian-magang') { ?>
+                  <input type="text" name="nama_magang" class="form-control-plaintext tabel-PR" value="<?= $list_data->nama_magang?>" readonly>
+                  <?php }else{ ?>
                   <input type="text" name="nama_peserta" class="form-control-plaintext tabel-PR" value="<?= $list_data->nama_pegawai?>" readonly>
+                  <?php } ?>
                   <input type="hidden" name="evaluasiKerja_id" class="form-control tabel-PR" value="<?= $list_data->id_evaluasi?>" readonly>
                 </div>
                 <div class="col-md-12">
