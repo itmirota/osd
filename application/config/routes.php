@@ -228,18 +228,27 @@ $route['export-excel-assessment'] = 'assessment/exportAssessmentAll';
 /*********** ACCURATE DEFINED ROUTES *******************/
 $route['data-supplier'] = 'DataAccurate/DataSupplier';
 $route['simpan-supplier'] = 'DataAccurate/saveSuppier';
+$route['updateProcessSupplier'] = 'DataAccurate/UpdateProsesSupplier';
 
 $route['data-customer'] = 'DataAccurate/DataCustomer';
 $route['simpan-customer'] = 'DataAccurate/saveCustomer';
+$route['updateProcessCustomer'] = 'DataAccurate/UpdateProsesCustomer';
+
 
 $route['data-barangjasa'] = 'DataAccurate/DataBarangJasa';
 $route['simpan-barangjasa'] = 'DataAccurate/saveBarangJasa';
+$route['updateProcessBarangjasa'] = 'DataAccurate/UpdateProsesBarangjasa';
+
 
 $route['data-penghapusan'] = 'DataAccurate/DataPenghapusan';
 $route['simpan-penghapusan'] = 'DataAccurate/savePenghapusan';
+$route['updateProcessPenghapusan'] = 'DataAccurate/UpdateProsesPenghapusan';
+
 
 $route['data-penyesuaianharga'] = 'DataAccurate/DataPenyesuaianharga';
 $route['simpan-penyesuaianharga'] = 'DataAccurate/savePenyesuaianharga';
+$route['updateProcessPenyesuaianharga'] = 'DataAccurate/UpdateProsesPenyesuaianharga';
+
 
 /*********** ACCURATE DEFINED ROUTES *******************/
 

@@ -75,6 +75,28 @@ class DataAccurate extends BaseController
     }
   }
 
+  public function UpdateProsesSupplier(){
+    $pegawai_id = $this->pegawai_id;
+
+    $input = json_decode($this->input->raw_input_stream, true);
+    $id    = $input['id'];
+
+    if (!$id) {
+      echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+      return;
+    }
+
+    $data = [
+      "userprocess_id"      => $pegawai_id,
+      "dateprocess"     => DATE('Y-m-d H:i:s'),
+    ];
+
+    $this->crud_model->update(["id_supplier" => $id], $data, "tbl_accurate_supplier");
+
+    echo json_encode(["status" => "success", "message" => "data berhasil disimpan"]);
+    return;
+  }
+
   // END DATA SUPPIER
 
   // DATA CUSTOMER
@@ -119,6 +141,29 @@ class DataAccurate extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Customer Baru Berhasil Ditambahkan');
     redirect('data-customer');
   }
+
+  public function UpdateProsesCustomer(){
+    $pegawai_id = $this->pegawai_id;
+
+    $input = json_decode($this->input->raw_input_stream, true);
+    $id    = $input['id'];
+
+    if (!$id) {
+      echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+      return;
+    }
+
+    $data = [
+      "userprocess_id"      => $pegawai_id,
+      "dateprocess"     => DATE('Y-m-d H:i:s'),
+    ];
+
+    $this->crud_model->update(["id_customer" => $id], $data, "tbl_accurate_customer");
+
+    echo json_encode(["status" => "success", "message" => "data berhasil disimpan"]);
+    return;
+  }
+
   // END DATA CUSTOMER
 
 
@@ -162,6 +207,28 @@ class DataAccurate extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Barang & Jasa Baru Berhasil Ditambahkan');
     redirect('data-barangjasa');
   }
+
+  public function UpdateProsesBarangjasa(){
+    $pegawai_id = $this->pegawai_id;
+
+    $input = json_decode($this->input->raw_input_stream, true);
+    $id    = $input['id'];
+
+    if (!$id) {
+      echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+      return;
+    }
+
+    $data = [
+      "userprocess_id"      => $pegawai_id,
+      "dateprocess"     => DATE('Y-m-d H:i:s'),
+    ];
+
+    $this->crud_model->update(["id_barangjasa" => $id], $data, "tbl_accurate_barangjasa");
+
+    echo json_encode(["status" => "success", "message" => "data berhasil disimpan"]);
+    return;
+  }
   // END DATA BARANG JASA
 
   // DATA PENGHAPUSAN
@@ -198,6 +265,28 @@ class DataAccurate extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Penghapusan data Berhasil Ditambahkan');
     redirect('data-penghapusan');
   }
+
+  public function UpdateProsesPenghapusan(){
+    $pegawai_id = $this->pegawai_id;
+
+    $input = json_decode($this->input->raw_input_stream, true);
+    $id    = $input['id'];
+
+    if (!$id) {
+      echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+      return;
+    }
+
+    $data = [
+      "userprocess_id"      => $pegawai_id,
+      "dateprocess"     => DATE('Y-m-d H:i:s'),
+    ];
+
+    $this->crud_model->update(["id_penghapusan" => $id], $data, "tbl_accurate_penghapusan");
+
+    echo json_encode(["status" => "success", "message" => "data berhasil disimpan"]);
+    return;
+  }
   // END DATA PENGHAPUSAN
 
   // DATA  PENYESUAIAN HARGA
@@ -205,7 +294,7 @@ class DataAccurate extends BaseController
     $id = $this->pegawai_id;
     $role = $this->role;
 
-    $this->global['pageTitle'] = 'Admin Panel : Data pENYESUAIAN hARGA';
+    $this->global['pageTitle'] = 'Admin Panel : Data Penyesuaian Harga';
 
     if($role == ROLE_SUPERADMIN){
       $data['list_data']= $this->dataAccurate_model->GetDataPenyesuaianhargaAll();
@@ -258,6 +347,28 @@ class DataAccurate extends BaseController
     $dokumen = $this->dataAccurate_model->GetDocumentPenyesuaianharga($id);
 
     echo json_encode($dokumen);
+  }
+
+  public function UpdateProsesPenyesuaianharga(){
+    $pegawai_id = $this->pegawai_id;
+
+    $input = json_decode($this->input->raw_input_stream, true);
+    $id    = $input['id'];
+
+    if (!$id) {
+      echo json_encode(["status" => "error", "msg" => "Data tidak lengkap"]);
+      return;
+    }
+
+    $data = [
+      "userprocess_id"      => $pegawai_id,
+      "dateprocess"     => DATE('Y-m-d H:i:s'),
+    ];
+
+    $this->crud_model->update(["id_penyesuaian" => $id], $data, "tbl_accurate_penyesuaianharga");
+
+    echo json_encode(["status" => "success", "message" => "data berhasil disimpan"]);
+    return;
   }
   // END DATA  PENYESUAIAN HARGA
 
