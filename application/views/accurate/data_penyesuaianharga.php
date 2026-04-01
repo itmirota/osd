@@ -51,7 +51,10 @@
             <th>Tanggal Berlaku</th>
             <th>Dokumen</th>
             <th>Status</th>
+            <?php if ($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)) {?>
             <th width="100px">Aksi</th>
+            <?php } ?>
+
           </tr>
           </thead>
 
@@ -72,6 +75,7 @@
               <p class="m-0">tanggal: <span style="font-size:10px; font-weight:bold"><?=isset($ld->tanggal_proses) ? mediumdate_indo($ld->tanggal_proses).' | '.DATE('H:i',strtotime($ld->waktu_proses)). ' WIB' : "-"?></span></p>
               <?php } ?>
             </td>
+            <?php if ($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)) {?>
             <td>
               <div class="d-grid gap-2 d-md-block">
                 <?php if(is_null($ld->userprocess_id)) {?>
@@ -83,6 +87,8 @@
                 </a>
               </div>
             </td> 
+            <?php } ?>
+
           </tr>
           <?php $no++ ?>
           <?php } ?>

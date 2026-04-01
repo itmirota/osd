@@ -453,7 +453,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
 
-        <?php if($role == ROLE_SUPERADMIN || $role == ROLE_KABAG|| ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING) ){ ?>
+        <?php if($role == ROLE_SUPERADMIN || $role == ROLE_KABAG|| $role == ROLE_SPV|| ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING) ){ ?>
 
         <!-- MENU ABSENSI -->
         <li class="sidebar-item has-submenu">
