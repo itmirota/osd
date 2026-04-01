@@ -55,6 +55,7 @@ define('MARKETING',           '8');
 define('BPD',                 '53');
 define('PURCHASING',          '55');
 define('PPIC',                '56');
+define('ACCOUNTING',          '69');
 
 /************************** EMAIL CONSTANTS *****************************/
 

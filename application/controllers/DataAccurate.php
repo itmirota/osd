@@ -17,10 +17,11 @@ class DataAccurate extends BaseController
   public function DataSupplier(){
     $id = $this->pegawai_id;
     $role = $this->role;
+$bagian_id = $this->bagian_id;
 
     $this->global['pageTitle'] = 'Admin Panel : Data Suppier';
 
-    if($role == ROLE_SUPERADMIN){
+    if($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)){
       $data['list_data']= $this->dataAccurate_model->GetDataSuppierAll();
     }else{
       $data['list_data']= $this->dataAccurate_model->GetDataSuppierWhere(['userinput_id'=> $id]);
@@ -103,10 +104,11 @@ class DataAccurate extends BaseController
   public function DataCustomer(){
     $id = $this->pegawai_id;
     $role = $this->role;
+$bagian_id = $this->bagian_id;
 
     $this->global['pageTitle'] = 'Admin Panel : Data Customer';
 
-    if($role == ROLE_SUPERADMIN){
+    if($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)){
       $data['list_data']= $this->dataAccurate_model->GetDataCustomerAll();
     }else{
       $data['list_data']= $this->dataAccurate_model->GetDataCustomerWhere(['userinput_id'=> $id]);
@@ -171,10 +173,11 @@ class DataAccurate extends BaseController
   public function DataBarangJasa(){
     $id = $this->pegawai_id;
     $role = $this->role;
+$bagian_id = $this->bagian_id;
 
     $this->global['pageTitle'] = 'Admin Panel : Data Barang & Jasa';
 
-    if($role == ROLE_SUPERADMIN){
+    if($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)){
       $data['list_data']= $this->dataAccurate_model->GetDataBarangJasaAll();
     }else{
       $data['list_data']= $this->dataAccurate_model->GetDataBarangJasaWhere(['userinput_id'=> $id]);
@@ -235,10 +238,11 @@ class DataAccurate extends BaseController
   public function DataPenghapusan(){
     $id = $this->pegawai_id;
     $role = $this->role;
+$bagian_id = $this->bagian_id;
 
     $this->global['pageTitle'] = 'Admin Panel : Data Penghapusan';
 
-    if($role == ROLE_SUPERADMIN){
+    if($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)){
       $data['list_data']= $this->dataAccurate_model->GetDataPenghapusanAll();
     }else{
       $data['list_data']= $this->dataAccurate_model->GetDataPenghapusanWhere(['userinput_id'=> $id]);
@@ -293,10 +297,11 @@ class DataAccurate extends BaseController
   public function DataPenyesuaianharga(){
     $id = $this->pegawai_id;
     $role = $this->role;
+$bagian_id = $this->bagian_id;
 
     $this->global['pageTitle'] = 'Admin Panel : Data Penyesuaian Harga';
 
-    if($role == ROLE_SUPERADMIN){
+    if($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)){
       $data['list_data']= $this->dataAccurate_model->GetDataPenyesuaianhargaAll();
     }else{
       $data['list_data']= $this->dataAccurate_model->GetDataPenyesuaianhargaWhere(['userinput_id'=> $id]);

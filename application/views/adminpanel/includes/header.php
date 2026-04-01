@@ -453,16 +453,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
 
-        <?php if($role == ROLE_SUPERADMIN){ ?>
-        <!-- MENU SAMPLE -->
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('permintaan-sample'); ?>" class="sidebar-link">
-            <i class="fa-solid fa-clipboard-check"></i>
-            <span>Permintaan Sample</span>
-          </a>
-        </li>
-        <?php } ?>
-        <!-- /MENU SAMPLE -->
+        <?php if($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING) ){ ?>
 
         <!-- MENU ABSENSI -->
         <li class="sidebar-item has-submenu">
@@ -496,11 +487,22 @@ if($role != ROLE_STAFF){ ?>
           </ul>
         </li>
         <!-- /MENU ABSENSI -->
+        <?php } ?>
 
         <?php
         if($role == ROLE_SUPERADMIN)
         {
         ?>
+
+        <!-- MENU SAMPLE -->
+        <li class="sidebar-item">
+          <a href="<?php echo base_url('permintaan-sample'); ?>" class="sidebar-link">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>Permintaan Sample</span>
+          </a>
+        </li>
+        <!-- /MENU SAMPLE -->
+
         <li class="sidebar-header">
           User Management
         </li>
