@@ -88,7 +88,7 @@ class Pengirimanpaket extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
 
     if($page = "kirimpaket"){
-      redirect('dashboardUser');
+      redirect('list-paket');
     }else{
       redirect('pengirimanpaket');
     }
