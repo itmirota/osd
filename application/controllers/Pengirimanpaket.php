@@ -43,6 +43,26 @@ class Pengirimanpaket extends BaseController
     $this->loadViews("pengirimanpaket/data", $this->global, $data, NULL);
   }
 
+  public function listPaketUser(){
+    $this->isLoggedIn();
+
+    $this->global['pageTitle'] = 'Pengiriman Paket';
+    $this->global['pageHeader'] = 'OSD | Pengiriman paket';
+    $id = $this->global ['pegawai_id'];
+    $role = $this->global ['role'];
+
+    $list_data = $this->pengirimanPaket_model->GetDataByWhere($id);
+
+    $data = array(
+      'total_saldo' => $this->crud_model->GetRowOrderby('id_saldo','DESC','tbl_satpam_saldo')->saldo,
+      'sisa_saldo' => $this->crud_model->getDataTotal('sisa_saldo','tbl_satpam_saldo'),
+      'list_data' => $list_data,
+      'page' => $this->uri->segment(1),
+    );
+
+    $this->loadViewsUser("pengirimanpaket/data", $this->global, $data, NULL);
+  }
+
   public function save(){
     $this->isLoggedIn();
 

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="container">
 
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPengirimanPaket"><i class="fa fa-plus"></i> Tambah Data</button>
@@ -11,10 +11,14 @@
           <div class="p-2">
             <h3 class="card-title">Data paket</h3>
           </div>
+          
+          <?php if($page != 'list-paket'){ ?> 
           <div class="p-2">
             <strong class="me-2">Saldo Rp. <?= $total_saldo ?></strong>
             <strong class="me-2">Sisa Saldo Rp. <?= $sisa_saldo ?></strong>
           </div>
+          <?php } ?>
+
         </div>
       </div><!-- /.box-header -->
       <div class="card-body table-responsive no-padding">
@@ -68,6 +72,7 @@
       </div><!-- /.box-body -->
     </div>
   </div>
+
 </div>
 
 <!-- Modal -->

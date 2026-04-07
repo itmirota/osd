@@ -48,6 +48,8 @@ $route['laporan-daftar-hadir'] = 'DaftarHadir/laporan';
 $route['area-kerja'] = 'areaKerja';
 $route['kirimpaket'] = 'pengirimanpaket/save';
 
+$route['list-paket'] = 'pengirimanpaket/listPaketUser';
+
 
 /*********** MASTER DATA DEFINED ROUTES *******************/
 

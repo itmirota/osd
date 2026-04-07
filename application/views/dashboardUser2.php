@@ -135,7 +135,7 @@
         </a>
       </div> -->
       <div class="col-3">
-        <a href="" data-bs-toggle="modal" data-bs-target="#addPengirimanPaket">
+        <a href="<?= base_url('list-paket'); ?>">
           <div class="d-flex flex-column">
             <div class="d-flex justify-content-center mb-2">
               <img class="img-menu" src="<?= base_url('assets/images/truck.png')?>">
