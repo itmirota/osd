@@ -231,6 +231,10 @@ $route['export-excel-assessment'] = 'assessment/exportAssessmentAll';
 /*********** ASSESSMENT DEFINED ROUTES *******************/
 
 /*********** ACCURATE DEFINED ROUTES *******************/
+
+$route['data-accurate'] = 'DataAccurate/DashboardUser';
+$route['data-customer-user'] = 'DataAccurate/DataCustomer';
+
 $route['data-supplier'] = 'DataAccurate/DataSupplier';
 $route['simpan-supplier'] = 'DataAccurate/saveSuppier';
 $route['updateProcessSupplier'] = 'DataAccurate/UpdateProsesSupplier';

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="container">
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-end mb-4">
@@ -18,6 +18,10 @@
                 <div class="mb-3">
                   <label for="nama_customer" class="form-label">Nama Customer</label>
                   <input type="text" class="form-control" name="nama_customer" aria-describedby="nama_customerHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="identitas_pajak" class="form-label">NIK / NPWP</label>
+                  <input type="text" class="form-control" name="identitas_pajak" aria-describedby="identitas_pajakHelp">
                 </div>
                 <div class="mb-3">
                   <label for="kontak" class="form-label">No Telp Aktif/Whatsapp</label>
@@ -83,6 +87,7 @@
             <td><?= $no ?></td>
             <td>
               <p class="m-0"><?=$ld->nama_customer?></p>
+              <p class="m-0"><?=$ld->identitas_pajak?></p>
               <p class="m-0"><?=$ld->kontak?></p>
               <p class="m-0"><?=$ld->email?></p>
             </td>

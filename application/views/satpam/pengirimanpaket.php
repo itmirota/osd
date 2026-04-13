@@ -12,31 +12,34 @@
     color:#ddd9d9;
   }
 </style>
-<div class="row mt-4">
+<div class="container my-4">
   <div class="d-flex justify-content-between">
-  <div class="p-2">
-    <a href="<?= base_url('satpam')?>" class="btn btn-md btn-secondary"><i class="fas fa-arrow-left"></i> kembali</a>
-    <a href="<?= base_url('satpam/pengirimanpaket')?>" class="btn btn-md btn-warning"><i class="fa-solid fa-arrows-rotate"></i> refresh</a>
-  </div>
-  <div class="p-2 d-flex justify-align-items-center">
-    <strong class="text-date"><?= longdate_indo(DATE("Y-m-d"))?></strong>
-  </div>
+    <div class="p-2">
+      <a href="<?= base_url('satpam')?>" class="btn btn-md btn-secondary"><i class="fas fa-arrow-left"></i> kembali</a>
+      <a href="<?= base_url('satpam/pengirimanpaket')?>" class="btn btn-md btn-warning"><i class="fa-solid fa-arrows-rotate"></i> refresh</a>
+    </div>
+    <div class="p-2 d-flex justify-align-items-center">
+      <strong class="text-date"><?= longdate_indo(DATE("Y-m-d"))?></strong>
+    </div>
   </div>
 </div>
-<div class="row">
+<div class="container">
   <div class="col-md-12">
-    <div class="text-judul mt-2 mb-2">
-      <h3 class="m-0">Data Paket</h3>
-      <p class="m-0">List data karyawan yang mengirimkan paket</p>
-    </div>
     <div class="card card-primary">
-      <div class="p-2 d-flex justify-content-end">
+      <div class="p-2 d-flex justify-content-between">
+        <div class="p-2">
+          <h3 class="m-0">Data Paket</h3>
+          <p class="m-0">List data karyawan yang mengirimkan paket</p>
+        </div>
+        <div class="p-2 d-flex">
         <div class="p-2">
         <strong class="me-2">Saldo Rp. <?= $total_saldo ?></strong>
         </div>
         <div class="p-2">
         <strong class="me-2">Sisa Saldo Rp. <?= $sisa_saldo ?></strong>
         </div>
+        </div>
+        
       </div>
       <div class="card-body table-responsive no-padding">
         <table id="dataTable" class="table table-hover">
@@ -74,7 +77,7 @@
             <td><?= $data->biaya_kirim ?></td>
             <td  class="text-center">
               <?php if(is_null($data->tgl_diterima)){?>
-                <a href="<?=base_url('satpam/updatediterima/'.$data->id_paket)?>" class="btn btn-sm btn-info"> <i class="fas fa-clock"></i></a>
+                <a href="<?=base_url('satpam/updatediterima/'.$data->id_paket)?>" class="btn btn-sm btn-info"> <i class="fa fa-clock"></i></a>
               <?php }else{
                 echo $data->tgl_diterima;
               } ?>

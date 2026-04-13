@@ -242,7 +242,19 @@
           </div>
         </a>
       </div>
-      
+
+      <div class="col-3">
+        <a href="<?= base_url('data-accurate') ?>">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-2">
+              <svg class="img-menu" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#176ebf" stroke="#176ebf"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#176ebf" d="M832 384H576V128H192v768h640V384zm-26.496-64L640 154.496V320h165.504zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32zm320 512V448h64v128h128v64H544v128h-64V640H352v-64h128z"></path></g></svg>
+            </div>
+            <p class="font-dark caption-text" style="text-align:center">
+              Data Accurate
+            </p>
+          </div>
+        </a>
+      </div>      
     </div>
     <!-- <div class="d-flex flex-row justify-content-start">
       <div class="col-3 m-1">

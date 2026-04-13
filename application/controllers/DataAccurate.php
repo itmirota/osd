@@ -12,12 +12,23 @@ class DataAccurate extends BaseController
       $this->isLoggedIn();
   }
 
+  public function DashboardUser(){
+    $id = $this->pegawai_id;
+    $role = $this->role;
+    $bagian_id = $this->bagian_id;
+
+    $this->global['pageTitle'] = 'Admin Panel : Data Suppier';
+
+
+    $this->loadViewsUser("accurate/dashboard_accurate", $this->global, NULL, NULL);
+  }
+
   // DATA SUPPIER
 
   public function DataSupplier(){
     $id = $this->pegawai_id;
     $role = $this->role;
-$bagian_id = $this->bagian_id;
+    $bagian_id = $this->bagian_id;
 
     $this->global['pageTitle'] = 'Admin Panel : Data Suppier';
 
@@ -107,6 +118,7 @@ $bagian_id = $this->bagian_id;
     $id = $this->pegawai_id;
     $role = $this->role;
     $bagian_id = $this->bagian_id;
+    $page = $this->uri->segment(1);
 
     $this->global['pageTitle'] = 'Admin Panel : Data Customer';
 
@@ -118,11 +130,16 @@ $bagian_id = $this->bagian_id;
       $data['list_data']= $this->dataAccurate_model->GetDataCustomerWhere(['userinput_id'=> $id]);
     }
 
+    if ($page == "data-customer-user"){
+    $this->loadViewsUser("accurate/data_customer", $this->global, $data, NULL);
+    }else{
     $this->loadViews("accurate/data_customer", $this->global, $data, NULL);
+    }
   }
 
   public function saveCustomer(){
     $nama_customer = $this->input->post('nama_customer');
+    $identitas_pajak = $this->input->post('identitas_pajak');
     $kontak = $this->input->post('kontak');
     $email = $this->input->post('email');
     $alamat = $this->input->post('alamat');
@@ -134,6 +151,7 @@ $bagian_id = $this->bagian_id;
 
     $data = array (
       'nama_customer' => $nama_customer,
+      'identitas_pajak' => $identitas_pajak,
       'kontak' => $kontak,
       'email' => $email,
       'alamat' => $alamat,

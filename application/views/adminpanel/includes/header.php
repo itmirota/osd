@@ -236,7 +236,7 @@ if($role != ROLE_STAFF){ ?>
         <!-- INVENTARIS -->
 
         <!-- MENU EVALUASI -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_HRGA){?>
+        <!-- <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRBP | $role == ROLE_HRGA){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi Kinerja <i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -261,7 +261,7 @@ if($role != ROLE_STAFF){ ?>
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-user-check"></i> Evaluasi <i class="fa fa-angle-down" style="float: right;"></i> </a>
@@ -453,7 +453,7 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php } ?>
 
-        <?php if($role == ROLE_SUPERADMIN || $role == ROLE_KABAG|| $role == ROLE_SPV|| ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING) ){ ?>
+        <?php if($role == ROLE_SUPERADMIN || $role == ROLE_KABAG|| $role == ROLE_SPV|| $role == ROLE_ADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING) ){ ?>
 
         <!-- MENU ABSENSI -->
         <li class="sidebar-item has-submenu">

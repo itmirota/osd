@@ -8,6 +8,7 @@ class DataAccurate_model extends CI_Model
     $this->db->from('tbl_accurate_supplier a');
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
+    $this->db->order_by('a.id_supplier','DESC');
     $query = $this->db->get();
 
     return $query->result();
@@ -20,6 +21,7 @@ class DataAccurate_model extends CI_Model
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
     $this->db->where($where);
+    $this->db->order_by('a.id_supplier','DESC');
     $query = $this->db->get();
 
     return $query->result();
@@ -35,21 +37,23 @@ class DataAccurate_model extends CI_Model
   }
 
   public function GetDataCustomerAll(){
-    $this->db->select('a.id_customer, a.nama_customer, a.kontak, a.email, a.alamat, a.kategori, a.tipe_pembayaran, DATE(a.datecreated) as tanggal_input, TIME(a.datecreated) as waktu_input, DATE(a.dateprocess) as tanggal_proses, TIME(a.dateprocess) as waktu_proses, b.nama_pegawai as nama_input, b.kontak_pegawai, a.userprocess_id, c.nama_pegawai as nama_proses');
+    $this->db->select('a.id_customer, a.nama_customer, a.identitas_pajak, a.kontak, a.email, a.alamat, a.kategori, a.tipe_pembayaran, DATE(a.datecreated) as tanggal_input, TIME(a.datecreated) as waktu_input, DATE(a.dateprocess) as tanggal_proses, TIME(a.dateprocess) as waktu_proses, b.nama_pegawai as nama_input, b.kontak_pegawai, a.userprocess_id, c.nama_pegawai as nama_proses');
     $this->db->from('tbl_accurate_customer a');
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
+    $this->db->order_by('a.id_customer','DESC');
     $query = $this->db->get();
 
     return $query->result();
   }
 
   public function GetDataCustomerWhere($where){
-    $this->db->select('a.id_customer, a.nama_customer, a.kontak, a.email, a.alamat, a.kategori, a.tipe_pembayaran, DATE(a.datecreated) as tanggal_input, TIME(a.datecreated) as waktu_input, DATE(a.dateprocess) as tanggal_proses, TIME(a.dateprocess) as waktu_proses, b.nama_pegawai as nama_input, b.kontak_pegawai, a.userprocess_id, c.nama_pegawai as nama_proses');
+    $this->db->select('a.id_customer, a.nama_customer, a.identitas_pajak, a.kontak, a.email, a.alamat, a.kategori, a.tipe_pembayaran, DATE(a.datecreated) as tanggal_input, TIME(a.datecreated) as waktu_input, DATE(a.dateprocess) as tanggal_proses, TIME(a.dateprocess) as waktu_proses, b.nama_pegawai as nama_input, b.kontak_pegawai, a.userprocess_id, c.nama_pegawai as nama_proses');
     $this->db->from('tbl_accurate_customer a');
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
     $this->db->where($where);
+    $this->db->order_by('a.id_customer','DESC');
 
     $query = $this->db->get();
 
@@ -61,6 +65,8 @@ class DataAccurate_model extends CI_Model
     $this->db->from('tbl_accurate_barangjasa a');
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
+    $this->db->order_by('a.id_barangjasa','DESC');
+
     $query = $this->db->get();
 
     return $query->result();
@@ -72,6 +78,7 @@ class DataAccurate_model extends CI_Model
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
     $this->db->where($where);
+    $this->db->order_by('a.id_barangjasa','DESC');
 
     $query = $this->db->get();
 
@@ -83,6 +90,8 @@ class DataAccurate_model extends CI_Model
     $this->db->from('tbl_accurate_penghapusan a');
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
+    $this->db->order_by('a.id_penghapusan','DESC');
+
     $query = $this->db->get();
 
     return $query->result();
@@ -94,6 +103,7 @@ class DataAccurate_model extends CI_Model
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
     $this->db->where($where);
+    $this->db->order_by('a.id_penghapusan','DESC');
 
     $query = $this->db->get();
 
@@ -105,6 +115,8 @@ class DataAccurate_model extends CI_Model
     $this->db->from('tbl_accurate_penyesuaianharga a');
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
+    $this->db->order_by('a.id_penyesuaian','DESC');
+
     $query = $this->db->get();
 
     return $query->result();
@@ -116,6 +128,7 @@ class DataAccurate_model extends CI_Model
     $this->db->join('tbl_pegawai b','a.userinput_id = b.id_pegawai');
     $this->db->join('tbl_pegawai c','a.userprocess_id = c.id_pegawai','left');
     $this->db->where($where);
+    $this->db->order_by('a.id_penyesuaian','DESC');
 
     $query = $this->db->get();
 
