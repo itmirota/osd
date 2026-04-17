@@ -393,7 +393,8 @@ class Absensi extends BaseController
     $sheet->setCellValue('D5', 'Nama Sales');
     $sheet->setCellValue('E5', 'Nama Toko');
     $sheet->setCellValue('F5', 'Tanggal');
-    $sheet->setCellValue('G5', 'Waktu');
+    $sheet->setCellValue('G5', 'Kehadiran');
+    $sheet->setCellValue('G5', 'Pulang');
 
     $sheet->getStyle('B5')->applyFromArray($style_col);
     $sheet->getStyle('C5')->applyFromArray($style_col);
@@ -410,13 +411,15 @@ class Absensi extends BaseController
       $sheet->setCellValue('D'.$numrow, $ld->nama_pegawai);
       $sheet->setCellValue('E'.$numrow, $ld->nama_toko);
       $sheet->setCellValue('F'.$numrow, $ld->keterangan);
-      $sheet->setCellValue('G'.$numrow, $ld->waktu);
+      $sheet->setCellValue('G'.$numrow, $ld->time_in);
+      $sheet->setCellValue('H'.$numrow, $ld->time_out);
 
       $sheet->getColumnDimension('C')->setAutoSize(true);
       $sheet->getColumnDimension('D')->setAutoSize(true);
       $sheet->getColumnDimension('E')->setAutoSize(true);
       $sheet->getColumnDimension('F')->setAutoSize(true);
       $sheet->getColumnDimension('G')->setAutoSize(true);
+      $sheet->getColumnDimension('H')->setAutoSize(true);
   
       $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
@@ -424,6 +427,7 @@ class Absensi extends BaseController
       $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
       $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
 
       $no++;
       $numrow++;
