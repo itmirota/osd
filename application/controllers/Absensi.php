@@ -321,6 +321,129 @@ class Absensi extends BaseController
     exit();
   }
 
+    public function exportExcelVisit(){
+
+    $id = $this->uri->segment(2);
+    
+    if(isset($id) ? $id : 0);
+    $periodeAwal = $this->input->post('periodeAwal');
+    $periodeAkhir = $this->input->post('periodeAkhir');
+    $awal = strftime('%d/%b/%Y', strtotime($periodeAwal));
+    $akhir = strftime('%d/%b/%Y', strtotime($periodeAkhir));
+
+    $where = array(
+      'date >=' => $periodeAwal,
+      'date <=' => $periodeAkhir,
+    );
+
+    $list_data = $this->absensi_model->ReportAbsenVisit($id, $where);
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $style_col = [
+      'font' => ['bold' => true], // Set font nya jadi bold
+      'alignment' => [
+      'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+          'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+          'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+          'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+          'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $styleRight = [
+      'font' => [
+        'bold' => true,
+      ],
+      'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+      ],
+      'borders' => [
+        'top' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+      ],
+    ];
+        
+
+    // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+    $style_row = [
+      'alignment' => [
+      'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+      ],
+      'borders' => [
+      'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+      'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+      'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+      'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+      ]
+    ];
+
+    $sheet->setCellValue('B2', 'Laporan Visit PT. Mirota KSM'); // Set kolom A1 Sebagai Header
+    $sheet->setCellValue('B3', 'Periode: '.$awal.' - '.$akhir); //
+
+    // $sheet->mergeCells('B2:E2'); // Set Merge Cell pada kolom A1 sampai E1
+    
+    $sheet->setCellValue('B5', 'No');
+    $sheet->setCellValue('C5', 'Tanggal');
+    $sheet->setCellValue('D5', 'Nama Sales');
+    $sheet->setCellValue('E5', 'Nama Toko');
+    $sheet->setCellValue('F5', 'Tanggal');
+    $sheet->setCellValue('G5', 'Waktu');
+
+    $sheet->getStyle('B5')->applyFromArray($style_col);
+    $sheet->getStyle('C5')->applyFromArray($style_col);
+    $sheet->getStyle('D5')->applyFromArray($style_col);
+    $sheet->getStyle('E5')->applyFromArray($style_col);
+    $sheet->getStyle('F5')->applyFromArray($style_col);
+    $sheet->getStyle('G5')->applyFromArray($style_col);
+
+    $no = 1;
+    $numrow = 6;
+    foreach ($list_data as $ld) {
+      $sheet->setCellValue('B'.$numrow, $no);
+      $sheet->setCellValue('C'.$numrow, $ld->date);
+      $sheet->setCellValue('D'.$numrow, $ld->nama_pegawai);
+      $sheet->setCellValue('E'.$numrow, $ld->nama_toko);
+      $sheet->setCellValue('F'.$numrow, $ld->keterangan);
+      $sheet->setCellValue('G'.$numrow, $ld->waktu);
+
+      $sheet->getColumnDimension('C')->setAutoSize(true);
+      $sheet->getColumnDimension('D')->setAutoSize(true);
+      $sheet->getColumnDimension('E')->setAutoSize(true);
+      $sheet->getColumnDimension('F')->setAutoSize(true);
+      $sheet->getColumnDimension('G')->setAutoSize(true);
+  
+      $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+      $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
+
+      $no++;
+      $numrow++;
+    }
+
+
+    $writer = new Xlsx($spreadsheet);
+    header('Content-Type: application/vnd.ms-excel');
+
+    if (!empty($periodeAwal) && !empty($periodeAkhir)){
+      header('Content-Disposition: attactchment;filename="Laporan Absensi Visit" '.$awal.' - '.$akhir.'.xlsx');
+    }else{
+      header('Content-Disposition: attactchment;filename="Laporan Absensi Visit".xlsx');
+    }
+
+    header('Cache-Control: max-age=0');
+    $writer->save("php://output");
+    exit();
+  }
+
   public function cekkoordinat(){
     $this->global['pageTitle'] = 'Laporan Absensi Manual Mirota KSM';
     $this->global['pageHeader'] = 'Laporan Absensi Manual Karyawan ';

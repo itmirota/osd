@@ -4,10 +4,10 @@ class Perizinan_model extends CI_Model
 {
 
 public function getData(){
-  $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
+  $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_bagian');
   $this->db->from('tbl_perizinan_cuti a');
   $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
-  $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+  $this->db->join('tbl_bagian c','c.id_bagian = b.bagian_id');
   $this->db->join('tbl_departement d','d.id_departement = c.departement_id');
   $this->db->join('tbl_jabatan e','e.id_jabatan = a.jabatan_id');
   $this->db->order_by('id_cuti','DESC');
@@ -16,10 +16,10 @@ public function getData(){
 }
 
 // public function getDatabyApproval($id){
-//   $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_divisi');
+//   $this->db->select('a.id_cuti, b.nama_pegawai as nama_pegawai, a.keperluan, a.jenis_cuti, a.approval, DATEDIFF(tgl_akhir,tgl_mulai) as selisih, c.nama_bagian');
 //   $this->db->from('tbl_perizinan_cuti a');
 //   $this->db->join('tbl_pegawai b', 'b.id_pegawai = a.pegawai_id');
-//   $this->db->join('tbl_divisi c', 'c.id_divisi = b.divisi_id');
+//   $this->db->join('tbl_bagian c', 'c.id_bagian = b.bagian_id');
 //   $this->db->where('c.kadiv_id', $id);
 //   $this->db->or_where('c.manager_id', $id);
 //   $this->db->order_by('id_cuti','DESC');

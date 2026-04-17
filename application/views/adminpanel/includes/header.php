@@ -380,7 +380,7 @@ if($role != ROLE_STAFF){ ?>
 
             <!-- MENU APPROVAL PERIZINAN -->
             <?php
-            if($jabatan_id <= 4  | $role == ROLE_HRGA)
+            if($jabatan_id <= 4  | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN)
             {
             ?>
             <li class="sidebar-item has-submenu">

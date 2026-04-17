@@ -12,9 +12,9 @@
                   <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#filterAbsenToko">
                   Filter
                   </button>
-                  <!-- <a href="<?= base_url('export-excel-absensi/'.$id.'/'.$periodeAwal.'/'.$periodeAkhir)?>" type="button" class="btn btn-success me-2">
+                  <a type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#ExportExcel">
                   Export Excel
-                  </a> -->
+                  </a>
                   <a href="<?= base_url('Laporan-visit')?>" type="button" class="btn btn-warning">
                   Refresh
                   </a>
@@ -61,21 +61,18 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="<?=base_url('laporanAbsensi')?>" role="form" method="post" enctype="multipart/form-data">
+                    <form action="<?=base_url('export-excel-visit')?>" role="form" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="periode" class="form-label">Periode</label>
-                        <input type="month" class="form-control" name="periode">
-                    </div>
-                    <div class="mb-3">
-                    <label for="pegawai" class="form-label">Nama Pegawai</label>
-                    <select name="id_pegawai" id="pegawai_id" style="width:100%" class="form-select tabel-PR" required>
-                        <option value="0">----- pilih pegawai ---</option>
-                        <?php foreach($pegawai as $ld): ?>
-                        <option value="<?= $ld->id_pegawai?>"> <?=$ld->nama_pegawai?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="p-2 col-6">
+                                <label for="periodeAwal" class="form-label">Tanggal Awal</label>
+                                <input type="date" class="form-control" name="periodeAwal">
+                            </div>
+                            <div class="p-2 col-6">
+                                <label for="periodeAkhir" class="form-label">Tanggal Akhir</label>
+                                <input type="date" class="form-control" name="periodeAkhir">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Input</button>
