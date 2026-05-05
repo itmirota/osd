@@ -21,7 +21,6 @@ class IzinHarian extends BaseController
 
   public function simpan(){
     $this->isLoggedIn();
-    $role = $this->global ['role'];
     $pegawai_id = $this->global ['pegawai_id'];
     $tgl_izin = $this->input->post('tgl_izin');
     $waktu_mulai = $this->input->post('waktu_mulai');
@@ -39,11 +38,7 @@ class IzinHarian extends BaseController
     $query = $this->crud_model->input($data, 'tbl_perizinan_harian');
     $this->set_notifikasi_swal('success','Berhasil','Izin Pribadi Berhasil Diajukan');
 
-    if($role == ROLE_STAFF){
-      redirect('perizinan');
-    }else{
-      redirect('pengajuanIzinHarian');
-    }
+    redirect('perizinan');
   }
 
   function rincian($id){

@@ -379,10 +379,11 @@
               <td><?= $ap->nama_pegawai ?></td>
               <td class="text-center">
               <?php if($ap->approval === "N,N,N"){?>
-              <div class="btn-group" role="group" aria-label="Basic example">
+              <!-- <div class="btn-group" role="group" aria-label="Basic example">
               <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>  
               <a href="<?= base_url('approvalPengganti/'.$ap->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fa fa-xmark"></i></a>
-              </div>
+              </div> -->
+              <a href="<?= base_url('approval-cuti?d='.urlencode(base64_encode($ap->id_cuti)).'&ap='.urlencode(base64_encode($id_pegawai))) ?>">tindakan</a>
               </td>
               <?php }else{?>
               <span class="badge text-bg-success"> <i class="fa fa-check"></i></span>

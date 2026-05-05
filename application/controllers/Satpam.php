@@ -39,9 +39,11 @@ class Satpam extends BaseController
   public function perizinan(){
     $this->global['pageTitle'] = 'SMART OSD | Data Perizinan';
 
+    $tanggal_sekarang = DATE('Y-m-d');
+
     $data = array(
-      'list_tugas' => $this->perizinan_model->getTugasWhere('tgl_kembali ='.NULL),
-      'list_izinHarian' => $this->izinHarian_model->getDataWhere('waktu_akhir ='.NULL)
+      'list_tugas' => $this->perizinan_model->getTugasWhere(['tgl_kembali ='.NULL]),
+      'list_izinHarian' => $this->izinHarian_model->getDataWhere(['tgl_izin' => $tanggal_sekarang,'waktu_akhir ='.NULL])
     );
 
     $this->loadViewsUser("satpam/perizinan", $this->global, $data, NULL);

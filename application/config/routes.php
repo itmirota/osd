@@ -157,6 +157,13 @@ $route['formulir-kecelakaan'] = 'kecelakaanKerja/form_kecelakaan';
 
 // CUTI
 $route['cuti'] = 'perizinan/listcuti';
+$route['approval-cuti'] = 'perizinan/form_approval';
+$route['approval-cuti-admin'] = 'perizinan/form_approval';
+$route['declineCuti'] = 'perizinan/declineCuti';
+
+$route['simpan-approval-user'] = 'perizinan/approvalCuti';
+$route['simpan-approval-admin'] = 'perizinan/approvalCuti';
+
 $route['approvalCuti/(:any)/(:any)'] = 'perizinan/approvalCuti/$1/$2';
 $route['approvalPengganti/(:any)/(:any)'] = 'perizinan/approvalCuti/$1/$2';
 $route['pengajuanCuti'] = 'perizinan/listPengajuanCuti';

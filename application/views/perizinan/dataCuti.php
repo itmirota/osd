@@ -6,15 +6,12 @@
           <thead>
           <tr>
             <th>No.</th>
-            <th>Nama Pegawai</th>
-            <th class="text-center">Divisi</th>
+            <th width="20vh">Nama Pegawai</th>
             <th class="text-center">Jenis Cuti</th>
             <th class="text-center">Durasi</th>
             <th class="text-center">Detail</th>
             <th class="text-center">Approval</th>
-            <?php if ($jabatan_id = 3 | $jabatan_id = 4){?>
             <th class="text-center">Aksi</th>
-            <?php }?>
           </tr>
           </thead>
           <tbody>
@@ -26,8 +23,11 @@
           ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= $lc->nama_pegawai ?></td>
-            <td class="text-center"><?= $lc->nama_divisi?></td>
+            <td>
+              <?= $lc->nama_pegawai ?>
+              <hr class="m-0"> 
+              <span style="font-size:12px"><strong><?= $lc->nama_bagian ?>/<?= $lc->nama_divisi ?></strong></span><br>
+            </td>
             <td class="text-center"><span class="badge text-bg-<?= $lc->jenis_cuti == 'tahunan' ? 'primary': ($lc->jenis_cuti == 'khusus' ? 'info':'warning')?>"> <?= $lc->jenis_cuti?></span></td>
             <td class="text-center"><?= $lc->selisih+1?> hari</td>
             <td><a href="" onclick="detailCuti(<?= $lc->id_cuti?>)" data-bs-toggle="modal" data-bs-target="#detailCuti"><i class="fas fa-eye ms-2"></i></a></td>
@@ -53,14 +53,16 @@
               <?php }?>  
               <a href="" onclick="listApproval(<?= $lc->id_cuti?>)" data-bs-toggle="modal" data-bs-target="#listApproval"><i class="fas fa-eye ms-2"></i></a> 
             </td>
-            <?php if ($jabatan_id = 3 | $jabatan_id = 4){?>
             <td>
-              <?php if($lc->approval == "Y,N,N" || $lc->approval == "Y,Y,N"){?>
-              <a href="<?= base_url('approvalCuti/'.$lc->id_cuti.'/Y') ?>" class="btn btn-sm btn-success"><i class="fas fa-check"></i> approve</a> 
-              <a href="<?= base_url('approvalCuti/'.$lc->id_cuti.'/T') ?>" class="btn btn-sm btn-danger"><i class="fas fa-xmark"></i> tidak</a>
-              <?php } ?>
+
+              <?php if($jabatan_id < 3 ){?>
+              <?php if($lc->approval == "Y,Y,N"){?>
+                <a href="<?= base_url('approval-cuti-admin?d='.urlencode(base64_encode($lc->id_cuti)).'&ap='.urlencode(base64_encode($id_pegawai))) ?>">tindakan</a>
+              <?php }?>
+              <?php }else{?>
+                <a href="<?= base_url('approval-cuti-admin?d='.urlencode(base64_encode($lc->id_cuti)).'&ap='.urlencode(base64_encode($id_pegawai))) ?>">tindakan</a>
+              <?php }?>
             </td>
-            <?php }?>
           </tr>
             <?php endforeach; } ?>
           </tbody>

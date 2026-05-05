@@ -320,6 +320,39 @@ if($role != ROLE_STAFF){ ?>
         </li>
         <?php }?>
 
+        <!-- MENU APPROVAL PERIZINAN -->
+        <?php
+        if($jabatan_id <= 4  | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN)
+        {
+        ?>
+        <li class="sidebar-item has-submenu">
+          <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Approval Izin<i class="fa fa-angle-down" style="float: right;"></i> </a>
+          <ul class="submenu collapse">
+            <li class="sidebar-item">
+              <a href="<?php echo base_url(); ?>izin" class="sidebar-link">
+                <span>Izin</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url(); ?>cuti" class="sidebar-link">
+                <span>Cuti Tahunan/ Khusus</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url(); ?>tugas" class="sidebar-link">
+                <span>Surat Tugas</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?php echo base_url(); ?>izin-harian" class="sidebar-link">
+                <span>Izin Kurang dari 1 Hari</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <?php } ?>
+        <!-- /MENU APPROVAL PERIZINAN -->
+
         <!-- MENU HRGA -->
         <?php if($role == ROLE_SUPERADMIN |  $role == ROLE_HRGA | $role == ROLE_KABAG | $role == ROLE_MANAGER | $role == ROLE_SPV | $role == ROLE_ADMIN){?>
         <li class="sidebar-item has-submenu">
@@ -377,39 +410,6 @@ if($role != ROLE_STAFF){ ?>
             </li>
             <?php } ?>
             <!-- /MENU Dokumen -->
-
-            <!-- MENU APPROVAL PERIZINAN -->
-            <?php
-            if($jabatan_id <= 4  | $role == ROLE_HRGA | $role == ROLE_SUPERADMIN)
-            {
-            ?>
-            <li class="sidebar-item has-submenu">
-              <a class="sidebar-link" href="#"><i class="fa-solid fa-file-circle-check"></i> Approval Izin<i class="fa fa-angle-down" style="float: right;"></i> </a>
-              <ul class="submenu collapse">
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>izin" class="sidebar-link">
-                    <span>Izin</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>cuti" class="sidebar-link">
-                    <span>Cuti Tahunan/ Khusus</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>tugas" class="sidebar-link">
-                    <span>Surat Tugas</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a href="<?php echo base_url(); ?>izin-harian" class="sidebar-link">
-                    <span>Izin Kurang dari 1 Hari</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <?php } ?>
-            <!-- /MENU APPROVAL PERIZINAN -->
 
             <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA | $role == ROLE_MANAGER | ($role == ROLE_ADMIN && $bagian_id == MARKETING)  | $role == ROLE_SPV){?>
             <!-- MENU ABSENSI -->
