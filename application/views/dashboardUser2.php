@@ -122,8 +122,8 @@
           </div>
         </a>
       </div>
-      <div class="col-3">
-        <a href="<?= base_url('perizinan') ?>">
+      <!-- <div class="col-3">
+        <a href="<?= base_url('perizinan') ?>" class="disabled">
           <div class="d-flex flex-column">
             <div class="d-flex justify-content-center mb-2">
               <img class="img-menu" src="<?= base_url('assets/images/folder.png')?>">
@@ -133,7 +133,7 @@
             </p>
           </div>
         </a>
-      </div>
+      </div> -->
       <div class="col-3">
         <a href="<?= base_url('list-paket'); ?>">
           <div class="d-flex flex-column">
