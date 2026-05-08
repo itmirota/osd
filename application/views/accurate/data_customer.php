@@ -50,8 +50,10 @@
                   <label for="tipe_pembayaran" class="form-label">Tipe Customer</label>
                   <select class="form-select" name="tipe_pembayaran" aria-label="Default select example">
                     <option selected>pilih </option>
-                    <option value="Tempo 30 h">Tempo 30 h</option>
-                    <option value="Tunai">Tunai</option>
+                    <option value="Net 14">Net 14</option>
+                    <option value="Net 14">Net 30</option>
+                    <option value="Net 14">Net 45</option>
+                    <option value="Tunai">Cash</option>
                     <option value="Konsinyasi">Konsinyasi</option>
                   </select>
                 </div>

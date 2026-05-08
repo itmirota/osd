@@ -20,7 +20,7 @@
                   <input type="text" class="form-control" name="nama_barang" aria-describedby="nama_barangHelp">
                 </div>
                 <div class="mb-3">
-                  <label for="kategori_barang" class="form-label">Kategori Customer</label>
+                  <label for="kategori_barang" class="form-label">Kategori Barang</label>
                   <select class="form-select" name="kategori_barang" aria-label="Default select example">
                     <option selected>pilih </option>
                     <option value="Barang Jadi">Barang Jadi</option>
