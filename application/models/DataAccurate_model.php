@@ -110,6 +110,15 @@ class DataAccurate_model extends CI_Model
     return $query->result();
   }
 
+  public function GetDocumentPenghapusan($id){
+    $this->db->select('dokumen');
+    $this->db->from('tbl_accurate_penghapusan');
+    $this->db->where('id_penghapusan',$id);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
+
   public function GetDataPenyesuaianhargaAll(){
     $this->db->select('a.id_penyesuaian, a.nama_barang, a.harga_baru, a.mulai_berlaku, a.memo_internal, DATE(a.datecreated) as tanggal_input, TIME(a.datecreated) as waktu_input, DATE(a.dateprocess) as tanggal_proses, TIME(a.dateprocess) as waktu_proses, b.nama_pegawai as nama_input, b.kontak_pegawai, a.userprocess_id, c.nama_pegawai as nama_proses');
     $this->db->from('tbl_accurate_penyesuaianharga a');

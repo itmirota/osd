@@ -283,10 +283,26 @@ $bagian_id = $this->bagian_id;
 
     $userinput_id = $this->pegawai_id;
 
+    $config['upload_path']          = FCPATH.'assets/dokumen_penghapusan/';
+    $config['allowed_types']        = 'pdf';
+  
+    $this->load->library('upload', $config);
+  
+    if ( !$this->upload->do_upload('dokumen'))
+    {
+      $this->set_notifikasi_swal('error','GAGAL !!','Dokumen tidak boleh kosong');
+      redirect('data-penghapusan');
+    }
+    else
+    {
+
+    $file = $this->upload->data();
+    $dokumen = $file['file_name'];
 
     $data = array (
       'nomor_dokumen' => $nomor_dokumen,
       'alasan' => $alasan,
+      'dokumen' => $dokumen,
       'userinput_id' => $userinput_id,
       'datecreated' => DATE('Y-m-d H:i:s')
     );
@@ -294,6 +310,13 @@ $bagian_id = $this->bagian_id;
     $sql = $this->crud_model->input($data,'tbl_accurate_penghapusan');
     $this->set_notifikasi_swal('success','Berhasil','Penghapusan data Berhasil Ditambahkan');
     redirect('data-penghapusan');
+    }
+  }
+
+  public function getDokumenPenghapusan($id){
+    $dokumen = $this->dataAccurate_model->GetDocumentPenghapusan($id);
+
+    echo json_encode($dokumen);
   }
 
   public function UpdateProsesPenghapusan(){

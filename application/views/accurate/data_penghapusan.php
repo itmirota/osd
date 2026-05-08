@@ -23,6 +23,11 @@
                   <label for="alasan" class="form-label">Alasan penghapusan</label>
                   <textarea class="form-control" name="alasan"></textarea>
                 </div>
+                <div class="mb-3">
+                  <label for="dokumen" class="form-label">Upload Berita Acara</label>
+                  <input class="form-control form-control-sm" name="dokumen" type="file" required>
+                <div id="no_rekeningHelp" class="form-text">upload dalam format pdf.</div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">Input</button>
@@ -40,6 +45,7 @@
             <th>No</th>
             <th>Nomor Dokumen</th>
             <th>Alasan</th>
+            <th>Dokumen</th>
             <th>Status</th>
             <?php if ($role == ROLE_SUPERADMIN || ($role == ROLE_ADMIN && $bagian_id == ACCOUNTING)) {?>
             <th width="100px">Aksi</th>
@@ -53,6 +59,7 @@
             <td><?= $no ?></td>
             <td><?=$ld->nomor_dokumen?></td>
             <td><?=$ld->alasan?></td>
+            <td><a href="#" id="showDokumen" data-bs-toggle="modal" data-bs-target="#absenToko" onclick= "showDokumen(<?= $ld->id_penghapusan ?>)"><i class="fa fa-solid fa-eye"></i> lihat</a></td>
             <td>
               <p class="m-0">dibuat oleh: <span style="font-size:10px; font-weight:bold"><?=$ld->nama_input?></span></p>
               <p class="m-0">tanggal: <span style="font-size:10px; font-weight:bold"><?= mediumdate_indo($ld->tanggal_input).' | '.DATE('H:i',strtotime($ld->waktu_input)). ' WIB';?></span></p>
@@ -82,6 +89,26 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Detail Hasil Cek-->
+<div class="modal fade" id="absenToko" tabindex="-1" aria-labelledby="absenTokoLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="titleAddPegawai">Berita Acara</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+            <div class="col-md-12">
+                <div id="dokumen">
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -124,4 +151,19 @@
     }
     });
   });
+
+  function showDokumen($id){
+    $.ajax({
+      url:"<?php echo site_url("DataAccurate/getDokumenPenghapusan")?>/" + $id,
+      dataType:"JSON",
+      type: "get",
+      success:function(hasil){
+        console.log(hasil)
+        
+        const file = "<?= site_url("assets/dokumen_penghapusan")?>/" + hasil.dokumen;
+        
+        document.getElementById("dokumen").innerHTML = '<iframe src="'+ file + '" frameborder="0" style="width:100%; height:400px;" "></iframe>';
+      }
+    });
+  };
 </script>
