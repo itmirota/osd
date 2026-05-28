@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 
   function send_message($message, $phone){
     $client = new Client();
+    // $phone = 628993932789;
     $phone = $phone;
     $response = $client->request('POST', 'https://api.sidobe.com/wa/v1/send-message', [
         'headers' => [

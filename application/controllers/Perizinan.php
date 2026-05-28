@@ -34,6 +34,12 @@ class Perizinan extends BaseController
 
     $id_pegawai = $this->global ['pegawai_id'];
     $bagian_id = $this->bagian_id;
+    $divisi_id = $this->crud_model->getdataRowbyWhere('*', ['id_bagian' => $bagian_id], 'tbl_bagian')->divisi_id;
+
+    // $pengganti = $this->pegawai_model->getPegawaibyBagian($bagian_id, $id_pegawai);
+    $pengganti = $this->pegawai_model->getPegawaibyDivisi($divisi_id, $id_pegawai);
+
+    // var_dump($divisi_id);
 
     $data = array(
       'totalCuti' => $this->perizinan_model->HitungTotalCuti($id_pegawai),
@@ -44,7 +50,7 @@ class Perizinan extends BaseController
       'list_tugas' => $this->perizinan_model->getTugasbyPegawai($id_pegawai),
       'list_izinHarian' => $this->izinHarian_model->getDatabyPegawai($id_pegawai),
       'list_izin' => $this->izin_model->getDatabyPegawai($id_pegawai),
-      'pengganti' => $this->pegawai_model->getPegawaibyBagian($bagian_id, $id_pegawai),
+      'pengganti' => $pengganti,
       'approval_pengganti' => $this->perizinan_model->getDatabyPengganti($id_pegawai),
       'kuota_cuti' => $this->perizinan_model->cekKuotaCuti($id_pegawai)->kuota_cuti,
       'id_pegawai' => $id_pegawai
@@ -265,7 +271,9 @@ class Perizinan extends BaseController
     $this->simpanapproval($id_approval_decoder, $id_cuti_decoder, $status);
     $this->crud_model->update($where, $data, 'tbl_perizinan_cuti');
 
-    if($list_cuti->approval == 'Y,N,N' || $list_cuti->approval == 'Y,Y,N'){
+    $cek_status = $this->perizinan_model->GetDataByWhere($id_cuti_decoder);
+
+    if($cek_status->approval == 'Y,N,N' || $cek_status->approval == 'Y,Y,N'){
       $this->notif_wa($id_cuti_decoder);
     }
 
@@ -329,6 +337,7 @@ class Perizinan extends BaseController
     $message .="Silahkan lakukan approval melalui:\n";
     $message .= "\u{1F449} ".$link;
 
+    // send_message($message, $approval->kontak_pegawai);
     send_message($message, $approval->kontak_pegawai);
   }
 

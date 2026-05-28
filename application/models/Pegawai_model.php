@@ -139,6 +139,19 @@ class Pegawai_model extends CI_Model
     return $query->result();
   }
 
+  public function getPegawaibyDivisi($id, $id_pegawai)
+  {
+    $this->db->select('id_pegawai, nama_pegawai, status, id_divisi');
+    $this->db->from('tbl_pegawai a');
+    $this->db->join('tbl_bagian b','b.id_bagian = a.bagian_id');
+    $this->db->join('tbl_divisi c','c.id_divisi = b.divisi_id');
+    // $this->db->where('id_divisi',$id);
+    $this->db->where('id_pegawai !=',$id_pegawai);
+    $this->db->where('a.status','aktif');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function getDataPerpanjanganKontrak($id){
     $this->db->select('a.pegawai_id, b.nama_pegawai, a.tgl_kontrak, c.nama_pegawai as nama_pembuat');
     $this->db->from('tbl_perpanjangan_kontrak a');
