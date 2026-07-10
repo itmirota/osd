@@ -16,7 +16,7 @@ files/
 *.tmp
 
 # Composer vendor
-/vendor/
+# /vendor/
 
 # Environment files
 .env
