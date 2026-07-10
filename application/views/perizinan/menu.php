@@ -15,7 +15,7 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <a href="" data-bs-toggle="modal" data-bs-target="#AddCuti">
+    <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center">
@@ -57,7 +57,7 @@
             <img class="img-menu" src="<?= base_url('assets/images/izin-1.png')?>">
           </div>
           <div class="flex-grow-1 ms-3">
-            <h3 class="m-0 font-dark"><strong>Pengajuan Izin kurang dari 1 Hari</strong></h3>
+            <h3 class="m-0 font-dark"><strong>Pengajuan Izin kuang dari 1 Hari</strong></h3>
             <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan izin tidak lebih dari 1 hari</p>
           </div>
         </div>
@@ -75,7 +75,7 @@
           </div>
           <div class="flex-grow-1 ms-3">
             <h3 class="m-0 font-dark"><strong>Pengajuan Izin</strong></h3>
-            <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan izin satu hari penuh atau lebih</p>
+            <p class="m-0" style="font-size:12px">Menu ini digunakan untuk melakukan pengajuan izin satu hai penuh atau lebih</p>
           </div>
         </div>
       </div>
@@ -432,7 +432,7 @@
 
 
 <!-- Modal Add Cuti -->
-<div class="modal fade" id="AddCuti" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -494,7 +494,7 @@
           <div class="mb-3">
             <label for="pengganti" class="form-label">tugas dan tanggung jawab diserahkan kepada</label>
             <div class="col-md-12">
-              <select name="pengganti" id="pengganti" class="form-select tabel-PR" style="width:100%">
+              <select name="pengganti" class="form-select tabel-PR" required>
                 <option>----- pilih Penggati ---</option>
                 <?php foreach($pengganti as $p): ?>
                 <option value="<?= $p->id_pegawai?>"><?=$p->nama_pegawai?></option>
@@ -551,7 +551,7 @@
             <label for="kendaraan_id" class="form-label">Kendaraan</label>
             <select id="jenis_kendaraan" class="form-select tabel-PR" required>
               <option readonly>----- pilih jenis kendaraan ---</option>
-              <option value="motor"> Motor</option>
+              <option value="montor"> Montor</option>
               <option value="mobil"> Mobil</option>
               <option value="0"> Kendaraan Pribadi</option>
             </select>
