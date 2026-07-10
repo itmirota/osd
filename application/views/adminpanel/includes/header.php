@@ -39,6 +39,8 @@
 
 	<!-- Style.css -->
 	<link href="<?= base_url(); ?>assets/dist/css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href=<?= base_url("assets/signature/css/jquery.signature.css") ?>>
   
   <!-- FullCalendar -->
   <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
@@ -59,6 +61,9 @@
 
   <!-- jQuery 3 -->
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
   <style>
     #load{
       width: 100%;
@@ -74,7 +79,13 @@
     font-size:10px;
     margin:0;
     }
-  </style>
+
+  .kbw-signature { width: 400px; height: 400px;}
+  #sig canvas{
+      width: 100% !important;
+      height: auto;
+  }
+</style>
 </head>
 
   <!-- <body class="sidebar-mini skin-black-light"> -->

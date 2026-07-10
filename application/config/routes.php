@@ -152,6 +152,10 @@ $route['satpam/laporanAbsensiPHL'] = 'absensiPegawaiHarian/laporanSatpam';
 // KECELAKAAN KERJA
 $route['formulir-kecelakaan'] = 'kecelakaanKerja/form_kecelakaan';
 
+// PERJALANAN DINAS
+$route['perjalanan-dinas'] = 'perjalananDinas';
+$route['perjalanan-dinas/(:any)'] = 'perjalananDinas/detail/$1';
+$route['perjalanan-dinas/cetak/(:any)'] = 'perjalananDinas/cetak/$1';
 
 /*********** PERIZINAN DEFINED ROUTES *******************/
 

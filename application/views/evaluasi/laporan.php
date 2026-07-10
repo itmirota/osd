@@ -51,16 +51,16 @@
                 <?php 
                 switch ($nilai) {
                   case ($nilai <= 100 && $nilai >= 91):?>
-                    <span class="badge text-bg-success">Baik</span> <span class="badge text-bg-success"> 1 Tahun</span> 
+                    <span class="badge text-bg-success">Sangat Baik</span> <span class="badge text-bg-success"> 1 Tahun</span> 
                   <?php  break;
                   case ($nilai <= 90 && $nilai >= 71) ?>
-                    <span class="badge text-bg-warning">Cukup</span> <span class="badge text-bg-success"> 6 Bulan</span> 
+                    <span class="badge text-bg-warning">Baik</span> <span class="badge text-bg-success"> 6 Bulan</span> 
                   <?php break; 
                   case ($nilai <= 70 && $nilai >= 50) ?>
-                    <span class="badge text-bg-danger">Kurang</span> <span class="badge text-bg-warning"> 3 Bulan</span> 
+                    <span class="badge text-bg-danger">Cukup</span> <span class="badge text-bg-warning"> 3 Bulan</span> 
                   <?php break;
                   default:?>
-                    <span class="badge text-bg-danger">Kurang sekali</span>
+                    <span class="badge text-bg-danger">Kurang</span>
                   <?php } ?>
               </div>
             </div>  

@@ -58,6 +58,9 @@ if(isset($name)){ ?>
 
 	<!-- Summernote -->
 	<script src="<?php echo base_url(); ?>assets/dist/summernote-0.9.0/summernote-bs5.min.js"></script>
+	
+	<script type="text/javascript" src=<?= base_url("assets/signature/js/jquery.signature.min.js")?>></script>
+	<script type="text/javascript" src= <?= base_url("assets/signature/js/jquery.ui.touch-punch.min.js")?>></script>
 
 	<script>
 		$(document).ready(function() {
