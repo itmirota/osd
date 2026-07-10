@@ -158,7 +158,7 @@ class PerjalananDinas extends BaseController
 
   public function cetak() {
     // Panggil library pdf yang sudah dibuat
-    $this->load->library('pdf');
+    $this->load->library('Pdf');
     
     // Ambil data (opsional, jika Anda ingin mengirim data dari database ke view)
     $data['title'] = 'Data Laporan';
