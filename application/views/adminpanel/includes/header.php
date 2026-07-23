@@ -169,7 +169,6 @@ if($role != ROLE_STAFF){ ?>
         <?php }?>
 
         <!-- INVENTARIS -->
-        <?php if($role == ROLE_SUPERADMIN | $role == ROLE_HRGA){?>
         <li class="sidebar-item has-submenu">
           <a class="sidebar-link" href="#"><i class="fa-solid fa-warehouse"></i> Inventaris<i class="fa fa-angle-down" style="float: right;"></i> </a>
           <ul class="submenu collapse">
@@ -222,7 +221,6 @@ if($role != ROLE_STAFF){ ?>
                     <span>Kerusakan Barang</span>
                   </a>
                 </li>
-                <?php } ?>
               </ul>
             </li>
             <!-- MENU KENDARAAN -->
