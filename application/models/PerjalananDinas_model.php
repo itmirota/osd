@@ -46,6 +46,16 @@ class PerjalananDinas_model extends CI_Model
     return $query->row();
   }
 
+  public function ShowSignature($id, $pegawai_id){
+    $this->db->select('signature, Datecreated');
+    $this->db->from('tbl_perdinsignature a');
+    $this->db->where('perdin_id',$id);
+    $this->db->where('pegawai_id',$pegawai_id);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
+
 
 
 }

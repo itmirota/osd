@@ -1,12 +1,39 @@
 <style>
    #signature-pad {
       border: 1px solid #ccc;
-      width: 500px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
    }
 </style>
 
-<div class="col-md-12">
+<div class="container">
+<?php 
+if (is_null($signature)){?>
+<div class="mt-4 mb-4 p-3 bg-warning-subtle border-start border-warning border-3 rounded-end">
+   <div class="d-flex flex-row justify-content-between">
+      <div class="p-2">
+         <strong>Perhatian!</strong> pengajuan anda akan diproses ketika sudah melengkapi tanda tangan.
+      </div>
+      <div class="p-2">
+         <button  class="btn btn-md btn-warning" data-bs-toggle="modal" data-bs-target="#addTandaTangan">Tanda tangan </button>
+      </div>
+   </div>
+</div>
+<?php } else {?>
+<div class="mt-4 mb-4 p-3 bg-info-subtle border-start border-info border-3 rounded-end">
+   <div class="d-flex flex-row justify-content-between">
+      <div class="p-2">
+         <strong>Laporan Anda Diajukan!</strong> pengajuan anda menunggu approval dari atasan.
+      </div>
+      <!-- <div class="p-2">
+         <button  class="btn btn-md btn-warning" data-bs-toggle="modal" data-bs-target="#addTandaTangan">Tanda tangan </button>
+      </div> -->
+   </div>
+</div>
+<?php } ?>
+</div>
+
+<div class="container col-md-12">
    <div class="card card-primary">
    <div class="card-header">
       <div class="row">
@@ -15,7 +42,9 @@
                <h3 class="card-title">Detail Perjalanan Dinas</h3>
             </div>
             <div class="p-2">
+               <?php if ($this->uri->segment(1) != 'approve-perjalanan-dinas'){?>
                <a href="<?= base_url("perjalanan-dinas/cetak/".$perdin->id_perdin)?>" class="btn btn-md btn-success"> Cetak</a>
+               <?php } ?>
             </div>
          </div>
          <div class="d-flex flex-column col-md-6">
@@ -84,7 +113,9 @@
                <h3 class="card-title">Rincian Tugas dalam Perjalanan Dinas</h3>
          </div>
          <div class="p-2">
+            <?php if ($this->uri->segment(1) != 'approve-perjalanan-dinas'){?>
             <button class="btn btn-md btn-info" data-bs-toggle="modal" data-bs-target="#addDetailPerjalanan">Tambah Data</button>
+            <?php } ?>
          </div>
       </div>
       <div class="table-responsive no-padding">
@@ -124,17 +155,15 @@
          </tbody>
          </table>
       </div>
-      <div class="d-flex flex-row justify-content-between">
+
+      <div class="d-flex justify-content-between">
          <div class="p-2">
-            <form action="<?= base_url('perjalananDinas/save_signature') ?>" method="post">
-               <canvas id="signature-pad"></canvas>
-               <br><br>
-               <button type="button" id="clear">Clear</button>
-               <button type="submit">Simpan</button>
-               <input type="hidden" name="signature" id="signature">
-            </form>
+            <p>Diajukan Oleh:</p>
+            <?php if (isset($signature->signature)){?>
+            <img src="<?= base_url('assets/images/signature/'.$signature->signature)?>" width=50% alt="" srcset="">
+            <p>Diajukan pada tanggal <?=$signature->Datecreated?></p>
+            <?php } ?>
          </div>
-         <div class="p-2"></div>
       </div>
    </div>
 </div>
@@ -188,35 +217,86 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="addTandaTangan" tabindex="-1" aria-labelledby="addTandaTangantLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <div class="d-flex flex-wrap justify-content-between">
+         <div>
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Approval Perjalanan Dinas</h1>
+         </div>
+         <div>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+        </div>
+      </div>
+      <div class="modal-body">
+         <div class="p-2">
+            <form id="form-signature" action="<?= base_url('perjalananDinas/save_signature') ?>" method="post">
+               <canvas id="signature-pad"></canvas>
+               <br><br>
+               <input type="hidden" name="signature" id="signature">
+               <input type="hidden" name="perdin_id" value="<?= $perdin->id_perdin ?>">
+               <div class="d-flex justify-content-between">
+               <button class="btn btn-md btn-secondary" type="button" id="clear">Clear</button>
+               <button class="btn btn-md btn-success" type="submit">Simpan</button>
+               </div>
+            </form>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 
 <script>
 
-const canvas = document.getElementById('signature-pad');
+let signaturePad;
 
-canvas.width = 500;
-canvas.height = 200;
+$('#addTandaTangan').on('shown.bs.modal', function () {
 
-const signaturePad = new SignaturePad(canvas, {
-    minWidth: 1,
-    maxWidth: 3,
-    velocityFilterWeight: 10
-});
+    const canvas = document.getElementById('signature-pad');
 
-document.querySelector('form').addEventListener('submit', function() {
+    if (!signaturePad) {
 
-    if(signaturePad.isEmpty()){
-        alert('Tanda tangan masih kosong');
-        event.preventDefault();
-        return;
+        canvas.width = 500;
+        canvas.height = 200;
+
+        signaturePad = new SignaturePad(canvas);
+
+    } else {
+
+        signaturePad.clear();
+
     }
 
-    document.getElementById('signature').value =
-        signaturePad.toDataURL('image/png');
 });
 
-document.getElementById('clear').addEventListener('click', function(){
-    signaturePad.clear();
+$('#form-signature').on('submit', function(e){
+
+    if (!signaturePad || signaturePad.isEmpty()) {
+
+        alert('Silakan tanda tangan terlebih dahulu');
+        e.preventDefault();
+        return false;
+    }
+
+    $('#signature').val(
+        signaturePad.toDataURL('image/png')
+    );
+
+});
+
+$('#clear').click(function(){
+
+    if (signaturePad) {
+        signaturePad.clear();
+    }
+
 });
 
 </script>

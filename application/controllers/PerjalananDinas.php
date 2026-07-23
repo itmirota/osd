@@ -35,8 +35,16 @@ class PerjalananDinas extends BaseController
     $this->global['pageHeader'] = 'Perizinan Perjalanan Dinas';
 
     $id = $this->uri->segment(2);
-    $data['perdin'] = $this->perjalananDinas_model->ShowById($id);
-    $data['list_data'] = $this->perjalananDinas_model->ShowDetail($id);
+    $perdin = $this->perjalananDinas_model->ShowById($id);
+    $list_data = $this->perjalananDinas_model->ShowDetail($id);
+
+    $signature = $this->perjalananDinas_model->ShowSignature($id, $perdin->pegawai_id);
+
+    $data = array(
+      'perdin' => $perdin,
+      'list_data' => $list_data,
+      'signature' => $signature
+    );
 
     $this->loadViews("perjalananDinas/detail", $this->global, $data, NULL);
   }
@@ -68,7 +76,6 @@ class PerjalananDinas extends BaseController
     $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
 
     $maxid = $this->perjalananDinas_model->ShowMaxId($pegawai_id)->id_perdin;
-  
     redirect('perjalanan-dinas/'.$maxid);
   }
 
@@ -97,13 +104,46 @@ class PerjalananDinas extends BaseController
 
   public function save_signature()
   {
-      $image = $this->input->post('signature');
-      $image = str_replace('[removed]', '', $image);
-      $image_base64 = base64_decode($image);
-      $file_name = 'signature_' . time() . '.png';
-      $file_path = FCPATH . 'assets/images/signature/' . $file_name;
-      file_put_contents($file_path, $image_base64);
-      echo "Berhasil disimpan : " . $file_name;
+    $image = $this->input->post('signature');
+
+    $image = str_replace('[removed]', '', $image);
+    $image_base64 = base64_decode($image);
+    $file_name = 'signature_' . time() . '.png';
+    $file_path = FCPATH . 'assets/images/signature/' . $file_name;
+    file_put_contents($file_path, $image_base64);
+
+    $perdin_id = $this->input->post('perdin_id');
+
+    $data = array(
+      'perdin_id' => $perdin_id,
+      'pegawai_id' => $this->vendorId,
+      'signature' => $file_name,
+      'DateCreated' => DATE('Y-m-d H:i:s'),
+    );
+
+    $sql = $this->crud_model->input($data,'tbl_perdinsignature');
+
+    $this->set_notifikasi_swal('success','Berhasil','Data Berhasil Disimpan');
+    redirect('perjalanan-dinas/'.$perdin_id);
+  }
+
+  public function form_approval(){
+    $this->global['pageTitle'] = 'SMART OSD | Perjalanan Dinas';
+    $this->global['pageHeader'] = 'Perizinan Perjalanan Dinas';
+
+    $id = 14;
+    $perdin = $this->perjalananDinas_model->ShowById($id);
+    $list_data = $this->perjalananDinas_model->ShowDetail($id);
+
+    $signature = $this->perjalananDinas_model->ShowSignature($id, $perdin->pegawai_id);
+
+    $data = array(
+      'perdin' => $perdin,
+      'list_data' => $list_data,
+      'signature' => $signature
+    );
+
+    $this->loadViewsUser("perjalananDinas/detail", $this->global, $data, NULL);
   }
 
   private function cropSignature($file_path)
@@ -127,11 +167,11 @@ class PerjalananDinas extends BaseController
             // Jika pixel tidak transparan
             if ($alpha < 127) {
 
-                $minX = min($minX, $x);
-                $minY = min($minY, $y);
+              $minX = min($minX, $x);
+              $minY = min($minY, $y);
 
-                $maxX = max($maxX, $x);
-                $maxY = max($maxY, $y);
+              $maxX = max($maxX, $x);
+              $maxY = max($maxY, $y);
             }
         }
     }
@@ -188,8 +228,5 @@ class PerjalananDinas extends BaseController
     // Jalankan fungsi generate PDF
     $this->pdf->generate($html, 'laporan_perjalanan_dinas');
   }
-
-
-
 
 }
