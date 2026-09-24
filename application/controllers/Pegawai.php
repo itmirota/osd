@@ -471,7 +471,10 @@ class Pegawai extends BaseController
     $bagian_id = $this->input->post('bagian_id');
     $status_pegawai = $this->input->post('status_pegawai'); 
     $tempat_lahir = $this->input->post('tempat_lahir');    
-    $tgl_lahir = $this->input->post('tgl_lahir');        
+    $tgl_lahir = $this->input->post('tgl_lahir');      
+    $shio = shio($tgl_lahir);    
+    $zodiak = zodiak($tgl_lahir);    
+    $weton = weton($tgl_lahir);    
     $jenis_kelamin = $this->input->post('jenis_kelamin');    
     $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');    
     $jurusan = $this->input->post('jurusan');    
@@ -518,6 +521,9 @@ class Pegawai extends BaseController
         'nama_pegawai' => $nama_pegawai,
         'tempat_lahir' => $tempat_lahir,
         'tgl_lahir' => $tgl_lahir,
+        'shio' => $shio,
+        'zodiak' => $zodiak,
+        'weton' => $weton,
         'jenis_kelamin' => $jenis_kelamin,
         'pendidikan_terakhir' => $pendidikan_terakhir,
         'jurusan' => $jurusan,
@@ -556,6 +562,9 @@ class Pegawai extends BaseController
         'status_pegawai' => $status_pegawai,
         'tempat_lahir' => $tempat_lahir,
         'tgl_lahir' => $tgl_lahir,
+        'shio' => $shio,
+        'zodiak' => $zodiak,
+        'weton' => $weton,
         'jenis_kelamin' => $jenis_kelamin,
         'pendidikan_terakhir' => $pendidikan_terakhir,
         'jurusan' => $jurusan,
