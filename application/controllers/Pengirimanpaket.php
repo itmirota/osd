@@ -38,6 +38,7 @@ class Pengirimanpaket extends BaseController
       'total_saldo' => $this->crud_model->GetRowOrderby('id_saldo','DESC','tbl_satpam_saldo')->saldo,
       'sisa_saldo' => $this->crud_model->getDataTotal('sisa_saldo','tbl_satpam_saldo'),
       'list_data' => $list_data,
+      'page' => $this->uri->segment(1)
     );
 
     $this->loadViews("pengirimanpaket/data", $this->global, $data, NULL);

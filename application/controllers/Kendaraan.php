@@ -362,7 +362,28 @@ class Kendaraan extends BaseController
 
     $this->global['pageHeader'] = 'Peminjaman kendaraan PT. Mirota KSM';
 
-
     $this->loadViews("kendaraan/formpeminjaman", $this->global, $data, NULL);
+  }
+
+  public function cetak() {
+    // Panggil library pdf yang sudah dibuat
+    $this->load->library('Pdf');
+    
+    // Ambil data (opsional, jika Anda ingin mengirim data dari database ke view)
+    $data['title'] = 'Data Laporan Kendaraan';
+    
+    // Load view dan simpan hasilnya ke dalam variabel $html
+    $data['mobil']= $this->master_model->getDataMobil();
+    $data['motor']= $this->master_model->getDataMontor();
+
+    $path = FCPATH . 'assets/dist/img/mirota.png';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data_img = file_get_contents($path);
+    $data['logo_base64'] = 'data:image/' . $type . ';base64,' . base64_encode($data_img);
+
+    $html = $this->load->view("kendaraan/cetak", $data, True);
+    
+    // Jalankan fungsi generate PDF
+    $this->pdf->generate($html, 'laporan_kendaraan_PTmirotaKSM');
   }
 }

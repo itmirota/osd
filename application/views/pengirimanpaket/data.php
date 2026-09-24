@@ -39,6 +39,7 @@
             <th>Ekspedisi</th>
             <th class="text-end">No Resi</th>
             <th class="text-end">Biaya Kirim</th>
+            <th class="text-end">Pengantar</th>
           </tr>
           </thead>
           <tbody>
@@ -63,6 +64,7 @@
             <td><?php echo $data->ekspedisi ?></td>
             <td><?php echo $data->no_resi ?></td>
             <td width="100px"><?php echo $data->biaya_kirim ?></td>
+            <td><?php echo $data->pengantar ?></td>
           </tr>
           <?php
             endforeach;

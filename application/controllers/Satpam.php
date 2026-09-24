@@ -121,6 +121,7 @@ class Satpam extends BaseController
     $id_paket = $this->input->post('id_paket');
     $no_resi = $this->input->post('no_resi');
     $biaya_kirim = $this->input->post('biaya_kirim');
+    $pengantar = $this->input->post('pengantar');
 
     $this->kurangiSaldo($biaya_kirim);
 

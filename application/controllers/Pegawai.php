@@ -449,7 +449,7 @@ class Pegawai extends BaseController
     $this->loadViews("pegawai/editdata", $this->global, $data, NULL);
   }
 
-    public function editPegawai($id){
+  public function editPegawai($id){
     $this->global['pageTitle'] = "Edit Data Karyawan";
 
     $data['list_data'] = $this->pegawai_model->showDataRow(['id_pegawai' => $id]);
@@ -512,47 +512,84 @@ class Pegawai extends BaseController
       $kuota_cuti = NULL;
     }
 
+    if ($page == 'editdata') {
+      $data = array(
+        'nip' => $nip,
+        'nama_pegawai' => $nama_pegawai,
+        'tempat_lahir' => $tempat_lahir,
+        'tgl_lahir' => $tgl_lahir,
+        'jenis_kelamin' => $jenis_kelamin,
+        'pendidikan_terakhir' => $pendidikan_terakhir,
+        'jurusan' => $jurusan,
+        'golongan_darah' => $golongan_darah,
+        'agama' => $agama,
+        'alamat_ktp' => $alamat_ktp,
+        'alamat_domisili' => $alamat_domisili,
+        'kontak_pegawai' => $kontak_pegawai,
+        'no_kk' => $no_kk,
+        'no_ktp' => $no_ktp,
+        'no_jamsostek' => $no_jamsostek,
+        'no_npwp' => $no_npwp,
+        'kuota_cuti' => $kuota_cuti,
+        'email_pegawai' => $email_pegawai,
+        'status_pernikahan' => $status_pernikahan,
+        'nama_ibu' => $nama_ibu,
+        'nama_ayah' => $nama_ayah,
+        'nama_pasangan' => $nama_pasangan,
+        'nama_anak' => $nama_anak,
+        'kontak_pasangan' => $kontak_pasangan,
+        'nama_kontakdarurat1' => $nama_kontakdarurat1,
+        'no_hpdarurat1' => $no_hpdarurat1,
+        'hubungan_darurat1' => $hubungan_darurat1,
+        'nama_kontakdarurat2' => $nama_kontakdarurat2,
+        'no_hpdarurat2' => $no_hpdarurat2,
+        'hubungan_darurat2' => $hubungan_darurat2,
+        'updatedBy' => $updateby,
+        'updatedDtm' => date('Y-m-d H:i:s')
+      );
+    }else{
+      $data = array(
+        'nip' => $nip,
+        'nama_pegawai' => $nama_pegawai,
+        'jabatan_id' => $jabatan_id,
+        'bagian_id' => $bagian_id,
+        'status_pegawai' => $status_pegawai,
+        'tempat_lahir' => $tempat_lahir,
+        'tgl_lahir' => $tgl_lahir,
+        'jenis_kelamin' => $jenis_kelamin,
+        'pendidikan_terakhir' => $pendidikan_terakhir,
+        'jurusan' => $jurusan,
+        'golongan_darah' => $golongan_darah,
+        'agama' => $agama,
+        'alamat_ktp' => $alamat_ktp,
+        'alamat_domisili' => $alamat_domisili,
+        'kontak_pegawai' => $kontak_pegawai,
+        'no_kk' => $no_kk,
+        'no_ktp' => $no_ktp,
+        'no_jamsostek' => $no_jamsostek,
+        'no_npwp' => $no_npwp,
+        'tgl_masuk' => $tgl_masuk,
+        'tgl_selesai' => $tgl_selesai,
+        'durasi_kontrak' => $durasi_kontrak,
+        'kuota_cuti' => $kuota_cuti,
+        'email_pegawai' => $email_pegawai,
+        'status_pernikahan' => $status_pernikahan,
+        'nama_ibu' => $nama_ibu,
+        'nama_ayah' => $nama_ayah,
+        'nama_pasangan' => $nama_pasangan,
+        'nama_anak' => $nama_anak,
+        'kontak_pasangan' => $kontak_pasangan,
+        'nama_kontakdarurat1' => $nama_kontakdarurat1,
+        'no_hpdarurat1' => $no_hpdarurat1,
+        'hubungan_darurat1' => $hubungan_darurat1,
+        'nama_kontakdarurat2' => $nama_kontakdarurat2,
+        'no_hpdarurat2' => $no_hpdarurat2,
+        'hubungan_darurat2' => $hubungan_darurat2,
+        'updatedBy' => $updateby,
+        'updatedDtm' => date('Y-m-d H:i:s')
+      );
+    }
 
-    $data = array(
-      'nip' => $nip,
-      'nama_pegawai' => $nama_pegawai,
-      'jabatan_id' => $jabatan_id,
-      'bagian_id' => $bagian_id,
-      'status_pegawai' => $status_pegawai,
-      'tempat_lahir' => $tempat_lahir,
-      'tgl_lahir' => $tgl_lahir,
-      'jenis_kelamin' => $jenis_kelamin,
-      'pendidikan_terakhir' => $pendidikan_terakhir,
-      'jurusan' => $jurusan,
-      'golongan_darah' => $golongan_darah,
-      'agama' => $agama,
-      'alamat_ktp' => $alamat_ktp,
-      'alamat_domisili' => $alamat_domisili,
-      'kontak_pegawai' => $kontak_pegawai,
-      'no_kk' => $no_kk,
-      'no_ktp' => $no_ktp,
-      'no_jamsostek' => $no_jamsostek,
-      'no_npwp' => $no_npwp,
-      'tgl_masuk' => $tgl_masuk,
-      'tgl_selesai' => $tgl_selesai,
-      'durasi_kontrak' => $durasi_kontrak,
-      'kuota_cuti' => $kuota_cuti,
-      'email_pegawai' => $email_pegawai,
-      'status_pernikahan' => $status_pernikahan,
-      'nama_ibu' => $nama_ibu,
-      'nama_ayah' => $nama_ayah,
-      'nama_pasangan' => $nama_pasangan,
-      'nama_anak' => $nama_anak,
-      'kontak_pasangan' => $kontak_pasangan,
-      'nama_kontakdarurat1' => $nama_kontakdarurat1,
-      'no_hpdarurat1' => $no_hpdarurat1,
-      'hubungan_darurat1' => $hubungan_darurat1,
-      'nama_kontakdarurat2' => $nama_kontakdarurat2,
-      'no_hpdarurat2' => $no_hpdarurat2,
-      'hubungan_darurat2' => $hubungan_darurat2,
-      'updatedBy' => $updateby,
-      'updatedDtm' => date('Y-m-d H:i:s')
-    );
 
     $where = array(
       'nip' => $nip

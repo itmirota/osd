@@ -116,6 +116,10 @@
             <label for="biaya_kirim" class="form-label">Biaya Kirim</label>
             <input type="text" name="biaya_kirim" placeholder="biaya kirim" class="form-control tabel-PR" required />
           </div>
+          <div class="mb-3">
+            <label for="pengantar" class="form-label">Nama Pengantar</label>
+            <input type="text" name="pengantar" placeholder="Nama Pengantar" class="form-control tabel-PR" required />
+          </div>
 
         </div>
         <div class="modal-footer">

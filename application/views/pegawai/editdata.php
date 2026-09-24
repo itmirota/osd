@@ -21,7 +21,7 @@
               <label for="jabatan_id" class="form-label">Jabatan</label>
               <select name="jabatan_id" id="jabatan_id" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <?php foreach($jabatan as $j): ?>
-                <option value="<?= $j->id_jabatan?>" <?= $list_data->jabatan_id == $j->id_jabatan ? " selected" : ""?>><?=$j->nama_jabatan?></option>
+                <option value="<?= $j->id_jabatan?>" <?= $list_data->jabatan_id == $j->id_jabatan ? "selected" : ""?>><?=$j->nama_jabatan?></option>
                 <?php endforeach; ?>
               </select>
             </div> 
@@ -29,7 +29,7 @@
               <label for="departement_id" class="form-label">Departement</label>
               <select name="departement_id" id="departement_id" class="form-select tabel-PR" <?= $this->uri->segment(1) == 'editdata' ? 'disabled' : ''?>>
                 <?php foreach($departement as $d): ?>
-                <option value="<?= $d->id_departement?>" <?= $list_data->departement_id == $d->id_departement ? " selected" : ""?>
+                <option value="<?= $d->id_departement?>" <?= $list_data->departement_id == $d->id_departement ? "selected" : ""?>
                 ><?=$d->nama_departement?></option>
                 <?php endforeach; ?>
               </select>

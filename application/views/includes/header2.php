@@ -23,7 +23,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 	<!-- FontAwesome -->
-	<script src="https://kit.fontawesome.com/5e911b9078.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/4dc9141beb.js" crossorigin="anonymous"></script>
 
   <!-- DataTables -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -173,9 +173,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="d-flex justify-content-end mb-4">
-            <a href="<?= base_url('editdata/'.$pegawai_id)?>" class="btn btn-md btn-outline-dark"><i class="fa-solid fa-pencil"></i> ubah data</a>
-          </div>
           <div class="row">
             <div class="col-6">
               <div class="mb-3 row">
@@ -325,6 +322,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="d-flex justify-content-end mb-4">
+            <a href="<?= base_url('editdata/'.$pegawai_id)?>" class="btn btn-lg btn-outline-primary btn-primary"><i class="fa fa-solid fa-user"></i> perbarui data</a>
           </div>
         </div>
       </div>
