@@ -77,14 +77,14 @@
             </td>
             <td>
               <a href="#" class="pop">
-              <img src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_in)?>" class="lazy-img" width="70px" style="border-radius:10px">
+              <img data-src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_in)?>" class="lazy-img" width="70px" style="border-radius:10px">
               </a><br>
               <p><i class="fas fa-clock"></i> <?= $ld->time_in?></p>
             </td>
             <td>
               <?php if (isset($ld->time_out)){ ?>
               <a href="#" class="pop">
-              <img src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_out)?>" class="lazy-img" width="70px" style="border-radius:10px">
+              <img data-src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_out)?>" class="lazy-img" width="70px" style="border-radius:10px">
               </a><br>
               <p><i class="fas fa-clock"></i> <?= $ld->time_out?></p>
               <?php }else{ ?>
