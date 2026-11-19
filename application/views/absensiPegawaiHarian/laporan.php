@@ -76,12 +76,16 @@
             <td class="text-center"><?= mediumdate_indo($ld->date)?></td>
             </td>
             <td>
-              <img src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_in)?>" width="200px" style="border-radius:15px">
+              <a href="#" class="pop">
+              <img src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_in)?>" class="lazy-img" width="70px" style="border-radius:10px">
+              </a><br>
               <p><i class="fas fa-clock"></i> <?= $ld->time_in?></p>
             </td>
             <td>
               <?php if (isset($ld->time_out)){ ?>
-              <img src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_out)?>" width="200px" style="border-radius:15px">
+              <a href="#" class="pop">
+              <img src="<?= base_url('assets/images/absensiPegawaiHarian/'.$ld->bukti_absensi_out)?>" class="lazy-img" width="70px" style="border-radius:10px">
+              </a><br>
               <p><i class="fas fa-clock"></i> <?= $ld->time_out?></p>
               <?php }else{ ?>
               <span class="badge text-bg-secondary">belum absen</span> 
@@ -98,3 +102,44 @@
   </div><!-- /.box -->
 </div>
 
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">              
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="imagepreview" style="width: 100%;" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+$(function() {
+    $('.pop').on('click', function() {
+        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+        $('#imagemodal').modal('show');   
+    });		
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const imgs = document.querySelectorAll("img.lazy-img");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove("lazy-img");
+        obs.unobserve(img);
+      }
+    });
+  });
+
+  imgs.forEach(img => observer.observe(img));
+});
+</script>
